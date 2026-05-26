@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: https://github.com/egyuk/Vehicle-Exports  # TODO: Replace with your GitHub username/repo (e.g. george/car-export)
+  repo: github.com/egyuk/Vehicle-Exports  # TODO: Replace with your GitHub username/repo (e.g. george/car-export)
   branch: main
   auth_type: pkce
   app_id: Ov23lipq52QTUOSKeQOO  # TODO: Replace with your GitHub OAuth App Client ID
