@@ -1,0 +1,197 @@
+---
+---
+
+<section
+  class="relative min-h-[600px] lg:min-h-[500px] overflow-hidden bg-black"
+  id="shipping-calculator"
+>
+  <!-- Parallax background image -->
+  <div class="absolute left-0 right-0" style="top: -300px; bottom: -300px;">
+    <img
+      src="/assets/images/section/loan-bg.jpg"
+      alt=""
+      class="w-full h-full object-cover parallax-img"
+    />
+  </div>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 lg:pl-4">
+    <div class="flex justify-start">
+      <!-- Calculator Card -->
+      <div class="bg-white rounded-2xl p-6 lg:p-7 w-full max-w-xl floating-card" style="box-shadow: 0 25px 60px rgba(0,0,0,0.3);">
+        <h3 class="text-lg font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-0.5">Shipping Calculator</h3>
+        <p class="text-xs text-gray-500 mb-4">Estimate the cost of shipping your vehicle internationally</p>
+
+        <div class="space-y-4">
+          <div class="lg:grid lg:grid-cols-2 lg:gap-5 space-y-4 lg:space-y-0">
+            <!-- Country -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Destination Country</label>
+              <select id="ship-country" class="filter-select w-full border-b border-gray-200 px-0 py-3 text-base text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors bg-transparent">
+                <option value="" disabled selected>Select Country</option>
+              </select>
+            </div>
+
+            <!-- Vehicle Type -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Vehicle Type</label>
+              <select id="ship-vehicle" class="filter-select w-full border-b border-gray-200 px-0 py-3 text-base text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors bg-transparent">
+                <option value="" disabled selected>Select Vehicle Type</option>
+                <option value="saloon">Saloon / Sedan</option>
+                <option value="suv">SUV / 4x4</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Shipping Mode -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Shipping Mode</label>
+            <div class="grid grid-cols-2 gap-3 mt-2">
+              <label class="ship-mode-label relative flex flex-col items-center gap-1.5 border-2 border-gray-200 rounded-xl p-3 cursor-pointer hover:border-[var(--color-primary)] transition-colors">
+                <input type="radio" name="ship-mode" value="roro" class="sr-only" />
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 17h1l1-5h14l1 5h1m-4 0a2 2 0 11-4 0m-4 0a2 2 0 11-4 0M5 12V7a2 2 0 012-2h10a2 2 0 012 2v5"/></svg>
+                <span class="text-xs font-semibold text-gray-700">RoRo</span>
+                <span class="text-[10px] text-gray-400">Roll-on/Roll-off</span>
+              </label>
+              <label class="ship-mode-label relative flex flex-col items-center gap-1.5 border-2 border-gray-200 rounded-xl p-3 cursor-pointer hover:border-[var(--color-primary)] transition-colors">
+                <input type="radio" name="ship-mode" value="container" class="sr-only" />
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7H4a1 1 0 00-1 1v8a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM8 7V5a1 1 0 011-1h6a1 1 0 011 1v2M12 7v10M7 12h10"/></svg>
+                <span class="text-xs font-semibold text-gray-700">Container</span>
+                <span class="text-[10px] text-gray-400">20ft / 40ft</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div id="ship-result" class="hidden pt-4 border-t border-gray-100">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-gray-500">Estimated Shipping Cost</span>
+              <span class="text-2xl font-bold text-[var(--color-primary)] font-[family-name:var(--font-heading)]" id="ship-price">£0</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1">* Prices are estimates and may vary. Contact us for a final quote.</p>
+          </div>
+
+          <a href="/contact" class="block w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white py-3 rounded-lg font-semibold transition-all text-sm text-center">
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ── Shipping price data ──
+  // Edit this object to update prices. Format:
+  // "Country Name": { saloon_roro, saloon_container, suv_roro, suv_container }
+  // All prices in GBP
+  const shippingRates: Record<string, { saloon_roro: number; saloon_container: number; suv_roro: number; suv_container: number }> = {
+    "Kenya":           { saloon_roro: 1200, saloon_container: 2100, suv_roro: 1500, suv_container: 2500 },
+    "Tanzania":        { saloon_roro: 1300, saloon_container: 2200, suv_roro: 1600, suv_container: 2600 },
+    "Uganda":          { saloon_roro: 1500, saloon_container: 2500, suv_roro: 1800, suv_container: 2900 },
+    "Nigeria":         { saloon_roro: 1400, saloon_container: 2300, suv_roro: 1700, suv_container: 2700 },
+    "Ghana":           { saloon_roro: 1350, saloon_container: 2250, suv_roro: 1650, suv_container: 2650 },
+    "South Africa":    { saloon_roro: 1100, saloon_container: 2000, suv_roro: 1400, suv_container: 2400 },
+    "Mozambique":      { saloon_roro: 1250, saloon_container: 2150, suv_roro: 1550, suv_container: 2550 },
+    "DR Congo":        { saloon_roro: 1600, saloon_container: 2700, suv_roro: 1900, suv_container: 3100 },
+    "Zambia":          { saloon_roro: 1550, saloon_container: 2600, suv_roro: 1850, suv_container: 3000 },
+    "Zimbabwe":        { saloon_roro: 1500, saloon_container: 2500, suv_roro: 1800, suv_container: 2900 },
+    "Malawi":          { saloon_roro: 1550, saloon_container: 2600, suv_roro: 1850, suv_container: 3000 },
+    "Ethiopia":        { saloon_roro: 1450, saloon_container: 2400, suv_roro: 1750, suv_container: 2800 },
+    "Rwanda":          { saloon_roro: 1550, saloon_container: 2550, suv_roro: 1850, suv_container: 2950 },
+    "Burundi":         { saloon_roro: 1600, saloon_container: 2650, suv_roro: 1900, suv_container: 3050 },
+    "Cameroon":        { saloon_roro: 1400, saloon_container: 2350, suv_roro: 1700, suv_container: 2750 },
+    "Ivory Coast":     { saloon_roro: 1350, saloon_container: 2250, suv_roro: 1650, suv_container: 2650 },
+    "Senegal":         { saloon_roro: 1300, saloon_container: 2200, suv_roro: 1600, suv_container: 2600 },
+    "UAE":             { saloon_roro: 900,  saloon_container: 1800, suv_roro: 1200, suv_container: 2200 },
+    "Japan":           { saloon_roro: 800,  saloon_container: 1700, suv_roro: 1100, suv_container: 2100 },
+    "Australia":       { saloon_roro: 1800, saloon_container: 3000, suv_roro: 2100, suv_container: 3400 },
+    "New Zealand":     { saloon_roro: 1900, saloon_container: 3100, suv_roro: 2200, suv_container: 3500 },
+    "Cyprus":          { saloon_roro: 700,  saloon_container: 1500, suv_roro: 900,  suv_container: 1800 },
+    "Jamaica":         { saloon_roro: 1600, saloon_container: 2700, suv_roro: 1900, suv_container: 3100 },
+    "Trinidad & Tobago": { saloon_roro: 1650, saloon_container: 2750, suv_roro: 1950, suv_container: 3150 },
+  };
+
+  // Populate country dropdown
+  const countrySelect = document.getElementById('ship-country') as HTMLSelectElement;
+  Object.keys(shippingRates).sort().forEach(country => {
+    const opt = document.createElement('option');
+    opt.value = country;
+    opt.textContent = country;
+    countrySelect.appendChild(opt);
+  });
+
+  // Mode selection styling
+  const modeLabels = document.querySelectorAll<HTMLLabelElement>('.ship-mode-label');
+  const modeInputs = document.querySelectorAll<HTMLInputElement>('input[name="ship-mode"]');
+
+  modeInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      modeLabels.forEach(label => {
+        label.classList.remove('border-[var(--color-primary)]', 'bg-orange-50');
+        label.classList.add('border-gray-200');
+      });
+      const parent = input.closest('label');
+      if (parent) {
+        parent.classList.remove('border-gray-200');
+        parent.classList.add('border-[var(--color-primary)]', 'bg-orange-50');
+      }
+      calculateShipping();
+    });
+  });
+
+  countrySelect.addEventListener('change', calculateShipping);
+  document.getElementById('ship-vehicle')?.addEventListener('change', calculateShipping);
+
+  function calculateShipping() {
+    const country = countrySelect.value;
+    const vehicle = (document.getElementById('ship-vehicle') as HTMLSelectElement).value;
+    const modeEl = document.querySelector<HTMLInputElement>('input[name="ship-mode"]:checked');
+    const mode = modeEl?.value;
+    const resultDiv = document.getElementById('ship-result')!;
+    const priceEl = document.getElementById('ship-price')!;
+
+    if (!country || !vehicle || !mode) {
+      resultDiv.classList.add('hidden');
+      return;
+    }
+
+    const rates = shippingRates[country];
+    if (!rates) {
+      resultDiv.classList.add('hidden');
+      return;
+    }
+
+    const key = `${vehicle}_${mode}` as keyof typeof rates;
+    const price = rates[key];
+
+    priceEl.textContent = '£' + price.toLocaleString();
+    resultDiv.classList.remove('hidden');
+  }
+
+  // Floating card animation
+  const card = document.querySelector('.floating-card') as HTMLElement;
+  if (card) {
+    window.addEventListener('scroll', () => {
+      const rect = card.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const visible = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH + rect.height)));
+      const float = Math.sin(visible * Math.PI) * 8;
+      card.style.transform = `translateY(${-float}px)`;
+    }, { passive: true });
+  }
+
+  // Parallax scroll effect
+  const section = document.getElementById('shipping-calculator');
+  const parallaxImg = section?.querySelector('.parallax-img') as HTMLElement;
+  if (section && parallaxImg) {
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const speed = 0.5;
+      const offset = rect.top * speed;
+      parallaxImg.style.transform = `translateY(${offset}px)`;
+    }, { passive: true });
+  }
+</script>

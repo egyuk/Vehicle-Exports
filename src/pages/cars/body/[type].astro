@@ -1,0 +1,74 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import VehicleCard from '../../../components/VehicleCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const vehicles = await getCollection('vehicles');
+  const bodyTypes = [...new Set(vehicles.map(v => v.data.bodyType))];
+
+  return bodyTypes.map(type => ({
+    params: { type: type.toLowerCase().replace(/ /g, '-') },
+    props: {
+      bodyType: type,
+      vehicles: vehicles
+        .filter(v => v.data.bodyType === type)
+        .sort((a, b) => b.data.price - a.data.price),
+    },
+  }));
+}
+
+const { bodyType, vehicles } = Astro.props;
+---
+
+<Layout title={`${bodyType} Cars for Export - AutoDeal`} description={`Browse our selection of ${bodyType} vehicles available for international export from the UK.`}>
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <a href="/cars" class="hover:text-[var(--color-primary)] transition-colors">Cars</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">{bodyType}</span>
+      </nav>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-heading)]">{bodyType} Cars</h1>
+      <p class="text-gray-400 mt-2 max-w-xl">Browse {vehicles.length} {bodyType.toLowerCase()} vehicles available for export.</p>
+    </div>
+  </section>
+
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-6">
+        <p class="text-sm text-gray-500">
+          Showing <span class="font-semibold text-gray-900">{vehicles.length}</span> vehicles
+        </p>
+        <a href="/cars" class="text-sm text-[var(--color-primary)] font-semibold hover:underline">View all cars</a>
+      </div>
+
+      {vehicles.length > 0 ? (
+        <div class="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
+          {vehicles.map(vehicle => (
+            <VehicleCard
+              slug={vehicle.data.slug}
+              title={vehicle.data.title}
+              price={vehicle.data.price}
+              mileage={vehicle.data.mileage}
+              fuel={vehicle.data.fuel}
+              transmission={vehicle.data.transmission}
+              bodyType={vehicle.data.bodyType}
+              year={vehicle.data.year}
+              images={vehicle.data.images}
+              featured={vehicle.data.featured}
+              condition={vehicle.data.condition}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="py-16 text-center">
+          <h3 class="text-lg font-semibold text-gray-900">No {bodyType} vehicles found</h3>
+          <p class="text-gray-500 text-sm mt-1">Check back soon for new listings.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

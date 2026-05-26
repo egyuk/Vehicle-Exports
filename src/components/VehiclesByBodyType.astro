@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import VehicleCard from './VehicleCard.astro';
+
+const allVehicles = await getCollection('vehicles');
+const vehicles = allVehicles.sort((a, b) => b.data.price - a.data.price);
+
+// Get unique body types from actual vehicles
+const bodyTypes = ['All Cars', ...new Set(allVehicles.map(v => v.data.bodyType))];
+---
+
+<section class="pt-8 pb-16 lg:pt-10 lg:pb-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Used Cars By Body Type</h2>
+      <a href="/cars" class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-semibold text-sm flex items-center gap-1 transition-colors">
+        View all
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide" id="body-type-tabs" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+      {bodyTypes.map((type, i) => (
+        <button
+          class={`tab-btn text-sm whitespace-nowrap shrink-0 ${i === 0 ? 'active' : ''}`}
+          data-body-type={type}
+        >
+          {type}
+        </button>
+      ))}
+    </div>
+
+    <!-- Mobile: vertical cards, two columns -->
+    <div class="grid grid-cols-2 gap-3 md:hidden" id="body-type-grid">
+      {vehicles.map(vehicle => (
+        <div class="vehicle-item h-full" data-body={vehicle.data.bodyType}>
+          <VehicleCard
+            slug={vehicle.data.slug}
+            title={vehicle.data.title}
+            price={vehicle.data.price}
+            mileage={vehicle.data.mileage}
+            fuel={vehicle.data.fuel}
+            transmission={vehicle.data.transmission}
+            bodyType={vehicle.data.bodyType}
+            year={vehicle.data.year}
+            images={vehicle.data.images}
+            featured={vehicle.data.featured}
+            condition={vehicle.data.condition}
+            layout="vertical"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Desktop: horizontal cards, 2 columns -->
+    <div class="hidden md:grid md:grid-cols-2 gap-6" id="body-type-grid-desktop">
+      {vehicles.map(vehicle => (
+        <div class="vehicle-item h-full" data-body={vehicle.data.bodyType}>
+          <VehicleCard
+            slug={vehicle.data.slug}
+            title={vehicle.data.title}
+            price={vehicle.data.price}
+            mileage={vehicle.data.mileage}
+            fuel={vehicle.data.fuel}
+            transmission={vehicle.data.transmission}
+            bodyType={vehicle.data.bodyType}
+            year={vehicle.data.year}
+            images={vehicle.data.images}
+            featured={vehicle.data.featured}
+            condition={vehicle.data.condition}
+            layout="horizontal"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('#body-type-tabs .tab-btn');
+  const mobileGrid = document.getElementById('body-type-grid')!;
+  const desktopGrid = document.getElementById('body-type-grid-desktop')!;
+  const MAX_VISIBLE = 4;
+
+  function filterByType(type: string) {
+    [mobileGrid, desktopGrid].forEach(grid => {
+      const items = grid.querySelectorAll<HTMLElement>('.vehicle-item');
+      let count = 0;
+      items.forEach(item => {
+        const matches = type === 'All Cars' || item.dataset.body === type;
+        if (matches && count < MAX_VISIBLE) {
+          item.style.display = '';
+          count++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      filterByType((tab as HTMLElement).dataset.bodyType || 'All Cars');
+    });
+  });
+
+  // Initial: show first 4
+  filterByType('All Cars');
+</script>

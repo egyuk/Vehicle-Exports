@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+
+const allVehicles = await getCollection('vehicles');
+const vehicles = allVehicles
+  .filter(v => v.data.images && v.data.images.length > 0)
+  .sort((a, b) => b.data.price - a.data.price)
+  .slice(0, 6);
+
+// Create pairs (2 cars per pair)
+const pairs: (typeof vehicles)[] = [];
+for (let i = 0; i < vehicles.length - 1; i += 2) {
+  pairs.push([vehicles[i], vehicles[i + 1]]);
+}
+---
+
+<section class="py-16 lg:py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">
+        Compare to buy the right car
+      </h2>
+    </div>
+
+    <div class="swiper compare-swiper">
+      <div class="swiper-wrapper">
+        {pairs.map(pair => (
+          <div class="swiper-slide">
+            <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all">
+              <!-- Two car images with VS badge -->
+              <div class="grid grid-cols-2 relative">
+                {pair.map(v => (
+                  <a href={`/cars/${v.data.slug}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
+                    <img
+                      src={v.data.images![0]}
+                      alt={v.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </a>
+                ))}
+                <!-- VS badge -->
+                <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--color-dark)] text-white text-[10px] font-bold w-9 h-9 rounded-full flex items-center justify-center shadow-lg border-2 border-white z-10">
+                  VS
+                </span>
+              </div>
+
+              <!-- Car details -->
+              <div class="grid grid-cols-2 border-t border-gray-100">
+                {pair.map(v => (
+                  <div class="p-4 first:border-r first:border-gray-100">
+                    <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">{v.data.make}</span>
+                    <h4 class="font-semibold text-sm text-gray-900 mt-0.5 font-[family-name:var(--font-heading)] leading-snug truncate">
+                      {v.data.title}
+                    </h4>
+                    <p class="text-[var(--color-primary)] font-bold text-base mt-1 font-[family-name:var(--font-heading)]">
+                      £{v.data.price.toLocaleString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Compare button -->
+              <div class="border-t border-gray-100 p-4 pt-0">
+                <a href="#" class="block text-center py-2.5 border border-[var(--color-primary)] text-[var(--color-primary)] rounded-lg text-sm font-semibold hover:bg-[var(--color-primary)] hover:text-white transition-all">
+                  Compare
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import 'swiper/css';
+
+  new Swiper('.compare-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
+    },
+  });
+</script>

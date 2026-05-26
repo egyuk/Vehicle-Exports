@@ -1,0 +1,591 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VehicleCard from '../components/VehicleCard.astro';
+import { getCollection } from 'astro:content';
+
+const allVehicles = await getCollection('vehicles');
+
+const makes = [...new Set(allVehicles.map(v => v.data.make))].sort();
+const bodyTypes = [...new Set(allVehicles.map(v => v.data.bodyType))].sort();
+const years = [...new Set(allVehicles.map(v => v.data.year))].sort((a, b) => b - a);
+const fuels = [...new Set(allVehicles.map(v => v.data.fuel))].sort();
+
+const makeModelsMap: Record<string, string[]> = {};
+const makeBodyTypesMap: Record<string, string[]> = {};
+const makeYearsMap: Record<string, number[]> = {};
+allVehicles.forEach(v => {
+  const mk = v.data.make;
+  if (!makeModelsMap[mk]) makeModelsMap[mk] = [];
+  if (!makeModelsMap[mk].includes(v.data.model)) makeModelsMap[mk].push(v.data.model);
+  if (!makeBodyTypesMap[mk]) makeBodyTypesMap[mk] = [];
+  if (!makeBodyTypesMap[mk].includes(v.data.bodyType)) makeBodyTypesMap[mk].push(v.data.bodyType);
+  if (!makeYearsMap[mk]) makeYearsMap[mk] = [];
+  if (!makeYearsMap[mk].includes(v.data.year)) makeYearsMap[mk].push(v.data.year);
+});
+
+const vehicles = allVehicles.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return b.data.price - a.data.price;
+});
+---
+
+<Layout title="Cars - AutoDeal" description="Browse our inventory of quality UK cars for export.">
+  <!-- Banner with Breadcrumb -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Cars</span>
+      </nav>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-heading)]">Browse Cars</h1>
+      <p class="text-gray-400 mt-2 max-w-xl">Quality UK cars ready for international export. Use the filters to find your perfect car.</p>
+    </div>
+  </section>
+
+  <!-- Filters + Grid -->
+  <section class="py-10 lg:pt-8 lg:pb-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Mobile Filter Overlay -->
+      <div id="filter-overlay" class="fixed inset-0 bg-black/50 z-[998] hidden lg:hidden"></div>
+
+      <!-- Mobile Quick Filter Bar -->
+      <div class="lg:hidden mb-4 overflow-hidden">
+        <div class="bg-white rounded-xl border border-gray-200 p-3">
+          <div class="flex gap-2 items-center">
+            <select id="quick-make" class="filter-select flex-1 min-w-0 bg-gray-50 border border-gray-200 rounded-lg px-2 py-2.5 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors">
+              <option value="">Make</option>
+              {makes.map(m => <option value={m}>{m}</option>)}
+            </select>
+            <select id="quick-model" disabled class="filter-select flex-1 min-w-0 bg-gray-100 border border-gray-200 rounded-lg px-2 py-2.5 text-sm text-gray-400 outline-none focus:border-[var(--color-primary)] transition-colors cursor-not-allowed">
+              <option value="">Model</option>
+            </select>
+            <button id="mobile-filter-open" class="shrink-0 w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-[var(--color-primary)] hover:bg-orange-50 hover:border-[var(--color-primary)] transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+            </button>
+            <button id="quick-search" class="shrink-0 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-3 h-10 rounded-lg font-semibold transition-all text-sm">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8 lg:items-start">
+
+        <!-- Sidebar Filters -->
+        <aside id="filter-sidebar" class="fixed top-0 left-0 h-full w-[300px] bg-white z-[999] transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:transform-none lg:translate-x-0 lg:w-auto lg:h-auto lg:z-auto overflow-y-auto lg:overflow-visible">
+          <div class="bg-white lg:rounded-2xl lg:border lg:border-gray-200 p-6 lg:sticky lg:top-28 lg:mt-[62px]">
+            <!-- Mobile drawer header -->
+            <div class="flex items-center justify-between mb-5">
+              <h2 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Filters</h2>
+              <div class="flex items-center gap-3">
+                <button id="clear-filters" class="text-xs text-[var(--color-primary)] hover:underline font-medium hidden">Clear All</button>
+                <button id="filter-close" class="lg:hidden p-1 text-gray-500 hover:text-gray-700" aria-label="Close filters">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <form id="filter-form" class="space-y-5">
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Make</label>
+                <select name="make" class="filter-select w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-700 focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none transition-all">
+                  <option value="">All Makes</option>
+                  {makes.map(m => <option value={m}>{m}</option>)}
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Model</label>
+                <select name="model" disabled class="filter-select w-full bg-gray-100 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-400 focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none transition-all cursor-not-allowed">
+                  <option value="">Select Make first</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Body Type</label>
+                <select name="body" disabled class="filter-select w-full bg-gray-100 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-400 focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none transition-all cursor-not-allowed">
+                  <option value="">Select Make first</option>
+                  {bodyTypes.map(b => <option value={b}>{b}</option>)}
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Year</label>
+                <select name="year" disabled class="filter-select w-full bg-gray-100 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-400 focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none transition-all cursor-not-allowed">
+                  <option value="">Select Make first</option>
+                  {years.map(y => <option value={y}>{y}</option>)}
+                </select>
+              </div>
+
+              <!-- Price Range Slider -->
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Price Range</label>
+                <div class="space-y-2">
+                  <input type="range" id="price-range" min="0" max="100000" step="5000" value="100000" class="w-full" />
+                  <div class="flex justify-between text-xs text-gray-500">
+                    <span>£0</span>
+                    <span id="price-range-label" class="font-medium text-[var(--color-primary)]">£100,000</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mileage Range Slider -->
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Max Mileage</label>
+                <div class="space-y-2">
+                  <input type="range" id="mileage-range" min="0" max="100000" step="5000" value="100000" class="w-full" />
+                  <div class="flex justify-between text-xs text-gray-500">
+                    <span>0 mi</span>
+                    <span id="mileage-range-label" class="font-medium text-[var(--color-primary)]">100,000 mi</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Fuel Type</label>
+                <div class="space-y-2">
+                  {fuels.map(f => (
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" name="fuel" value={f} class="custom-checkbox w-4 h-4 rounded border-gray-300" />
+                      <span class="text-sm text-gray-700">{f}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Condition checkboxes -->
+              <div>
+                <label class="block text-xs font-medium text-gray-500 mb-1.5 uppercase tracking-wider">Condition</label>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="condition" value="New" class="custom-checkbox w-4 h-4 rounded border-gray-300" />
+                    <span class="text-sm text-gray-700">New</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="condition" value="Used" class="custom-checkbox w-4 h-4 rounded border-gray-300" />
+                    <span class="text-sm text-gray-700">Used</span>
+                  </label>
+                </div>
+              </div>
+
+              <button type="button" id="mobile-apply" class="lg:hidden w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white py-3 rounded-lg font-semibold transition-all text-sm mt-2">
+                Show Results
+              </button>
+            </form>
+          </div>
+        </aside>
+
+        <!-- Results -->
+        <div>
+          <!-- Results header -->
+          <div class="flex items-center justify-between mb-6">
+            <p class="text-sm text-gray-500">
+              Showing <span id="result-count" class="font-semibold text-gray-900">{vehicles.length}</span> vehicles
+            </p>
+            <div class="flex items-center gap-3">
+              <select id="sort-select" class="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 outline-none cursor-pointer">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="year-new">Year: Newest</option>
+                <option value="mileage-low">Mileage: Lowest</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Vehicle Grid -->
+          <div id="vehicle-grid" class="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
+            {vehicles.map(vehicle => (
+              <div
+                class="vehicle-grid-item h-full"
+                data-make={vehicle.data.make}
+                data-model={vehicle.data.model}
+                data-year={vehicle.data.year}
+                data-price={vehicle.data.price}
+                data-mileage={vehicle.data.mileage}
+                data-body={vehicle.data.bodyType}
+                data-fuel={vehicle.data.fuel}
+                data-featured={vehicle.data.featured}
+                data-condition={vehicle.data.condition || 'Used'}
+              >
+                <VehicleCard
+                  slug={vehicle.data.slug}
+                  title={vehicle.data.title}
+                  price={vehicle.data.price}
+                  mileage={vehicle.data.mileage}
+                  fuel={vehicle.data.fuel}
+                  transmission={vehicle.data.transmission}
+                  bodyType={vehicle.data.bodyType}
+                  year={vehicle.data.year}
+                  images={vehicle.data.images}
+                  featured={vehicle.data.featured}
+                  condition={vehicle.data.condition}
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination" class="flex items-center justify-center gap-2 mt-10"></div>
+
+          <!-- No results -->
+          <div id="no-results" class="hidden py-16 text-center">
+            <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)]">No vehicles found</h3>
+            <p class="text-gray-500 text-sm mt-1">Try adjusting your filters.</p>
+            <button id="no-results-clear" class="mt-4 text-sm text-[var(--color-primary)] font-semibold hover:underline">Clear all filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline define:vars={{ makeModelsMap, makeBodyTypesMap, makeYearsMap }}>
+  window.__makeModelsMap = makeModelsMap;
+  window.__makeBodyTypesMap = makeBodyTypesMap;
+  window.__makeYearsMap = makeYearsMap;
+</script>
+
+<script>
+  const form = document.getElementById('filter-form') as HTMLFormElement;
+  const grid = document.getElementById('vehicle-grid')!;
+  const items = grid.querySelectorAll<HTMLElement>('.vehicle-grid-item');
+  const resultCount = document.getElementById('result-count')!;
+  const noResults = document.getElementById('no-results')!;
+  const clearBtn = document.getElementById('clear-filters')!;
+  const noResultsClear = document.getElementById('no-results-clear')!;
+  const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+  const priceRange = document.getElementById('price-range') as HTMLInputElement;
+  const priceLabel = document.getElementById('price-range-label')!;
+  const mileageRange = document.getElementById('mileage-range') as HTMLInputElement;
+  const mileageLabel = document.getElementById('mileage-range-label')!;
+  const paginationEl = document.getElementById('pagination')!;
+  const mobileApply = document.getElementById('mobile-apply');
+  const sidebar = document.getElementById('filter-sidebar')!;
+  const filterOverlay = document.getElementById('filter-overlay');
+  const filterClose = document.getElementById('filter-close');
+  const mobileFilterOpen = document.getElementById('mobile-filter-open');
+  const quickMake = document.getElementById('quick-make') as HTMLSelectElement;
+  const quickModel = document.getElementById('quick-model') as HTMLSelectElement;
+  const quickSearch = document.getElementById('quick-search');
+  const makeSelect = form.querySelector('select[name="make"]') as HTMLSelectElement;
+  const modelSelect = form.querySelector('select[name="model"]') as HTMLSelectElement;
+  const bodySelect = form.querySelector('select[name="body"]') as HTMLSelectElement;
+  const yearSelect = form.querySelector('select[name="year"]') as HTMLSelectElement;
+  const makeModels = (window as any).__makeModelsMap as Record<string, string[]>;
+  const makeBodyTypes = (window as any).__makeBodyTypesMap as Record<string, string[]>;
+  const makeYears = (window as any).__makeYearsMap as Record<string, number[]>;
+
+  function enableSelect(sel: HTMLSelectElement, defaultText: string) {
+    sel.disabled = false;
+    sel.classList.remove('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+    sel.classList.add('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+    // Update the first option text
+    const first = sel.querySelector('option[value=""]');
+    if (first) first.textContent = defaultText;
+  }
+
+  function disableSelect(sel: HTMLSelectElement, defaultText: string) {
+    sel.disabled = true;
+    sel.value = '';
+    sel.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+    sel.classList.remove('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+    const first = sel.querySelector('option[value=""]');
+    if (first) first.textContent = defaultText;
+  }
+
+  // Cascading: populate Model, enable Body Type & Year when Make changes
+  makeSelect.addEventListener('change', () => {
+    const make = makeSelect.value;
+    modelSelect.innerHTML = '';
+    if (make && makeModels[make]) {
+      // Enable Model
+      modelSelect.disabled = false;
+      modelSelect.classList.remove('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+      modelSelect.classList.add('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = 'All Models';
+      modelSelect.appendChild(defaultOpt);
+      makeModels[make].sort().forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m;
+        modelSelect.appendChild(opt);
+      });
+      // Populate and enable Body Type
+      bodySelect.innerHTML = '';
+      const bodyDefault = document.createElement('option');
+      bodyDefault.value = '';
+      bodyDefault.textContent = 'All Body Types';
+      bodySelect.appendChild(bodyDefault);
+      (makeBodyTypes[make] || []).sort().forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        bodySelect.appendChild(opt);
+      });
+      enableSelect(bodySelect, 'All Body Types');
+
+      // Populate and enable Year
+      yearSelect.innerHTML = '';
+      const yearDefault = document.createElement('option');
+      yearDefault.value = '';
+      yearDefault.textContent = 'All Years';
+      yearSelect.appendChild(yearDefault);
+      (makeYears[make] || []).sort((a, b) => b - a).forEach(y => {
+        const opt = document.createElement('option');
+        opt.value = String(y);
+        opt.textContent = String(y);
+        yearSelect.appendChild(opt);
+      });
+      enableSelect(yearSelect, 'All Years');
+    } else {
+      // Disable Model
+      modelSelect.disabled = true;
+      modelSelect.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+      modelSelect.classList.remove('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = 'Select Make first';
+      modelSelect.appendChild(defaultOpt);
+      // Disable Body Type and Year
+      disableSelect(bodySelect, 'Select Make first');
+      disableSelect(yearSelect, 'Select Make first');
+    }
+    currentPage = 1;
+    applyFilters();
+  });
+
+  const PER_PAGE = 9;
+  let currentPage = 1;
+
+  function initFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    // Process make first to trigger cascading
+    const makeVal = params.get('make');
+    if (makeVal) {
+      makeSelect.value = makeVal;
+      makeSelect.dispatchEvent(new Event('change'));
+    }
+    // Then set remaining selects
+    form.querySelectorAll('select').forEach(s => {
+      const sel = s as HTMLSelectElement;
+      if (sel.name === 'make') return; // already handled
+      let val = params.get(sel.name);
+      // Handle bodyType alias → body select
+      if (!val && sel.name === 'body') val = params.get('bodyType');
+      if (val) {
+        sel.value = val;
+      }
+    });
+    // Handle condition from URL
+    const condition = params.get('condition');
+    if (condition) {
+      const cb = form.querySelector<HTMLInputElement>(`input[name="condition"][value="${condition}"]`);
+      if (cb) cb.checked = true;
+    }
+    // Handle search query
+    const q = params.get('q');
+    if (q) {
+      // Store for filtering
+      (window as any).__searchQuery = q.toLowerCase();
+    }
+    const sort = params.get('sort');
+    if (sort) sortSelect.value = sort;
+  }
+
+  function updateURL() {
+    const params = new URLSearchParams();
+    form.querySelectorAll('select').forEach(s => {
+      if ((s as HTMLSelectElement).value) params.set(s.name, (s as HTMLSelectElement).value);
+    });
+    if (sortSelect.value !== 'featured') params.set('sort', sortSelect.value);
+    const qs = params.toString().replace(/%20/g, '+');
+    window.history.replaceState({}, '', qs ? `${window.location.pathname}?${qs}` : window.location.pathname);
+  }
+
+  // Range slider labels
+  priceRange.addEventListener('input', () => {
+    const v = Number(priceRange.value);
+    priceLabel.textContent = v >= 100000 ? '£100,000+' : '£' + v.toLocaleString();
+    applyFilters();
+  });
+  mileageRange.addEventListener('input', () => {
+    const v = Number(mileageRange.value);
+    mileageLabel.textContent = v >= 100000 ? '100,000+ mi' : v.toLocaleString() + ' mi';
+    applyFilters();
+  });
+
+  function getCheckedFuels(): string[] {
+    return Array.from(form.querySelectorAll<HTMLInputElement>('input[name="fuel"]:checked')).map(c => c.value);
+  }
+  function getCheckedConditions(): string[] {
+    return Array.from(form.querySelectorAll<HTMLInputElement>('input[name="condition"]:checked')).map(c => c.value);
+  }
+
+  function applyFilters() {
+    const make = makeSelect.value;
+    const model = modelSelect.value;
+    const body = (form.querySelector('select[name="body"]') as HTMLSelectElement).value;
+    const year = (form.querySelector('select[name="year"]') as HTMLSelectElement).value;
+    const maxPrice = Number(priceRange.value);
+    const maxMileage = Number(mileageRange.value);
+    const fuels = getCheckedFuels();
+    const conditions = getCheckedConditions();
+    const sort = sortSelect.value;
+
+    const filtered: HTMLElement[] = [];
+
+    items.forEach(item => {
+      let show = true;
+      if (make && item.dataset.make !== make) show = false;
+      if (model && item.dataset.model !== model) show = false;
+      if (body && item.dataset.body !== body) show = false;
+      if (year && item.dataset.year !== year) show = false;
+      if (maxPrice < 100000 && Number(item.dataset.price) > maxPrice) show = false;
+      if (maxMileage < 100000 && Number(item.dataset.mileage) > maxMileage) show = false;
+      if (fuels.length > 0 && !fuels.includes(item.dataset.fuel || '')) show = false;
+      if (conditions.length > 0 && !conditions.includes(item.dataset.condition || 'Used')) show = false;
+
+      item.style.display = 'none';
+      if (show) filtered.push(item);
+    });
+
+    // Sort
+    filtered.sort((a, b) => {
+      switch (sort) {
+        case 'price-low': return Number(a.dataset.price) - Number(b.dataset.price);
+        case 'price-high': return Number(b.dataset.price) - Number(a.dataset.price);
+        case 'year-new': return Number(b.dataset.year) - Number(a.dataset.year);
+        case 'mileage-low': return Number(a.dataset.mileage) - Number(b.dataset.mileage);
+        default:
+          return (b.dataset.featured === 'true' ? 1 : 0) - (a.dataset.featured === 'true' ? 1 : 0);
+      }
+    });
+
+    // Reorder DOM
+    filtered.forEach(item => grid.appendChild(item));
+    items.forEach(item => { if (!filtered.includes(item)) grid.appendChild(item); });
+
+    // Pagination
+    const totalPages = Math.ceil(filtered.length / PER_PAGE);
+    if (currentPage > totalPages) currentPage = 1;
+
+    filtered.forEach((item, i) => {
+      const page = Math.floor(i / PER_PAGE) + 1;
+      item.style.display = page === currentPage ? '' : 'none';
+    });
+
+    resultCount.textContent = String(filtered.length);
+    noResults.classList.toggle('hidden', filtered.length > 0);
+    grid.classList.toggle('hidden', filtered.length === 0);
+
+    const hasFilters = make || model || body || year || maxPrice < 100000 || maxMileage < 100000 || fuels.length > 0 || conditions.length > 0;
+    clearBtn.classList.toggle('hidden', !hasFilters);
+
+    renderPagination(totalPages);
+    updateURL();
+  }
+
+  function renderPagination(totalPages: number) {
+    paginationEl.innerHTML = '';
+    if (totalPages <= 1) return;
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = String(i);
+      btn.className = i === currentPage
+        ? 'w-10 h-10 rounded-lg bg-[var(--color-primary)] text-white font-semibold text-sm'
+        : 'w-10 h-10 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium text-sm';
+      btn.addEventListener('click', () => { currentPage = i; applyFilters(); window.scrollTo({ top: 400, behavior: 'smooth' }); });
+      paginationEl.appendChild(btn);
+    }
+  }
+
+  function clearAll() {
+    form.querySelectorAll('select').forEach(s => (s as HTMLSelectElement).value = '');
+    form.querySelectorAll('input[type="checkbox"]').forEach(c => (c as HTMLInputElement).checked = false);
+    priceRange.value = '100000'; priceLabel.textContent = '£100,000';
+    mileageRange.value = '100000'; mileageLabel.textContent = '100,000 mi';
+    sortSelect.value = 'featured';
+    // Reset model, body type, year to disabled
+    modelSelect.disabled = true;
+    modelSelect.innerHTML = '<option value="">Select Make first</option>';
+    modelSelect.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+    modelSelect.classList.remove('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+    disableSelect(bodySelect, 'Select Make first');
+    disableSelect(yearSelect, 'Select Make first');
+    currentPage = 1;
+    applyFilters();
+  }
+
+  // Events
+  form.querySelectorAll('select').forEach(s => s.addEventListener('change', () => { currentPage = 1; applyFilters(); }));
+  form.querySelectorAll('input[type="checkbox"]').forEach(c => c.addEventListener('change', () => { currentPage = 1; applyFilters(); }));
+  sortSelect.addEventListener('change', () => { currentPage = 1; applyFilters(); });
+  clearBtn.addEventListener('click', clearAll);
+  noResultsClear?.addEventListener('click', clearAll);
+
+  function openFilterDrawer() {
+    sidebar.classList.remove('-translate-x-full');
+    filterOverlay?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFilterDrawer() {
+    sidebar.classList.add('-translate-x-full');
+    filterOverlay?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  mobileFilterOpen?.addEventListener('click', openFilterDrawer);
+  filterClose?.addEventListener('click', closeFilterDrawer);
+  filterOverlay?.addEventListener('click', closeFilterDrawer);
+  mobileApply?.addEventListener('click', () => {
+    closeFilterDrawer();
+    currentPage = 1;
+    applyFilters();
+  });
+
+  // Quick filter bar — sync with sidebar form
+  quickMake?.addEventListener('change', () => {
+    makeSelect.value = quickMake.value;
+    makeSelect.dispatchEvent(new Event('change'));
+    // Sync quick model dropdown
+    if (quickMake.value && makeModels[quickMake.value]) {
+      quickModel.disabled = false;
+      quickModel.classList.remove('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+      quickModel.classList.add('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+      quickModel.innerHTML = '<option value="">Model</option>';
+      makeModels[quickMake.value].sort().forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m;
+        quickModel.appendChild(opt);
+      });
+    } else {
+      quickModel.disabled = true;
+      quickModel.classList.add('bg-gray-100', 'text-gray-400', 'cursor-not-allowed');
+      quickModel.classList.remove('bg-gray-50', 'text-gray-700', 'cursor-pointer');
+      quickModel.innerHTML = '<option value="">Model</option>';
+    }
+  });
+
+  quickModel?.addEventListener('change', () => {
+    modelSelect.value = quickModel.value;
+    currentPage = 1;
+    applyFilters();
+  });
+
+  quickSearch?.addEventListener('click', () => {
+    currentPage = 1;
+    applyFilters();
+  });
+
+  initFromURL();
+  applyFilters();
+</script>
+

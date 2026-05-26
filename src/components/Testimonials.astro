@@ -1,0 +1,102 @@
+---
+const testimonials = [
+  {
+    name: 'Arlene McCoy',
+    role: 'CEO, Franchise',
+    text: 'My experience with property management services has exceeded expectations. They efficiently manage properties with a combination of attentiveness to every situation. I feel reassured that any issue will be resolved promptly and efficiently.',
+    rating: 5,
+    date: '2024.09.15',
+    avatar: '/assets/images/agents/avatar-1.jpg',
+  },
+  {
+    name: 'Antony Lam',
+    role: 'Car Seller',
+    text: 'My experience with property management services has exceeded expectations. They efficiently manage properties with a combination of attentiveness to every situation. I feel reassured that any issue will be resolved promptly and efficiently.',
+    rating: 5,
+    date: '2024.11.16',
+    avatar: '/assets/images/agents/avatar-2.jpg',
+  },
+  {
+    name: 'Anna Delrey',
+    role: 'Sale Manager',
+    text: 'My experience with property management services has exceeded expectations. They efficiently manage properties with a combination of attentiveness to every situation. I feel reassured that any issue will be resolved promptly and efficiently.',
+    rating: 5,
+    date: '2024.08.22',
+    avatar: '/assets/images/agents/avatar-3.jpg',
+  },
+  {
+    name: 'Harley Marley',
+    role: 'Product Manager',
+    text: 'My experience with property management services has exceeded expectations. They efficiently manage properties with a combination of attentiveness to every situation. I feel reassured that any issue will be resolved promptly and efficiently.',
+    rating: 5,
+    date: '2024.07.10',
+    avatar: '/assets/images/agents/avatar-4.jpg',
+  },
+];
+---
+
+<section class="py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">We love our clients</h2>
+    </div>
+
+    <div class="swiper testimonial-swiper">
+      <div class="swiper-wrapper">
+        {testimonials.map(t => (
+          <div class="swiper-slide">
+            <div class="bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm">
+              <!-- Stars -->
+              <div class="flex gap-0.5 mb-1">
+                {Array.from({ length: t.rating }).map(() => (
+                  <svg class="w-5 h-5" viewBox="0 0 20 20">
+                    <rect width="20" height="20" rx="2" fill="#00b67a" />
+                    <path d="M10 2.5l2.163 4.383 4.837.703-3.5 3.412.826 4.817L10 13.362l-4.326 2.453.826-4.817-3.5-3.412 4.837-.703L10 2.5z" fill="#fff" />
+                  </svg>
+                ))}
+              </div>
+              <!-- Date -->
+              <p class="text-xs text-gray-400 mb-4">{t.date}</p>
+              <!-- Quote -->
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">"{t.text}"</p>
+              <!-- Avatar + Name -->
+              <div class="flex items-center gap-3">
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  class="w-11 h-11 rounded-full object-cover"
+                />
+                <div>
+                  <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">{t.name}</h4>
+                  <p class="text-xs text-gray-500">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="swiper-pagination testimonial-pagination mt-8"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay, Pagination } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+
+  new Swiper('.testimonial-swiper', {
+    modules: [Autoplay, Pagination],
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    pagination: { el: '.testimonial-pagination', clickable: true },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1280: { slidesPerView: 4 },
+    },
+  });
+</script>

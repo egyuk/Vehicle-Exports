@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+
+const allVehicles = await getCollection('vehicles');
+
+// Count vehicles per make
+const makeCounts = new Map<string, number>();
+allVehicles.forEach(v => {
+  makeCounts.set(v.data.make, (makeCounts.get(v.data.make) || 0) + 1);
+});
+
+const brands = Array.from(makeCounts.entries())
+  .sort((a, b) => b[1] - a[1])
+  .map(([name, count]) => ({ name, count }));
+
+// Body types with car images from theme — all 10 matching Home 03 demo
+const bodyTypes = [
+  { name: 'Coupe', image: '/assets/images/icon-box/car-list1.webp' },
+  { name: 'MVP', image: '/assets/images/icon-box/car-list2.webp' },
+  { name: 'Sedan', image: '/assets/images/icon-box/car-list3.webp' },
+  { name: 'Hatchback', image: '/assets/images/icon-box/car-list4.webp' },
+  { name: 'SUV', image: '/assets/images/icon-box/car-list5.webp' },
+  { name: 'Pickup Truck', image: '/assets/images/icon-box/car-list6.webp' },
+  { name: 'Minivan', image: '/assets/images/icon-box/car-list7.webp' },
+  { name: 'Crossover', image: '/assets/images/icon-box/car-list8.webp' },
+  { name: 'Station Wagon', image: '/assets/images/icon-box/car-list9.webp' },
+  { name: 'Convertible', image: '/assets/images/icon-box/car-list10.webp' },
+];
+
+// Count vehicles per body type
+const bodyCounts = new Map<string, number>();
+allVehicles.forEach(v => {
+  bodyCounts.set(v.data.bodyType, (bodyCounts.get(v.data.bodyType) || 0) + 1);
+});
+---
+
+<section class="py-14 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header with tabs -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+      <h2 class="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Popular Car Makes & Body Types</h2>
+      <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto shrink-0">
+        <button class="brand-tab px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-gray-600 border border-gray-200 hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap" data-tab="car-makes">
+          Car makes
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <button class="brand-tab px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-gray-600 border border-gray-200 hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap" data-tab="body-types">
+          Car body types
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <a href="/cars" class="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold text-gray-600 border border-gray-200 hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+          View all
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Body Types Tab (default) — horizontal slider with pagination -->
+    <div id="body-types-panel" class="brand-panel">
+      <div class="swiper body-type-swiper">
+        <div class="swiper-wrapper">
+          {bodyTypes.map(bt => (
+            <div class="swiper-slide">
+              <a href={`/cars/body/${bt.name.toLowerCase().replace(/ /g, '-')}`} class="flex flex-col items-center group text-center">
+                <div class="w-full aspect-[3/2] mb-3 flex items-center justify-center bg-gray-100 rounded-2xl px-4 py-5">
+                  <img src={bt.image} alt={bt.name} class="max-w-[80%] max-h-full object-contain group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-300" loading="lazy" />
+                </div>
+                <span class="text-sm font-semibold text-gray-800 font-[family-name:var(--font-heading)]">{bt.name}</span>
+                <span class="text-xs text-gray-400 mt-0.5">{bodyCounts.get(bt.name) || 0} Car{(bodyCounts.get(bt.name) || 0) !== 1 ? 's' : ''}</span>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination body-type-pagination mt-10"></div>
+      </div>
+    </div>
+
+    <!-- Car Makes Tab -->
+    <div id="car-makes-panel" class="brand-panel hidden">
+      <div class="swiper brand-swiper">
+        <div class="swiper-wrapper">
+          {brands.map(brand => (
+            <div class="swiper-slide">
+              <a href={`/cars/${brand.name.toLowerCase().replace(/ /g, '-')}`} class="flex flex-col items-center py-4 group text-center">
+                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-3">
+                  <span class="text-sm font-bold text-gray-700 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)] text-center">
+                    {brand.name}
+                  </span>
+                </div>
+                <span class="text-xs text-gray-400 mt-1">{brand.count} Car{brand.count !== 1 ? 's' : ''}</span>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination brand-pagination mt-6"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay, Pagination } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+
+  new Swiper('.body-type-swiper', {
+    modules: [Autoplay, Pagination],
+    slidesPerView: 2,
+    spaceBetween: 12,
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.body-type-pagination', clickable: true },
+    breakpoints: {
+      480: { slidesPerView: 3, spaceBetween: 16 },
+      640: { slidesPerView: 4, spaceBetween: 20 },
+      768: { slidesPerView: 5, spaceBetween: 24 },
+      1024: { slidesPerView: 6, spaceBetween: 30 },
+    },
+  });
+
+  new Swiper('.brand-swiper', {
+    modules: [Autoplay, Pagination],
+    slidesPerView: 2,
+    spaceBetween: 16,
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    pagination: { el: '.brand-pagination', clickable: true },
+    breakpoints: {
+      480: { slidesPerView: 3 },
+      640: { slidesPerView: 4 },
+      768: { slidesPerView: 5 },
+      1024: { slidesPerView: 6 },
+      1280: { slidesPerView: 7 },
+    },
+  });
+
+  // Tab switching
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.brand-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.brand-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      panels.forEach(p => p.classList.add('hidden'));
+      const target = tab.dataset.tab;
+      document.getElementById(`${target}-panel`)?.classList.remove('hidden');
+    });
+  });
+</script>

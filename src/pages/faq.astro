@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    q: "How does the vehicle export process work?",
+    a: "Once you select a vehicle, we handle the entire export process — from documentation and compliance checks to shipping and customs clearance. We'll guide you through every step and keep you updated."
+  },
+  {
+    q: "What documents do I need to import a vehicle?",
+    a: "Requirements vary by country, but typically you'll need a valid ID/passport, proof of address, import permit (if applicable), and funds for import duties. We provide all vehicle documents including V5C logbook, purchase invoice, and export certificate."
+  },
+  {
+    q: "How long does shipping take?",
+    a: "Shipping times depend on the destination. East Africa is typically 4-6 weeks, West Africa 3-5 weeks, and the Middle East 2-3 weeks. We'll provide an accurate timeline once you select your destination."
+  },
+  {
+    q: "What shipping methods do you offer?",
+    a: "We offer two main shipping methods: RoRo (Roll-on/Roll-off) which is more affordable, and Container shipping which provides full protection. Use our shipping calculator on the homepage to compare prices."
+  },
+  {
+    q: "Are your vehicles inspected before shipping?",
+    a: "Yes, every vehicle undergoes a thorough mechanical and cosmetic inspection before export. We provide a detailed condition report with photos so you know exactly what you're getting."
+  },
+  {
+    q: "Can I inspect the vehicle before purchasing?",
+    a: "Absolutely. You can arrange a physical inspection at our UK facility, or we can provide a comprehensive video walkthrough and detailed photo report of the vehicle."
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "We accept bank transfers (SWIFT/wire), and can arrange payment plans for qualifying buyers. A deposit secures the vehicle, with the balance due before shipping."
+  },
+  {
+    q: "Do you handle customs clearance?",
+    a: "We handle the UK export customs process. For import customs at your destination, we work with trusted clearing agents in most countries and can connect you with them for a smooth experience."
+  },
+  {
+    q: "What if the vehicle is damaged during shipping?",
+    a: "All vehicles are fully insured during transit. In the rare event of damage, our insurance covers the full value of repairs or replacement. Container shipping offers the highest level of protection."
+  },
+  {
+    q: "Can I track my vehicle during shipping?",
+    a: "Yes, we provide tracking details once your vehicle is loaded. You'll receive regular updates on the vessel's progress and estimated arrival date."
+  },
+  {
+    q: "Do you offer any warranty?",
+    a: "We provide a mechanical warranty covering major components for a period after purchase. The exact terms depend on the vehicle's age and mileage. Ask our team for full details."
+  },
+  {
+    q: "What types of vehicles do you export?",
+    a: "We export all types of vehicles — sedans, SUVs, pickup trucks, luxury cars, and commercial vehicles. We source from UK auctions, dealers, and private sellers to find the best value."
+  },
+];
+
+const leftColumn = faqs.filter((_, i) => i % 2 === 0);
+const rightColumn = faqs.filter((_, i) => i % 2 === 1);
+---
+
+<Layout title="FAQ - AutoDeal" description="Frequently asked questions about vehicle export from the UK.">
+  <!-- Banner -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">FAQ</span>
+      </nav>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-heading)]">Frequently Asked Questions</h1>
+      <p class="text-gray-400 mt-2 max-w-xl">Everything you need to know about exporting vehicles from the UK.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Grid -->
+  <section class="py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-4 lg:gap-6">
+        <!-- Left Column -->
+        <div class="space-y-4">
+          {leftColumn.map((faq, i) => (
+            <div class="faq-item bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" data-index={`l${i}`}>
+                <span class="font-semibold text-gray-900 text-sm pr-4">{faq.q}</span>
+                <svg class="faq-icon w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-600 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-4">
+          {rightColumn.map((faq, i) => (
+            <div class="faq-item bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors" data-index={`r${i}`}>
+                <span class="font-semibold text-gray-900 text-sm pr-4">{faq.q}</span>
+                <svg class="faq-icon w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-600 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-12 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Still have questions?</h2>
+      <p class="text-gray-500 mt-2">Our team is happy to help with any questions about vehicle export.</p>
+      <a href="/contact" class="inline-block bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-8 py-3.5 rounded-lg font-semibold transition-all text-sm mt-6">
+        Contact Us
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item')!;
+      const answer = item.querySelector('.faq-answer')!;
+      const icon = item.querySelector('.faq-icon')!;
+      const isOpen = !answer.classList.contains('hidden');
+
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) {
+          other.querySelector('.faq-answer')?.classList.add('hidden');
+          other.querySelector('.faq-icon')?.classList.remove('rotate-180');
+          other.querySelector('.faq-toggle')?.classList.remove('bg-gray-50');
+        }
+      });
+
+      // Toggle this one
+      answer.classList.toggle('hidden', isOpen);
+      icon.classList.toggle('rotate-180', !isOpen);
+      btn.classList.toggle('bg-gray-50', !isOpen);
+    });
+  });
+</script>

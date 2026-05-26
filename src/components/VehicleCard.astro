@@ -1,0 +1,188 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  price: number;
+  oldPrice?: number;
+  mileage: number;
+  fuel: string;
+  transmission: string;
+  bodyType: string;
+  year: number;
+  images?: string[];
+  featured?: boolean;
+  condition?: string;
+  layout?: 'vertical' | 'horizontal';
+}
+
+const { slug, title, price, oldPrice, mileage, fuel, transmission, bodyType, year, images, featured, condition = 'Used', layout = 'vertical' } = Astro.props;
+const image = images && images.length > 0 ? images[0] : '';
+const isHorizontal = layout === 'horizontal';
+---
+
+{isHorizontal ? (
+  <!-- Horizontal Card -->
+  <div class="vehicle-card bg-white rounded-2xl border border-gray-100 overflow-hidden group flex flex-col sm:flex-row">
+    <!-- Image -->
+    <div class="relative sm:w-[42%] shrink-0 aspect-[16/10] sm:aspect-auto bg-gray-100 overflow-hidden">
+      {image ? (
+        <a href={`/cars/${slug}`} class="block h-full">
+          <img src={image} alt={title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+        </a>
+      ) : (
+        <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+          <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+      )}
+      <!-- Badges -->
+      <div class="absolute top-3 left-3 flex gap-2">
+        {featured && (
+          <span class="bg-emerald-500 text-white text-xs font-semibold px-2.5 py-1 rounded">Featured</span>
+        )}
+        <span class="bg-[var(--color-primary)] text-white text-xs font-semibold px-2.5 py-1 rounded">{year}</span>
+      </div>
+      <!-- Heart -->
+      <button class="heart-btn absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500" aria-label="Save vehicle">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      </button>
+      <!-- Photo count -->
+      {images && images.length > 1 && (
+        <span class="absolute bottom-3 left-3 bg-black/60 text-white text-xs font-semibold px-2 py-1 rounded flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+          {images.length}
+        </span>
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 p-5 flex flex-col justify-between">
+      <div>
+        <span class="text-xs text-[var(--color-primary)] font-medium uppercase tracking-wider">{bodyType}</span>
+        <h3 class="mt-1 font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)] text-lg leading-tight">
+          <a href={`/cars/${slug}`}>{title}</a>
+        </h3>
+        <!-- Specs -->
+        <div class="flex items-center gap-4 mt-3 text-gray-500">
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <span class="text-xs">{mileage.toLocaleString()} mi</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+            <span class="text-xs">{fuel}</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-xs">{transmission}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mt-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl font-bold text-[var(--color-primary)] font-[family-name:var(--font-heading)]">£{price.toLocaleString()}</span>
+          {oldPrice && (
+            <span class="text-sm text-gray-400 line-through">£{oldPrice.toLocaleString()}</span>
+          )}
+        </div>
+      </div>
+
+      <!-- Dealer Row -->
+      <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <span class="text-sm text-gray-600 font-medium">AutoDeal</span>
+        </div>
+        <a href={`/cars/${slug}`} class="text-sm font-semibold text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors flex items-center gap-1">
+          View car
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+) : (
+  <!-- Vertical Card (original) -->
+  <div class="vehicle-card bg-white rounded-2xl border border-gray-100 overflow-hidden group h-full flex flex-col">
+    <!-- Image -->
+    <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+      {image ? (
+        <a href={`/cars/${slug}`}>
+          <img src={image} alt={title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+        </a>
+      ) : (
+        <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+          <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+      )}
+      <!-- Badges -->
+      <div class="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1 sm:gap-2">
+        {featured && (
+          <span class="bg-emerald-500 text-white text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded">Featured</span>
+        )}
+        <span class="bg-[var(--color-primary)] text-white text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded">{year}</span>
+      </div>
+      <!-- Photo count + Heart -->
+      <div class="absolute top-2 right-2 sm:top-3 sm:right-3 flex gap-1 sm:gap-1.5">
+        {images && images.length > 1 && (
+          <span class="w-6 h-6 sm:w-8 sm:h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-500 text-[10px] sm:text-xs font-semibold gap-0.5">
+            <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+            {images.length}
+          </span>
+        )}
+        <button class="heart-btn w-6 h-6 sm:w-8 sm:h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500" aria-label="Save vehicle">
+          <svg class="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Content -->
+    <div class="p-3 sm:p-5 flex flex-col flex-1">
+      <span class="text-[10px] sm:text-xs text-[var(--color-primary)] font-medium uppercase tracking-wider">{bodyType}</span>
+      <h3 class="mt-1 font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)] text-sm sm:text-lg leading-tight line-clamp-2">
+        <a href={`/cars/${slug}`}>{title}</a>
+      </h3>
+      <!-- Specs -->
+      <div class="flex flex-wrap gap-x-3 gap-y-0.5 mt-2 sm:mt-3 text-gray-500">
+        <div class="flex items-center gap-1">
+          <svg class="w-3 h-3 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span class="text-[10px] sm:text-xs">{mileage.toLocaleString()} mi</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <svg class="w-3 h-3 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+          <span class="text-[10px] sm:text-xs">{fuel}</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <svg class="w-3 h-3 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span class="text-[10px] sm:text-xs">{transmission}</span>
+        </div>
+      </div>
+      <!-- Price -->
+      <div class="mt-2 sm:mt-4">
+        <div class="flex items-center gap-1.5 flex-wrap">
+          <span class="text-base sm:text-xl font-bold text-[var(--color-primary)] font-[family-name:var(--font-heading)]">£{price.toLocaleString()}</span>
+          {oldPrice && (
+            <span class="text-[10px] sm:text-sm text-gray-400 line-through">£{oldPrice.toLocaleString()}</span>
+          )}
+        </div>
+      </div>
+      <!-- Dealer + View car -->
+      <div class="mt-auto pt-2 sm:pt-3 border-t border-gray-100 space-y-2 sm:space-y-3">
+        <div class="flex items-center gap-1.5">
+          <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden shrink-0">
+            <svg class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <span class="text-[10px] sm:text-sm text-gray-600 font-medium">AutoDeal</span>
+        </div>
+        <a href={`/cars/${slug}`} class="block text-center text-[10px] sm:text-sm font-semibold text-[var(--color-dark)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] border border-gray-200 rounded-full py-1.5 sm:py-2 transition-colors">
+          View car
+        </a>
+      </div>
+    </div>
+  </div>
+)}
