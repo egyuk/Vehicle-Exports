@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: OWNER/REPO  # TODO: Replace with your GitHub username/repo (e.g. george/car-export)
+  repo: https://github.com/egyuk/Vehicle-Exports  # TODO: Replace with your GitHub username/repo (e.g. george/car-export)
   branch: main
   auth_type: pkce
-  app_id: GITHUB_OAUTH_APP_CLIENT_ID  # TODO: Replace with your GitHub OAuth App Client ID
+  app_id: Ov23lipq52QTUOSKeQOO  # TODO: Replace with your GitHub OAuth App Client ID
 
 media_folder: "public/images"
 public_folder: "/images"
