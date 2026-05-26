@@ -1,0 +1,291 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categories = [...new Set(posts.map(p => p.data.category))].sort();
+const categoryCounts: Record<string, number> = {};
+posts.forEach(p => { categoryCounts[p.data.category] = (categoryCounts[p.data.category] || 0) + 1; });
+
+// Collect tags from posts
+const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort().slice(0, 12);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+---
+
+<Layout title="Blog - AutoDeal" description="Expert guides, vehicle reviews, and industry insights about vehicle export from the UK.">
+  <!-- Banner -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Blog</span>
+      </nav>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-heading)]">News & Guides</h1>
+      <p class="text-gray-400 mt-2 max-w-xl">Expert advice, industry news, and vehicle insights to help you make informed export decisions.</p>
+    </div>
+  </section>
+
+  <section class="py-10 lg:pt-8 lg:pb-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-[1fr_300px] lg:gap-10 lg:items-start">
+
+        <!-- Posts -->
+        <div>
+          <!-- Mobile sidebar toggle -->
+          <div class="flex items-center justify-between mb-6 lg:hidden">
+            <p class="text-sm text-gray-500">
+              Showing <span id="post-count" class="font-semibold text-gray-900">{posts.length}</span> posts
+            </p>
+            <button id="blog-sidebar-open" class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+              Categories
+            </button>
+          </div>
+
+          <!-- Posts Grid -->
+          <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {posts.map(post => (
+              <article
+                class="blog-card group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300"
+                data-category={post.data.category}
+                data-title={post.data.title.toLowerCase()}
+                data-tags={(post.data.tags || []).join(',').toLowerCase()}
+              >
+                <a href={`/blog/${post.data.slug}`} class="block">
+                  <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+                    {post.data.image ? (
+                      <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    ) : (
+                      <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-50 to-orange-100">
+                        <svg class="w-12 h-12 text-[var(--color-primary)]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div class="blog-date-badge">{formatDate(post.data.date)}</div>
+                  </div>
+                </a>
+                <div class="p-5">
+                  <div class="flex items-center gap-3 mb-3 text-xs text-gray-500">
+                    <span class="flex items-center gap-1">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                      {post.data.author}
+                    </span>
+                    <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs">{post.data.category}</span>
+                  </div>
+                  <h2 class="font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)] text-lg leading-tight mb-2">
+                    <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+                  </h2>
+                  <p class="text-sm text-gray-500 line-clamp-2 mb-4">{post.data.description}</p>
+                  <a href={`/blog/${post.data.slug}`} class="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-primary)] group-hover:gap-2 transition-all">
+                    Read More
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div id="no-posts" class="hidden py-16 text-center">
+            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)]">No posts found</h3>
+            <p class="text-gray-500 text-sm mt-1">Try a different category or search term.</p>
+          </div>
+
+          <div class="hidden lg:block mt-8 text-center">
+            <p class="text-sm text-gray-400">Showing <span id="post-count-desktop" class="font-semibold text-gray-600">{posts.length}</span> posts</p>
+          </div>
+        </div>
+
+        <!-- Blog Sidebar Overlay (mobile) -->
+        <div id="blog-sidebar-overlay" class="fixed inset-0 bg-black/50 z-[998] hidden lg:hidden"></div>
+
+        <!-- Blog Sidebar -->
+        <aside id="blog-sidebar" class="fixed top-0 right-0 h-full w-[300px] bg-white z-[999] transform translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:transform-none lg:translate-x-0 lg:w-auto lg:h-auto lg:z-auto overflow-y-auto">
+          <div class="p-6 lg:p-0 lg:sticky lg:top-28 space-y-8">
+            <!-- Mobile close -->
+            <div class="flex items-center justify-between lg:hidden">
+              <h2 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Blog Menu</h2>
+              <button id="blog-sidebar-close" class="p-1 text-gray-500 hover:text-gray-700">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+
+            <!-- Search -->
+            <div class="bg-white lg:border lg:border-gray-200 lg:rounded-2xl lg:p-5">
+              <h3 class="text-base font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Search blog</h3>
+              <div class="relative">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="blog-search" placeholder="Search..." class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none transition-all" />
+              </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="bg-white lg:border lg:border-gray-200 lg:rounded-2xl lg:p-5">
+              <h3 class="text-base font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Categories</h3>
+              <ul class="space-y-0">
+                <li>
+                  <button class="category-btn w-full flex justify-between items-center py-3 border-b border-gray-100 text-sm font-medium text-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors" data-category="all">
+                    <span>All Posts</span>
+                    <span class="text-xs text-gray-400">({posts.length})</span>
+                  </button>
+                </li>
+                {categories.map(cat => (
+                  <li>
+                    <button class="category-btn w-full flex justify-between items-center py-3 border-b border-gray-100 text-sm text-gray-700 hover:text-[var(--color-primary)] transition-colors" data-category={cat}>
+                      <span>{cat}</span>
+                      <span class="text-xs text-gray-400">({categoryCounts[cat]})</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="bg-white lg:border lg:border-gray-200 lg:rounded-2xl lg:p-5">
+              <h3 class="text-base font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Join our newsletter</h3>
+              <p class="text-xs text-gray-500 mb-3">Get the latest car export tips delivered to your inbox.</p>
+              <form class="space-y-2" onsubmit="event.preventDefault()">
+                <input type="email" placeholder="Your email" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none transition-all" />
+                <button type="submit" class="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white py-2.5 rounded-lg text-sm font-semibold transition-all">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+
+            <!-- Popular Tags -->
+            {allTags.length > 0 && (
+              <div class="bg-white lg:border lg:border-gray-200 lg:rounded-2xl lg:p-5">
+                <h3 class="text-base font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Popular tags</h3>
+                <div class="flex flex-wrap gap-2">
+                  {allTags.map(tag => (
+                    <button class="tag-btn bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-medium px-3 py-1.5 rounded-full transition-all" data-tag={tag}>
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>('.blog-card');
+  const grid = document.getElementById('posts-grid')!;
+  const noPosts = document.getElementById('no-posts')!;
+  const postCount = document.getElementById('post-count');
+  const postCountDesktop = document.getElementById('post-count-desktop');
+  const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+  const categoryBtns = document.querySelectorAll<HTMLButtonElement>('.category-btn');
+  const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+
+  // Sidebar drawer
+  const sidebarOpen = document.getElementById('blog-sidebar-open');
+  const sidebarClose = document.getElementById('blog-sidebar-close');
+  const sidebar = document.getElementById('blog-sidebar')!;
+  const overlay = document.getElementById('blog-sidebar-overlay');
+
+  function openSidebar() {
+    sidebar.classList.remove('translate-x-full');
+    overlay?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    sidebar.classList.add('translate-x-full');
+    overlay?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  sidebarOpen?.addEventListener('click', openSidebar);
+  sidebarClose?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  let activeCategory = 'all';
+  let activeTag = '';
+  let searchQuery = '';
+
+  function filterPosts() {
+    let visible = 0;
+    cards.forEach(card => {
+      const cat = card.dataset.category || '';
+      const title = card.dataset.title || '';
+      const tags = card.dataset.tags || '';
+
+      const matchCat = activeCategory === 'all' || cat === activeCategory;
+      const matchTag = !activeTag || tags.includes(activeTag.toLowerCase());
+      const matchSearch = !searchQuery || title.includes(searchQuery) || tags.includes(searchQuery);
+
+      const show = matchCat && matchTag && matchSearch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (postCount) postCount.textContent = String(visible);
+    if (postCountDesktop) postCountDesktop.textContent = String(visible);
+    noPosts.classList.toggle('hidden', visible > 0);
+    grid.classList.toggle('hidden', visible === 0);
+  }
+
+  // Category clicks
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.category || 'all';
+      categoryBtns.forEach(b => {
+        const isActive = b.dataset.category === activeCategory;
+        b.classList.toggle('text-[var(--color-primary)]', isActive);
+        b.classList.toggle('font-medium', isActive);
+        b.classList.toggle('text-gray-700', !isActive);
+      });
+      filterPosts();
+      closeSidebar();
+    });
+  });
+
+  // Tag clicks
+  tagBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag || '';
+      activeTag = activeTag === tag ? '' : tag;
+      tagBtns.forEach(b => {
+        const isActive = b.dataset.tag === activeTag;
+        b.classList.toggle('bg-[var(--color-primary)]', isActive);
+        b.classList.toggle('text-white', isActive);
+        b.classList.toggle('bg-gray-100', !isActive);
+        b.classList.toggle('text-gray-600', !isActive);
+      });
+      filterPosts();
+    });
+  });
+
+  // Search
+  searchInput?.addEventListener('input', () => {
+    searchQuery = searchInput.value.toLowerCase();
+    filterPosts();
+  });
+
+  // Init from URL
+  const params = new URLSearchParams(window.location.search);
+  const urlCat = params.get('category');
+  if (urlCat) {
+    activeCategory = urlCat;
+    categoryBtns.forEach(b => {
+      const isActive = b.dataset.category === activeCategory;
+      b.classList.toggle('text-[var(--color-primary)]', isActive);
+      b.classList.toggle('font-medium', isActive);
+      b.classList.toggle('text-gray-700', !isActive);
+    });
+  }
+  filterPosts();
+</script>

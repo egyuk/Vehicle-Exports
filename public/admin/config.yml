@@ -1,0 +1,96 @@
+backend:
+  name: github
+  repo: OWNER/REPO  # TODO: Replace with your GitHub username/repo (e.g. george/car-export)
+  branch: main
+  auth_type: pkce
+  app_id: GITHUB_OAUTH_APP_CLIENT_ID  # TODO: Replace with your GitHub OAuth App Client ID
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  # Vehicles Collection
+  - name: "vehicles"
+    label: "Vehicles"
+    folder: "src/content/vehicles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "e.g. 2023 Toyota Land Cruiser" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name, e.g. 2023-toyota-land-cruiser" }
+      - { label: "Make", name: "make", widget: "select", options: ["Audi", "BMW", "Ford", "Jeep", "Kia", "Land Rover", "Mercedes-Benz", "Nissan", "Toyota", "Other"] }
+      - { label: "Model", name: "model", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int", min: 2000, max: 2030 }
+      - { label: "Price (USD)", name: "price", widget: "number", value_type: "int" }
+      - { label: "Mileage", name: "mileage", widget: "number", value_type: "int", hint: "In miles" }
+      - { label: "Fuel Type", name: "fuel", widget: "select", options: ["Petrol", "Diesel", "Electric", "Hybrid"] }
+      - { label: "Transmission", name: "transmission", widget: "select", options: ["Automatic", "Manual", "CVT"] }
+      - { label: "Body Type", name: "bodyType", widget: "select", options: ["Sedan", "SUV", "Hatchback", "Coupe", "Pickup Truck", "Crossover", "Minivan", "Convertible"] }
+      - { label: "Color", name: "color", widget: "string", required: false }
+      - { label: "Condition", name: "condition", widget: "select", options: ["New", "Used"], default: "Used" }
+      - { label: "Doors", name: "doors", widget: "number", value_type: "int", required: false }
+      - { label: "Drive Type", name: "driveType", widget: "select", options: ["FWD", "RWD", "AWD", "4WD"], required: false }
+      - { label: "Engine Size", name: "engineSize", widget: "string", required: false, hint: "e.g. 2.0L, 3.5L V6" }
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        required: false
+        field: { label: "Feature", name: "feature", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        required: false
+        field: { label: "Image", name: "image", widget: "image" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Blog Collection
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "AutoDeal Team" }
+      - { label: "Category", name: "category", widget: "select", options: ["Export Guide", "Industry News", "Vehicle Reviews", "Company Updates", "Tips & Advice"] }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Country/Region Pages
+  - name: "countries"
+    label: "Export Destinations"
+    folder: "src/content/countries"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "e.g. Export to Africa" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "e.g. africa" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Region", name: "region", widget: "string" }
+      - { label: "Shipping Time", name: "shippingTime", widget: "string", hint: "e.g. 3-6 weeks" }
+      - label: "Popular Brands"
+        name: "popularBrands"
+        widget: "list"
+        field: { label: "Brand", name: "brand", widget: "string" }
+      - label: "Popular Models"
+        name: "popularModels"
+        widget: "list"
+        field: { label: "Model", name: "model", widget: "string" }
+      - label: "Destination Ports"
+        name: "ports"
+        widget: "list"
+        field: { label: "Port", name: "port", widget: "string" }
+      - label: "Key Facts"
+        name: "keyFacts"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }

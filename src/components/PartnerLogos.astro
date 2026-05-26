@@ -1,0 +1,63 @@
+---
+const partners = [
+  { name: 'Toyota', logo: '/assets/images/partners/toyota.png' },
+  { name: 'BMW', logo: '/assets/images/partners/bmw.png' },
+  { name: 'Mercedes-Benz', logo: '/assets/images/partners/mercedes-benz.png' },
+  { name: 'Audi', logo: '/assets/images/partners/audi.png' },
+  { name: 'Ford', logo: '/assets/images/partners/ford.png' },
+  { name: 'Land Rover', logo: '/assets/images/partners/land-rover.png' },
+  { name: 'Nissan', logo: '/assets/images/partners/nissan.png' },
+  { name: 'Porsche', logo: '/assets/images/partners/porsche.png' },
+  { name: 'McLaren', logo: '/assets/images/partners/mclaren.png' },
+  { name: 'Rolls Royce', logo: '/assets/images/partners/rolls-royce.png' },
+  { name: 'Jeep', logo: '/assets/images/partners/jeep.png' },
+  { name: 'KIA', logo: '/assets/images/partners/kia.png' },
+];
+---
+
+<section class="py-16 lg:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Our partners</h2>
+    </div>
+    <div class="swiper partner-swiper">
+      <div class="swiper-wrapper items-center">
+        {partners.map(p => (
+          <div class="swiper-slide">
+            <a href={`/cars/${p.name.toLowerCase().replace(/ /g, '-')}`} class="flex items-center justify-center h-20 px-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
+              <img
+                src={p.logo}
+                alt={p.name}
+                class="max-h-14 max-w-[120px] object-contain"
+                onerror={`this.style.display='none';this.nextElementSibling.style.display='block'`}
+              />
+              <span class="text-lg font-bold font-[family-name:var(--font-heading)] text-gray-400 hidden">{p.name}</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+
+  new Swiper('.partner-swiper', {
+    modules: [Autoplay],
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: { delay: 2000, disableOnInteraction: false },
+    speed: 600,
+    breakpoints: {
+      480: { slidesPerView: 4 },
+      640: { slidesPerView: 5 },
+      768: { slidesPerView: 6 },
+      1024: { slidesPerView: 7 },
+      1280: { slidesPerView: 8 },
+    },
+  });
+</script>

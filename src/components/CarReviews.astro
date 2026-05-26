@@ -1,0 +1,69 @@
+---
+const featuredReview = {
+  eyebrow: 'Car reviews',
+  titleLine1: '2024 Hyundai',
+  titleLine2: 'Staria Premium Review',
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non egestas justo. Vestibulum ac commodo enim, eget fringilla lectus.',
+  image: '/images/vehicles/rolls-royce/cullinan-01.webp',
+  link: '/blog',
+};
+---
+
+<section class="py-16 lg:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">
+        {featuredReview.eyebrow}
+      </h2>
+      <a
+        href="/blog"
+        class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-semibold text-sm inline-flex items-center gap-1 transition-colors"
+      >
+        View all
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg
+        >
+      </a>
+    </div>
+
+    <!-- Featured review block -->
+    <div class="relative rounded-3xl overflow-hidden shadow-xl group">
+      <!-- Image -->
+      <div class="relative aspect-[21/9] lg:aspect-[21/8]">
+        <img
+          src={featuredReview.image}
+          alt={`${featuredReview.titleLine1} ${featuredReview.titleLine2}`}
+          class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+          loading="lazy"
+        />
+        <!-- Dark overlay for readable text -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+      </div>
+
+      <!-- Text overlay -->
+      <div class="absolute inset-0 flex items-center">
+        <div class="px-6 sm:px-10 lg:px-16 max-w-xl">
+          <h3
+            class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] leading-tight mb-4"
+          >
+            {featuredReview.titleLine1}<br />{featuredReview.titleLine2}
+          </h3>
+          <p class="text-white/80 text-sm sm:text-base mb-6 max-w-md leading-relaxed">
+            {featuredReview.description}
+          </p>
+          <a
+            href={featuredReview.link}
+            class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:shadow-lg"
+          >
+            Review detail
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

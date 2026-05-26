@@ -1,0 +1,187 @@
+---
+import { getCollection } from 'astro:content';
+
+const allVehicles = await getCollection('vehicles');
+const featured = allVehicles
+  .filter(v => v.data.featured && v.data.images && v.data.images.length > 0)
+  .sort((a, b) => b.data.price - a.data.price)
+  .slice(0, 4);
+
+const totalVehicles = allVehicles.length;
+
+const makes = ['Make', 'Audi', 'BMW', 'Ford', 'Land Rover', 'McLaren', 'Mercedes-Benz', 'Nissan', 'Porsche', 'Rolls Royce', 'Toyota'];
+const bodyTypes = ['Body Type', 'Sedan', 'SUV', 'Hatchback', 'Coupe', 'Pickup Truck', 'Crossover', 'Minivan', 'Convertible'];
+const doors = ['Door', '2', '3', '4', '5'];
+const models = ['Model', 'All Models'];
+const fuelTypes = ['Fuel Type', 'Petrol', 'Diesel', 'Electric', 'Hybrid'];
+const transmissions = ['Transmission', 'Automatic', 'Manual', 'CVT'];
+const driveTypes = ['Drive Type', 'AWD', 'FWD', 'RWD', '4WD'];
+const cylinders = ['Cylinders', '3', '4', '6', '8', '10', '12'];
+const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Green', 'Gold'];
+---
+
+<section class="relative bg-[var(--color-dark)] overflow-hidden" style="height: 70vh; min-height: 550px; max-height: 700px;">
+  <!-- Static Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/vehicles/porsche/gt3rs-01.webp"
+      alt="Porsche 911 GT3 RS"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/30"></div>
+  </div>
+
+  <!-- Overlay Content -->
+  <div class="absolute inset-0 z-10 flex flex-col justify-end pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <!-- Heading -->
+      <div class="mb-10 lg:mb-16">
+        <p class="text-[var(--color-primary)] text-sm font-medium mb-2">Over {totalVehicles.toLocaleString()} classified ads listing</p>
+        <h1 class="text-4xl sm:text-5xl font-bold text-white font-[family-name:var(--font-heading)] leading-tight hero-heading" style="font-size: clamp(2.25rem, 5vw, 70px);">
+          Find what are you<br />looking for
+        </h1>
+        <p class="text-white/50 text-sm mt-3 max-w-lg">
+          Explore the worlds largest database to buy, sell, trade or simply rent a car
+        </p>
+      </div>
+
+      <!-- Tabs - OUTSIDE the white card, on dark hero bg -->
+      <div class="flex gap-2 mb-3" id="hero-tabs">
+        <button class="hero-tab active px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-primary)] text-white transition-all" data-tab="all">All</button>
+        <button class="hero-tab px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] transition-all" data-tab="new">New Car</button>
+        <button class="hero-tab px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] transition-all" data-tab="used">Used Car</button>
+      </div>
+
+      <!-- Search Bar - white card, full width -->
+      <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+        <!-- Mobile: keyword search -->
+        <form action="/cars" method="get" class="p-4 lg:hidden">
+          <input type="hidden" name="condition" id="hero-condition-mobile" value="" />
+          <div class="flex gap-3 items-center">
+            <div class="flex-1 relative">
+              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" name="q" placeholder="Search by make, model, or keyword..." class="w-full bg-white border border-gray-200 rounded-xl pl-12 pr-4 py-3 text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-[var(--color-primary)] transition-colors" />
+            </div>
+            <button type="submit" class="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all text-sm whitespace-nowrap shrink-0">
+              Search
+            </button>
+          </div>
+        </form>
+
+        <!-- Desktop: dropdown filters -->
+        <form action="/cars" method="get" class="p-4 hidden lg:block">
+          <input type="hidden" name="condition" id="hero-condition" value="" />
+          <!-- Basic filter row -->
+          <div class="flex flex-nowrap gap-3 items-center">
+            <select name="make" class="filter-select flex-1 min-w-[130px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+              {makes.map(m => <option value={m === 'Make' ? '' : m}>{m}</option>)}
+            </select>
+            <select name="model" class="filter-select flex-1 min-w-[110px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+              {models.map(m => <option value={m === 'Model' ? '' : m}>{m}</option>)}
+            </select>
+            <select name="doors" class="filter-select flex-1 min-w-[100px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+              {doors.map(d => <option value={d === 'Door' ? '' : d}>{d}</option>)}
+            </select>
+            <select name="body" class="filter-select flex-1 min-w-[110px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+              {bodyTypes.map(b => <option value={b === 'Body Type' ? '' : b}>{b}</option>)}
+            </select>
+            <!-- Advanced filter toggle -->
+            <button
+              type="button"
+              id="advanced-filter-toggle"
+              aria-expanded="false"
+              aria-controls="advanced-filter-panel"
+              class="shrink-0 w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 text-gray-400 hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors"
+              title="Advanced filters"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+            </button>
+            <button type="submit" class="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-7 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 text-sm whitespace-nowrap shrink-0">
+              Find cars
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </button>
+          </div>
+
+          <!-- Advanced filter panel — hidden until funnel toggle -->
+          <div id="advanced-filter-panel" class="hidden mt-4 pt-4 border-t border-gray-100">
+            <div class="grid grid-cols-4 gap-3">
+              <select name="fuel" class="filter-select w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+                {fuelTypes.map(f => <option value={f === 'Fuel Type' ? '' : f}>{f}</option>)}
+              </select>
+              <select name="transmission" class="filter-select w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+                {transmissions.map(t => <option value={t === 'Transmission' ? '' : t}>{t}</option>)}
+              </select>
+              <select name="driveType" class="filter-select w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+                {driveTypes.map(d => <option value={d === 'Drive Type' ? '' : d}>{d}</option>)}
+              </select>
+              <select name="cylinders" class="filter-select w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+                {cylinders.map(c => <option value={c === 'Cylinders' ? '' : c}>{c}</option>)}
+              </select>
+              <select name="color" class="filter-select w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+                {colors.map(c => <option value={c === 'Color' ? '' : c}>{c}</option>)}
+              </select>
+              <input type="number" name="minPrice" placeholder="Min Price ($)" min="0" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-[var(--color-primary)] transition-colors" />
+              <input type="number" name="maxPrice" placeholder="Max Price ($)" min="0" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-[var(--color-primary)] transition-colors" />
+              <input type="number" name="year" placeholder="Year" min="1990" max="2030" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-[var(--color-primary)] transition-colors" />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Body Type Quick Links -->
+      <div class="flex flex-wrap gap-6 mt-5">
+        <a href="/cars/body/coupe" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
+          Coupe
+        </a>
+        <a href="/cars/body/minivan" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
+          MVP
+        </a>
+        <a href="/cars/body/sedan" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
+          Sedan
+        </a>
+        <a href="/cars/body/hatchback" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
+          Hatchback
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Hero tabs - pill button style (orange active, dark inactive)
+  const heroTabs = document.querySelectorAll<HTMLButtonElement>('.hero-tab');
+  const condInput = document.getElementById('hero-condition') as HTMLInputElement;
+  const condInputMobile = document.getElementById('hero-condition-mobile') as HTMLInputElement;
+
+  heroTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      heroTabs.forEach(t => {
+        t.classList.remove('active', 'bg-[var(--color-primary)]');
+        t.classList.add('bg-[var(--color-dark)]');
+      });
+      tab.classList.add('active', 'bg-[var(--color-primary)]');
+      tab.classList.remove('bg-[var(--color-dark)]');
+
+      const val = tab.dataset.tab;
+      const condVal = val === 'new' ? 'New' : val === 'used' ? 'Used' : '';
+      if (condInput) condInput.value = condVal;
+      if (condInputMobile) condInputMobile.value = condVal;
+    });
+  });
+
+  // Advanced filter panel toggle
+  const advToggle = document.getElementById('advanced-filter-toggle');
+  const advPanel = document.getElementById('advanced-filter-panel');
+
+  advToggle?.addEventListener('click', () => {
+    const isHidden = advPanel?.classList.contains('hidden');
+    advPanel?.classList.toggle('hidden');
+    advToggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    advToggle.classList.toggle('text-[var(--color-primary)]', isHidden);
+    advToggle.classList.toggle('border-[var(--color-primary)]', isHidden);
+  });
+</script>

@@ -1,0 +1,130 @@
+---
+interface Props {
+  defaultPrice?: number;
+}
+
+const { defaultPrice = 30000 } = Astro.props;
+---
+
+<section
+  class="relative min-h-[600px] lg:min-h-[650px] overflow-hidden bg-black"
+  id="loan-calculator"
+>
+  <!-- Parallax background image -->
+  <div class="absolute left-0 right-0" style="top: -300px; bottom: -300px;">
+    <img
+      src="/assets/images/section/loan-bg.jpg"
+      alt=""
+      class="w-full h-full object-cover parallax-img"
+    />
+  </div>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 lg:pl-4">
+    <div class="flex justify-start">
+      <!-- Calculator Card -->
+      <div class="bg-white rounded-2xl p-8 lg:p-10 w-full max-w-lg floating-card" style="box-shadow: 0 25px 60px rgba(0,0,0,0.3);">
+        <div class="space-y-5">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Total Price</label>
+            <input type="number" id="calc-price" value={defaultPrice} min="0" class="w-full border-b border-gray-200 px-0 py-3 text-base text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors bg-transparent" />
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Down payment</label>
+              <input type="number" id="calc-down" value="5000" min="0" class="w-full border-b border-gray-200 px-0 py-3 text-base text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors bg-transparent" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Amortization Period</label>
+              <select id="calc-term" class="filter-select w-full border-b border-gray-200 px-0 py-3 text-base text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors bg-transparent">
+                <option value="" disabled>Select Period</option>
+                <option value="6">6 Months</option>
+                <option value="12">12 Months</option>
+                <option value="24">24 Months</option>
+                <option value="36" selected>36 Months</option>
+                <option value="48">48 Months</option>
+                <option value="60">60 Months</option>
+                <option value="72">72 Months</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Interest rate</label>
+            <input type="number" id="calc-rate" value="5" min="0" max="30" step="0.1" class="w-full border-b border-gray-200 px-0 py-3 text-base text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors bg-transparent" />
+          </div>
+
+          <!-- Results -->
+          <div class="pt-4 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500">Down payment amount</span>
+              <span class="font-semibold text-gray-900" id="result-down">$5,000</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-semibold text-[var(--color-primary)]">Monthly payment</span>
+              <span class="text-xl font-bold text-[var(--color-primary)] font-[family-name:var(--font-heading)]" id="result-monthly">$755</span>
+            </div>
+          </div>
+
+          <button id="calc-btn" type="button" class="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white py-3.5 rounded-lg font-semibold transition-all text-sm mt-2">
+            Apply for a loan
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function calculate() {
+    const price = parseFloat((document.getElementById('calc-price') as HTMLInputElement).value) || 0;
+    const down = parseFloat((document.getElementById('calc-down') as HTMLInputElement).value) || 0;
+    const term = parseInt((document.getElementById('calc-term') as HTMLSelectElement).value) || 36;
+    const rate = parseFloat((document.getElementById('calc-rate') as HTMLInputElement).value) || 0;
+
+    const financed = Math.max(0, price - down);
+    const monthlyRate = rate / 100 / 12;
+    let monthly = 0;
+
+    if (monthlyRate > 0 && term > 0) {
+      monthly = financed * (monthlyRate * Math.pow(1 + monthlyRate, term)) / (Math.pow(1 + monthlyRate, term) - 1);
+    } else if (term > 0) {
+      monthly = financed / term;
+    }
+
+    const fmt = (n: number) => '$' + Math.round(n).toLocaleString();
+    document.getElementById('result-down')!.textContent = fmt(down);
+    document.getElementById('result-monthly')!.textContent = fmt(monthly);
+  }
+
+  document.getElementById('calc-btn')?.addEventListener('click', calculate);
+  ['calc-price', 'calc-down', 'calc-term', 'calc-rate'].forEach(id => {
+    document.getElementById(id)?.addEventListener('change', calculate);
+  });
+  calculate();
+
+  // Floating card animation
+  const card = document.querySelector('.floating-card') as HTMLElement;
+  if (card) {
+    window.addEventListener('scroll', () => {
+      const rect = card.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      const visible = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH + rect.height)));
+      const float = Math.sin(visible * Math.PI) * 8;
+      card.style.transform = `translateY(${-float}px)`;
+    }, { passive: true });
+  }
+
+  // Parallax scroll effect
+  const section = document.getElementById('loan-calculator');
+  const parallaxImg = section?.querySelector('.parallax-img') as HTMLElement;
+  if (section && parallaxImg) {
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const speed = 0.5;
+      const offset = rect.top * speed;
+      parallaxImg.style.transform = `translateY(${offset}px)`;
+    }, { passive: true });
+  }
+</script>

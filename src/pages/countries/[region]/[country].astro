@@ -1,0 +1,150 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allCountries = await getCollection('countries');
+  // Only child countries (those with parentSlug)
+  const children = allCountries.filter(c => c.data.parentSlug);
+  return children.map((country) => ({
+    params: { region: country.data.parentSlug!, country: country.data.slug },
+    props: { country },
+  }));
+}
+
+const { country } = Astro.props;
+const { Content } = await render(country);
+const { title, description, region, parentSlug, shippingTime, popularBrands, popularModels, ports, keyFacts, heroImage } = country.data;
+
+// Get sibling countries (same parent)
+const allCountries = await getCollection('countries');
+const parent = allCountries.find(c => c.data.slug === parentSlug && !c.data.parentSlug);
+const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.data.slug !== country.data.slug);
+---
+
+<Layout title={`${title} - AutoDeal`} description={description}>
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-[var(--color-dark)] via-gray-900 to-[var(--color-dark)] py-20 overflow-hidden">
+    {heroImage && (
+      <div class="absolute inset-0">
+        <img src={heroImage} alt={title} class="w-full h-full object-cover opacity-20" />
+        <div class="absolute inset-0 bg-gradient-to-br from-[var(--color-dark)]/90 via-gray-900/85 to-[var(--color-dark)]/90"></div>
+      </div>
+    )}
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-2 text-sm text-gray-400 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <a href="/countries" class="hover:text-[var(--color-primary)] transition-colors">All Destinations</a>
+          <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          {parent && (
+            <>
+              <a href={`/countries/${parentSlug}`} class="hover:text-[var(--color-primary)] transition-colors">{parent.data.title}</a>
+              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </>
+          )}
+          <span class="text-gray-500">{title}</span>
+        </div>
+        <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+          {region}
+        </span>
+        <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)]">{title}</h1>
+        <p class="text-gray-400 mt-4 text-base lg:text-lg">{description}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="relative -mt-8 z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 sm:p-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {keyFacts.map((fact) => (
+            <div class="text-center">
+              <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">{fact.title}</div>
+              <div class="text-lg font-bold text-gray-900 mt-1 font-[family-name:var(--font-heading)]">{fact.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Main Content -->
+        <div class="lg:col-span-2 min-w-0">
+          <div class="prose prose-base lg:prose-lg max-w-none prose-headings:font-[family-name:var(--font-heading)] prose-headings:text-gray-900 prose-a:text-[var(--color-primary)] prose-strong:text-gray-900 overflow-hidden break-words">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- Popular Brands -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Popular Brands</h3>
+            <div class="flex flex-wrap gap-2">
+              {popularBrands.map((brand) => (
+                <span class="bg-white border border-gray-200 text-sm text-gray-700 px-3 py-1.5 rounded-full whitespace-nowrap">{brand}</span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Popular Models -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Popular Models</h3>
+            <ul class="space-y-2">
+              {popularModels.map((model) => (
+                <li class="flex items-center gap-2 text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  {model}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Shipping Ports -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Destination Ports</h3>
+            <ul class="space-y-2">
+              {ports.map((port) => (
+                <li class="flex items-center gap-2 text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  {port}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Other Destinations in this Region -->
+          {siblings.length > 0 && (
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">More in {parent?.data.region || region}</h3>
+              <ul class="space-y-2">
+                {siblings.map((sib) => (
+                  <li>
+                    <a href={`/countries/${parentSlug}/${sib.data.slug}`} class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors">
+                      <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                      {sib.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- CTA -->
+          <div class="bg-[var(--color-primary)] rounded-2xl p-6 text-center">
+            <h3 class="font-semibold text-white text-lg mb-2 font-[family-name:var(--font-heading)]">Ready to Export?</h3>
+            <p class="text-white/80 text-sm mb-4">Get a personalised quote for your vehicle export to {region}.</p>
+            <a href="/contact" class="inline-block bg-white text-[var(--color-primary)] px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all">
+              Get Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

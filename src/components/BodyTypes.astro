@@ -1,0 +1,52 @@
+---
+const bodyTypes = [
+  { name: 'Sedan', count: 24, icon: 'M3 13h18v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2zm0 0v4a1 1 0 001 1h2a1 1 0 001-1v-1h10v1a1 1 0 001 1h2a1 1 0 001-1v-4' },
+  { name: 'SUV', count: 38, icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z' },
+  { name: 'Pickup Truck', count: 15, icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0' },
+  { name: 'Hatchback', count: 12, icon: 'M8 17h8M8 17a2 2 0 11-4 0 2 2 0 014 0zm8 0a2 2 0 104 0 2 2 0 00-4 0zM3 11l2-6h14l2 6' },
+  { name: 'Coupe', count: 8, icon: 'M5 13l1.5-4.5h11L19 13M5 13v4h14v-4M5 13H3m16 0h2M7.5 17a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm9 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' },
+  { name: 'Crossover', count: 20, icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM3 11l3-7h12l3 7' },
+];
+---
+
+<section class="py-16 lg:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <span class="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider">Browse By Type</span>
+      <h2 class="text-3xl font-bold text-gray-900 mt-2 font-[family-name:var(--font-heading)]">Search By Body Type</h2>
+    </div>
+
+    <div class="swiper body-type-swiper">
+      <div class="swiper-wrapper">
+        {bodyTypes.map(type => (
+          <div class="swiper-slide">
+            <a href={`/cars/body/${type.name.toLowerCase().replace(/ /g, '-')}`} class="flex flex-col items-center p-6 bg-gray-50 border border-gray-100 rounded-2xl hover:border-[var(--color-primary)] hover:shadow-md transition-all duration-300 group">
+              <div class="w-16 h-16 bg-white group-hover:bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center mb-3 transition-colors">
+                <svg class="w-8 h-8 text-gray-400 group-hover:text-[var(--color-primary)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={type.icon} />
+                </svg>
+              </div>
+              <span class="font-semibold text-sm text-gray-900 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)]">{type.name}</span>
+              <span class="text-xs text-gray-400 mt-1">{type.count} vehicles</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import 'swiper/css';
+
+  new Swiper('.body-type-swiper', {
+    slidesPerView: 2,
+    spaceBetween: 16,
+    breakpoints: {
+      640: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 6 },
+    },
+  });
+</script>

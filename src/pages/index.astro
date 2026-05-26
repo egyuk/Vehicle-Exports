@@ -1,17 +1,32 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import BrandLogos from '../components/BrandLogos.astro';
+import VehiclesByBodyType from '../components/VehiclesByBodyType.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import ShippingCalculator from '../components/ShippingCalculator.astro';
+import MeetAgents from '../components/MeetAgents.astro';
+import CTASection from '../components/CTASection.astro';
+import CompareCars from '../components/CompareCars.astro';
+import CarReviews from '../components/CarReviews.astro';
+import Testimonials from '../components/Testimonials.astro';
+import PartnerLogos from '../components/PartnerLogos.astro';
+import LatestBlog from '../components/LatestBlog.astro';
+import InfoBox from '../components/InfoBox.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="AutoDeal - Quality Vehicle Export from the UK">
+  <Hero />
+  <BrandLogos />
+  <VehiclesByBodyType />
+  <WhyChooseUs />
+  <ShippingCalculator />
+  <MeetAgents />
+  <CTASection />
+  <Testimonials />
+  <CompareCars />
+  <CarReviews />
+  <LatestBlog />
+  <PartnerLogos />
+  <InfoBox />
+</Layout>
