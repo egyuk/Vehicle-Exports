@@ -1,6 +1,6 @@
 ---
-title: "2021 Toyota Hilux Invincible X"
-slug: "2021-toyota-hilux"
+title: "2026 Mitsubishi L200"
+slug: "Mitsubishi_L200"
 make: "Toyota"
 model: "Hilux"
 year: 2021
@@ -12,9 +12,10 @@ bodyType: "Pickup Truck"
 color: "Gray"
 description: "Rugged Toyota Hilux Invincible X with roller shutter, tow bar, and full Toyota service history. The world's most reliable pickup."
 images:
-  - "https://www.carexporters.co.uk/files/02-2018/ad19046/15198196092008598883_large.jpg"
-  - "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&q=80"
-  - "https://images.unsplash.com/photo-1612544448445-b8232cff3b6c?w=800&q=80"
+  - "https://www.carexporters.co.uk/files/06-2013/ad5618/14882466271148067461_large.jpg"
+  - "https://www.carexporters.co.uk/files/06-2013/ad5618/14882466241118801395_large.jpg"
+  - "https://www.carexporters.co.uk/files/06-2013/ad5618/14882466271639324318_large.jpg"
+  - "https://www.carexporters.co.uk/files/06-2013/ad5618/14882466241447894772_large.jpg"
 featured: false
 ---
 
