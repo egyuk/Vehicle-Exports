@@ -38,6 +38,8 @@ const bodyTypes = ['All Cars', ...new Set(allVehicles.map(v => v.data.bodyType))
         <div class="vehicle-item h-full" data-body={vehicle.data.bodyType}>
           <VehicleCard
             slug={vehicle.data.slug}
+            make={vehicle.data.make}
+            model={vehicle.data.model}
             title={vehicle.data.title}
             price={vehicle.data.price}
             mileage={vehicle.data.mileage}
@@ -60,6 +62,8 @@ const bodyTypes = ['All Cars', ...new Set(allVehicles.map(v => v.data.bodyType))
         <div class="vehicle-item h-full" data-body={vehicle.data.bodyType}>
           <VehicleCard
             slug={vehicle.data.slug}
+            make={vehicle.data.make}
+            model={vehicle.data.model}
             title={vehicle.data.title}
             price={vehicle.data.price}
             mileage={vehicle.data.mileage}
