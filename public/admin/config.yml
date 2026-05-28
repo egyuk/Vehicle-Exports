@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: egyuk/Vehicle-Exports
-  branch: main
+  branch: master
   auth_type: pkce
   app_id: Ov23lipq52QTUOSKeQOO  # TODO: Replace with your GitHub OAuth App Client ID
 
