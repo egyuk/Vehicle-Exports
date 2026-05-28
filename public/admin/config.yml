@@ -1,9 +1,9 @@
+local_backend: true
+
 backend:
   name: github
   repo: egyuk/Vehicle-Exports
   branch: master
-  auth_type: pkce
-  app_id: Ov23lipq52QTUOSKeQOO  # TODO: Replace with your GitHub OAuth App Client ID
 
 media_folder: "public/images"
 public_folder: "/images"
