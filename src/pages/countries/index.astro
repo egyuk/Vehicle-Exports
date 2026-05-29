@@ -45,26 +45,34 @@ const countries = allCountries.filter(c => !c.data.parentSlug);
               <p class="text-sm text-gray-500 mt-2 line-clamp-2">{country.data.description}</p>
 
               <!-- Quick Facts -->
-              <div class="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100">
-                <div class="flex items-center gap-1.5 text-xs text-gray-500">
-                  <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                  {country.data.shippingTime}
+              {(country.data.shippingTime || country.data.ports.length > 0) && (
+                <div class="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100">
+                  {country.data.shippingTime && (
+                    <div class="flex items-center gap-1.5 text-xs text-gray-500">
+                      <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      {country.data.shippingTime}
+                    </div>
+                  )}
+                  {country.data.ports.length > 0 && (
+                    <div class="flex items-center gap-1.5 text-xs text-gray-500">
+                      <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                      {country.data.ports.length} ports
+                    </div>
+                  )}
                 </div>
-                <div class="flex items-center gap-1.5 text-xs text-gray-500">
-                  <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  {country.data.ports.length} ports
-                </div>
-              </div>
+              )}
 
               <!-- Brands -->
-              <div class="flex gap-1.5 mt-4 overflow-x-auto scrollbar-hide" style="scrollbar-width: none;">
-                {country.data.popularBrands.slice(0, 3).map((brand) => (
-                  <span class="bg-gray-50 text-xs text-gray-500 px-2 py-1 rounded whitespace-nowrap shrink-0">{brand}</span>
-                ))}
-                {country.data.popularBrands.length > 3 && (
-                  <span class="bg-gray-50 text-xs text-gray-500 px-2 py-1 rounded whitespace-nowrap shrink-0">+{country.data.popularBrands.length - 3}</span>
-                )}
-              </div>
+              {country.data.popularBrands.length > 0 && (
+                <div class="flex gap-1.5 mt-4 overflow-x-auto scrollbar-hide" style="scrollbar-width: none;">
+                  {country.data.popularBrands.slice(0, 3).map((brand) => (
+                    <span class="bg-gray-50 text-xs text-gray-500 px-2 py-1 rounded whitespace-nowrap shrink-0">{brand}</span>
+                  ))}
+                  {country.data.popularBrands.length > 3 && (
+                    <span class="bg-gray-50 text-xs text-gray-500 px-2 py-1 rounded whitespace-nowrap shrink-0">+{country.data.popularBrands.length - 3}</span>
+                  )}
+                </div>
+              )}
             </div>
           </a>
         ))}
