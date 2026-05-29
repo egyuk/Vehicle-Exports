@@ -10,6 +10,12 @@
   <title>AutoDeal CMS</title>
 </head>
 <body>
+  <script is:inline>
+    // Ensure trailing slash so CMS resolves config.yml to /admin/config.yml
+    if (!window.location.pathname.endsWith('/')) {
+      window.location.replace(window.location.pathname + '/' + window.location.hash);
+    }
+  </script>
   <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
