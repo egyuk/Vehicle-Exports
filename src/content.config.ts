@@ -10,14 +10,14 @@ const countries = defineCollection({
     heroImage: z.string().optional(),
     region: z.string(),
     parentSlug: z.string().optional(),
-    shippingTime: z.string(),
-    popularBrands: z.array(z.string()),
-    popularModels: z.array(z.string()),
-    ports: z.array(z.string()),
+    shippingTime: z.string().optional().default(''),
+    popularBrands: z.array(z.string()).optional().default([]),
+    popularModels: z.array(z.string()).optional().default([]),
+    ports: z.array(z.string()).optional().default([]),
     keyFacts: z.array(z.object({
       title: z.string(),
       value: z.string(),
-    })),
+    })).optional().default([]),
   }),
 });
 

@@ -74,22 +74,26 @@ collections:
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
       - { label: "Region", name: "region", widget: "string" }
-      - { label: "Shipping Time", name: "shippingTime", widget: "string", hint: "e.g. 3-6 weeks" }
+      - { label: "Shipping Time", name: "shippingTime", widget: "string", hint: "e.g. 3-6 weeks", required: false }
       - label: "Popular Brands"
         name: "popularBrands"
         widget: "list"
+        required: false
         field: { label: "Brand", name: "brand", widget: "string" }
       - label: "Popular Models"
         name: "popularModels"
         widget: "list"
+        required: false
         field: { label: "Model", name: "model", widget: "string" }
       - label: "Destination Ports"
         name: "ports"
         widget: "list"
+        required: false
         field: { label: "Port", name: "port", widget: "string" }
       - label: "Key Facts"
         name: "keyFacts"
         widget: "list"
+        required: false
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Value", name: "value", widget: "string" }
