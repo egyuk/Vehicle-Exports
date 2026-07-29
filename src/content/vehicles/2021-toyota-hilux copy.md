@@ -10,7 +10,7 @@ fuel: "Diesel"
 transmission: "Automatic"
 bodyType: "Pickup Truck"
 color: "Gray"
-description: "Rugged Toyota Hilux Invincible X with roller shutter, tow bar, and full Toyota service history. The world's most reliable pickup."
+description: "Rugged 2 Toyota Hilux Invincible X with roller shutter, tow bar, and full Toyota service history. The world's most reliable pickup."
 images:
   - "https://www.carexporters.co.uk/files/06-2013/ad5618/14882466271148067461_large.jpg"
   - "https://www.carexporters.co.uk/files/06-2013/ad5618/14882466241118801395_large.jpg"

@@ -4,32 +4,88 @@ const navLinks = [
   {
     name: 'Buy Car',
     href: '/cars',
-    dropdown: [
-      { name: 'All Vehicles', href: '/cars' },
-      { name: 'SUV', href: '/cars/body/suv' },
-      { name: 'Sedan', href: '/cars/body/sedan' },
-      { name: 'Coupe', href: '/cars/body/coupe' },
-    ]
+    mega: {
+      columns: [
+        {
+          title: 'By Body Type',
+          links: [
+            { name: 'SUV & 4x4', href: '/cars/body/suv' },
+            { name: 'Sedan', href: '/cars/body/sedan' },
+            { name: 'Coupe', href: '/cars/body/coupe' },
+            { name: 'Pickup Truck', href: '/cars/body/pickup-truck' },
+          ],
+        },
+        {
+          title: 'Browse Listings',
+          links: [
+            { name: 'All Vehicles', href: '/cars' },
+            { name: 'Featured Vehicles', href: '/cars?featured=true' },
+            { name: 'New Arrivals', href: '/cars?condition=New' },
+            { name: 'Used Cars', href: '/cars?condition=Used' },
+          ],
+        },
+      ],
+      featured: {
+        tag: 'In stock now',
+        title: 'Ready to ship',
+        text: 'Browse the latest UK vehicles prepared for worldwide export.',
+        cta: 'View all stock',
+        href: '/cars',
+      },
+    },
   },
   {
-    name: 'Listing',
-    href: '/cars',
-    dropdown: [
-      { name: 'All Listings', href: '/cars' },
-      { name: 'Featured', href: '/cars?featured=true' },
-      { name: 'New Cars', href: '/cars?condition=New' },
-      { name: 'Used Cars', href: '/cars?condition=Used' },
-    ]
+    name: 'Car Export',
+    href: '/countries',
+    mega: {
+      columns: [
+        {
+          title: 'Exporting with AutoDeal',
+          links: [
+            { name: 'Complete Export Guide', href: '/blog/complete-guide-exporting-vehicles-from-uk', desc: 'How UK vehicle export works, start to finish.' },
+            { name: 'Shipping Costs Explained', href: '/blog/understanding-vehicle-shipping-costs', desc: 'What shipping your vehicle really costs.' },
+            { name: 'Vehicle History Checks', href: '/blog/how-to-check-uk-vehicle-history-before-buying', desc: 'Buy with confidence, verified history.' },
+            { name: 'Export FAQ', href: '/faq', desc: 'Answers to the questions we hear most.' },
+          ],
+        },
+        {
+          title: 'Vehicles to Export',
+          links: [
+            { name: 'All Vehicles', href: '/cars', desc: 'Every vehicle ready for export.' },
+            { name: 'SUVs & 4x4s', href: '/cars/body/suv', desc: 'Our most exported category.' },
+            { name: 'Pickup Trucks', href: '/cars/body/pickup-truck', desc: 'Workhorses built for any terrain.' },
+            { name: 'Luxury & Performance', href: '/cars/body/coupe', desc: 'Prestige models, export ready.' },
+          ],
+        },
+        {
+          title: 'Where We Export To',
+          links: [
+            { name: 'Africa', href: '/countries/africa' },
+            { name: 'Caribbean', href: '/countries/caribbean' },
+            { name: 'Middle East', href: '/countries/middle-east' },
+            { name: 'Europe & Malta', href: '/countries/europe' },
+            { name: 'All Destinations', href: '/countries' },
+          ],
+        },
+      ],
+      featured: {
+        tag: 'Experts in exporting worldwide',
+        title: 'Free export quote',
+        text: 'Tell us the vehicle and destination. We handle sourcing, VAT and shipping.',
+        cta: 'Get a quote',
+        href: '/contact',
+      },
+    },
   },
   {
-    name: 'Pages',
-    href: '#',
+    name: 'Blog',
+    href: '/blog',
     dropdown: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Destinations', href: '/countries' },
-    ]
+      { name: 'All Articles', href: '/blog' },
+      { name: 'Export Guides', href: '/blog?category=Export+Guide' },
+    ],
   },
-  { name: 'Blog', href: '/blog' },
+  { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
 ---
@@ -90,18 +146,58 @@ const navLinks = [
             <div class="relative group">
               <a href={link.href} class:list={["flex items-center gap-1.5 px-5 py-2 text-[16px] font-medium hover:text-[var(--color-primary)] transition-colors", link.color || 'text-[var(--color-dark)]']}>
                 {link.name}
-                {link.dropdown && (
+                {(link.dropdown || link.mega) && (
                   <svg class="w-3.5 h-3.5 mt-0.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 )}
               </a>
+
+              {/* Simple dropdown */}
               {link.dropdown && (
-                <div class="absolute top-full left-0 pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200">
+                <div class="absolute top-full left-0 pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
                   <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-2 min-w-[200px]">
                     {link.dropdown.map(item => (
                       <a href={item.href} class="block px-4 py-2.5 text-sm text-gray-600 hover:text-[var(--color-primary)] hover:bg-gray-50 transition-colors">
                         {item.name}
                       </a>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Mega menu */}
+              {link.mega && (
+                <div class="absolute top-full left-0 pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-7 grid gap-7", link.mega.featured ? "grid-cols-[repeat(auto,minmax(0,1fr))]" : ""]} style={`width:${170 * link.mega.columns.length + (link.mega.featured ? 240 : 0)}px; grid-template-columns:repeat(${link.mega.columns.length}, minmax(0,1fr))${link.mega.featured ? ' 240px' : ''};`}>
+                    {link.mega.columns.map(col => (
+                      <div>
+                        <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-4 pb-2 border-b border-gray-100">{col.title}</h4>
+                        <ul class="space-y-1">
+                          {col.links.map(item => (
+                            <li>
+                              <a href={item.href} class="group/mi block rounded-lg px-3 py-2 -mx-3 hover:bg-orange-50/70 transition-colors">
+                                <span class="block text-[15px] font-medium text-[var(--color-dark)] group-hover/mi:text-[var(--color-primary)] transition-colors">{item.name}</span>
+                                {item.desc && <span class="block text-[12.5px] text-gray-400 mt-0.5 leading-snug">{item.desc}</span>}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+
+                    {link.mega.featured && (
+                      <div class="rounded-xl bg-[var(--color-dark)] p-5 flex flex-col justify-between text-white overflow-hidden relative">
+                        <div class="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-[var(--color-primary)]/20"></div>
+                        <div class="relative">
+                          <span class="inline-block text-[var(--color-primary)] text-[11px] font-semibold uppercase tracking-wide mb-2">{link.mega.featured.tag}</span>
+                          <h5 class="text-lg font-bold font-[family-name:var(--font-heading)] leading-tight mb-2">{link.mega.featured.title}</h5>
+                          <p class="text-[13px] text-white/70 leading-snug">{link.mega.featured.text}</p>
+                        </div>
+                        <a href={link.mega.featured.href} class="relative mt-5 inline-flex items-center justify-center gap-1.5 bg-[var(--color-primary)] hover:bg-white hover:text-[var(--color-dark)] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
+                          {link.mega.featured.cta}
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
@@ -153,7 +249,31 @@ const navLinks = [
   <div class="px-4 py-4 space-y-1">
     {navLinks.map(link => (
       <div class="mobile-nav-item">
-        {link.dropdown ? (
+        {link.mega ? (
+          <div>
+            <button class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              {link.name}
+              <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="mobile-dropdown hidden pl-3 space-y-3 mt-1 mb-1">
+              {link.mega.columns.map(col => (
+                <div>
+                  <span class="block px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{col.title}</span>
+                  {col.links.map(item => (
+                    <a href={item.href} class="block px-3 py-2 text-sm text-gray-500 hover:text-[var(--color-primary)] rounded-lg hover:bg-gray-50 transition-colors">
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              ))}
+              {link.mega.featured && (
+                <a href={link.mega.featured.href} class="block mx-3 mt-1 text-center bg-[var(--color-primary)] text-white px-4 py-2.5 rounded-lg text-sm font-semibold">
+                  {link.mega.featured.cta}
+                </a>
+              )}
+            </div>
+          </div>
+        ) : link.dropdown ? (
           <div>
             <button class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
               {link.name}
