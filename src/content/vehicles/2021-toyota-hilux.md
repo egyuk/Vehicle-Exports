@@ -1,20 +1,22 @@
 ---
-title: "2021 Toyota Hilux Invincible X"
-slug: "2021-toyota-hilux"
-make: "Toyota"
-model: "Hilux Invincible X"
+title: 2021 Toyota Hilux Invincible X
+slug: 2021-toyota-hilux
+make: Toyota
+model: Hilux Invincible X
 year: 2021
 price: 28000
 mileage: 35000
-fuel: "Diesel"
-transmission: "Automatic"
-bodyType: "Pickup Truck"
-color: "Gray"
-description: "Rugged Toyota Hilux Invincible X with roller shutter, tow bar, and full Toyota service history. The world's most reliable pickup."
+fuel: Diesel
+transmission: Automatic
+bodyType: Pickup Truck
+color: Gray
+condition: Used
+description: Rugged Toyota Hilux Invincible X with roller shutter, tow bar, and
+  full Toyota service history. The world's most reliable pickup.
 images:
-  - "https://images.unsplash.com/photo-1625231334168-24ed5e27a8a3?w=800&q=80"
-  - "https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&q=80"
-  - "https://images.unsplash.com/photo-1612544448445-b8232cff3b6c?w=800&q=80"
+  - /images/c35cf8e620874a4aba705120d68a8fc3.jpg
+  - https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&q=80
+  - https://images.unsplash.com/photo-1612544448445-b8232cff3b6c?w=800&q=80
 featured: false
 ---
 
