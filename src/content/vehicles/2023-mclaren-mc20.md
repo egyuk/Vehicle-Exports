@@ -1,5 +1,5 @@
 ---
-title: 2023 Maserati MC20
+title: 2023 McLaren MC20
 make: McLaren
 model: MC20
 year: 2023
@@ -21,8 +21,6 @@ description: |-
 images:
   - /images/11291ecc0d784d8e81e7ea2ef334ba69.jpg
   - /images/aad3c1f9c9f84300859e6a0087076971.jpg
-  - /images/11291ecc0d784d8e81e7ea2ef334ba69.jpg
-  - /images/a76eab68b91347cdb8ae593580930e36.jpg
   - /images/a76eab68b91347cdb8ae593580930e36.jpg
 featured: false
 ---
