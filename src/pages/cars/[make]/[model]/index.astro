@@ -63,7 +63,7 @@ const { makeName, modelName, vehicles } = Astro.props;
         <div class="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
           {vehicles.map(vehicle => (
             <VehicleCard
-              slug={vehicle.data.slug}
+              slug={vehicle.id}
               make={vehicle.data.make}
               model={vehicle.data.model}
               title={vehicle.data.title}

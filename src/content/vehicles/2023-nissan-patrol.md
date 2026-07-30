@@ -1,6 +1,5 @@
 ---
 title: "2023 Nissan Patrol V8 Platinum"
-slug: "2023-nissan-patrol"
 make: "Nissan"
 model: "Patrol V8 Platinum"
 year: 2023

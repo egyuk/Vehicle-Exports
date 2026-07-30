@@ -1,11 +1,7 @@
-local_backend: true
-
 backend:
   name: github
   repo: egyuk/Vehicle-Exports
   branch: master
-  auth_type: pkce
-  app_id: Ov23lipq52QTUOSKeQOO
 
 media_folder: "public/images"
 public_folder: "/images"
@@ -16,11 +12,10 @@ collections:
     label: "Vehicles"
     folder: "src/content/vehicles"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{make}}-{{model}}"
     fields:
       - { label: "Title", name: "title", widget: "string", hint: "e.g. 2023 Toyota Land Cruiser" }
-      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name, e.g. 2023-toyota-land-cruiser" }
-      - { label: "Make", name: "make", widget: "select", options: ["Audi", "BMW", "Ford", "Jeep", "Kia", "Land Rover", "Mercedes-Benz", "Nissan", "Toyota", "Other"] }
+      - { label: "Make", name: "make", widget: "select", options: ["Audi", "BMW", "Ford", "Jeep", "Kia", "Land Rover", "McLaren", "Mercedes-Benz", "Nissan", "Porsche", "Rolls Royce", "Tesla", "Toyota", "Other"] }
       - { label: "Model", name: "model", widget: "string" }
       - { label: "Year", name: "year", widget: "number", value_type: "int", min: 2000, max: 2030 }
       - { label: "Price (USD)", name: "price", widget: "number", value_type: "int" }

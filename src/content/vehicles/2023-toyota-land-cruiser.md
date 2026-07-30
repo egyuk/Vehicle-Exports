@@ -1,6 +1,5 @@
 ---
 title: "2023 Toyota Land Cruiser VX"
-slug: "2023-toyota-land-cruiser"
 make: "Toyota"
 model: "Land Cruiser VX"
 year: 2023

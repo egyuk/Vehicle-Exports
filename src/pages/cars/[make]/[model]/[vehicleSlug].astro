@@ -9,7 +9,7 @@ export async function getStaticPaths() {
     params: {
       make: vehicle.data.make.toLowerCase().replace(/ /g, '-'),
       model: vehicle.data.model.toLowerCase().replace(/ /g, '-'),
-      vehicleSlug: vehicle.data.slug,
+      vehicleSlug: vehicle.id,
     },
     props: { vehicle },
   }));
@@ -21,14 +21,15 @@ function slugify(str: string) {
 
 const { vehicle } = Astro.props;
 const { Content } = await render(vehicle);
-const { title, make, model, year, price, mileage, fuel, transmission, bodyType, color, description, images, slug, condition, doors, driveType, engineSize, features } = vehicle.data;
+const { title, make, model, year, price, mileage, fuel, transmission, bodyType, color, description, images, condition, doors, driveType, engineSize, features } = vehicle.data;
+const slug = vehicle.id;
 
 const makeSlug = slugify(make);
 const modelSlug = slugify(model);
 
 const allVehicles = await getCollection('vehicles');
 const related = allVehicles
-  .filter(v => v.data.slug !== slug && (v.data.make === make || v.data.bodyType === bodyType))
+  .filter(v => v.id !== slug && (v.data.make === make || v.data.bodyType === bodyType))
   .slice(0, 3);
 
 const specs = [
@@ -276,7 +277,7 @@ const hasImages = images && images.length > 0;
           <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {related.map(v => (
               <VehicleCard
-                slug={v.data.slug}
+                slug={v.id}
                 make={v.data.make}
                 model={v.data.model}
                 title={v.data.title}

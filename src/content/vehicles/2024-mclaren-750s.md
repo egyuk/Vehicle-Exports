@@ -1,6 +1,5 @@
 ---
 title: "2024 McLaren 750S"
-slug: "2024-mclaren-750s"
 make: "McLaren"
 model: "750S"
 year: 2024

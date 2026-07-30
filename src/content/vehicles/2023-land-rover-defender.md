@@ -1,6 +1,5 @@
 ---
 title: "2023 Land Rover Defender 110 V8"
-slug: "2023-land-rover-defender"
 make: "Land Rover"
 model: "Defender 110 V8"
 year: 2023

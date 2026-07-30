@@ -30,7 +30,7 @@ for (let i = 0; i < vehicles.length - 1; i += 2) {
               <!-- Two car images with VS badge -->
               <div class="grid grid-cols-2 relative">
                 {pair.map(v => (
-                  <a href={`/cars/${v.data.slug}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
+                  <a href={`/cars/${v.id}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
                     <img
                       src={v.data.images![0]}
                       alt={v.data.title}

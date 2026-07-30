@@ -1,6 +1,5 @@
 ---
 title: "2024 Rolls-Royce Cullinan Black Badge"
-slug: "2024-rolls-royce-cullinan"
 make: "Rolls Royce"
 model: "Cullinan Black Badge"
 year: 2024

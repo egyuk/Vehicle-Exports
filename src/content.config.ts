@@ -25,7 +25,6 @@ const vehicles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/vehicles' }),
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
     make: z.string(),
     model: z.string(),
     year: z.number(),

@@ -7,7 +7,6 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "cms": "npx decap-server",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,7 +14,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.3.0",
+    "astro": "^7.1.6",
     "swiper": "^12.1.4",
     "tailwindcss": "^4.2.4"
   }

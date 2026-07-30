@@ -1,6 +1,5 @@
 ---
 title: "2022 Ford Ranger Wildtrak"
-slug: "2022-ford-ranger"
 make: "Ford"
 model: "Ranger Wildtrak"
 year: 2022

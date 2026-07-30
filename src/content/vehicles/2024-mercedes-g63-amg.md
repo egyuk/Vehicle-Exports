@@ -1,6 +1,5 @@
 ---
 title: "2024 Mercedes-AMG G 63"
-slug: "2024-mercedes-g63-amg"
 make: "Mercedes-Benz"
 model: "AMG G 63"
 year: 2024

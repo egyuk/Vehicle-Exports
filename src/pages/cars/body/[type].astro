@@ -4,8 +4,9 @@ import VehicleCard from '../../../components/VehicleCard.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
+  const advertisedBodyTypes = ['Sedan', 'SUV', 'Hatchback', 'Coupe', 'Pickup Truck', 'Crossover', 'Minivan', 'Convertible', 'MPV', 'Station Wagon'];
   const vehicles = await getCollection('vehicles');
-  const bodyTypes = [...new Set(vehicles.map(v => v.data.bodyType))];
+  const bodyTypes = [...new Set([...advertisedBodyTypes, ...vehicles.map(v => v.data.bodyType)])];
 
   return bodyTypes.map(type => ({
     params: { type: type.toLowerCase().replace(/ /g, '-') },
@@ -49,7 +50,7 @@ const { bodyType, vehicles } = Astro.props;
         <div class="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
           {vehicles.map(vehicle => (
             <VehicleCard
-              slug={vehicle.data.slug}
+              slug={vehicle.id}
               make={vehicle.data.make}
               model={vehicle.data.model}
               title={vehicle.data.title}

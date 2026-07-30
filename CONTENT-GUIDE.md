@@ -16,12 +16,12 @@ src/content/
 ```
 
 You have two options for managing content:
-1. **Decap CMS** — Visual editor at `/admin` (recommended for non-technical users)
+1. **Sveltia CMS** — Visual editor at `/admin` (recommended for non-technical users)
 2. **Markdown files** — Edit files directly in the `src/content/` folder
 
 ---
 
-## Option 1: Using Decap CMS (Visual Editor)
+## Option 1: Using Sveltia CMS (Visual Editor)
 
 ### Access the CMS
 1. Go to `https://your-domain.com/admin`
@@ -180,7 +180,7 @@ Write page content here about exporting to South America.
 
 ## After Making Changes
 
-### If using Decap CMS:
+### If using Sveltia CMS:
 Changes are saved automatically to your GitHub repository. The site rebuilds and deploys within 1-2 minutes.
 
 ### If editing files directly:
@@ -218,5 +218,5 @@ npm run preview    # Preview the production build
 
 If you run into any issues or need assistance:
 - Check the Astro docs: https://docs.astro.build
-- Check the Decap CMS docs: https://decapcms.org/docs
+- Check the Sveltia CMS docs: https://sveltiacms.app/en/docs
 - Contact your developer for technical support

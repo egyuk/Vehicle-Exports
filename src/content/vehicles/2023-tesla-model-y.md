@@ -1,22 +1,36 @@
 ---
 title: Tesla Model Y
-slug: tesla-model-y
-make: Jeep
+make: Tesla
 model: Model Y
-year: 2030
-price: 52000
-mileage: 600
-fuel: Diesel
-transmission: Manual
+year: 2023
+price: 38000
+mileage: 12000
+fuel: Electric
+transmission: Automatic
 bodyType: SUV
-color: RED
+color: White
 condition: Used
 doors: 5
 driveType: AWD
-engineSize: "3.0"
-description: Test vehicle
-images:
-  - /images/2f2a66241dd440b7949de7c6929abd4f.jpg
+features:
+  - Autopilot
+  - 15" touchscreen
+  - Panoramic glass roof
+  - Premium audio
+description: Long-range all-electric Model Y with Autopilot, low mileage, and full service history. Ideal for international export.
 featured: true
 ---
-Body of the Test vehicle
+## Vehicle Details
+
+This Long Range Model Y combines Tesla's all-electric powertrain with practical SUV space, making it a strong choice for buyers looking to export a modern EV.
+
+### Key Features
+
+* Autopilot driver assistance
+* 15" central touchscreen
+* Panoramic glass roof
+* Premium audio system
+* All-wheel drive dual motor setup
+
+### Export Ready
+Low mileage, full service history, and all export documentation ready. Increasingly popular with buyers across Europe and the Middle East seeking EVs.

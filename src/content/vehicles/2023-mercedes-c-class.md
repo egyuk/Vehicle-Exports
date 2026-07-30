@@ -1,6 +1,5 @@
 ---
 title: "2023 Mercedes-Benz C300 AMG Line"
-slug: "2023-mercedes-c-class"
 make: "Mercedes-Benz"
 model: "C300 AMG Line"
 year: 2023

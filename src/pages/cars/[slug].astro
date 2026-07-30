@@ -8,7 +8,7 @@ function slugify(str: string) {
 export async function getStaticPaths() {
   const vehicles = await getCollection('vehicles');
   return vehicles.map(vehicle => ({
-    params: { slug: vehicle.data.slug },
+    params: { slug: vehicle.id },
     props: { vehicle },
   }));
 }
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { vehicle } = Astro.props;
 const makeSlug = slugify(vehicle.data.make);
 const modelSlug = slugify(vehicle.data.model);
-const newUrl = `/cars/${makeSlug}/${modelSlug}/${vehicle.data.slug}`;
+const newUrl = `/cars/${makeSlug}/${modelSlug}/${vehicle.id}`;
 
 return Astro.redirect(newUrl, 301);
 ---

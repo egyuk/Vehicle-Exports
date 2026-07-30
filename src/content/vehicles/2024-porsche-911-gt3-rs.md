@@ -1,6 +1,5 @@
 ---
 title: "2024 Porsche 911 GT3 RS"
-slug: "2024-porsche-911-gt3-rs"
 make: "Porsche"
 model: "911 GT3 RS"
 year: 2024
