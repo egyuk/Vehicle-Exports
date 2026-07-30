@@ -16,6 +16,7 @@ driveType: AWD
 engineSize: "3.0"
 description: Test vehicle
 images:
+  - /images/35.jpg
   - /images/2f2a66241dd440b7949de7c6929abd4f.jpg
 featured: true
 ---
