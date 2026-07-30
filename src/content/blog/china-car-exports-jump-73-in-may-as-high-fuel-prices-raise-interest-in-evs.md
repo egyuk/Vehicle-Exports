@@ -1,5 +1,5 @@
 ---
-title: China car exports jump 73% in May as high fuel prices raise interest in EVs
+title: China car exports jump 73% in May
 slug: china-car-exports
 description: That’s up from about 796,000 passenger cars exported in April, data from the China Association of Automobile Manufacturers showed.
 date: 2026-06-12T00:11:00.000+01:00
