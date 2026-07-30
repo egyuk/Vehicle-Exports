@@ -14,7 +14,17 @@ condition: Used
 doors: 4
 driveType: AWD
 engineSize: "2.0"
+features:
+  - Feature 1
 description: This is a new car
+images:
+  - /images/1.jpg
+  - /images/2.jpg
+  - /images/3.jpg
+  - /images/4.jpg
+  - /images/6.jpg
+  - /images/14.jpg
+  - /images/16.jpg
 featured: true
 ---
 Body description
