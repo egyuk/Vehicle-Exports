@@ -5,7 +5,7 @@ description: That’s up from about 796,000 passenger cars exported in April, da
 date: 2026-06-12T00:11:00.000+01:00
 author: EGY
 category: Export Guide
-image: https://dims.apnews.com/dims4/default/8fb37aa/2147483647/strip/true/crop/3429x2286+0+0/resize/980x653!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Ff2%2F64%2Fe4beca1627e4d9a62fa5273b466e%2F9ce729cf7fca4fe1967a2a9cbb26637f
+image: /images/images.jpg
 draft: false
 ---
 
