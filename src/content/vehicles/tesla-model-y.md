@@ -1,6 +1,5 @@
 ---
 title: Tesla Model Y
-slug: tesla-model-y
 make: Jeep
 model: Model Y
 year: 2030
@@ -13,11 +12,12 @@ color: RED
 condition: Used
 doors: 5
 driveType: AWD
-engineSize: "3.0"
-description: Test vehicle
+engineSize: '3.0'
+description: Cielo in the most sought after colour combination. Capriso exhaust, front lift, full carbon . Full PPF, FMSH, 2 owners .
 images:
   - /images/35.jpg
-  - /images/2f2a66241dd440b7949de7c6929abd4f.jpg
 featured: true
+slug: tesla-model-y
 ---
+
 Body of the Test vehicle
