@@ -9,7 +9,7 @@ image: /images/images.jpg
 draft: false
 ---
 
-HONG KONG (AP) — China’s passenger car exports jumped 73% year-on-year in May to around 809,000 vehicles, an industry group reported Wednesday, as higher gasoline and diesel prices due to the war in Iran raised interest in electric vehicles.
+**HONG KONG (AP)** — China’s passenger car exports jumped 73% year-on-year in May to around 809,000 vehicles, an industry group reported Wednesday, as higher gasoline and diesel prices due to the war in Iran raised interest in electric vehicles.
 
 That’s up from about 796,000 passenger cars exported in April, data from the China Association of Automobile Manufacturers showed.
 
