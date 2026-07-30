@@ -1,5 +1,5 @@
 ---
-title: 2021 Toyota Hilux Invincible X
+title: 2021 Toyota Hilux Invincible
 make: Toyota
 model: Hilux Invincible
 year: 2021
