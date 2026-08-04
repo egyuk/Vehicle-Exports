@@ -5,7 +5,22 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const vehicles = await getCollection('vehicles');
-  const makes = [...new Set(vehicles.map(v => v.data.make))];
+
+  // Common makes we can source and export on request, even when none are
+  // currently in stock — keeps these pages live instead of 404ing.
+  const requestableMakes = [
+    'Abarth', 'Alfa Romeo', 'Alpine', 'Aston Martin', 'Audi', 'Bentley', 'BMW',
+    'Cadillac', 'Chevrolet', 'Chrysler', 'Citroen', 'Cupra', 'Dacia', 'DS',
+    'Ferrari', 'Fiat', 'Ford', 'Genesis', 'GMC', 'Honda', 'Hyundai', 'Infiniti',
+    'Isuzu', 'Jaguar', 'Jeep', 'Kia', 'Lamborghini', 'Land Rover', 'Lexus',
+    'Lincoln', 'Lotus', 'Maserati', 'Mazda', 'McLaren', 'Mercedes-Benz', 'MG',
+    'Mini', 'Mitsubishi', 'Nissan', 'Peugeot', 'Polestar', 'Porsche', 'Renault',
+    'Rolls Royce', 'SEAT', 'Skoda', 'Smart', 'Subaru', 'Suzuki', 'Tesla',
+    'Toyota', 'Vauxhall', 'Volkswagen', 'Volvo',
+  ];
+
+  const stockedMakes = vehicles.map(v => v.data.make);
+  const makes = [...new Set([...stockedMakes, ...requestableMakes])];
 
   return makes.map(make => ({
     params: { make: make.toLowerCase().replace(/ /g, '-') },
@@ -33,7 +48,11 @@ const models = [...new Set(vehicles.map(v => v.data.model))].sort();
         <span class="text-white">{makeName}</span>
       </nav>
       <h1 class="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-heading)]">{makeName} Cars</h1>
-      <p class="text-gray-400 mt-2 max-w-xl">Browse {vehicles.length} {makeName} vehicles available for export.</p>
+      <p class="text-gray-400 mt-2 max-w-xl">
+        {vehicles.length > 0
+          ? `Browse ${vehicles.length} ${makeName} vehicles available for export.`
+          : `We source and export ${makeName} vehicles to order.`}
+      </p>
     </div>
   </section>
 
@@ -82,9 +101,15 @@ const models = [...new Set(vehicles.map(v => v.data.model))].sort();
           ))}
         </div>
       ) : (
-        <div class="py-16 text-center">
-          <h3 class="text-lg font-semibold text-gray-900">No {makeName} vehicles found</h3>
-          <p class="text-gray-500 text-sm mt-1">Check back soon for new listings.</p>
+        <div class="py-16 text-center max-w-lg mx-auto">
+          <h3 class="text-lg font-semibold text-gray-900">No {makeName} vehicles in stock right now</h3>
+          <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+            We don't have a {makeName} listed at the moment, but we source and export any make from across the UK market on request — including {makeName}. Tell us what you're after and we'll find it.
+          </p>
+          <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+            Request a {makeName}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
         </div>
       )}
     </div>
