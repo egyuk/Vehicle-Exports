@@ -9,12 +9,12 @@ const vehicles = allVehicles.sort((a, b) => b.data.price - a.data.price);
 const bodyTypes = ['All Cars', ...new Set(allVehicles.map(v => v.data.bodyType))];
 ---
 
-<section class="pt-8 pb-16 lg:pt-10 lg:pb-20 bg-white">
+<section class="py-16 lg:py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
       <h2 class="text-lg sm:text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Used Cars By Body Type</h2>
-      <a href="/cars" class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-semibold text-sm flex items-center gap-1 transition-colors">
+      <a href="/carsforexport" class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-semibold text-sm flex items-center gap-1 transition-colors">
         View all
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>

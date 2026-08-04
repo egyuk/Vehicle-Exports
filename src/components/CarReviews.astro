@@ -1,21 +1,27 @@
 ---
-const featuredReview = {
-  eyebrow: 'Car reviews',
-  titleLine1: '2024 Hyundai',
-  titleLine2: 'Staria Premium Review',
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non egestas justo. Vestibulum ac commodo enim, eget fringilla lectus.',
-  image: '/images/vehicles/rolls-royce/cullinan-01.webp',
-  link: '/blog',
-};
+import { getCollection } from 'astro:content';
+
+const eyebrow = 'Car reviews';
+
+const allPosts = await getCollection('blog');
+const reviews = allPosts
+  .filter(p => !p.data.draft)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3)
+  .map(post => ({
+    title: post.data.title,
+    description: post.data.description,
+    image: post.data.image,
+    link: `/blog/${post.data.slug}`,
+  }));
 ---
 
-<section class="py-16 lg:py-20 bg-white">
+<section class="pt-3 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
       <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">
-        {featuredReview.eyebrow}
+        {eyebrow}
       </h2>
       <a
         href="/blog"
@@ -28,42 +34,46 @@ const featuredReview = {
       </a>
     </div>
 
-    <!-- Featured review block -->
-    <div class="relative rounded-3xl overflow-hidden shadow-xl group">
-      <!-- Image -->
-      <div class="relative aspect-[21/9] lg:aspect-[21/8]">
-        <img
-          src={featuredReview.image}
-          alt={`${featuredReview.titleLine1} ${featuredReview.titleLine2}`}
-          class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-          loading="lazy"
-        />
-        <!-- Dark overlay for readable text -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-      </div>
+    <!-- Review cards -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reviews.map(review => (
+        <div class="relative rounded-3xl overflow-hidden shadow-xl group">
+          <!-- Image -->
+          <div class="relative aspect-[16/10]">
+            <img
+              src={review.image}
+              alt={review.title}
+              class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+              loading="lazy"
+            />
+            <!-- Dark overlay for readable text -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          </div>
 
-      <!-- Text overlay -->
-      <div class="absolute inset-0 flex items-center">
-        <div class="px-6 sm:px-10 lg:px-16 max-w-xl">
-          <h3
-            class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] leading-tight mb-4"
-          >
-            {featuredReview.titleLine1}<br />{featuredReview.titleLine2}
-          </h3>
-          <p class="text-white/80 text-sm sm:text-base mb-6 max-w-md leading-relaxed">
-            {featuredReview.description}
-          </p>
-          <a
-            href={featuredReview.link}
-            class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:shadow-lg"
-          >
-            Review detail
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg
-            >
-          </a>
+          <!-- Text overlay -->
+          <div class="absolute inset-0 flex items-end">
+            <div class="p-3 w-full">
+              <h3
+                class="text-sm font-bold text-white font-[family-name:var(--font-heading)] leading-tight mb-1.5"
+              >
+                {review.title}
+              </h3>
+              <p class="text-white/80 text-xs mb-2.5 leading-relaxed line-clamp-2">
+                {review.description}
+              </p>
+              <a
+                href={review.link}
+                class="inline-flex items-center gap-1 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-2.5 py-1.5 rounded-md font-semibold text-xs transition-all hover:shadow-lg"
+              >
+                Review detail
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg
+                >
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

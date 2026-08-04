@@ -52,7 +52,7 @@ const blog = defineCollection({
     slug: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    author: z.string().default('AutoDeal Team'),
+    author: z.string().default('UK Vehicle Exporters Team'),
     category: z.string(),
     image: z.string().optional(),
     draft: z.boolean().default(false),

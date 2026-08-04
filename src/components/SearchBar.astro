@@ -18,7 +18,7 @@ const priceRange = ['Any Price', 'Under $10,000', '$10,000 - $20,000', '$20,000 
       </div>
 
       <!-- Filter Form -->
-      <form action="/cars" method="get" class="p-6 md:p-8">
+      <form action="/carsforexport" method="get" class="p-6 md:p-8">
         <input type="hidden" name="condition" id="condition-input" value="" />
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
@@ -68,19 +68,19 @@ const priceRange = ['Any Price', 'Under $10,000', '$10,000 - $20,000', '$20,000 
 
       <!-- Body type quick links -->
       <div class="px-6 md:px-8 pb-5 flex flex-wrap gap-3">
-        <a href="/cars/body/coupe" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+        <a href="/carsforexport/body/coupe" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           Coupe
         </a>
-        <a href="/cars/body/suv" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+        <a href="/carsforexport/body/suv" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           SUV
         </a>
-        <a href="/cars/body/sedan" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+        <a href="/carsforexport/body/sedan" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           Sedan
         </a>
-        <a href="/cars/body/hatchback" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+        <a href="/carsforexport/body/hatchback" class="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           Hatchback
         </a>

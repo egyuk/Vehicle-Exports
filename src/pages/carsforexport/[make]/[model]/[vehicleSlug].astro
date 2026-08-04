@@ -50,18 +50,18 @@ const specs = [
 const hasImages = images && images.length > 0;
 ---
 
-<Layout title={`${title} - AutoDeal`} description={description}>
+<Layout title={`${title} - UK Vehicle Exporters`} description={description}>
   <!-- Banner with Breadcrumb -->
   <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 overflow-x-auto scrollbar-hide" style="scrollbar-width: none;">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/cars" class="hover:text-[var(--color-primary)] transition-colors">Cars</a>
+        <a href="/carsforexport" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href={`/cars/${makeSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{make}</a>
+        <a href={`/carsforexport/${makeSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{make}</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href={`/cars/${makeSlug}/${modelSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{model}</a>
+        <a href={`/carsforexport/${makeSlug}/${modelSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{model}</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-white truncate">{title}</span>
       </nav>
@@ -218,7 +218,7 @@ const hasImages = images && images.length > 0;
               <div class="w-16 h-16 bg-[var(--color-primary)] rounded-full flex items-center justify-center mx-auto mb-3">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
-              <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">AutoDeal</h4>
+              <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">UK Vehicle Exporters</h4>
               <p class="text-xs text-gray-500 mt-1">Trusted UK Vehicle Exporter</p>
               <div class="flex items-center justify-center gap-1 mt-2">
                 {[1,2,3,4,5].map(() => (
@@ -234,8 +234,8 @@ const hasImages = images && images.length > 0;
               <a href={`/contact?vehicle=${encodeURIComponent(title)}`} class="block w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white py-3 rounded-lg font-semibold transition-all text-sm mb-3">
                 Enquire Now
               </a>
-              <a href="tel:+442071234567" class="block w-full border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-medium transition-all text-sm">
-                Call +44 207 123 4567
+              <a href="tel:+441872491409" class="block w-full border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-medium transition-all text-sm">
+                Call 01872 491409
               </a>
             </div>
 

@@ -1,0 +1,92 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import VehicleCard from '../../../components/VehicleCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const vehicles = await getCollection('vehicles');
+  const makes = [...new Set(vehicles.map(v => v.data.make))];
+
+  return makes.map(make => ({
+    params: { make: make.toLowerCase().replace(/ /g, '-') },
+    props: {
+      makeName: make,
+      vehicles: vehicles
+        .filter(v => v.data.make === make)
+        .sort((a, b) => b.data.price - a.data.price),
+    },
+  }));
+}
+
+const { makeName, vehicles } = Astro.props;
+const models = [...new Set(vehicles.map(v => v.data.model))].sort();
+---
+
+<Layout title={`${makeName} Cars for Export - UK Vehicle Exporters`} description={`Browse our ${makeName} vehicles available for international export from the UK.`}>
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <a href="/carsforexport" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">{makeName}</span>
+      </nav>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-heading)]">{makeName} Cars</h1>
+      <p class="text-gray-400 mt-2 max-w-xl">Browse {vehicles.length} {makeName} vehicles available for export.</p>
+    </div>
+  </section>
+
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Model Quick Links -->
+      {models.length > 1 && (
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="text-sm text-gray-500 py-1.5">Models:</span>
+          {models.map(model => (
+            <a
+              href={`/carsforexport/${makeName.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}`}
+              class="px-4 py-1.5 rounded-full text-sm font-medium border border-gray-200 text-gray-600 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+            >
+              {model}
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div class="flex items-center justify-between mb-6">
+        <p class="text-sm text-gray-500">
+          Showing <span class="font-semibold text-gray-900">{vehicles.length}</span> vehicles
+        </p>
+        <a href="/carsforexport" class="text-sm text-[var(--color-primary)] font-semibold hover:underline">View all cars</a>
+      </div>
+
+      {vehicles.length > 0 ? (
+        <div class="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
+          {vehicles.map(vehicle => (
+            <VehicleCard
+              slug={vehicle.id}
+              make={vehicle.data.make}
+              model={vehicle.data.model}
+              title={vehicle.data.title}
+              price={vehicle.data.price}
+              mileage={vehicle.data.mileage}
+              fuel={vehicle.data.fuel}
+              transmission={vehicle.data.transmission}
+              bodyType={vehicle.data.bodyType}
+              year={vehicle.data.year}
+              images={vehicle.data.images}
+              featured={vehicle.data.featured}
+              condition={vehicle.data.condition}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="py-16 text-center">
+          <h3 class="text-lg font-semibold text-gray-900">No {makeName} vehicles found</h3>
+          <p class="text-gray-500 text-sm mt-1">Check back soon for new listings.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

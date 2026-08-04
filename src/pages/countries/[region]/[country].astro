@@ -22,7 +22,7 @@ const parent = allCountries.find(c => c.data.slug === parentSlug && !c.data.pare
 const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.data.slug !== country.data.slug);
 ---
 
-<Layout title={`${title} - AutoDeal`} description={description}>
+<Layout title={`${title} - UK Vehicle Exporters`} description={description}>
   <!-- Hero -->
   <section class="relative bg-gradient-to-br from-[var(--color-dark)] via-gray-900 to-[var(--color-dark)] py-20 overflow-hidden">
     {heroImage && (

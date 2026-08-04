@@ -3,7 +3,7 @@ title: "Understanding Vehicle Shipping Costs: What You'll Actually Pay"
 slug: "understanding-vehicle-shipping-costs"
 description: "A transparent breakdown of vehicle shipping costs from the UK, including freight, insurance, duties, and hidden fees to watch for."
 date: 2026-04-15
-author: "AutoDeal Team"
+author: "UK Vehicle Exporters Team"
 category: "Tips & Advice"
 image: "/images/vehicles/mclaren/hi4a3266.webp"
 draft: false
@@ -67,6 +67,6 @@ Don't forget these commonly overlooked expenses:
 
 ## Our Promise
 
-At AutoDeal, every quote includes a full breakdown of all costs. No hidden fees, no surprises. We provide an itemised estimate before you commit, so you know exactly what you're paying.
+At UK Vehicle Exporters, every quote includes a full breakdown of all costs. No hidden fees, no surprises. We provide an itemised estimate before you commit, so you know exactly what you're paying.
 
 Get in touch for a personalised shipping quote today.

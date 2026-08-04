@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FF7101;
-  --color-primary-dark: #e56500;
-  --color-primary-light: #ff8c2e;
+  --color-primary: #C7081B;
+  --color-primary-dark: #A30617;
+  --color-primary-light: #D23949;
   --color-dark: #24272C;
   --color-dark-light: #2d3138;
   --color-gray-text: #696665;
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 10px !important;
 }
 .swiper-pagination-bullet-active {
-  background: #FF7101 !important;
+  background: var(--color-primary) !important;
   width: 24px !important;
   border-radius: 5px !important;
 }
@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .swiper-button-next,
 .swiper-button-prev {
-  color: #FF7101 !important;
+  color: var(--color-primary) !important;
   background: rgba(255, 255, 255, 0.9);
   width: 44px !important;
   height: 44px !important;
@@ -91,12 +91,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9375rem;
 }
 .tab-btn:hover {
-  color: #FF7101;
+  color: var(--color-primary);
 }
 .tab-btn.active {
   color: #1a1a1a;
   font-weight: 600;
-  border-bottom-color: #FF7101;
+  border-bottom-color: var(--color-primary);
 }
 
 /* Range slider styling */
@@ -113,7 +113,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #FF7101;
+  background: var(--color-primary);
   cursor: pointer;
   border: 2px solid #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -122,7 +122,7 @@ input[type="range"]::-moz-range-thumb {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #FF7101;
+  background: var(--color-primary);
   cursor: pointer;
   border: 2px solid #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -198,7 +198,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* Checkbox custom */
 .custom-checkbox:checked {
-  accent-color: #FF7101;
+  accent-color: var(--color-primary);
 }
 
 /* Blog date badge */
@@ -206,7 +206,7 @@ input[type="range"]::-moz-range-thumb {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: #FF7101;
+  background: var(--color-primary);
   color: #fff;
   padding: 4px 12px;
   border-radius: 4px;
@@ -216,7 +216,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* Breadcrumb */
 .breadcrumb a:hover {
-  color: #FF7101;
+  color: var(--color-primary);
 }
 
 /* Prose overrides for blog content */
@@ -224,5 +224,5 @@ input[type="range"]::-moz-range-thumb {
 .prose p { margin-bottom: 1rem; }
 .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
 .prose ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
-.prose a { color: #FF7101; }
+.prose a { color: var(--color-primary); }
 .prose a:hover { text-decoration: underline; }

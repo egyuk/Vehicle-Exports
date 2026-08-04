@@ -3,7 +3,7 @@ title: "The Complete Guide to Exporting Vehicles from the UK"
 slug: "complete-guide-exporting-vehicles-from-uk"
 description: "Everything you need to know about exporting a vehicle from the United Kingdom — from choosing the right car to shipping it to your destination."
 date: 2026-04-28
-author: "AutoDeal Team"
+author: "UK Vehicle Exporters Team"
 category: "Export Guide"
 image: "/images/vehicles/rolls-royce/cullinan-02.webp"
 draft: false
@@ -55,7 +55,7 @@ Import duties vary significantly by country. Research your destination's require
 
 Once the vehicle arrives and clears customs, you'll need to register it locally. Requirements vary, but typically include a roadworthiness inspection and proof of insurance.
 
-## How AutoDeal Helps
+## How UK Vehicle Exporters Helps
 
 We handle the entire export process from start to finish. From sourcing the perfect vehicle to delivering it to your nearest port, our team ensures a smooth, transparent experience every time.
 

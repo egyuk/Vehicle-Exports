@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const equipment = [
+  { name: 'Defibrillator', desc: 'Used to stabilise a heart undergoing cardiac arrest or to revive a crashing patient and provides shocks where needed.' },
+  { name: 'Electrocardiogram (ECG) Monitor', desc: 'Keeps track of the vital signs of the patient transported.' },
+  { name: 'Spinal board', desc: 'Provides a system of immobilisation and transportation of the patient with suspected spine trauma. The spinal board permits the first responders to lift the patient during extrication or transportation in difficult conditions.' },
+  { name: 'Automatic Transport Ventilators', desc: 'Piece of equipment meant to take the place of bagging (manual ventilation) when a patient who cannot breathe independently is being moved to a hospital.' },
+  { name: 'Suction Unit', desc: 'Used when the patient is bleeding internally and needs the building pressure on vital organs to be relieved. It is also used to remove fluids that have collected inside the body or the mouth and in situations that need an emergency procedure.' },
+  { name: 'Infusion Syringe Pumps', desc: "Used to either infuse or withdraw liquid into or from the patient's body, at a defined flow rate with controlled target volumes." },
+  { name: 'Cot', desc: 'Of great use when the patient is located on a higher floor of a building, cannot move, or may worsen their condition with movement.' },
+  { name: 'Patient Shifting Rolls', desc: 'Important if patient is not a traumatic one but is not able to move with their own legs.' },
+  { name: 'Lifting cushion and pump', desc: 'Used to lift patients off the floor.' },
+  { name: 'Child stretcher straps', desc: 'For lifting of children, and come in various sizes depending on age of child.' },
+  { name: 'Ambulance chair', desc: 'The most used transport device from the patient home to the back of an ambulance is the ambulance chair.' },
+  { name: 'Nebulizer', desc: 'A nebuliser is meant to vaporise liquid medication into a mist so that the patient can inhale it on the way to the hospital. This is used when medicine has to be administered critically to the patient for immediate relief.' },
+  { name: 'Oxygen Supply Units', desc: 'Can be used in fire survivors, patients with breathing difficulties such as asthma or to revive a collapsed patient. Includes Oxygen Cylinders, Oxygen Masks and Nasal Oxygen Masks.' },
+  { name: 'Sphygmomanometer', desc: 'For measuring blood pressure. Consists of an inflatable rubber cuff applied to the arm and connected to a mechanical manometer, enabling determination of systolic and diastolic blood pressure.' },
+  { name: 'Drugs Administration kit', desc: 'For drilling into bones to give drugs.' },
+  { name: 'Other Available Options / Equipment', desc: 'Auxiliary batteries and battery management systems, stretchers and restraint systems, lowerable suspension, stretcher lifts.' },
+];
+
+const supplies = [
+  { name: 'Immobilisation Splints', desc: 'Wrapped around broken arm or leg for protection. Splints have different shapes and measures so that they can adapt at best to the fractured or sprained joints.' },
+  { name: 'Maternity Kit', desc: 'Contains pads, sheets and umbilical cord scissors.' },
+  { name: 'Still Water Unit', desc: 'For when patients are taking tablets.' },
+  { name: 'Absorbent Powder', desc: 'Makes vomit and urine solid to prevent spillage.' },
+  { name: 'Tympanic Thermometer', desc: "Placed in ear to monitor body temperature." },
+  { name: 'Blood Glucose Test Kit', desc: 'Displays blood glucose levels particularly for patients with diabetes.' },
+  { name: 'Airways', desc: "Helps to keep patient's airway open." },
+  { name: 'I-Gel Airway Device', desc: "Keeps the patient's airway open." },
+  { name: 'Burns Kit', desc: 'Bandages and gels for patients with burns.' },
+  { name: 'Neck Brace', desc: "Protects and supports patient's neck." },
+  { name: 'Pelvic Brace', desc: 'Stabilises a broken pelvis ready to transport patient.' },
+  { name: 'Tourniquet', desc: 'Restricts the flow of blood in the veins and arteries for injection.' },
+  { name: 'Nasal Clips', desc: 'To slow or stop nose bleeds.' },
+  { name: 'Razors', desc: 'To shave chest hair to allow defibrillator pads to stick to chest.' },
+  { name: 'Defibrillator Pads', desc: "Provides shock to restart patient's heart." },
+  { name: 'Bandages and Pads', desc: 'To protect wounds and prevent blood loss.' },
+  { name: 'Micropore Tape', desc: 'Secures bandages and pads.' },
+  { name: 'Cannula', desc: 'Needle inserted to vein to administer drugs.' },
+  { name: 'Intravenous (IV) Set', desc: 'Used to give drugs or fluid to a patient.' },
+  { name: 'Syringes', desc: 'To administer medication and fluids.' },
+  { name: 'Saline Solution', desc: 'Saltwater to clean wounds.' },
+  { name: 'Any Other Supplies', desc: 'Including vomit bowls, urine bowls, antibacterial wipes etc.' },
+];
+---
+
+<Layout
+  title="Ambulance & Emergency Vehicle Exports | UK Vehicle Exporters"
+  description="UK Vehicle Exporters specialises in the shipping and export of Ambulance, Police, Fire & Rescue and other emergency vehicle conversions, worldwide."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Ambulance & Emergency Vehicle Exports</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        Emergency Vehicle Conversion Specialists
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Ambulance & Emergency Vehicle Exports</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl text-lg">
+        UK Vehicle Exporters provide specialists design and manufacture all types of vehicles ranging from front line Accident and Emergency vehicles to small minibus conversions.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Get a Shipping Quote
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="/carsforexport" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Browse Export-Ready Cars
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placeholder hero image -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+    <div class="aspect-[21/9] rounded-2xl bg-gray-100 border border-gray-200 flex items-center justify-center shadow-xl">
+      <div class="text-center text-gray-400">
+        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 8h16M4 4h16v16H4V4z"/></svg>
+        <p class="text-sm">Image placeholder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro Content -->
+  <section class="py-16 lg:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <p class="text-gray-600 leading-relaxed">
+        We work with some of the most technically capable and advanced specialist vehicle convertors in Europe, and bring together an unrivalled team of designers, engineers, production specialists, business managers and dedicated and skilled workforce to ensure a seamless process for you to have the vehicles of your choice and specification. We ensure that the vehicles are built to the highest standards, on time and on budget together with a superb aftercare and ongoing support following the shipping and exporting of your vehicles. We specialise in shipping and export of Emergency Vehicle Conversions, including Police, Ambulance, Fire & Rescue Vehicle Conversions and work with a variety of international clients.
+      </p>
+      <p class="text-gray-600 leading-relaxed">
+        Given our connections and network of experts in the field of accident and emergency conversions, this allows us the opportunity to offer you technical development and engineering teams to achieve almost anything for the end user. We are able to arrange and design on any base chassis and our engineering team dialogue with the OEMs technical departments to ensure all works do not interfere with base chassis warranty parameters and more importantly affect the passive safety systems.
+      </p>
+      <p class="text-gray-600 leading-relaxed">
+        As well as Shipping and Export (Vehicle Conversion services), we also offer a range of engineering services including design and manufacturing of specialist equipment mounts, and bespoke electrical looms, supply and installation of vehicle racking, and an onsite installation service for equipment such as Telematics, Vehicle Tracking, CCTV & Comms, with the ability to offer this service internationally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Equipment -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <span class="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider">What We Can Provide</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mt-2 font-[family-name:var(--font-heading)]">Ambulance Equipment and Supplies We Can Provide</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {equipment.map(item => (
+          <div class="bg-white border border-gray-100 rounded-xl p-5">
+            <h3 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)] mb-1.5">{item.name}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Supplies -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <span class="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider">Also Available</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mt-2 font-[family-name:var(--font-heading)]">Supplies</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {supplies.map(item => (
+          <div class="bg-gray-50 border border-gray-100 rounded-xl p-5">
+            <h3 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)] mb-1.5">{item.name}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-[var(--color-dark)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">Need an Ambulance or Emergency Vehicle Exported?</h2>
+      <p class="text-gray-400 mt-3 max-w-xl mx-auto">Get in touch to discuss your specification, conversion requirements and shipping to your destination country.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+        Get a Shipping Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>

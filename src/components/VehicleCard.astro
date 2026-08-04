@@ -21,8 +21,8 @@ const { slug, make, model, title, price, oldPrice, mileage, fuel, transmission, 
 const image = images && images.length > 0 ? images[0] : '';
 const isHorizontal = layout === 'horizontal';
 const vehicleUrl = make && model
-  ? `/cars/${make.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}/${slug}`
-  : `/cars/${slug}`;
+  ? `/carsforexport/${make.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}/${slug}`
+  : `/carsforexport/${slug}`;
 ---
 
 {isHorizontal ? (
@@ -100,7 +100,7 @@ const vehicleUrl = make && model
           <div class="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
             <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
           </div>
-          <span class="text-sm text-gray-600 font-medium">AutoDeal</span>
+          <span class="text-sm text-gray-600 font-medium">UK Exporters</span>
         </div>
         <a href={vehicleUrl} class="text-sm font-semibold text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors flex items-center gap-1">
           View car
@@ -180,7 +180,7 @@ const vehicleUrl = make && model
           <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden shrink-0">
             <svg class="w-3.5 h-3.5 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
           </div>
-          <span class="text-[10px] sm:text-sm text-gray-600 font-medium">AutoDeal</span>
+          <span class="text-[10px] sm:text-sm text-gray-600 font-medium">UK Exporters</span>
         </div>
         <a href={vehicleUrl} class="block text-center text-[10px] sm:text-sm font-semibold text-[var(--color-dark)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] border border-gray-200 rounded-full py-1.5 sm:py-2 transition-colors">
           View car

@@ -3,7 +3,7 @@ title: How to Check a UK Vehicle's History Before Buying
 slug: how-to-check-uk-vehicle-history-before-buying
 description: Learn how to verify a UK vehicle's MOT history, mileage, ownership record, and outstanding finance before making a purchase.
 date: 2026-05-10
-author: AutoDeal Team
+author: UK Vehicle Exporters Team
 category: Tips & Advice
 image: /images/vehicles/merc-g-wagon/hi4a9938.webp
 draft: false
@@ -69,7 +69,7 @@ Nothing replaces a thorough physical inspection. Check for:
 - Interior wear consistent with stated mileage
 - Engine bay cleanliness and fluid levels
 
-## What We Do at AutoDeal
+## What We Do at UK Vehicle Exporters
 
 Every vehicle listed on our site goes through a comprehensive verification process:
 

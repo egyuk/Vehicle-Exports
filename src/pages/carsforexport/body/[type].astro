@@ -22,13 +22,13 @@ export async function getStaticPaths() {
 const { bodyType, vehicles } = Astro.props;
 ---
 
-<Layout title={`${bodyType} Cars for Export - AutoDeal`} description={`Browse our selection of ${bodyType} vehicles available for international export from the UK.`}>
+<Layout title={`${bodyType} Cars for Export - UK Vehicle Exporters`} description={`Browse our selection of ${bodyType} vehicles available for international export from the UK.`}>
   <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/cars" class="hover:text-[var(--color-primary)] transition-colors">Cars</a>
+        <a href="/carsforexport" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-white">{bodyType}</span>
       </nav>
@@ -43,7 +43,7 @@ const { bodyType, vehicles } = Astro.props;
         <p class="text-sm text-gray-500">
           Showing <span class="font-semibold text-gray-900">{vehicles.length}</span> vehicles
         </p>
-        <a href="/cars" class="text-sm text-[var(--color-primary)] font-semibold hover:underline">View all cars</a>
+        <a href="/carsforexport" class="text-sm text-[var(--color-primary)] font-semibold hover:underline">View all cars</a>
       </div>
 
       {vehicles.length > 0 ? (

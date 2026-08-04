@@ -20,7 +20,7 @@ const bodyTypes = [
       <div class="swiper-wrapper">
         {bodyTypes.map(type => (
           <div class="swiper-slide">
-            <a href={`/cars/body/${type.name.toLowerCase().replace(/ /g, '-')}`} class="flex flex-col items-center p-6 bg-gray-50 border border-gray-100 rounded-2xl hover:border-[var(--color-primary)] hover:shadow-md transition-all duration-300 group">
+            <a href={`/carsforexport/body/${type.name.toLowerCase().replace(/ /g, '-')}`} class="flex flex-col items-center p-6 bg-gray-50 border border-gray-100 rounded-2xl hover:border-[var(--color-primary)] hover:shadow-md transition-all duration-300 group">
               <div class="w-16 h-16 bg-white group-hover:bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center mb-3 transition-colors">
                 <svg class="w-8 h-8 text-gray-400 group-hover:text-[var(--color-primary)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={type.icon} />

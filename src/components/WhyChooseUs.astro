@@ -1,108 +1,59 @@
 ---
 const benefits = [
   {
-    title: 'New range rover, defender, discovery',
-    description: 'Experience the joy of owning a brand new Range Rover, Defender or Discovery today!',
-    icon: 'M5 13l1.5-4.5h11L19 13M5 13v4h14v-4M5 13H3m16 0h2M7.5 17a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm9 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z',
+    title: 'UK Vehicle Supply & Sourcing',
+    description: 'We can source any new or used vehicle from any manufacturer in the UK for you, from our network of dealers, car classified websites, auctions or directly from manufactures, and deliver to you in your country for guaranteed cheapest rates.',
+    image: '/assets/images/services/sourcing.jpeg',
   },
   {
-    title: 'Pre-Owned vehicles',
-    description: 'AutoDeal has a great selection of pre-owned vehicles.',
-    icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM5 11l1.5-4.5h11L19 11M3 17v-4l2-2h14l2 2v4',
+    title: 'UK Tax / VAT Free Car Exports',
+    description: 'We specialise in the selection vehicles that are eligible for VAT refunds and Tax deduction, provided that they are being exported outside of the EU. We have access to a large range of used "VAT Qualifying" and Brand New Tax-Free vehicles.',
+    image: '/assets/images/services/vat-exports.jpeg',
   },
   {
-    title: 'Certified pre-owned vehicles',
-    description: 'AutoDeal has a great selection of certified pre-owned vehicles.',
-    icon: 'M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7l3-7zM9 14l3-2 3 2',
+    title: 'UK Vehicle Shipping & Exports',
+    description: 'We offer specialist vehicle shipping services to any country from the UK, by either RoRo Container methods, and can guarantee the best shipping prices. We can offer an all-inclusive shipping service where we collect your vehicle or goods from any UK address and ship them to your desired country.',
+    image: '/assets/images/services/shipping.jpeg',
   },
   {
-    title: 'Financing',
-    description: 'Get approved today and drive off in a new or used vehicle.',
-    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    title: 'Car Purchase Brokerage Service',
+    description: 'We can also offer vehicle brokerage services and can purchase any vehicle on your behalf (from any UK Dealership or Seller) if you have sourced your own vehicle in the UK. This will avoid the pitfalls that befall many buyers who fall victim to fraudulent car sellers.',
+    image: '/assets/images/services/brokerage.jpeg',
+  },
+  {
+    title: 'UK Vehicle Collection & Delivery',
+    description: 'We can collect any vehicle from any UK address and deliver them to any of the UK ports of departure (Southampton, Tilbury, Sheerness, Felixtowe, Immingham etc) at a rate of £1 per mile, driven on DVLA plates or on a carrier.',
+    image: '/assets/images/services/collection-delivery.jpeg',
+  },
+  {
+    title: 'UK Vehicle Customs Clearance',
+    description: "We prepare have access to the UK government's customs system and make declarations on exports as well as prepare all documentation needed at the UK Port of exit, including the Bill of Lading, Export Certificate etc",
+    image: '/assets/images/services/customs-clearance.jpeg',
   },
 ];
 ---
 
-<section class="py-16 lg:py-20 bg-white overflow-hidden">
-  <div class="max-w-[1290px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-0">
+<section class="pb-16 lg:pb-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-3 font-[family-name:var(--font-heading)]">
+      Why Choose UK Vehicle Exporters
+    </h2>
+    <p class="text-gray-500 text-sm mb-10">
+      We source, supply and export vehicles worldwide, with every vehicle 198-point inspected before it leaves the UK.
+    </p>
 
-      <!-- Left: Mountain BG + car + floating stat badges -->
-      <div class="relative flex flex-col items-start self-end">
-        <!-- Mountain background — natural width, not full column -->
-        <div class="w-[75%] max-w-[410px]">
-          <img src="/assets/images/section/wcu-bg.webp" alt="Mountain landscape" class="w-full rounded-3xl" loading="lazy" />
-        </div>
-
-        <!-- Car — full column width, pulled UP to overlap mountain with negative margin -->
-        <div class="w-full" style="margin-top: -33%;">
-          <img src="/assets/images/section/wcu-car.webp" alt="Car" class="w-full object-contain wcu-car" loading="lazy" />
-        </div>
-
-        <!-- Floating stat badges — absolutely positioned, starting at ~48% from left -->
-        <div class="absolute left-[47%] top-[19%] z-10 wcu-badge">
-          <div class="bg-white rounded-full shadow-[0_30px_60px_rgba(0,0,0,0.1)] px-5 py-4 flex items-center gap-2.5 whitespace-nowrap">
-            <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-800">Proven Expertise</span>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {benefits.map(benefit => (
+        <div class="service-card rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all group">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src={benefit.image} alt={benefit.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-[var(--color-primary)] text-lg font-[family-name:var(--font-heading)] leading-snug">{benefit.title}</h3>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">{benefit.description}</p>
           </div>
         </div>
-        <div class="absolute left-[47%] top-[31%] z-10 wcu-badge">
-          <div class="bg-white rounded-full shadow-[0_30px_60px_rgba(0,0,0,0.1)] px-5 py-4 flex items-center gap-2.5 whitespace-nowrap">
-            <div class="w-8 h-8 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-800">1 million visits per day</span>
-          </div>
-        </div>
-        <div class="absolute left-[47%] top-[42.5%] z-10 wcu-badge">
-          <div class="bg-white rounded-full shadow-[0_30px_60px_rgba(0,0,0,0.1)] px-5 py-4 flex items-center gap-2.5 whitespace-nowrap">
-            <div class="w-8 h-8 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center shrink-0">
-              <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            </div>
-            <span class="text-sm font-semibold text-gray-800">7,800 car sellers</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Heading + benefit cards — aligned from top to match mountain -->
-      <div class="lg:pl-24 flex flex-col justify-start">
-        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-3 font-[family-name:var(--font-heading)]">
-          Why Choose Auto Deal
-        </h2>
-        <p class="text-gray-500 text-sm mb-7 max-w-md">
-          Our experienced team excels in car sales with many years of successfully navigating the market, delivering informed decisions and optimal results.
-        </p>
-
-        <div class="space-y-4">
-          {benefits.map(benefit => (
-            <div class="service-card bg-white rounded-xl border border-gray-100 p-5 py-6 flex gap-4 items-center hover:border-[var(--color-primary)]/30 hover:shadow-md transition-all group">
-              <div class="w-[72px] h-[72px] bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[var(--color-primary)] transition-colors">
-                <svg class="w-9 h-9 text-[var(--color-primary)] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={benefit.icon} />
-                </svg>
-              </div>
-              <div class="min-w-0 flex-1">
-                <h3 class="font-semibold text-gray-900 text-lg font-[family-name:var(--font-heading)] leading-snug">{benefit.title}</h3>
-                <p class="text-sm text-gray-500 mt-1 leading-relaxed">{benefit.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      ))}
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes wcuCarSlide {
-    0% { transform: translateX(-1%); }
-    50% { transform: translateX(1%); }
-    100% { transform: translateX(-1%); }
-  }
-  .wcu-car {
-    animation: wcuCarSlide 14s ease-in-out infinite;
-  }
-</style>

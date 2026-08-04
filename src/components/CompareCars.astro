@@ -14,7 +14,7 @@ for (let i = 0; i < vehicles.length - 1; i += 2) {
 }
 ---
 
-<section class="py-16 lg:py-20 bg-gray-50">
+<section class="pt-3 pb-8 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-10">
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">
@@ -30,7 +30,7 @@ for (let i = 0; i < vehicles.length - 1; i += 2) {
               <!-- Two car images with VS badge -->
               <div class="grid grid-cols-2 relative">
                 {pair.map(v => (
-                  <a href={`/cars/${v.id}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
+                  <a href={`/carsforexport/${v.id}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
                     <img
                       src={v.data.images![0]}
                       alt={v.data.title}
