@@ -22,7 +22,7 @@ function formatDate(date: Date) {
       {posts.map(post => (
         <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all group flex shrink-0 w-[85vw] sm:w-auto sm:shrink snap-start">
           <!-- Image -->
-          <a href={`/blog/${post.data.slug}`} class="block w-[220px] lg:w-[280px] shrink-0">
+          <a href={`/car-export-news/${post.data.slug}`} class="block w-[220px] lg:w-[280px] shrink-0">
             <div class="h-full bg-gray-100 overflow-hidden relative">
               {post.data.image ? (
                 <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -44,10 +44,10 @@ function formatDate(date: Date) {
               <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs">{post.data.category}</span>
             </div>
             <h3 class="font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)] text-base lg:text-lg leading-tight mb-2 line-clamp-2">
-              <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+              <a href={`/car-export-news/${post.data.slug}`}>{post.data.title}</a>
             </h3>
             <p class="text-xs text-gray-500 line-clamp-2 mb-3">{post.data.description}</p>
-            <a href={`/blog/${post.data.slug}`} class="text-[var(--color-primary)] font-semibold text-sm hover:underline">Read more</a>
+            <a href={`/car-export-news/${post.data.slug}`} class="text-[var(--color-primary)] font-semibold text-sm hover:underline">Read more</a>
           </div>
         </article>
       ))}

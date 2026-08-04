@@ -1,0 +1,224 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const containerSizes = [
+  {
+    name: '20ft Shipping Container',
+    suitable: 'Suitable for: 1–2 bedroom moves or a car with only a few boxes.',
+    size: "19' 10.5\" x 8' 0\" x 8' 6\" (6.1m x 2.4m x 2.6m)",
+    volume: '1,169 ft³ (33.1 m³)',
+    load: '61,289 lb (28,200 kg)',
+  },
+  {
+    name: '40ft Shipping Container',
+    suitable: 'Suitable for: 3–5 bedroom moves or a car plus a typical two bedroom move.',
+    size: "40' 0\" x 8' 0\" x 8' 6\" (12.2m x 2.4m x 2.6m)",
+    volume: '2,385 ft³ (67.5 m³)',
+    load: '57,759 lb (26,600 kg)',
+  },
+];
+
+const countries = [
+  'Australia – Brisbane, Melbourne, Fremantle, Sydney',
+  'Barbados – Bridgetown',
+  'Botswana – Gaborone',
+  'Cameroon – Douala',
+  'Cyprus – Limassol',
+  'Gambia – Banjul',
+  'Ghana – Tema and Takoradi',
+  'Hong Kong Port',
+  'Kenya Shipping – Mombasa',
+  'Malaysia – Port Klang',
+  'Malta – Valletta',
+  'Mozambique – Maputo and Beira',
+  'Namibia – Walvis Bay',
+  'New Zealand – Auckland',
+  'Nigeria – Tin Can Island – Apapa – Lagos',
+  'Senegal – Dakar',
+  'Singapore Port',
+  'South Africa – Durban – Port Elizabeth – Cape Town',
+  'Tanzania – Dar es Salaam',
+  'Thailand – Laem Chabang',
+  'Trinidad & Tobago – Port of Spain',
+  'United States of America – USA',
+  'Zimbabwe – Beitbridge, Plumtree, Harare',
+];
+
+const shippingServices = [
+  'Caravan Van Shipping',
+  'Classic Vehicle Shipping',
+  'Coach Bus Shipping',
+  'Container Shipping',
+  'Land Rover Shipping',
+  'Motorhome Shipping',
+  'Plant Machinery Equipment',
+  'RoRo Shipping',
+  'Vehicle Shipping',
+  'Shipping Household Goods',
+  'Tractor Shipping',
+  'Used Car Exports',
+  'Vehicle Shipping',
+];
+
+const destinationGuides = [
+  { name: 'Ireland', href: '/car-shipping/ireland' },
+];
+---
+
+<Layout
+  title="UK Car Shipping and Export – RoRo or Container | UK Vehicle Exporters"
+  description="UK Vehicle Exporters offers two types of vehicle shipping from the UK: RoRo (Roll on Roll off) and Container shipping, to destinations worldwide."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">UK Car Shipping</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        UK Vehicle Exporters Offers Two Types of Shipping from the UK
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">UK Car Shipping and Export – RoRo or Container</h1>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Get a Shipping Quote
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="/carsforexport" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Browse Export-Ready Cars
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RoRo -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="rounded-2xl overflow-hidden aspect-[3/2]">
+          <img src="/assets/images/car-shipping/roro-export.jpeg" alt="UK Vehicle Shipping RoRo Export" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div>
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">1) RoRo (Roll on Roll Off)</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Vehicle Shipping by RoRo (Roll On Roll Off), is a method of sea shipping which refers to vessels and vehicle carriers that are designed to carry wheeled cargo such as cars, trucks, trailer trucks, trailers or railroad vehicles that are driven on and off the ship on their own wheels. Most cars are shipped using this method as it is the most convenient and cost effective method of getting your car to your country.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            This is in contrast to Lift On/Lift Off (LOLO or Lo-Lo) Shipping which refers to car carriers and vessels which use a crane to load and unload cargo. RoRo vessels have built-in ramps which allow the cargo to be efficiently "Rolled On" and "Rolled Off" the vessel at the port. It is important to note that you are usually not allowed to ship personal effects using this method, but spare tyre and factory fitted accessories are.
+          </p>
+        </div>
+      </div>
+      <p class="text-gray-600 leading-relaxed mt-8">
+        RoRo shipping is the most popular way of transporting vehicles from the UK to other countries, in a fast and efficient manner by using specialised ships called "vehicle carriers". RoRo shipping methods are mostly used for all types of motorised, rolling and even static cargo, which include cars, trucks, boats, buses, motor homes, travel trailers, tractors, excavators, cranes, and other high & heavy equipment and machinery.
+      </p>
+      <p class="text-gray-600 leading-relaxed mt-4 mb-3">RoRo vehicle shipping is popular with clients for two reasons:</p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 leading-relaxed">It is the cheapest method of international shipping. Exclusive container service is usually more expensive, while air shipping your vehicle is always several times more expensive.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 leading-relaxed">Preparing for RoRo service takes the least amount of time. Your vehicle will simply need to be driven up and down the ramps for loading and unloading into the ships / vehicle carriers, so it will need to be able to be mechanically propelled. It allows your vehicle to be available and drivable as quickly as possible after the ship arrives at your local port because the unloading process is simple and quick compared to the tedious process of loading and unloading a car in and out of a container.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Container Shipping -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center mb-8">
+        <div class="rounded-2xl overflow-hidden aspect-[3/2] order-2 lg:order-1">
+          <img src="/assets/images/car-shipping/container-shipping.jpeg" alt="Vehicle Export Container Shipping" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">2) Container Shipping</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Container Shipping is a method for shipping high value vehicles, classic cars, or for those who want to ship their cars as well as some of their personal goods and household items.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            We operate a weekly container shipping service, and can collect your vehicle or you can deliver to one of our designated depots. We can also arrange to deliver the container to your address and lower the container to ground level to enable the loading of your car and other items.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Common Container Sizes</h3>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Any extra space in the container, including the inside of the vehicle, may be used to store anything else you wish to send with your vehicle. The most common sizes for containers used to send goods and cars are 20ft and 40ft, their dimensions of which are as follows:
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4 mb-6">
+        {containerSizes.map(c => (
+          <div class="bg-white border border-gray-100 rounded-xl p-5">
+            <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-1.5">{c.name}</h4>
+            <p class="text-sm text-gray-500 leading-relaxed mb-3">{c.suitable}</p>
+            <dl class="text-sm space-y-1">
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Size (L x W x H)</dt><dd class="text-gray-700 text-right">{c.size}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Total internal volume</dt><dd class="text-gray-700 text-right">{c.volume}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Net shipping load</dt><dd class="text-gray-700 text-right">{c.load}</dd></div>
+            </dl>
+          </div>
+        ))}
+      </div>
+      <p class="text-gray-600 leading-relaxed">
+        You can also opt to share a container with someone else sending their vehicle. These are usually 40ft containers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Countries We Ship To -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Countries We Ship To</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {countries.map(c => (
+          <div class="flex items-start gap-2.5 bg-gray-50 border border-gray-100 rounded-lg p-3">
+            <svg class="w-4 h-4 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-sm text-gray-700">{c}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping Services -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Shipping Services</h2>
+      <div class="flex flex-wrap gap-3">
+        {shippingServices.map(s => (
+          <span class="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 font-medium">{s}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping Guides by Destination -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Shipping Guides by Destination</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {destinationGuides.map(d => (
+          <a href={d.href} class="flex items-center justify-between bg-gray-50 hover:bg-[var(--color-primary)]/5 border border-gray-100 hover:border-[var(--color-primary)]/30 rounded-xl p-5 transition-all group">
+            <span class="font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors">Car Shipping to {d.name}</span>
+            <svg class="w-4 h-4 text-gray-400 group-hover:text-[var(--color-primary)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-[var(--color-dark)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">Ready to Ship Your Vehicle?</h2>
+      <p class="text-gray-400 mt-3 max-w-xl mx-auto">Get in touch for a shipping quote by RoRo or Container to your destination.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+        Get a Shipping Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>

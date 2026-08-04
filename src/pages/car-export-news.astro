@@ -59,7 +59,7 @@ function formatDate(date: Date): string {
                 data-title={post.data.title.toLowerCase()}
                 data-tags={(post.data.tags || []).join(',').toLowerCase()}
               >
-                <a href={`/blog/${post.data.slug}`} class="block">
+                <a href={`/car-export-news/${post.data.slug}`} class="block">
                   <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
                     {post.data.image ? (
                       <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -82,10 +82,10 @@ function formatDate(date: Date): string {
                     <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs">{post.data.category}</span>
                   </div>
                   <h2 class="font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors font-[family-name:var(--font-heading)] text-lg leading-tight mb-2">
-                    <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+                    <a href={`/car-export-news/${post.data.slug}`}>{post.data.title}</a>
                   </h2>
                   <p class="text-sm text-gray-500 line-clamp-2 mb-4">{post.data.description}</p>
-                  <a href={`/blog/${post.data.slug}`} class="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-primary)] group-hover:gap-2 transition-all">
+                  <a href={`/car-export-news/${post.data.slug}`} class="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-primary)] group-hover:gap-2 transition-all">
                     Read More
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                   </a>

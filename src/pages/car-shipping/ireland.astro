@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 
 const quickFacts = [
   { label: 'Shipping Time', value: '3-7 days', sub: 'RoRo, Irish Sea crossing' },
@@ -33,7 +33,9 @@ const popularBrands = ['Land Rover', 'MINI', 'BMW', 'Mercedes-Benz', 'Audi', 'Po
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span class="text-white">Car Shipping to Ireland</span>
+        <a href="/car-shipping" class="hover:text-[var(--color-primary)] transition-colors">UK Car Shipping</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Ireland</span>
       </nav>
       <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
         UK to Ireland Export Specialists
@@ -333,8 +335,8 @@ const popularBrands = ['Land Rover', 'MINI', 'BMW', 'Mercedes-Benz', 'Audi', 'Po
           <div class="bg-gray-50 rounded-2xl p-6">
             <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Related Reading</h3>
             <ul class="space-y-2">
-              <li><a href="/blog/complete-guide-exporting-vehicles-from-uk" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Complete UK export guide</a></li>
-              <li><a href="/blog/understanding-vehicle-shipping-costs" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Understanding shipping costs</a></li>
+              <li><a href="/car-export-news/complete-guide-exporting-vehicles-from-uk" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Complete UK export guide</a></li>
+              <li><a href="/car-export-news/understanding-vehicle-shipping-costs" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Understanding shipping costs</a></li>
               <li><a href="/faq" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Export FAQs</a></li>
               <li><a href="/countries/europe" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>More European destinations</a></li>
             </ul>

@@ -4,11 +4,11 @@ const currentYear = new Date().getFullYear();
 const aboutLinks = [
   { name: 'About us', href: '/about' },
   { name: 'Car Shipping to Kenya', href: '/import-cars-kenya' },
-  { name: 'Car Shipping to Ireland', href: '/car-shipping-to-ireland' },
+  { name: 'Car Shipping to Ireland', href: '/car-shipping/ireland' },
   { name: 'Dealer Listings', href: '/carsforexport' },
   { name: 'Sale Agents', href: '/about' },
   { name: 'Contact us', href: '/contact' },
-  { name: 'Blog List', href: '/blog' },
+  { name: 'Blog List', href: '/car-export-news' },
   { name: 'FAQs', href: '/faq' },
 ];
 
@@ -17,8 +17,8 @@ const vehicleExportingLinks = [
   { name: 'Car Shipping to Kenya and Mombasa Import', href: '/import-cars-kenya' },
   { name: 'UK Ambulance Exports', href: '/ambulance-emergency-shipping-exports-from-uk' },
   { name: 'USA Car Shipping Import', href: '/usa-import-america-car-shipping' },
-  { name: 'Car Shipping to Hong Kong and Imports', href: '#' },
-  { name: 'UK VAT Reclaiming on Exported Cars', href: '#' },
+  { name: 'Car Shipping to Hong Kong and Imports', href: '/shipping-export-uk-to-hong-kong' },
+  { name: 'UK VAT Reclaiming on Exported Cars', href: '/how-to-reclaim-vat-on-vehicles-exported-from-eu-uk' },
   { name: 'UK Cars for Export or Shipping', href: '/carsforexport' },
   { name: 'Contact Us', href: '/contact' },
 ];
@@ -39,7 +39,7 @@ const otherLinks = [
   { name: 'Privacy Policy', href: '#' },
   { name: 'Copyrights', href: '#' },
   { name: 'Help center', href: '/contact' },
-  { name: 'Car sales trends', href: '/blog' },
+  { name: 'Car sales trends', href: '/car-export-news' },
   { name: 'Personal loan', href: '/contact' },
 ];
 ---
@@ -136,7 +136,7 @@ const otherLinks = [
         <span class="text-lg font-bold text-white font-[family-name:var(--font-heading)]">UK <span class="text-[var(--color-primary)]">Vehicle</span> Exporters</span>
       </a>
       <!-- Copyright -->
-      <span class="text-sm text-gray-500">&copy; {currentYear} UK Vehicle Exporters. All rights reserved.</span>
+      <span class="text-sm text-gray-500">&copy; {currentYear} <a href="/" class="hover:text-[var(--color-primary)] transition-colors">UK Vehicle Exporters</a>. All rights reserved.</span>
       <!-- Social Icons -->
       <div class="flex items-center gap-4">
         <a href="https://www.facebook.com/UKVehicleExporters/" target="_blank" rel="noopener" class="w-10 h-10 bg-white/5 hover:bg-[var(--color-primary)] rounded-full flex items-center justify-center transition-colors" aria-label="Facebook">
