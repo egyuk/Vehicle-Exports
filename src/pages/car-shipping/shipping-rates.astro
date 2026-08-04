@@ -1,0 +1,483 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const costFactors = [
+  "the location of your country – the further away you are from the UK, the more expensive the cost of shipping your vehicle to your country;",
+  "The vehicle shipping costs will also reflect the size of the vehicle being exported. A normal coupe or saloon car will incur a lower rate than than an SUV, Caravan or Truck;",
+  "Pre-Export inspections set by your government will also add to the cost of export and shipping e.g. the Kenya government demands that all vehicles to be exported from UK to Kenya must undergo inspection with QISJ, its appointed inspection representative; and",
+  "Finally, the method of shipping will be the largest factor in your quote. RoRo, or Roll on Roll Off, will obviously be cheaper than putting your vehicle in a secured container using an aircraft to deliver the vehicle.",
+];
+
+const serviceLevels = [
+  "Door to Door (from the UK address to your address in your country)",
+  "Door to Port (from the UK address to your local port in your country)",
+  "Port to Port (from the UK port to your local Port in your country)",
+  "Port to Door (from the UK port to your address in your country)",
+];
+
+const roroPrices = [
+  { country: 'Antigua', port: 'St Johns', price: '£1,341' },
+  { country: 'Australia', port: 'Adelaide', price: '£771' },
+  { country: 'Australia', port: 'Brisbane', price: '£771' },
+  { country: 'Australia', port: 'Fremantle', price: '£771' },
+  { country: 'Australia', port: 'Melbourne', price: '£771' },
+  { country: 'Australia', port: 'Sydney', price: '£771' },
+  { country: 'Bahamas', port: 'Nassau', price: '£1,257' },
+  { country: 'Bahrain', port: 'Bahrain', price: '£812' },
+  { country: 'Barbados', port: 'Bridgetown', price: '£1,341' },
+  { country: 'Canada', port: 'Halifax', price: '£912' },
+  { country: 'Canada', port: 'Vancouver', price: '£2,301' },
+  { country: 'China', port: 'Hong Kong', price: '£437' },
+  { country: 'Colombia', port: 'Cartagena', price: '£966' },
+  { country: 'Colombia', port: 'Santa Marta', price: '£1,257' },
+  { country: 'Cyprus', port: 'Limassol', price: '£481' },
+  { country: 'Dominica', port: 'Roseau', price: '£1,341' },
+  { country: 'Dominican Republic', port: 'Santo Domingo', price: '£1,257' },
+  { country: 'Egypt', port: 'Alexandria', price: '£947' },
+  { country: 'Ethiopia', port: 'Djibouti', price: '£974' },
+  { country: 'French Guiana', port: 'Degrad Des Cannes', price: '£1,454' },
+  { country: 'Grand Caymen', port: 'George Town', price: '£3,200' },
+  { country: 'Greece', port: 'Piraeus', price: '£738' },
+  { country: 'Grenada', port: 'St Georges', price: '£1,341' },
+  { country: 'Guadeloupe', port: 'Point A Pitre', price: '£1,274' },
+  { country: 'Guyana', port: 'Georgetown', price: '£1,591' },
+  { country: 'Haiti', port: 'Port Au Prince', price: '£1,257' },
+  { country: 'Israel', port: 'Ashdod', price: '£890' },
+  { country: 'Italy', port: 'Civitavecchia', price: '£640' },
+  { country: 'Italy', port: 'Livorno', price: '£640' },
+  { country: 'Italy', port: 'Palermo', price: '£738' },
+  { country: 'Italy', port: 'Salerno', price: '£640' },
+  { country: 'Italy', port: 'Savona', price: '£640' },
+  { country: 'Jamaica', port: 'Kingston', price: '£1,049' },
+  { country: 'Japan', port: 'Toyohashi', price: '£882' },
+  { country: 'Japan', port: 'Yokohama', price: '£882' },
+  { country: 'Kenya', port: 'Mombasa', price: '£899' },
+  { country: 'Kuwait', port: 'Kuwait', price: '£812' },
+  { country: 'Lebanon', port: 'Beirut', price: '£886' },
+  { country: 'Madagascar', port: 'Tamatave', price: '£1,274' },
+  { country: 'Malaysia', port: 'Port Kelang', price: '£903' },
+  { country: 'Malta', port: 'Valletta', price: '£760' },
+  { country: 'Martinique', port: 'Fort de France', price: '£1,274' },
+  { country: 'Mauritius', port: 'Port Louis', price: '£1,374' },
+  { country: 'Mexico', port: 'Altamira', price: '£882' },
+  { country: 'Mexico', port: 'Vera Cruz', price: '£882' },
+  { country: 'Morocco', port: 'Casablanca', price: '£650' },
+  { country: 'Morocco', port: 'Tangier', price: '£941' },
+  { country: 'Mozambique', port: 'Maputo', price: '£899' },
+  { country: 'Myanmar', port: 'Yangon', price: '£2,038' },
+  { country: 'Namibia', port: 'Walvis Bay', price: '£937' },
+  { country: 'New Zealand', port: 'Auckland', price: '£630' },
+  { country: 'New Zealand', port: 'Hamilton', price: '£1,056' },
+  { country: 'New Zealand', port: 'Lyttelton', price: '£630' },
+  { country: 'New Zealand', port: 'Napier', price: '£630' },
+  { country: 'New Zealand', port: 'Nelson', price: '£630' },
+  { country: 'New Zealand', port: 'Port Chalmers', price: '£630' },
+  { country: 'New Zealand', port: 'Taupo', price: '£1,115' },
+  { country: 'New Zealand', port: 'Tauranga', price: '£630' },
+  { country: 'New Zealand', port: 'Wellington', price: '£1,203' },
+  { country: 'Norway', port: 'Drammen', price: '£610' },
+  { country: 'Oman', port: 'Sohar', price: '£812' },
+  { country: 'Panama', port: 'Manzanillo', price: '£1,257' },
+  { country: 'Portugal', port: 'Setubal', price: '£603' },
+  { country: 'Puerto Rico', port: 'San Juan', price: '£1,049' },
+  { country: 'Qatar', port: 'Hamad Port', price: '£812' },
+  { country: 'Saint Kitts', port: 'Basseterre', price: '£1,341' },
+  { country: 'Saint Lucia', port: 'Castries', price: '£1,341' },
+  { country: 'Saudi Arabia', port: 'Dammam', price: '£812' },
+  { country: 'Saudi Arabia', port: 'Jeddah', price: '£699' },
+  { country: 'Singapore', port: 'Singapore', price: '£437' },
+  { country: 'South Africa', port: 'Cape Town', price: '£837' },
+  { country: 'South Africa', port: 'Durban', price: '£732' },
+  { country: 'South Africa', port: 'Port Elizabeth', price: '£979' },
+  { country: 'Spain', port: 'Tarragona', price: '£589' },
+  { country: 'Spain', port: 'Valencia', price: '£557' },
+  { country: 'Suriname', port: 'Paramaribo', price: '£1,591' },
+  { country: 'Tanzania', port: 'Der Es Salaam', price: '£899' },
+  { country: 'Thailand', port: 'Laem Chabang', price: '£740' },
+  { country: 'Trinidad', port: 'Port of Spain', price: '£1,016' },
+  { country: 'UAE', port: 'Abu Dhabi', price: '£812' },
+  { country: 'UAE', port: 'Jebel Ali', price: '£812' },
+  { country: 'USA', port: 'Baltimore', price: '£589' },
+  { country: 'USA', port: 'Brunswick', price: '£752' },
+  { country: 'USA', port: 'Charleston', price: '£752' },
+  { country: 'USA', port: 'Freeport', price: '£885' },
+  { country: 'USA', port: 'Galveston', price: '£960' },
+  { country: 'USA', port: 'Jacksonville', price: '£589' },
+  { country: 'USA', port: 'New York', price: '£898' },
+  { country: 'USA', port: 'Port Hueneme', price: '£1,218' },
+  { country: 'USA', port: 'San Diego', price: '£1,218' },
+  { country: 'USA', port: 'Tacoma', price: '£1,326' },
+];
+
+const containerPrices = [
+  { country: 'Albania', port: 'Durres', c20: '£1,013', c40: '£1,529' },
+  { country: 'Antigua', port: 'St Johns', c20: '£1,673', c40: '£2,379' },
+  { country: 'Angola', port: 'Luanda', c20: '£2,173', c40: '£3,279' },
+  { country: 'Angola', port: 'Lobito', c20: '£2,173', c40: '£3,279' },
+  { country: 'Argentina', port: 'Zarate', c20: '£1,373', c40: '£1,829' },
+  { country: 'Australia', port: 'Adelaide', c20: '£1,143', c40: '£1,979' },
+  { country: 'Australia', port: 'Brisbane', c20: '£1,143', c40: '£1,979' },
+  { country: 'Australia', port: 'Fremantle', c20: '£1,143', c40: '£1,979' },
+  { country: 'Australia', port: 'Mackay', c20: '£1,143', c40: '£1,979' },
+  { country: 'Australia', port: 'Melbourne', c20: '£1,143', c40: '£1,979' },
+  { country: 'Australia', port: 'Sydney', c20: '£1,143', c40: '£1,979' },
+  { country: 'Bahamas', port: 'Nassau', c20: '£1,673', c40: '£2,279' },
+  { country: 'Bangladesh', port: 'Chittagong', c20: '£1,723', c40: '£2,129' },
+  { country: 'Bahrain', port: 'Bahrain', c20: '£1,223', c40: '£1,579' },
+  { country: 'Barbados', port: 'Bridgetown', c20: '£1,723', c40: '£2,529' },
+  { country: 'Belgium', port: 'Antwerp', c20: '£973', c40: '£1,379' },
+  { country: 'Benin', port: 'Cotonou', c20: '£1,223', c40: '£1,729' },
+  { country: 'Botswana', port: 'Gaborone', c20: '£2,273', c40: '£3,629' },
+  { country: 'British Virgin Islands', port: 'Tortola', c20: '£2,223', c40: '£3,629' },
+  { country: 'Brunei', port: 'Muara', c20: '£1,023', c40: '£1,229' },
+  { country: 'Cameroon', port: 'Douala', c20: '£1,373', c40: '£2,029' },
+  { country: 'Canada', port: 'Halifax', c20: '£1,023', c40: '£1,829' },
+  { country: 'Canada', port: 'Montreal', c20: '£1,123', c40: '£1,929' },
+  { country: 'Canada', port: 'Toronto', c20: '£1,323', c40: '£2,279' },
+  { country: 'Canada', port: 'Vancouver', c20: '£2,273', c40: '£3,529' },
+  { country: 'Chile', port: 'Iquique', c20: '£2,023', c40: '£3,329' },
+  { country: 'China', port: 'Hong Kong', c20: '£873', c40: '£1,029' },
+  { country: 'Colombia', port: 'Cartagena', c20: '£1,173', c40: '£1,579' },
+  { country: 'Colombia', port: 'Santa Marta', c20: '£1,373', c40: '£1,979' },
+  { country: 'Congo', port: 'Boma Pointe Noire', c20: '£2,023', c40: '£3,229' },
+  { country: 'Cyprus', port: 'Limassol', c20: '£973', c40: '£1,529' },
+  { country: 'Denmark', port: 'Esbjerg', c20: '£973', c40: '£1,279' },
+  { country: 'Dominica', port: 'Roseau', c20: '£2,023', c40: '£2,929' },
+  { country: 'Dominican Republic', port: 'Santo Domingo', c20: '£1,423', c40: '£1,979' },
+  { country: 'Dubai', port: 'Jebel Ali', c20: '£1,023', c40: '£1,729' },
+  { country: 'Egypt', port: 'Alexandria', c20: '£1,023', c40: '£1,329' },
+  { country: 'Ethiopa', port: 'Djibouti', c20: '£1,473', c40: '£2,129' },
+  { country: 'Equatorial Guinea', port: 'Malabo', c20: '£12,523', c40: '£1,679' },
+  { country: 'Equatorial Guinea', port: 'Bata', c20: '£12,523', c40: '£1,679' },
+  { country: 'French Guiana', port: 'Degard Des Cannes', c20: '£1,923', c40: '£2,929' },
+  { country: 'Gabon', port: 'Libreville', c20: '£1,373', c40: '£1,729' },
+  { country: 'Gambia', port: 'Banjul', c20: '£1,423', c40: '£1,929' },
+  { country: 'Germany', port: 'Hamburg', c20: '£973', c40: '£1,279' },
+  { country: 'Ghana', port: 'Tema', c20: '£1,223', c40: '£1,779' },
+  { country: 'Ghana', port: 'Takoradi', c20: '£1,223', c40: '£1,779' },
+  { country: 'Grand Caymen', port: 'George Town', c20: '£3,023', c40: '£4,529' },
+  { country: 'Greece', port: 'Piraeus', c20: '£1,123', c40: '£1,429' },
+  { country: 'Grenada', port: 'St Georges', c20: '£2,523', c40: '£3,779' },
+  { country: 'Guadeloupe', port: 'Point A Pitre', c20: '£1,523', c40: '£1,979' },
+  { country: 'Guinea', port: 'Conakry', c20: '£1,623', c40: '£2,529' },
+  { country: 'Guyana', port: 'Georgetown', c20: '£2,223', c40: '£3,229' },
+  { country: 'Hati', port: 'Port Au Prince', c20: '£1,523', c40: '£2,129' },
+  { country: 'Hong Kong', port: 'Port of Hong Kong', c20: '£873', c40: '£1,029' },
+  { country: 'India', port: 'Mumbai', c20: '£923', c40: '£1,229' },
+  { country: 'Indonesia', port: 'Jakarta', c20: '£773', c40: '£1,029' },
+  { country: 'Israel', port: 'Ashdod', c20: '£1,123', c40: '£1,379' },
+  { country: 'Italy', port: 'Savona', c20: '£998', c40: '£1,492' },
+  { country: 'Italy', port: 'Civitavecchia', c20: '£916', c40: '£1,368' },
+  { country: 'Italy', port: 'Livorno', c20: '£916', c40: '£1,368' },
+  { country: 'Italy', port: 'Palermo', c20: '£1,048', c40: '£1,566' },
+  { country: 'Italy', port: 'Salerno', c20: '£916', c40: '£1,368' },
+  { country: 'Italy', port: 'Savona', c20: '£916', c40: '£1,368' },
+  { country: 'Ivory Coast', port: 'Abidjan', c20: '£1,223', c40: '£1,679' },
+  { country: 'Jamaica', port: 'Kingston', c20: '£1,623', c40: '£2,329' },
+  { country: 'Japan', port: 'Yokohama', c20: '£1,373', c40: '£1,919' },
+  { country: 'Japan', port: 'Toyohashi', c20: '£1,373', c40: '£1,919' },
+  { country: 'Kenya', port: 'Mombasa', c20: '£1,403', c40: '£1,929' },
+  { country: 'Kuwait', port: 'Kuwait', c20: '£1,123', c40: '£1,479' },
+  { country: 'Lebanon', port: 'Beirut', c20: '£1,223', c40: '£1,529' },
+  { country: 'Lesotho', port: 'Maseru', c20: '£1,273', c40: '£1,779' },
+  { country: 'Liberia', port: 'Monrovia', c20: '£1,623', c40: '£2,379' },
+  { country: 'Libya', port: 'Tripoli', c20: '£1,273', c40: '£1,979' },
+  { country: 'Libya', port: 'Al khums', c20: '£1,273', c40: '£1,979' },
+  { country: 'Madagascar', port: 'Tamatave', c20: '£1,573', c40: '£2,229' },
+  { country: 'Malaysia', port: 'Port Klang', c20: '£673', c40: '£1,129' },
+  { country: 'Malta', port: 'Valletta', c20: '£1,023', c40: '£1,479' },
+  { country: 'Malta', port: 'Freeport', c20: '£1,023', c40: '£1,479' },
+  { country: 'Martinique', port: 'Fort de France', c20: '£1,473', c40: '£1,879' },
+  { country: 'Mauritius', port: 'Port Louis', c20: '£1,773', c40: '£2,879' },
+  { country: 'Mexico', port: 'Altamira', c20: '£1,273', c40: '£1,679' },
+  { country: 'Mexico', port: 'Vera Cruz', c20: '£1,273', c40: '£1,679' },
+  { country: 'Morocco', port: 'Casablanca', c20: '£1,323', c40: '£1,729' },
+  { country: 'Morocco', port: 'Tangir', c20: '£1,323', c40: '£1,729' },
+  { country: 'Mozambique', port: 'Maputo', c20: '£1,523', c40: '£2,379' },
+  { country: 'Mozambique', port: 'Beira', c20: '£1,523', c40: '£2,379' },
+  { country: 'Myanmar', port: 'Yangon', c20: '£1,223', c40: '£1,729' },
+  { country: 'Namibia', port: 'Walvis Bay', c20: '£1,423', c40: '£2,329' },
+  { country: 'New Zealand', port: 'Auckland', c20: '£988', c40: '£1,476' },
+  { country: 'New Zealand', port: 'Hamilton', c20: '£1,292', c40: '£1,932' },
+  { country: 'New Zealand', port: 'Lyttelton', c20: '£988', c40: '£1,476' },
+  { country: 'New Zealand', port: 'Napier', c20: '£988', c40: '£1,476' },
+  { country: 'New Zealand', port: 'Nelson', c20: '£988', c40: '£1,476' },
+  { country: 'New Zealand', port: 'Port Chalmers', c20: '£988', c40: '£1,476' },
+  { country: 'New Zealand', port: 'Taupo', c20: '£1,395', c40: '£2,087' },
+  { country: 'New Zealand', port: 'Tauranga', c20: '£988', c40: '£1,476' },
+  { country: 'New Zealand', port: 'Wellington', c20: '£1,245', c40: '£1,862' },
+  { country: 'Nigeria', port: 'Tin Can Island', c20: '£1,273', c40: '£1,729' },
+  { country: 'Nigeria', port: 'Apapa', c20: '£1,273', c40: '£1,729' },
+  { country: 'Norway', port: 'Drammen', c20: '£973', c40: '£1,279' },
+  { country: 'Oman', port: 'Sohar', c20: '£1,123', c40: '£1,479' },
+  { country: 'Pakistan', port: 'Karachi', c20: '£923', c40: '£1,929' },
+  { country: 'Panama', port: 'Manzanillo', c20: '£1,673', c40: '£2,329' },
+  { country: 'Papua New Guinea', port: 'Port Moresby', c20: '£1,923', c40: '£3,229' },
+  { country: 'Papua New Guinea', port: 'Lae', c20: '£1,923', c40: '£3,229' },
+  { country: 'Portugal', port: 'Setubal', c20: '£873', c40: '£1,129' },
+  { country: 'Puerto Rico', port: 'San Juan', c20: '£1,423', c40: '£1,829' },
+  { country: 'Qatar', port: 'Hamad Port', c20: '£1,123', c40: '£1,479' },
+  { country: 'Saint Kitts and Nevis', port: 'Basseterre', c20: '£2,323', c40: '£3,779' },
+  { country: 'Saint Lucia', port: 'Vieux Fort', c20: '£2,323', c40: '£3,779' },
+  { country: 'Saint Lucia', port: 'Castries', c20: '£2,323', c40: '£3,779' },
+  { country: 'Saint Vincent and the Grenadines', port: 'Kingstown', c20: '£2,223', c40: '£3,229' },
+  { country: 'Saudi Arabia', port: 'Dammam', c20: '£1,323', c40: '£1,779' },
+  { country: 'Saudi Arabia', port: 'Jeddah', c20: '£1,173', c40: '£1,679' },
+  { country: 'Senegal', port: 'Dakar', c20: '£1,373', c40: '£1,779' },
+  { country: 'Sierra Leone', port: 'Freetown', c20: '£1,523', c40: '£2,329' },
+  { country: 'Singapore', port: 'Port of Singapore', c20: '£873', c40: '£1,429' },
+  { country: 'South Africa', port: 'Cape Town', c20: '£1,223', c40: '£1,779' },
+  { country: 'South Africa', port: 'Durban', c20: '£1,223', c40: '£1,779' },
+  { country: 'South Africa', port: 'Port Elizabeth', c20: '£1,223', c40: '£1,779' },
+  { country: 'Spain', port: 'Tarragona', c20: '£823', c40: '£1,179' },
+  { country: 'Spain', port: 'Valencia', c20: '£823', c40: '£1,179' },
+  { country: 'Sri Lanka', port: 'Colombo', c20: '£1,423', c40: '£1,829' },
+  { country: 'Suriname', port: 'Paramebo', c20: '£2,323', c40: '£3,979' },
+  { country: 'Swaziland', port: 'Matsapa', c20: '£1,923', c40: '£2,879' },
+  { country: 'Swaziland', port: 'Manzini', c20: '£1,923', c40: '£2,879' },
+  { country: 'Sweden', port: 'Gothenburg', c20: '£973', c40: '£1,329' },
+  { country: 'Tanzania', port: 'Dar Es Salaam', c20: '£1,373', c40: '£1,879' },
+  { country: 'Thailand', port: 'Laem Chabang', c20: '£623', c40: '£1,179' },
+  { country: 'Togo', port: 'Lome', c20: '£1,323', c40: '£1,679' },
+  { country: 'Trinidad and Tobago', port: 'Port of Spain', c20: '£1,873', c40: '£2,779' },
+  { country: 'Tunisia', port: 'Tunis La Goulette', c20: '£1,223', c40: '£1,979' },
+  { country: 'Turkey', port: 'Izmir', c20: '£1,023', c40: '£1,729' },
+  { country: 'Turkey', port: 'Mersin', c20: '£1,023', c40: '£1,729' },
+  { country: 'UAE', port: 'Abu Dhabi', c20: '£1,123', c40: '£1,479' },
+  { country: 'UAE', port: 'Jebel Ali', c20: '£1,123', c40: '£1,479' },
+  { country: 'United States of America (USA)', port: 'Baltimore', c20: '£928', c40: '£1,386' },
+  { country: 'United States of America (USA)', port: 'Brunswick', c20: '£1,117', c40: '£1,669' },
+  { country: 'United States of America (USA)', port: 'Charleston', c20: '£1,117', c40: '£1,669' },
+  { country: 'United States of America (USA)', port: 'Freeport', c20: '£1,165', c40: '£1,741' },
+  { country: 'United States of America (USA)', port: 'Galveston', c20: '£1,370', c40: '£2,050' },
+  { country: 'United States of America (USA)', port: 'Jacksonville', c20: '£928', c40: '£1,386' },
+  { country: 'United States of America (USA)', port: 'New York', c20: '£1,307', c40: '£1,955' },
+  { country: 'United States of America (USA)', port: 'Port Hueneme', c20: '£1,660', c40: '£2,484' },
+  { country: 'United States of America (USA)', port: 'San Diego', c20: '£1,660', c40: '£2,484' },
+  { country: 'United States of America (USA)', port: 'Tacoma', c20: '£1,912', c40: '£2,862' },
+  { country: 'Uruguay', port: 'Montevideo', c20: '£1,323', c40: '£1,779' },
+  { country: 'Zambia', port: 'Lusaka', c20: '£5,273', c40: '£6,529' },
+  { country: 'Zambia', port: 'Kazungula border', c20: '£5,273', c40: '£6,529' },
+  { country: 'Zimbabwe', port: 'Beitbridge', c20: '£2,723', c40: '£5,329' },
+  { country: 'Zimbabwe', port: 'Plumtree', c20: '£2,723', c40: '£5,329' },
+  { country: 'Zimbabwe', port: 'Harare', c20: '£2,723', c40: '£5,329' },
+];
+---
+
+<Layout
+  title="Vehicle Shipping & Export Prices (Approximate) | UK Vehicle Exporters"
+  description="Approximate RoRo and container vehicle shipping prices from the UK to ports worldwide. Get an accurate quote by contacting UK Vehicle Exporters."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <a href="/car-shipping" class="hover:text-[var(--color-primary)] transition-colors">UK Car Shipping</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Shipping Rates</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        Approximate Prices — Call for Latest Rates
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Vehicle Shipping & Export Prices</h1>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Get a Shipping Quote
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="/carsforexport" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Browse Export-Ready Cars
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What determines cost -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-6">Shipping Your Vehicle from the UK Is Determined by Various Factors:</h2>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 leading-relaxed">{costFactors[0]}</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <div class="text-gray-600 leading-relaxed">
+            <span>the level of service required i.e</span>
+            <ul class="mt-2 ml-4 space-y-1 list-disc marker:text-[var(--color-primary)]">
+              {serviceLevels.map(level => <li>{level}</li>)}
+            </ul>
+            <span class="block mt-2 text-sm text-gray-500">* Door to Port and Port to Port are the most common methods of shipping used by clients;</span>
+          </div>
+        </li>
+        {costFactors.slice(1).map(item => (
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-600 leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- RoRo -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-600 leading-relaxed mb-6">
+        RORO shipping is a the most popular way of transporting vehicles from the UK to other countries, in a fast and efficient manner by using specialised ships called "vehicle carriers". RORO shipping methods are mostly used for all types of motorised, rolling and even static cargo, which include cars, trucks, boats, buses, motor homes, travel trailers, tractors, excavators, cranes, and other high & heavy equipment and machinery.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-3">RORO vehicle shipping is popular with clients for two reasons:</p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 leading-relaxed">It is the cheapest method of international shipping. Exclusive container service is usually more expensive, while air shipping your vehicle is always several times more expensive.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 leading-relaxed">Preparing for RoRo service takes the least amount of time. Your vehicle will simply need to be driven up and down the ramps for loading and unloading into the ships / vehicle carriers, so it will need to be able to be mechanically propelled. It allows your vehicle to be available and drivable as quickly as possible after the ship arrives at your local port because the unloading process is simple and quick compared to the tedious process of loading and unloading a car in and out of a container.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Container Shipping -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-600 leading-relaxed mb-8">
+        Most clients that use Container Shipping, prefer this method of shipping due to high value vehicles, classic cars, or for those who want to ship their cars as well as some of their personal goods and household items. We operates weekly container shipping service, and can collect your vehicle or you can deliver to one of our designated depots. We can also arrange to deliver the container to your address and lower the container to ground level to enable the loading of your car and other items. See out shipping options and services below.
+      </p>
+
+      <h3 class="text-lg font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Most Common Container Sizes</h3>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Any extra space in the container, including the inside of the vehicle, may be used to store anything else you wish to send with your vehicle. The most common sizes for containers used to send goods and cars are 20ft and 40ft, their dimmensions of which are as follows:
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4 mb-6">
+        <div class="bg-gray-50 border border-gray-100 rounded-xl p-5">
+          <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-1.5">20ft Shipping Container</h4>
+          <p class="text-sm text-gray-500 leading-relaxed mb-3">Suitable for: 1-2 bedroom moves or a car with only a few boxes.</p>
+          <dl class="text-sm space-y-1">
+            <div class="flex justify-between gap-2"><dt class="text-gray-400">Size (L x W x H)</dt><dd class="text-gray-700 text-right">19′ 10.5″ x 8′ 0″ x 8′ 6″ (6.1m x 2.4m x 2.6m)</dd></div>
+            <div class="flex justify-between gap-2"><dt class="text-gray-400">Total internal volume</dt><dd class="text-gray-700 text-right">1,169 ft³ (33.1 m³)</dd></div>
+            <div class="flex justify-between gap-2"><dt class="text-gray-400">Net shipping load</dt><dd class="text-gray-700 text-right">61,289 lb (28,200 kg)</dd></div>
+          </dl>
+        </div>
+        <div class="bg-gray-50 border border-gray-100 rounded-xl p-5">
+          <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-1.5">40ft Shipping Container</h4>
+          <p class="text-sm text-gray-500 leading-relaxed mb-3">Suitable for: 3-5 bedroom moves or a car plus a typical two bedroom move.</p>
+          <dl class="text-sm space-y-1">
+            <div class="flex justify-between gap-2"><dt class="text-gray-400">Size (L x W x H)</dt><dd class="text-gray-700 text-right">40′ 0″ x 8′ 0″ x 8′ 6″ (12.2m x 2.4m x 2.6m)</dd></div>
+            <div class="flex justify-between gap-2"><dt class="text-gray-400">Total internal volume</dt><dd class="text-gray-700 text-right">2,385 ft³ (67.5 m³)</dd></div>
+            <div class="flex justify-between gap-2"><dt class="text-gray-400">Net shipping load</dt><dd class="text-gray-700 text-right">57,759 lb (26,600 kg)</dd></div>
+          </dl>
+        </div>
+      </div>
+      <p class="text-gray-600 leading-relaxed">
+        You also have the option to share a containers with someone else sending their vehicle. These are usually 40ft containers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Search -->
+  <section class="pt-3 pb-6 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <label for="rate-search" class="block text-sm font-medium text-gray-700 mb-2">Search by country or port</label>
+      <div class="relative">
+        <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input id="rate-search" type="search" placeholder="e.g. Kenya, Mombasa, USA…" class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[var(--color-primary)] transition-colors" />
+      </div>
+    </div>
+  </section>
+
+  <!-- RoRo Prices -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">RoRo Shipping Prices <span class="text-sm font-normal text-gray-400">— Approximately, call for latest rates</span></h2>
+      <div class="overflow-x-auto rounded-xl border border-gray-100 bg-white max-h-[600px] overflow-y-auto">
+        <table class="w-full text-sm rate-table" data-table="roro">
+          <thead class="sticky top-0 z-10">
+            <tr class="bg-gray-50 text-left">
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Country</th>
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Port</th>
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Vehicle Shipping Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roroPrices.map((row, i) => (
+              <tr class:list={["border-t border-gray-100 rate-row", i % 2 === 1 && "bg-gray-50/50"]} data-search={`${row.country} ${row.port}`.toLowerCase()}>
+                <td class="px-4 py-3 text-gray-900 font-medium">{row.country}</td>
+                <td class="px-4 py-3 text-gray-600">{row.port}</td>
+                <td class="px-4 py-3 text-[var(--color-primary)] font-semibold whitespace-nowrap">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p id="roro-empty" class="hidden text-center text-gray-400 text-sm py-6">No matching destinations found.</p>
+    </div>
+  </section>
+
+  <!-- Container Prices -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Container Shipping Prices <span class="text-sm font-normal text-gray-400">— Approximately, call for latest rates</span></h2>
+      <div class="overflow-x-auto rounded-xl border border-gray-100 bg-gray-50 max-h-[600px] overflow-y-auto">
+        <table class="w-full text-sm rate-table" data-table="container">
+          <thead class="sticky top-0 z-10">
+            <tr class="bg-gray-100 text-left">
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Country</th>
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Port</th>
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">20ft Container</th>
+              <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">40ft Container</th>
+            </tr>
+          </thead>
+          <tbody>
+            {containerPrices.map((row, i) => (
+              <tr class:list={["border-t border-gray-100 rate-row", i % 2 === 1 && "bg-white"]} data-search={`${row.country} ${row.port}`.toLowerCase()}>
+                <td class="px-4 py-3 text-gray-900 font-medium">{row.country}</td>
+                <td class="px-4 py-3 text-gray-600">{row.port}</td>
+                <td class="px-4 py-3 text-[var(--color-primary)] font-semibold whitespace-nowrap">{row.c20}</td>
+                <td class="px-4 py-3 text-[var(--color-primary)] font-semibold whitespace-nowrap">{row.c40}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p id="container-empty" class="hidden text-center text-gray-400 text-sm py-6">No matching destinations found.</p>
+      <p class="text-xs text-gray-400 mt-4">Prices are approximate and exclude duties, taxes, collection and redelivery. Contact us for an accurate, up-to-date quote.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-[var(--color-dark)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">Don't See Your Destination?</h2>
+      <p class="text-gray-400 mt-3 max-w-xl mx-auto">Get in touch and we'll provide an accurate shipping quote for your vehicle and destination.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+        Get a Shipping Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const searchInput = document.getElementById('rate-search') as HTMLInputElement;
+  const tables = document.querySelectorAll<HTMLTableElement>('.rate-table');
+
+  searchInput?.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    tables.forEach(table => {
+      let visibleCount = 0;
+      table.querySelectorAll<HTMLTableRowElement>('.rate-row').forEach(row => {
+        const match = !query || (row.dataset.search || '').includes(query);
+        row.classList.toggle('hidden', !match);
+        if (match) visibleCount++;
+      });
+      const emptyId = table.dataset.table === 'roro' ? 'roro-empty' : 'container-empty';
+      document.getElementById(emptyId)?.classList.toggle('hidden', visibleCount > 0);
+    });
+  });
+</script>

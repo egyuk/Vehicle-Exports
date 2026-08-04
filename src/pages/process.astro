@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const exportSteps = [
+  { num: '01', title: 'Tell Us Your Requirements', text: 'Let us know the make, model, spec or performance requirements for your vehicle, plus the country you want it exported to.' },
+  { num: '02', title: 'We Source The Right Vehicle', text: 'Our team searches UK auctions, dealers and private sellers to find your ideal match and put together a tailored offer.' },
+  { num: '03', title: 'Live Video Walkaround', text: 'Before you commit, we can arrange a personalised video walkaround so you see exactly what you’re buying, with every detail explained.' },
+  { num: '04', title: 'Secure With A Deposit', text: 'A deposit secures your vehicle and confirms your export plan — we can’t guarantee availability without this.' },
+  { num: '05', title: 'Quotation & Secure Payment', text: 'You’ll receive a clear, itemised quotation covering the full export cost, with a safe payment process by bank transfer or letter of credit.' },
+  { num: '06', title: 'Paperwork & Documentation', text: 'We manage every export document — customs declarations, VAT reclaim paperwork and vehicle documentation — so nothing is left to chance.' },
+  { num: '07', title: 'Shipping & Delivery', text: 'We use trusted logistics partners for RoRo or container shipping, and courier your keys and documents securely once your vehicle is on its way.' },
+  { num: '08', title: 'Aftersales Support', text: 'Our team stays on hand for any advice or queries after purchase, including support with customs clearance and registration at your destination.' },
+];
+
+const sourcingJourney = [
+  {
+    step: 'Step 1',
+    title: 'Choose Your Car',
+    text: 'New, used or a specific order — the choice is yours. Wherever the vehicle is located in the UK, our team verifies its history, specification and seller credentials before purchase, and we’re happy to arrange an independent inspection for extra peace of mind.',
+  },
+  {
+    step: 'Step 2',
+    title: 'Buy VAT-Free For Export',
+    text: 'Vehicles sold for export outside the UK can qualify for VAT relief — a saving of up to 20% on the advertised price. Our team will guide you through choosing a VAT-qualifying vehicle and handle the reclaim paperwork on your behalf.',
+  },
+  {
+    step: 'Step 3',
+    title: 'We Collect, Store & Prepare For Export',
+    text: 'Your vehicle is collected and brought to our secure Cornwall facility, where it undergoes our 198-point inspection and any pre-export checks required to meet your destination country’s import rules.',
+  },
+  {
+    step: 'Step 4',
+    title: 'Shipping, Paperwork & Delivery Coordination',
+    text: 'We coordinate shipping with trusted global freight partners — RoRo, container or air freight, depending on your destination — and courier all export documents, spare keys and accessories directly to you.',
+  },
+  {
+    step: 'Step 5',
+    title: 'Clearing, Registration & Final Delivery',
+    text: 'On arrival at your destination port, our trusted local agents (or your preferred agent) handle customs clearance and registration, so your vehicle reaches you fully compliant and ready to drive.',
+  },
+];
+---
+
+<Layout
+  title="Our Export Process | UK Vehicle Exporters"
+  description="How UK Vehicle Exporters works, from sourcing your vehicle and reclaiming VAT to shipping, customs clearance and final delivery."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Process</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        Simple, Transparent, Stress-Free
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Our Vehicle Export Process</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl leading-relaxed">
+        We don’t just sell the vehicle — we handle the entire export process too. From sourcing your ideal car to reclaiming VAT, shipping and customs clearance, here’s exactly how we get your vehicle from the UK to your door.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Get a Free Quote
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="/carsforexport" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Browse Export-Ready Vehicles
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Does It Work - 8 step grid -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider">How Does It Work?</span>
+        <h2 class="text-3xl font-bold text-gray-900 mt-2 font-[family-name:var(--font-heading)]">From First Enquiry to Delivery</h2>
+        <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Every export we handle follows the same clear, proven process — so you always know what happens next.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {exportSteps.map(s => (
+          <div class="bg-gray-50 border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-shadow">
+            <div class="w-10 h-10 rounded-lg bg-[var(--color-primary)] text-white flex items-center justify-center font-bold font-[family-name:var(--font-heading)] mb-4">
+              {s.num}
+            </div>
+            <h3 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">{s.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicle Sourcing Journey - detailed steps -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider">A Closer Look</span>
+        <h2 class="text-3xl font-bold text-gray-900 mt-2 font-[family-name:var(--font-heading)]">Your Vehicle Sourcing Journey</h2>
+        <p class="text-gray-600 mt-3 max-w-xl mx-auto">Simple. Secure. Professionally managed from start to finish.</p>
+      </div>
+      <div class="divide-y divide-gray-200 bg-white rounded-2xl border border-gray-100 overflow-hidden">
+        {sourcingJourney.map(item => (
+          <div class="flex flex-col sm:flex-row gap-6 p-8">
+            <div class="shrink-0">
+              <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold font-[family-name:var(--font-heading)] text-sm">
+                {item.step.replace('Step ', '')}
+              </span>
+            </div>
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-wider text-[var(--color-primary)]">{item.step}</span>
+              <h3 class="text-lg font-bold text-gray-900 font-[family-name:var(--font-heading)] mt-1 mb-2">{item.title}</h3>
+              <p class="text-gray-600 leading-relaxed">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-[var(--color-dark)]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">Ready to Start Your Export?</h2>
+      <p class="text-gray-400 mt-3 max-w-xl mx-auto">Tell us the vehicle and destination — we’ll handle sourcing, VAT and shipping from there.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+        Get a Free Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
