@@ -11,7 +11,7 @@ const totalVehicles = allVehicles.length;
 
 const makes = ['Make', 'Audi', 'BMW', 'Ford', 'Land Rover', 'McLaren', 'Mercedes-Benz', 'Nissan', 'Porsche', 'Rolls Royce', 'Toyota'];
 const bodyTypes = ['Body Type', 'Sedan', 'SUV', 'Hatchback', 'Coupe', 'Pickup Truck', 'Crossover', 'Minivan', 'Convertible'];
-const doors = ['Door', '2', '3', '4', '5'];
+const ages = ['Age', 'Under 1 Year', '1-3 Years', '3-5 Years', '5+ Years'];
 const models = ['Model', 'All Models'];
 const fuelTypes = ['Fuel Type', 'Petrol', 'Diesel', 'Electric', 'Hybrid'];
 const transmissions = ['Transmission', 'Automatic', 'Manual', 'CVT'];
@@ -20,7 +20,7 @@ const cylinders = ['Cylinders', '3', '4', '6', '8', '10', '12'];
 const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Green', 'Gold'];
 ---
 
-<section class="relative bg-[var(--color-dark)] overflow-hidden" style="height: 70vh; min-height: 550px; max-height: 700px;">
+<section class="relative bg-[var(--color-dark)] overflow-hidden" style="height: 66vh; min-height: 516px; max-height: 660px;">
   <!-- Static Background Image -->
   <div class="absolute inset-0">
     <img
@@ -32,24 +32,24 @@ const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Gre
   </div>
 
   <!-- Overlay Content -->
-  <div class="absolute inset-0 z-10 flex flex-col justify-end pb-8">
+  <div class="absolute inset-0 z-10 flex flex-col justify-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <!-- Heading -->
       <div class="mb-10 lg:mb-16">
-        <p class="text-[var(--color-primary)] text-sm font-medium mb-2">Over {totalVehicles.toLocaleString()} classified ads listing</p>
+        <p class="text-[var(--color-primary)] text-sm font-medium mb-2">Over {totalVehicles.toLocaleString()} Cars exported this week</p>
         <h1 class="text-4xl sm:text-5xl font-bold text-white font-[family-name:var(--font-heading)] leading-tight hero-heading" style="font-size: clamp(2.25rem, 5vw, 70px);">
-          Find what are you<br />looking for
+          We Supply & Export<br />New and Used Cars
         </h1>
         <p class="text-white/50 text-sm mt-3 max-w-lg">
-          Explore the worlds largest database to buy, sell, trade or simply rent a car
+          Specialist New and Used Car Exporters from UK to Destinations Worldwide
         </p>
       </div>
 
       <!-- Tabs - OUTSIDE the white card, on dark hero bg -->
       <div class="flex gap-2 mb-3" id="hero-tabs">
         <button class="hero-tab active px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-primary)] text-white transition-all" data-tab="all">All</button>
-        <button class="hero-tab px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] transition-all" data-tab="new">New Car</button>
-        <button class="hero-tab px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] transition-all" data-tab="used">Used Car</button>
+        <button class="hero-tab px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] transition-all" data-tab="new">New Car Exports</button>
+        <button class="hero-tab px-6 py-2 text-sm font-semibold rounded-full bg-[var(--color-dark)] text-white hover:bg-[var(--color-dark-light)] transition-all" data-tab="used">Used Car Exports</button>
       </div>
 
       <!-- Search Bar - white card, full width -->
@@ -79,8 +79,8 @@ const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Gre
             <select name="model" class="filter-select flex-1 min-w-[110px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
               {models.map(m => <option value={m === 'Model' ? '' : m}>{m}</option>)}
             </select>
-            <select name="doors" class="filter-select flex-1 min-w-[100px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
-              {doors.map(d => <option value={d === 'Door' ? '' : d}>{d}</option>)}
+            <select name="age" class="filter-select flex-1 min-w-[100px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
+              {ages.map(a => <option value={a === 'Age' ? '' : a}>{a}</option>)}
             </select>
             <select name="body" class="filter-select flex-1 min-w-[110px] bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-[var(--color-primary)] transition-colors cursor-pointer">
               {bodyTypes.map(b => <option value={b === 'Body Type' ? '' : b}>{b}</option>)}
