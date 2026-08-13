@@ -10,11 +10,11 @@ const quickFacts = [
 
 const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
-  { href: '#why-ship', label: 'Why ship with UK Vehicle Exporters' },
+  { href: '#why-ship', label: 'Our Other Services' },
   { href: '#shipping', label: 'Shipping to Kenya' },
   { href: '#import-duty', label: 'Vehicle age & import eligibility' },
   { href: '#kra-taxes', label: 'KRA import taxes explained' },
-  { href: '#vat-qualifying', label: 'VAT-qualifying vehicles' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
   { href: '#registration', label: 'Inspection & registration' },
   { href: '#arrival', label: 'Arrival in Kenya' },
 ];
@@ -130,8 +130,56 @@ const countryName = 'Kenya';
     </p>
   </div>
 
+  <div id="documentation-booking">
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Documentation Required for Booking</h3>
+    <ul class="space-y-1.5">
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">Car Registration Document (V5 or Logbook), Vehicle Invoice (or value), and ID (one government-issued photo ID and one utility bill showing address).</span>
+      </li>
+    </ul>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-5">Payment Terms / Modes</h3>
+    <ul class="space-y-1.5">
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">Full payment prior to sailing of vessel.</span>
+      </li>
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">Bank transfer preferred. Card payments (max £5,000) will attract processing fees.</span>
+      </li>
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">LOC, Cheques, Money Orders, and Cash are strictly not accepted.</span>
+      </li>
+    </ul>
+  </div>
+
   <div id="why-ship">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Why Ship Your Car from the UK to Kenya with UK Vehicle Exporters</h2>
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Our Other Services</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Car Sourcing / Buying on your behalf</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about UK vehicle sourcing and buying on the customer's behalf.]</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Tax-Free & VAT-Free Vehicle Supply</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about tax-free / VAT-qualifying vehicle supply.]</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Pre-Purchase Inspections</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about pre-purchase vehicle inspection service.]</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Government Pre-Shipping Inspection</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about government pre-shipping inspection requirements.]</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="why-ship-repeat">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Car Sourcing and Buying on your behalf</h2>
     <p class="text-gray-600 leading-relaxed">
       Kenya is one of our most established export destinations. UK Vehicle Exporters specialises in sourcing and
       exporting vehicles from the UK, with trusted shipping partners and support at every stage — from vehicle
@@ -195,13 +243,6 @@ const countryName = 'Kenya';
       Try our <a href="/import-uk-cars/kenya" class="text-[var(--color-primary)] font-semibold hover:underline">Kenya Import Duty Calculator</a>
       to estimate the customs value and taxes for a specific make and model before you commit to buying.
     </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">UK Preferential Origin</h3>
-    <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote, we'll
-      confirm whether the vehicle you're interested in qualifies.
-    </p>
   </div>
 
   <div id="kra-taxes">
@@ -222,13 +263,34 @@ const countryName = 'Kenya';
   </div>
 
   <div id="vat-qualifying">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">VAT-Qualifying Vehicles & VAT Reclaim</h2>
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Tax-Free Vehicle Supply & VAT Reclaims</h2>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">UK Preferential Origin (Tax-Free Vehicle Supply)</h3>
     <p class="text-gray-600 leading-relaxed">
-      In addition to potential import duty savings, some buyers also benefit from purchasing a
-      VAT-qualifying vehicle — an area UK Vehicle Exporters specialises in. A VAT-qualifying car is one where VAT
-      was charged when it was first purchased by a business and has not been reclaimed. For export buyers, this
-      can allow the 20% UK VAT to be reclaimed, helping to reduce the overall cost of the vehicle before it's
-      even shipped to Kenya.
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Kenya.]
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">VAT-free Supply of VAT-Qualifying (VATQ) Cars</h3>
+    <p class="text-gray-600 leading-relaxed">
+      A VAT-qualifying car is one where VAT was charged when it was first purchased by a business and has not
+      been reclaimed. For export buyers, this can allow the 20% UK VAT to be reclaimed, helping to reduce the
+      overall cost of the vehicle before it's even shipped to Kenya.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">HMRC's Personal Export Scheme (PES)</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Kenya.]
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Diplomatic and Military Personnel (UK Only) Tax-Free Exports</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Kenya.]
     </p>
   </div>
 
