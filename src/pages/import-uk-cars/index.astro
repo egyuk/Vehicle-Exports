@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const destinations = [
+  { name: 'Kenya', href: '/import-uk-cars/kenya', desc: 'CRSP-based customs value and Kenya import duty calculator.' },
+];
+---
+
+<Layout
+  title="Importing Cars from the UK | UK Vehicle Exporters"
+  description="Guides and tools for importing UK-sourced vehicles into your country — customs value, import duty, VAT and registration."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Importing Cars from the UK</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        Import Guides
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Importing Cars from the UK</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl text-lg">
+        UK Vehicle Exporters sources and exports quality vehicles from the UK. Choose your destination country
+        below for import costs, customs rules, and duty calculators.
+      </p>
+    </div>
+  </section>
+
+  <!-- Destinations -->
+  <section class="py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {destinations.map((d) => (
+          <a href={d.href} class="group block bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:border-[var(--color-primary)]/30 transition-all">
+            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] group-hover:text-[var(--color-primary)] transition-colors">{d.name}</h3>
+            <p class="text-sm text-gray-500 mt-2">{d.desc}</p>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-primary)] mt-4">
+              View guide
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-12 bg-[var(--color-dark)]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)] mb-3">Talk It Through with an Export Specialist</h2>
+      <p class="text-gray-400 max-w-xl mx-auto mb-6">
+        Not sure where to start? Our team can walk you through costs and the process for your destination.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Contact Our Export Team
+        </a>
+        <a href="tel:+441872491409" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Call 01872 491409
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

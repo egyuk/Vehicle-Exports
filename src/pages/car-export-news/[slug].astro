@@ -23,10 +23,15 @@ function formatDate(d: Date): string {
 
 // Get related posts (same category, exclude current)
 const allPosts = await getCollection('blog');
-const related = allPosts
-  .filter(p => !p.data.draft && p.data.slug !== slug && p.data.category === category)
+const publishedPosts = allPosts.filter(p => !p.data.draft);
+const related = publishedPosts
+  .filter(p => p.data.slug !== slug && p.data.category === category)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+const categories = [...new Set(publishedPosts.map(p => p.data.category))].sort();
+const categoryCounts: Record<string, number> = {};
+publishedPosts.forEach(p => { categoryCounts[p.data.category] = (categoryCounts[p.data.category] || 0) + 1; });
 ---
 
 <Layout title={`${title} - UK Vehicle Exporters Export News`} description={description}>
@@ -104,15 +109,26 @@ const related = allPosts
 
             <!-- Categories -->
             <div class="bg-white rounded-2xl border border-gray-200 p-5">
-              <h3 class="text-sm font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Categories</h3>
-              <div class="space-y-2">
-                <a href="/car-export-news" class="block text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors py-1">All Posts</a>
-                <a href="/car-export-news?category=Export+Guide" class="block text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors py-1">Export Guide</a>
-                <a href="/car-export-news?category=Vehicle+Reviews" class="block text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors py-1">Vehicle Reviews</a>
-                <a href="/car-export-news?category=Tips+%26+Advice" class="block text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors py-1">Tips & Advice</a>
-                <a href="/car-export-news?category=Industry+News" class="block text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors py-1">Industry News</a>
-                <a href="/car-export-news?category=Company+Updates" class="block text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors py-1">Company Updates</a>
-              </div>
+              <h3 class="text-base font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Categories</h3>
+              <ul class="space-y-0">
+                <li>
+                  <a href="/car-export-news" class="w-full flex justify-between items-center py-3 border-b border-gray-100 text-sm text-gray-700 hover:text-[var(--color-primary)] transition-colors">
+                    <span>All Posts</span>
+                    <span class="text-xs text-gray-400">({publishedPosts.length})</span>
+                  </a>
+                </li>
+                {categories.map(cat => (
+                  <li>
+                    <a
+                      href={`/car-export-news?category=${encodeURIComponent(cat)}`}
+                      class:list={["w-full flex justify-between items-center py-3 border-b border-gray-100 text-sm hover:text-[var(--color-primary)] transition-colors", cat === category ? "text-[var(--color-primary)] font-medium" : "text-gray-700"]}
+                    >
+                      <span>{cat}</span>
+                      <span class="text-xs text-gray-400">({categoryCounts[cat]})</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <!-- Contact Info -->

@@ -1,0 +1,98 @@
+{
+  "directImports": [
+    {
+      "ageLabel": ">1 <=2 years",
+      "depreciationRate": 0.2
+    },
+    {
+      "ageLabel": ">2 <=3 years",
+      "depreciationRate": 0.3
+    },
+    {
+      "ageLabel": ">3 <=4years",
+      "depreciationRate": 0.4
+    },
+    {
+      "ageLabel": ">4 <=5 years",
+      "depreciationRate": 0.5
+    },
+    {
+      "ageLabel": ">5 <=6 years",
+      "depreciationRate": 0.55
+    },
+    {
+      "ageLabel": ">6 <=7 years",
+      "depreciationRate": 0.6
+    },
+    {
+      "ageLabel": ">7 <=8 years",
+      "depreciationRate": 0.65
+    }
+  ],
+  "previouslyRegistered": [
+    {
+      "ageLabel": "1 years",
+      "depreciationRate": 0.2
+    },
+    {
+      "ageLabel": "2 years",
+      "depreciationRate": 0.35
+    },
+    {
+      "ageLabel": "3 years",
+      "depreciationRate": 0.5
+    },
+    {
+      "ageLabel": "4 years",
+      "depreciationRate": 0.6
+    },
+    {
+      "ageLabel": "5 years",
+      "depreciationRate": 0.7
+    },
+    {
+      "ageLabel": "6 years",
+      "depreciationRate": 0.75
+    },
+    {
+      "ageLabel": "7 years",
+      "depreciationRate": 0.8
+    },
+    {
+      "ageLabel": "8 years",
+      "depreciationRate": 0.83
+    },
+    {
+      "ageLabel": "9 years",
+      "depreciationRate": 0.86
+    },
+    {
+      "ageLabel": "10 years",
+      "depreciationRate": 0.89
+    },
+    {
+      "ageLabel": "11years",
+      "depreciationRate": 0.9
+    },
+    {
+      "ageLabel": "12 years",
+      "depreciationRate": 0.91
+    },
+    {
+      "ageLabel": "13 years",
+      "depreciationRate": 0.92
+    },
+    {
+      "ageLabel": "14 years",
+      "depreciationRate": 0.93
+    },
+    {
+      "ageLabel": "15 years",
+      "depreciationRate": 0.94
+    },
+    {
+      "ageLabel": "over 15 years",
+      "depreciationRate": 0.95
+    }
+  ]
+}

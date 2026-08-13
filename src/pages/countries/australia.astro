@@ -1,0 +1,341 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// TODO: replace all placeholder figures/text below with verified Australia-specific facts
+// (import duty rate, GST rate, registration authority, eligible vehicle age rules, ports, etc.)
+const quickFacts = [
+  { label: 'Shipping Time', value: '[TODO] days', sub: 'RoRo / Container, [TODO] route' },
+  { label: 'Delivery Ports', value: '[TODO Port 1], [TODO Port 2]', sub: '' },
+  { label: 'Australian GST', value: '[TODO]%', sub: 'Charged on customs value' },
+  { label: 'Import Duty', value: '[TODO]%', sub: '[TODO: relief scheme, if any]' },
+];
+
+const tocLinks = [
+  { href: '#why-ship', label: 'Why ship with UK Vehicle Exporters' },
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#shipping', label: 'Shipping to Australia' },
+  { href: '#import-duty', label: 'Import duty & eligibility' },
+  { href: '#vat-qualifying', label: 'VAT-qualifying vehicles' },
+  { href: '#local-tax', label: 'Australian GST explained' },
+  { href: '#registration', label: 'Compliance & registration' },
+  { href: '#arrival', label: 'Arrival in Australia' },
+];
+
+const popularBrands = ['[TODO Brand]', '[TODO Brand]', '[TODO Brand]', '[TODO Brand]', '[TODO Brand]'];
+const destinationPorts = ['[TODO Port 1]', '[TODO Port 2]'];
+---
+
+<Layout
+  title="Car Shipping to Australia | UK Vehicle Export - UK Vehicle Exporters"
+  description="UK Vehicle Exporters sources and exports quality vehicles from the UK to Australia. Learn about costs, shipping options, import duty, GST and registration. [TODO: refine description]"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <a href="/countries" class="hover:text-[var(--color-primary)] transition-colors">Destinations</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Australia</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        UK to Australia Export Specialists
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Car Shipping to Australia</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl text-lg">
+        UK Vehicle Exporters sources and exports quality vehicles from the UK to Australia. We handle vehicle
+        selection, shipping, duty and tax guidance, and registration support, so you can buy with confidence.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Get a Shipping Quote
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="/carsforexport" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Browse Export-Ready Cars
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="relative -mt-8 z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {quickFacts.map((fact) => (
+            <div class="text-center">
+              <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">{fact.label}</div>
+              <div class="text-lg font-bold text-gray-900 mt-1 font-[family-name:var(--font-heading)]">{fact.value}</div>
+              {fact.sub && <div class="text-xs text-gray-400 mt-0.5">{fact.sub}</div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Content -->
+        <div class="lg:col-span-2 min-w-0 space-y-14">
+
+          <div id="why-ship">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Why Ship Your Car from the UK to Australia with UK Vehicle Exporters</h2>
+            <p class="text-gray-600 leading-relaxed">
+              Buying and exporting a car to Australia doesn't need to be stressful. UK Vehicle Exporters specialises in
+              sourcing and exporting vehicles from the UK, with trusted shipping partners and support at every
+              stage, from vehicle selection through to Australian compliance and registration.
+            </p>
+            <div class="grid sm:grid-cols-3 gap-4 mt-6">
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Buy from our stock</h4>
+                <p class="text-xs text-gray-500 mt-1">Choose from our export-ready UK vehicles.</p>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Sourced to order</h4>
+                <p class="text-xs text-gray-500 mt-1">Tell us what you need, we'll find it in the UK market.</p>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-xl">
+                <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">You find it, we export it</h4>
+                <p class="text-xs text-gray-500 mt-1">Spotted a car elsewhere? We can buy and export it for you.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="costs">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">What Does It Cost to Import a Car to Australia?</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              The total cost depends on the vehicle and shipping method, but there are no hidden surprises when
+              UK Vehicle Exporters handles it for you. Typical cost considerations include:
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600"><strong class="text-gray-900">Vehicle price</strong> — VAT-qualifying cars can reduce cost by avoiding UK VAT</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600"><strong class="text-gray-900">Shipping</strong> — [TODO: typical cost range] depending on vehicle size and route</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600"><strong class="text-gray-900">Import duty</strong> — [TODO: standard rate and any relief]</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600"><strong class="text-gray-900">Australian GST</strong> — [TODO]%, applied on the customs value of the vehicle</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600"><strong class="text-gray-900">Compliance & registration fees</strong> — [TODO: local scheme name, e.g. RAWS/SEVS]</span>
+              </li>
+            </ul>
+            <p class="text-gray-600 leading-relaxed mt-4">
+              We provide a clear, itemised export quote before you commit to anything — just speak to our team.
+            </p>
+          </div>
+
+          <div id="shipping">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Australia</h2>
+            <p class="text-gray-600 leading-relaxed mb-6">
+              We work with trusted shipping partners to arrange regular, reliable vehicle deliveries from the UK
+              to Australia.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4 mb-6">
+              <div class="border border-gray-100 rounded-xl p-5">
+                <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
+                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 17h1l1-5h14l1 5h1m-4 0a2 2 0 11-4 0m-4 0a2 2 0 11-4 0M5 12V7a2 2 0 012-2h10a2 2 0 012 2v5"/></svg>
+                </div>
+                <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
+                <p class="text-sm text-gray-500 mt-1">Ideal for most vehicles — simple, fast, and cost-effective. Typically [TODO] days.</p>
+              </div>
+              <div class="border border-gray-100 rounded-xl p-5">
+                <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
+                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7H4a1 1 0 00-1 1v8a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM8 7V5a1 1 0 011-1h6a1 1 0 011 1v2M12 7v10M7 12h10"/></svg>
+                </div>
+                <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Container Shipping</h4>
+                <p class="text-sm text-gray-500 mt-1">Extra security, or for multiple vehicles and personal items. Typically [TODO] days.</p>
+              </div>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+              <strong class="text-gray-900">Delivery ports:</strong> [TODO Port 1], [TODO Port 2]. We handle every
+              detail with our shipping partners — just choose your vehicle and leave the rest to us.
+            </p>
+          </div>
+
+          <div id="import-duty">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Import Duty & Eligibility</h2>
+            <p class="text-gray-600 leading-relaxed mb-6">
+              [TODO: explain Australia's specific import eligibility rules — e.g. RAWS/SEVS scheme, vehicle age
+              restrictions, personal import concessions — and when the standard import duty rate applies or can
+              be reduced.]
+            </p>
+
+            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">[TODO: Relief Scheme Name]</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              [TODO: describe the relief scheme, eligibility conditions, and typical outcome.] In practice,
+              this means:
+            </p>
+            <ol class="space-y-3 mb-4">
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+                <span class="text-gray-600"><strong class="text-gray-900">[TODO: condition 1]</strong> — [TODO: detail]</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+                <span class="text-gray-600"><strong class="text-gray-900">[TODO: condition 2]</strong> — [TODO: detail]</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+                <span class="text-gray-600"><strong class="text-gray-900">[TODO: condition 3]</strong> — [TODO: detail]</span>
+              </li>
+            </ol>
+            <p class="text-gray-600 leading-relaxed mb-6">[TODO: outcome if eligible, e.g. reduced/zero duty.]</p>
+
+            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">UK Preferential Origin</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+              performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+              we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+            </p>
+          </div>
+
+          <div id="vat-qualifying">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">VAT-Qualifying Vehicles & VAT Reclaim</h2>
+            <p class="text-gray-600 leading-relaxed">
+              In addition to potential import duty savings, some buyers also benefit from purchasing a
+              VAT-qualifying vehicle — an area UK Vehicle Exporters specialises in. A VAT-qualifying car is one where VAT was
+              charged when it was first purchased by a business and has not been reclaimed. For export buyers,
+              this can allow the 20% UK VAT to be reclaimed, helping to reduce the overall cost of the vehicle.
+            </p>
+          </div>
+
+          <div id="local-tax">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Understanding Australian GST</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">Australian GST is charged at <strong class="text-gray-900">[TODO]%</strong>, payable on the customs value of the vehicle, which includes:</p>
+            <ul class="space-y-2 mb-4">
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The car's purchase price</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Shipping and transport costs</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Import duty (if applicable)</li>
+            </ul>
+            <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
+              <strong class="text-gray-900">Note:</strong> [TODO: confirm calculation order/compounding rule for Australian GST.]
+            </p>
+          </div>
+
+          <div id="registration">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Compliance & Registration</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">[TODO: name the Australian compliance/registration body and process, e.g. state registration authority.] Registration is typically based on:</p>
+            <ul class="space-y-2 mb-4">
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>[TODO: factor 1, e.g. market value]</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>[TODO: factor 2, e.g. emissions]</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>[TODO: factor 3, e.g. compliance plate/RHD conversion]</li>
+            </ul>
+            <p class="text-gray-600 leading-relaxed">
+              [TODO: mention any incentives, e.g. reduced fees for EVs.] We'll help you estimate registration costs
+              before the car leaves the UK, so there are no surprises on arrival.
+            </p>
+          </div>
+
+          <div id="arrival">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Arrival in Australia: What Happens Next</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">Once your vehicle arrives in Australia:</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Customs clearance is handled by your agent</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Any taxes and duty are settled correctly</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Compliance inspection is completed</li>
+              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Plates, tax, and insurance are arranged</li>
+            </ul>
+            <p class="text-gray-600 leading-relaxed mt-4">
+              At every stage, we're on hand to guide you — even after the car has left the UK.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- On this page -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">On This Page</h3>
+            <ul class="space-y-2.5">
+              {tocLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors">
+                    <svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Popular Brands -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Popular Brands for Australia</h3>
+            <div class="flex flex-wrap gap-2">
+              {popularBrands.map((brand) => (
+                <span class="bg-white border border-gray-200 text-sm text-gray-700 px-3 py-1.5 rounded-full whitespace-nowrap">{brand}</span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Destination Ports -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Destination Ports</h3>
+            <ul class="space-y-2">
+              {destinationPorts.map((port) => (
+                <li class="flex items-center gap-2 text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  {port}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Related Reading -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Related Reading</h3>
+            <ul class="space-y-2">
+              <li><a href="/car-export-news/complete-guide-exporting-vehicles-from-uk" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Complete UK export guide</a></li>
+              <li><a href="/car-export-news/understanding-vehicle-shipping-costs" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Understanding shipping costs</a></li>
+              <li><a href="/faq" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Export FAQs</a></li>
+              <li><a href="/countries" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>More destinations</a></li>
+            </ul>
+          </div>
+
+          <!-- CTA -->
+          <div class="bg-[var(--color-primary)] rounded-2xl p-6 text-center">
+            <h3 class="font-semibold text-white text-lg mb-2 font-[family-name:var(--font-heading)]">Ready to Export to Australia?</h3>
+            <p class="text-white/80 text-sm mb-4">Get a personalised, itemised quote for your vehicle export.</p>
+            <a href="/contact" class="inline-block bg-white text-[var(--color-primary)] px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all">
+              Get Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-12 bg-[var(--color-dark)]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)] mb-3">Talk It Through with an Export Specialist</h2>
+      <p class="text-gray-400 max-w-xl mx-auto mb-6">
+        If you'd like to talk through any part of shipping your car to Australia, our team is happy to help.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Contact Our Export Team
+        </a>
+        <a href="tel:+441872491409" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Call 01872 491409
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

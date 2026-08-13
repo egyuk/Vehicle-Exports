@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const gallery = Array.from({ length: 38 }, (_, i) => `/images/ambulance/ambulance-${String(i + 1).padStart(2, '0')}.webp`);
+const galleryInitialCount = 8;
+
 const equipment = [
   { name: 'Defibrillator', desc: 'Used to stabilise a heart undergoing cardiac arrest or to revive a crashing patient and provides shocks where needed.' },
   { name: 'Electrocardiogram (ECG) Monitor', desc: 'Keeps track of the vital signs of the patient transported.' },
@@ -14,8 +17,8 @@ const equipment = [
   { name: 'Child stretcher straps', desc: 'For lifting of children, and come in various sizes depending on age of child.' },
   { name: 'Ambulance chair', desc: 'The most used transport device from the patient home to the back of an ambulance is the ambulance chair.' },
   { name: 'Nebulizer', desc: 'A nebuliser is meant to vaporise liquid medication into a mist so that the patient can inhale it on the way to the hospital. This is used when medicine has to be administered critically to the patient for immediate relief.' },
-  { name: 'Oxygen Supply Units', desc: 'Can be used in fire survivors, patients with breathing difficulties such as asthma or to revive a collapsed patient. Includes Oxygen Cylinders, Oxygen Masks and Nasal Oxygen Masks.' },
-  { name: 'Sphygmomanometer', desc: 'For measuring blood pressure. Consists of an inflatable rubber cuff applied to the arm and connected to a mechanical manometer, enabling determination of systolic and diastolic blood pressure.' },
+  { name: 'Oxygen Supply Units', desc: 'Can be used in fire survivors, patients with breathing difficulties such as asthma or to revive a collapsed patient. These include: Oxygen Cylinder – used to replenish low oxygen levels, Oxygen Masks – different sizes for different volumes of oxygen, Nasal Oxygen Masks – provides low oxygen flow through nose.' },
+  { name: 'Sphygmomanometer', desc: 'For measuring blood pressure. It consists in an inflatable rubber cuff which is applied to the arm and connected to a spring in a mechanical manometer, next to a graduated scale, enabling the determination of systolic and diastolic blood pressure by increasing and gradually releasing the pressure in the cuff.' },
   { name: 'Drugs Administration kit', desc: 'For drilling into bones to give drugs.' },
   { name: 'Other Available Options / Equipment', desc: 'Auxiliary batteries and battery management systems, stretchers and restraint systems, lowerable suspension, stretcher lifts.' },
 ];
@@ -77,19 +80,9 @@ const supplies = [
     </div>
   </section>
 
-  <!-- Placeholder hero image -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-    <div class="aspect-[21/9] rounded-2xl bg-gray-100 border border-gray-200 flex items-center justify-center shadow-xl">
-      <div class="text-center text-gray-400">
-        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M4 8h16M4 4h16v16H4V4z"/></svg>
-        <p class="text-sm">Image placeholder</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Intro Content -->
   <section class="py-16 lg:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       <p class="text-gray-600 leading-relaxed">
         We work with some of the most technically capable and advanced specialist vehicle convertors in Europe, and bring together an unrivalled team of designers, engineers, production specialists, business managers and dedicated and skilled workforce to ensure a seamless process for you to have the vehicles of your choice and specification. We ensure that the vehicles are built to the highest standards, on time and on budget together with a superb aftercare and ongoing support following the shipping and exporting of your vehicles. We specialise in shipping and export of Emergency Vehicle Conversions, including Police, Ambulance, Fire & Rescue Vehicle Conversions and work with a variety of international clients.
       </p>
@@ -97,10 +90,123 @@ const supplies = [
         Given our connections and network of experts in the field of accident and emergency conversions, this allows us the opportunity to offer you technical development and engineering teams to achieve almost anything for the end user. We are able to arrange and design on any base chassis and our engineering team dialogue with the OEMs technical departments to ensure all works do not interfere with base chassis warranty parameters and more importantly affect the passive safety systems.
       </p>
       <p class="text-gray-600 leading-relaxed">
-        As well as Shipping and Export (Vehicle Conversion services), we also offer a range of engineering services including design and manufacturing of specialist equipment mounts, and bespoke electrical looms, supply and installation of vehicle racking, and an onsite installation service for equipment such as Telematics, Vehicle Tracking, CCTV & Comms, with the ability to offer this service internationally.
+        As well as Shipping and Export (Vehicle Conversion services), we also offer a range of engineering services including design and manufacturing of specialist equipment mounts, and bespoke electrical looms, Supply and installation of vehicle racking, and an onsite installation service for equipment such as Telematics, Vehicle Tracking, CCTV & Comms, with the ability to offer this service internationally.
       </p>
     </div>
   </section>
+
+  <!-- Gallery -->
+  <section class="pb-16 lg:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <span class="text-[var(--color-primary)] text-sm font-semibold uppercase tracking-wider">Our Work</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mt-2 font-[family-name:var(--font-heading)]">Gallery of Exported Ambulances</h2>
+      </div>
+      <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {gallery.map((src, i) => (
+          <button
+            type="button"
+            class:list={["gallery-thumb group relative overflow-hidden rounded-xl cursor-zoom-in", { hidden: i >= galleryInitialCount }]}
+            data-index={i}
+          >
+            <img
+              src={src}
+              alt="Ambulance and emergency vehicle conversion"
+              class="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+          </button>
+        ))}
+      </div>
+      {gallery.length > galleryInitialCount && (
+        <div class="text-center mt-8">
+          <button
+            id="gallery-show-all"
+            type="button"
+            class="inline-flex items-center gap-2 border-2 border-gray-200 hover:border-[var(--color-primary)] text-gray-700 hover:text-[var(--color-primary)] px-6 py-3 rounded-xl font-semibold transition-all"
+          >
+            View All {gallery.length} Photos
+          </button>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Gallery Lightbox -->
+  <div id="lightbox" class="hidden fixed inset-0 z-[9999] bg-black/90 backdrop-blur-sm items-center justify-center">
+    <button id="lightbox-close" class="absolute top-5 right-5 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10" aria-label="Close">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button id="lightbox-prev" class="absolute left-2 sm:left-5 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10" aria-label="Previous">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="lightbox-next" class="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors z-10" aria-label="Next">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="Ambulance and emergency vehicle conversion" class="max-w-[90vw] max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium">
+      <span id="lightbox-counter"></span>
+    </div>
+  </div>
+
+  <script define:vars={{ gallery }}>
+    const grid = document.getElementById('gallery-grid');
+    const showAllBtn = document.getElementById('gallery-show-all');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    let lightboxIndex = 0;
+
+    showAllBtn && showAllBtn.addEventListener('click', () => {
+      grid.querySelectorAll('.gallery-thumb.hidden').forEach(el => el.classList.remove('hidden'));
+      showAllBtn.remove();
+    });
+
+    function openLightbox(idx) {
+      lightboxIndex = idx;
+      lightboxImg.src = gallery[lightboxIndex];
+      lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + gallery.length;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function lightboxNav(dir) {
+      lightboxIndex = (lightboxIndex + dir + gallery.length) % gallery.length;
+      lightboxImg.src = gallery[lightboxIndex];
+      lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + gallery.length;
+    }
+
+    grid.querySelectorAll('.gallery-thumb').forEach(btn => {
+      btn.addEventListener('click', () => openLightbox(Number(btn.dataset.index)));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => lightboxNav(-1));
+    lightboxNext.addEventListener('click', () => lightboxNav(1));
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+      if (e.key === 'ArrowRight') lightboxNav(1);
+    });
+  </script>
 
   <!-- Equipment -->
   <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
