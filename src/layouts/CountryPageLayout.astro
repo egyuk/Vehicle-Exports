@@ -1,0 +1,185 @@
+---
+// Reusable shell for "Car Shipping to <Country>" pages.
+// Wraps Layout with the hero, quick-facts bar, table of contents, sidebar
+// and final CTA used across country pages. Page-specific body content
+// (the id-tagged <h2> sections referenced by tocLinks) goes in the
+// default slot; see src/pages/countries-we-ship-to/australia.astro for a full example.
+import Layout from './Layout.astro';
+
+interface QuickFact {
+  label: string;
+  value: string;
+  sub?: string;
+}
+
+interface TocLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  countryName: string;
+  badgeText?: string;
+  heading?: string;
+  intro?: string;
+  quickFacts: QuickFact[];
+  tocLinks: TocLink[];
+  popularBrands?: string[];
+  destinationPorts?: string[];
+  finalCtaHeading?: string;
+  finalCtaText?: string;
+}
+
+const {
+  title,
+  description,
+  countryName,
+  badgeText = `Car Export Specialists from UK to ${countryName}`,
+  heading = `UK Car Shipping to ${countryName}`,
+  quickFacts,
+  tocLinks,
+  popularBrands = [],
+  destinationPorts = [],
+  intro = `UK Vehicle Exporters Ltd sources and exports quality vehicles from the UK to ${countryName}. We handle the whole process, from car sourcing, tax-free supply (VAT reclaiming), buy on your behalf, negotiations, inspections, collection and delivery to the port, loading onto the ship, UK customs clearance, VAT-reclaiming, and shipping to your destination port (${destinationPorts.join(', ') || countryName}).`,
+  finalCtaHeading = 'Talk It Through with an Export Specialist',
+  finalCtaText = `If you'd like to talk through any part of shipping your car to ${countryName}, our team is happy to help.`,
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <a href="/countries-we-ship-to" class="hover:text-[var(--color-primary)] transition-colors">Countries We Ship To</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">{countryName}</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        {badgeText}
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">{heading}</h1>
+      <p class="text-gray-400 mt-4 text-lg">{intro}</p>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  {quickFacts.length > 0 && (
+    <section class="relative -mt-8 z-10">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {quickFacts.map((fact) => (
+              <div class="text-center">
+                <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">{fact.label}</div>
+                <div class="text-lg font-bold text-gray-900 mt-1 font-[family-name:var(--font-heading)]">{fact.value}</div>
+                {fact.sub && <div class="text-xs text-gray-400 mt-0.5">{fact.sub}</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Main Content -->
+  <section class="py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Content (page-specific sections) -->
+        <div class="lg:col-span-2 min-w-0 space-y-14">
+          <slot />
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- On this page -->
+          {tocLinks.length > 0 && (
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">On This Page</h3>
+              <ul class="space-y-2.5">
+                {tocLinks.map((link) => (
+                  <li>
+                    <a href={link.href} class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors">
+                      <svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Popular Brands -->
+          {popularBrands.length > 0 && (
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Popular Brands for {countryName}</h3>
+              <div class="flex flex-wrap gap-2">
+                {popularBrands.map((brand) => (
+                  <span class="bg-white border border-gray-200 text-sm text-gray-700 px-3 py-1.5 rounded-full whitespace-nowrap">{brand}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Destination Ports -->
+          {destinationPorts.length > 0 && (
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Destination Ports</h3>
+              <ul class="space-y-2">
+                {destinationPorts.map((port) => (
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    {port}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Related Reading -->
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Related Reading</h3>
+            <ul class="space-y-2">
+              <slot name="related-reading">
+                <li><a href="/car-export-news/complete-guide-exporting-vehicles-from-uk" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Complete UK export guide</a></li>
+                <li><a href="/car-export-news/understanding-vehicle-shipping-costs" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Understanding shipping costs</a></li>
+                <li><a href="/faq" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Export FAQs</a></li>
+                <li><a href="/countries-we-ship-to" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>More destinations</a></li>
+              </slot>
+            </ul>
+          </div>
+
+          <!-- CTA -->
+          <div class="bg-[var(--color-primary)] rounded-2xl p-6 text-center">
+            <h3 class="font-semibold text-white text-lg mb-2 font-[family-name:var(--font-heading)]">Ready to Export to {countryName}?</h3>
+            <p class="text-white/80 text-sm mb-4">Get a personalised, itemised quote for your vehicle export.</p>
+            <a href="/contact" class="inline-block bg-white text-[var(--color-primary)] px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all">
+              Get Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-12 bg-[var(--color-dark)]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)] mb-3">{finalCtaHeading}</h2>
+      <p class="text-gray-400 max-w-xl mx-auto mb-6">{finalCtaText}</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Contact Our Export Team
+        </a>
+        <a href="tel:+441872491409" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Call 01872 491409
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

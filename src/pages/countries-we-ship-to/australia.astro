@@ -1,0 +1,227 @@
+---
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+
+// TODO: replace all placeholder figures/text below with verified Australia-specific facts
+// (import duty rate, GST rate, registration authority, eligible vehicle age rules, ports, etc.)
+const quickFacts = [
+  { label: 'Shipping Time', value: '[TODO] days', sub: 'RoRo / Container' },
+  { label: 'Delivery Ports', value: '[TODO Port 1], [TODO Port 2]', sub: '' },
+  { label: 'Australian GST', value: '[TODO]%', sub: 'Charged on customs value' },
+  { label: 'Pre-Export Inspection', value: '[TODO]', sub: '[TODO: inspection scheme/authority, if required]' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+];
+
+const popularBrands = ['[TODO Brand]', '[TODO Brand]', '[TODO Brand]', '[TODO Brand]', '[TODO Brand]'];
+const destinationPorts = ['[TODO Port 1]', '[TODO Port 2]'];
+const countryName = 'Australia';
+---
+
+<CountryPageLayout
+  title="Car Shipping to Australia | UK Vehicle Export - UK Vehicle Exporters"
+  description="UK Vehicle Exporters sources and exports quality vehicles from the UK to Australia. Learn about costs, shipping options, import duty, GST and registration. [TODO: refine description]"
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  finalCtaText="If you'd like to talk through any part of shipping your car to Australia, our team is happy to help."
+>
+  <div id="costs">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Cost of Shipping a Car from the UK to {countryName} ({destinationPorts.join(', ')})?</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The total cost of shipping depends on the vehicle make, model and most importantly size. We work directly
+      with all shipping lines in the UK to arrange regular and reliable vehicle exports from the UK to {countryName} ({destinationPorts.join(', ')}).
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="border border-gray-100 rounded-xl p-5">
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
+        <p class="text-sm text-gray-500 mt-1 mb-4">Ideal for most vehicles — simple, fast, and cost-effective. Typically [TODO] days.</p>
+        <ul class="space-y-2 pt-3 border-t border-gray-100">
+          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+            <span>Small vehicles (up to 1.6m height)</span>
+            <span class="font-semibold text-gray-900 shrink-0">£1,250</span>
+          </li>
+          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+            <span>Large vehicles (above 1.68m height)</span>
+            <span class="font-semibold text-gray-900 shrink-0">£1,395</span>
+          </li>
+        </ul>
+      </div>
+      <div class="border border-gray-100 rounded-xl p-5">
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Container Shipping</h4>
+        <p class="text-sm text-gray-500 mt-1 mb-4">Extra security, or for multiple vehicles and personal items. Typically [TODO] days.</p>
+        <ul class="space-y-2 pt-3 border-t border-gray-100">
+          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+            <span>20ft Private Container (fitting one car)</span>
+            <span class="font-semibold text-gray-900 shrink-0">£1,950</span>
+          </li>
+          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+            <span>40ft Container (electric)</span>
+            <span class="font-semibold text-gray-900 shrink-0">£3,575</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">What is included in our price above?</h3>
+    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">Loading and lashing vehicle into ship</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">UK customs export and clearance</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">UK port handling charges</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">DVLA documentation and export certification</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">Export documentation (e.g Bill of Lading)</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">Posting of the Export Documents from UK by UPS/DHL</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">Shipping of the vehicle from the UK to Destination Port</span>
+      </li>
+    </ul>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3 mt-6">Our price above excludes</h3>
+    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <span class="text-gray-600">Pre-Export Inspection (if required)</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <span class="text-gray-600">Marine Insurance (container only)</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <span class="text-gray-600">Collection and/or delivery of the vehicle</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <span class="text-gray-600">All destination country's import fees</span>
+      </li>
+    </ul>
+  </div>
+
+  <div id="documentation-booking">
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Documentation Required for Booking</h3>
+    <ul class="space-y-1.5">
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">Car Registration Document (V5 or Logbook), Vehicle Invoice (or value), and ID (one government-issued photo ID and one utility bill showing address).</span>
+      </li>
+    </ul>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-5">Payment Terms / Modes</h3>
+    <ul class="space-y-1.5">
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">Full payment prior to sailing of vessel.</span>
+      </li>
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">Bank transfer preferred. Card payments (max £5,000) will attract processing fees.</span>
+      </li>
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">LOC, Cheques, Money Orders, and Cash are strictly not accepted.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div id="why-ship">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Our Other Services</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Car Sourcing / Buying on your behalf</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about UK vehicle sourcing and buying on the customer's behalf.]</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Tax-Free & VAT-Free Vehicle Supply</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about tax-free / VAT-qualifying vehicle supply.]</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Pre-Purchase Inspections</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about pre-purchase vehicle inspection service.]</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Government Pre-Shipping Inspection</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about government pre-shipping inspection requirements.]</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="why-ship-repeat">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Car Sourcing and Buying on your behalf</h2>
+    <p class="text-gray-600 leading-relaxed">
+      Buying and exporting a car to Australia doesn't need to be stressful. UK Vehicle Exporters specialises in
+      sourcing and exporting vehicles from the UK, with trusted shipping partners and support at every
+      stage, from vehicle selection through to Australian compliance and registration.
+    </p>
+    <div class="grid sm:grid-cols-3 gap-4 mt-6">
+      <div class="p-4 bg-gray-50 rounded-xl">
+        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Buy from our stock</h4>
+        <p class="text-xs text-gray-500 mt-1">Choose from our export-ready UK vehicles.</p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded-xl">
+        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Sourced to order</h4>
+        <p class="text-xs text-gray-500 mt-1">Tell us what you need, we'll find it in the UK market.</p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded-xl">
+        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">You find it, we export it</h4>
+        <p class="text-xs text-gray-500 mt-1">Spotted a car elsewhere? We can buy and export it for you.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="vat-qualifying">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Tax-Free Vehicle Supply & VAT Reclaims</h2>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">UK Preferential Origin (Tax-Free Vehicle Supply)</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">VAT-free Supply of VAT-Qualifying (VATQ) Cars</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">HMRC's Personal Export Scheme (PES)</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Diplomatic and Military Personnel (UK Only) Tax-Free Exports</h3>
+    <p class="text-gray-600 leading-relaxed">
+      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
+      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
+      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+    </p>
+  </div>
+
+</CountryPageLayout>

@@ -1,25 +1,24 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const allCountries = await getCollection('countries');
-  // Only child countries (those with parentSlug)
-  const children = allCountries.filter(c => c.data.parentSlug);
-  return children.map((country) => ({
-    params: { region: country.data.parentSlug!, country: country.data.slug },
+  // Only top-level regions (no parentSlug)
+  const regions = allCountries.filter(c => !c.data.parentSlug);
+  return regions.map((country) => ({
+    params: { slug: country.data.slug },
     props: { country },
   }));
 }
 
 const { country } = Astro.props;
 const { Content } = await render(country);
-const { title, description, region, parentSlug, shippingTime, popularBrands, popularModels, ports, keyFacts, heroImage } = country.data;
+const { title, description, region, shippingTime, popularBrands, popularModels, ports, keyFacts, heroImage } = country.data;
 
-// Get sibling countries (same parent)
+// Get child country pages for this region
 const allCountries = await getCollection('countries');
-const parent = allCountries.find(c => c.data.slug === parentSlug && !c.data.parentSlug);
-const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.data.slug !== country.data.slug);
+const childCountries = allCountries.filter(c => c.data.parentSlug === country.data.slug);
 ---
 
 <Layout title={`${title} - UK Vehicle Exporters`} description={description}>
@@ -33,22 +32,15 @@ const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.
     )}
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
-        <div class="flex items-center gap-2 text-sm text-gray-400 mb-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
-          <a href="/countries" class="hover:text-[var(--color-primary)] transition-colors">All Destinations</a>
-          <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          {parent && (
-            <>
-              <a href={`/countries/${parentSlug}`} class="hover:text-[var(--color-primary)] transition-colors">{parent.data.title}</a>
-              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </>
-          )}
-          <span class="text-gray-500">{title}</span>
-        </div>
+        <a href="/countries-we-ship-to" class="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[var(--color-primary)] transition-colors mb-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          All Destinations
+        </a>
         <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
           {region}
         </span>
-        <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)]">{title}</h1>
-        <p class="text-gray-400 mt-4 text-base lg:text-lg">{description}</p>
+        <h1 class="text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)]">{title}</h1>
+        <p class="text-gray-400 mt-4 text-lg">{description}</p>
       </div>
     </div>
   </section>
@@ -57,8 +49,8 @@ const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.
   {keyFacts.length > 0 && (
     <section class="relative -mt-8 z-10">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 sm:p-6">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {keyFacts.map((fact) => (
               <div class="text-center">
                 <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">{fact.title}</div>
@@ -77,7 +69,7 @@ const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.
       <div class="grid lg:grid-cols-3 gap-12">
         <!-- Main Content -->
         <div class="lg:col-span-2 min-w-0">
-          <div class="prose prose-base lg:prose-lg max-w-none prose-headings:font-[family-name:var(--font-heading)] prose-headings:text-gray-900 prose-a:text-[var(--color-primary)] prose-strong:text-gray-900 overflow-hidden break-words">
+          <div class="prose prose-lg max-w-none prose-headings:font-[family-name:var(--font-heading)] prose-headings:text-gray-900 prose-a:text-[var(--color-primary)] prose-strong:text-gray-900 overflow-hidden break-words">
             <Content />
           </div>
         </div>
@@ -126,16 +118,16 @@ const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.
             </div>
           )}
 
-          <!-- Other Destinations in this Region -->
-          {siblings.length > 0 && (
+          <!-- Country Sub-Pages -->
+          {childCountries.length > 0 && (
             <div class="bg-gray-50 rounded-2xl p-6">
-              <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">More in {parent?.data.region || region}</h3>
+              <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Shipping Destinations</h3>
               <ul class="space-y-2">
-                {siblings.map((sib) => (
+                {childCountries.map((child) => (
                   <li>
-                    <a href={`/countries/${parentSlug}/${sib.data.slug}`} class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors">
+                    <a href={`/countries-we-ship-to/${country.data.slug}/${child.data.slug}`} class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors">
                       <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                      {sib.data.title}
+                      {child.data.title}
                     </a>
                   </li>
                 ))}
