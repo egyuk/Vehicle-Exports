@@ -54,7 +54,7 @@ const hasImages = images && images.length > 0;
   <!-- Banner with Breadcrumb -->
   <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 overflow-x-auto scrollbar-hide" style="scrollbar-width: none;">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <a href="/carsforexport" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
@@ -63,7 +63,7 @@ const hasImages = images && images.length > 0;
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <a href={`/carsforexport/${makeSlug}/${modelSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{model}</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span class="text-white truncate">{title}</span>
+        <span class="text-white">{title}</span>
       </nav>
     </div>
   </section>

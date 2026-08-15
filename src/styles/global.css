@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #C7081B;
-  --color-primary-dark: #A30617;
-  --color-primary-light: #D23949;
+  --color-primary: #EF3434;
+  --color-primary-dark: #C42B2B;
+  --color-primary-light: #F25D5D;
   --color-dark: #24272C;
   --color-dark-light: #2d3138;
   --color-gray-text: #696665;
@@ -217,6 +217,27 @@ input[type="range"]::-moz-range-thumb {
 /* Breadcrumb */
 .breadcrumb a:hover {
   color: var(--color-primary);
+}
+
+/* Keep breadcrumbs on one line and let them scroll sideways on narrow screens */
+.breadcrumb {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.breadcrumb::-webkit-scrollbar {
+  display: none;
+}
+
+.breadcrumb > * {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
 }
 
 /* Prose overrides for blog content */
