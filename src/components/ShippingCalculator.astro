@@ -10,7 +10,7 @@
     <img
       src="/assets/images/section/loan-bg.jpg"
       alt=""
-      class="w-full h-full object-cover parallax-img"
+      class="w-full h-full object-cover parallax-img will-change-transform"
     />
   </div>
   <!-- Dark overlay -->
@@ -19,7 +19,7 @@
   <!-- Content -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
     <!-- Calculator Card -->
-    <div class="bg-white rounded-2xl p-6 lg:p-7 w-full floating-card" style="box-shadow: 0 25px 60px rgba(0,0,0,0.3);">
+    <div class="bg-white rounded-2xl p-6 lg:p-7 w-full floating-card will-change-transform" style="box-shadow: 0 25px 60px rgba(0,0,0,0.3);">
       <h3 class="text-lg font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-0.5">Shipping Calculator</h3>
       <p class="text-xs text-gray-500 mb-4">Estimate the cost of shipping your vehicle internationally</p>
 
@@ -82,6 +82,8 @@
 </section>
 
 <script>
+  import { addScrollEffect } from '../scripts/scroll-effects';
+
   // ── Shipping price data ──
   // Edit this object to update prices. Format:
   // "Country Name": { saloon_roro, saloon_container, suv_roro, suv_container }
@@ -171,27 +173,36 @@
     resultDiv.classList.remove('hidden');
   }
 
-  // Floating card animation
-  const card = document.querySelector('.floating-card') as HTMLElement;
-  if (card) {
-    window.addEventListener('scroll', () => {
-      const rect = card.getBoundingClientRect();
-      const windowH = window.innerHeight;
-      const visible = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH + rect.height)));
-      const float = Math.sin(visible * Math.PI) * 8;
-      card.style.transform = `translateY(${-float}px)`;
-    }, { passive: true });
-  }
-
-  // Parallax scroll effect
+  // Floating card + parallax scroll effects, batched so all measuring happens
+  // before any style writes (see scroll-effects.ts).
   const section = document.getElementById('shipping-calculator');
-  const parallaxImg = section?.querySelector('.parallax-img') as HTMLElement;
-  if (section && parallaxImg) {
-    window.addEventListener('scroll', () => {
-      const rect = section.getBoundingClientRect();
-      const speed = 0.5;
-      const offset = rect.top * speed;
-      parallaxImg.style.transform = `translateY(${offset}px)`;
-    }, { passive: true });
+  const card = section?.querySelector('.floating-card') as HTMLElement | null;
+  const parallaxImg = section?.querySelector('.parallax-img') as HTMLElement | null;
+
+  if (section && (card || parallaxImg)) {
+    let cardFloat = 0;
+
+    addScrollEffect(
+      () => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (!card) return { sectionTop, float: 0 };
+        const rect = card.getBoundingClientRect();
+        // Undo the transform we applied last frame so the card's own offset
+        // doesn't feed back into the next measurement.
+        const top = rect.top + cardFloat;
+        const windowH = window.innerHeight;
+        const visible = Math.max(0, Math.min(1, (windowH - top) / (windowH + rect.height)));
+        return { sectionTop, float: Math.sin(visible * Math.PI) * 8 };
+      },
+      ({ sectionTop, float }) => {
+        if (card) {
+          cardFloat = float;
+          card.style.transform = `translateY(${-float}px)`;
+        }
+        if (parallaxImg) {
+          parallaxImg.style.transform = `translateY(${sectionTop * 0.5}px)`;
+        }
+      }
+    );
   }
 </script>

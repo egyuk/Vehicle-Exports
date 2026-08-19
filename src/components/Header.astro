@@ -332,6 +332,8 @@ const navLinks = [
 </div>
 
 <script>
+  import { addScrollEffect } from '../scripts/scroll-effects';
+
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const overlay = document.getElementById('mobile-menu-overlay');
@@ -363,11 +365,15 @@ const navLinks = [
   });
 
   const mainNav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      mainNav?.classList.add('header-sticky');
-    } else {
-      mainNav?.classList.remove('header-sticky');
-    }
-  });
+  if (mainNav) {
+    let isSticky = false;
+    addScrollEffect(
+      () => window.scrollY > 100,
+      shouldStick => {
+        if (shouldStick === isSticky) return;
+        isSticky = shouldStick;
+        mainNav.classList.toggle('header-sticky', shouldStick);
+      }
+    );
+  }
 </script>

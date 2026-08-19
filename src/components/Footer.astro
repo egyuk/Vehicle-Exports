@@ -30,13 +30,9 @@ const popularCars = [
 ];
 
 const otherLinks = [
-  { name: 'How it work', href: '/about' },
-  { name: 'Terms and Conditions', href: '#' },
-  { name: 'Privacy Policy', href: '#' },
-  { name: 'Copyrights', href: '#' },
-  { name: 'Help center', href: '/contact' },
-  { name: 'Car sales trends', href: '/car-export-news' },
-  { name: 'Personal loan', href: '/contact' },
+  { name: 'Import a Car from UK', href: '/import-uk-cars' },
+  { name: 'Ship a Car from UK', href: '/car-shipping' },
+  { name: 'New and Used Container Sales', href: '/container-sales' },
 ];
 
 // Small print row along the bottom of the footer
@@ -44,8 +40,6 @@ const legalLinks = [
   { name: 'Privacy Notice', href: '#' },
   { name: 'Terms and Conditions', href: '#' },
   { name: 'Cookie Policy', href: '#' },
-  { name: 'Modern Slavery Statement', href: '#' },
-  { name: 'FAQs', href: '/faq' },
 ];
 
 const companyNumber = '10399100';
@@ -115,8 +109,8 @@ const companyNumber = '10399100';
         </ul>
       </div>
 
-      <!-- Newsletter -->
-      <div>
+      <!-- Newsletter — full width until the 5-column layout kicks in at lg -->
+      <div class="col-span-2 lg:col-span-1">
         <h3 class="text-[var(--color-dark)] font-semibold text-lg mb-5 font-[family-name:var(--font-heading)]">Newsletter</h3>
         <p class="text-sm text-[var(--color-gray-text)] mb-5">
           Stay on top of the latest car trends. Subscribe to our newsletter for updates and deals.
@@ -181,7 +175,7 @@ const companyNumber = '10399100';
 
       <!-- Copyright — update the year by hand each January -->
       <p class="mt-6 text-sm text-[var(--color-gray-text)]">
-&copy; Copyright UK Vehicle Exporters. All rights reserved 2026
+&copy; Copyright 2026 - UK Vehicle Exporters. All rights reserved.
       </p>
     </div>
   </div>

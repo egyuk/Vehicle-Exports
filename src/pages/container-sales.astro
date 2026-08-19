@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// NOTE: placeholder details throughout — prices, condition grades, depot list and
+// specs still to be confirmed. Structure mirrors /car-shipping.
+
+const containerSpecs = [
+  {
+    name: '20ft Standard Container',
+    suitable: 'Suitable for: a single vehicle, or a 1–2 bedroom move.',
+    size: "19' 10.5\" x 8' 0\" x 8' 6\" (6.1m x 2.4m x 2.6m)",
+    volume: '1,169 ft³ (33.1 m³)',
+    load: '61,289 lb (28,200 kg)',
+    price: 'From £TBC',
+  },
+  {
+    name: '40ft Standard Container',
+    suitable: 'Suitable for: two vehicles, or a 3–5 bedroom move.',
+    size: "40' 0\" x 8' 0\" x 8' 6\" (12.2m x 2.4m x 2.6m)",
+    volume: '2,385 ft³ (67.5 m³)',
+    load: '57,759 lb (26,600 kg)',
+    price: 'From £TBC',
+  },
+  {
+    name: '40ft High Cube Container',
+    suitable: 'Suitable for: taller vehicles, plant and machinery.',
+    size: "40' 0\" x 8' 0\" x 9' 6\" (12.2m x 2.4m x 2.9m)",
+    volume: '2,694 ft³ (76.3 m³)',
+    load: '57,759 lb (26,600 kg)',
+    price: 'From £TBC',
+  },
+];
+
+const conditionGrades = [
+  {
+    grade: 'New / One Trip',
+    detail: 'Manufactured within the last 12 months and shipped once from the factory. Cleanest option, wind and watertight, with minimal cosmetic marking.',
+  },
+  {
+    grade: 'Cargo Worthy (CW)',
+    detail: 'Certified fit for international shipping. Structurally sound, with surface wear and repaired patches consistent with age.',
+  },
+  {
+    grade: 'Wind and Watertight (WWT)',
+    detail: 'Sound for dry storage. Not certified for sea freight, but doors seal and the roof and panels are intact.',
+  },
+  {
+    grade: 'As Is',
+    detail: 'End of life units sold for on-site storage, conversion or scrap. Sold unseen with no condition guarantee.',
+  },
+];
+
+const containerUses = [
+  'Vehicle Shipping Containers',
+  'Household Goods and Removals',
+  'On-Site Storage',
+  'Plant and Machinery Transport',
+  'Site Offices and Welfare Units',
+  'Container Conversions',
+  'Refrigerated Containers',
+  'Open Top Containers',
+  'Flat Rack Containers',
+  'High Cube Containers',
+  'Secure Document Storage',
+  'Agricultural Storage',
+];
+
+const depots = [
+  'Felixstowe',
+  'London Gateway',
+  'Southampton',
+  'Tilbury',
+  'Liverpool',
+  'Immingham',
+  'Bristol Avonmouth',
+  'Manchester',
+  'Birmingham',
+  'Leeds',
+  'Glasgow',
+  'Belfast',
+];
+
+const buyingSteps = [
+  { step: '1', title: 'Tell us what you need', detail: 'Size, condition grade, and whether the container is for shipping or static storage.' },
+  { step: '2', title: 'We quote and reserve', detail: 'Price confirmed including delivery to your postcode, with the unit held against your order.' },
+  { step: '3', title: 'Inspection', detail: 'Photographs of the actual unit supplied before dispatch, or arrange to view it at the depot.' },
+  { step: '4', title: 'Delivery', detail: 'Delivered by tilt bed or HIAB and placed at ground level. Site access to be confirmed in advance.' },
+];
+---
+
+<Layout
+  title="New and Used Container Sales – Buy Shipping Containers | UK Vehicle Exporters"
+  description="New and used shipping containers for sale from UK depots. 20ft, 40ft and high cube units for vehicle shipping, export and on-site storage, delivered nationwide."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Container Sales</span>
+      </nav>
+      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
+        New and Used Containers Sold and Delivered Across the UK
+      </span>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">New and Used Container Sales</h1>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Get a Container Quote
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="/car-shipping" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          Container Shipping Service
+        </a>
+        <a href="/car-shipping/shipping-rates" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
+          View Shipping Rates
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Containers -->
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="rounded-2xl overflow-hidden aspect-[3/2]">
+          <img src="/assets/images/car-shipping/container-shipping.jpeg" alt="New one trip shipping containers for sale" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div>
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">1) New Containers</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            New containers, often described as one trip units, are built to ISO specification and have carried a single cargo from the factory before being sold. They arrive clean, dry and free of the dents and patch repairs that come with years at sea, which makes them the usual choice where the container will be seen, converted or kept long term.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Every new unit is wind and watertight, fitted with new door seals and a serviceable locking bar assembly, and is supplied cargo worthy for onward international shipping. Standard stock is grey or blue, with other colours available to order.
+          </p>
+        </div>
+      </div>
+      <p class="text-gray-600 leading-relaxed mt-8">
+        If you are exporting a vehicle and want the container to remain yours at the destination, buying rather than hiring is usually the more economical route. The container can be loaded at your premises, shipped with the vehicle inside, and then sold on, retained for storage or converted once it arrives.
+      </p>
+    </div>
+  </section>
+
+  <!-- Used Containers -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center mb-8">
+        <div class="rounded-2xl overflow-hidden aspect-[3/2] order-2 lg:order-1">
+          <img src="/assets/images/car-shipping/container-shipping.jpeg" alt="Used shipping containers for sale from UK depots" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="order-1 lg:order-2">
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">2) Used Containers</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Used containers come out of the shipping cycle after several years in service. They carry surface rust, dents and previous owner markings, but a cargo worthy unit remains structurally sound and fit to ship. For storage on a yard or a farm, a wind and watertight unit does the same job for less.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Stock changes weekly and no two used units are identical, so we supply photographs of the actual container before dispatch rather than a stock image.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Condition Grades</h3>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Containers are sold against recognised industry grades. The grade determines whether a unit can still be shipped internationally or is only suitable for static storage:
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {conditionGrades.map(g => (
+          <div class="bg-white border border-gray-100 rounded-xl p-5">
+            <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-1.5">{g.grade}</h4>
+            <p class="text-sm text-gray-500 leading-relaxed">{g.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sizes and Specifications -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Sizes and Specifications</h2>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        The most common units sold for vehicle export and storage are 20ft, 40ft and 40ft high cube. A high cube adds a foot of internal height, which matters for taller vehicles, machinery and stacked loads:
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        {containerSpecs.map(c => (
+          <div class="bg-gray-50 border border-gray-100 rounded-xl p-5">
+            <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-1.5">{c.name}</h4>
+            <p class="text-sm text-gray-500 leading-relaxed mb-3">{c.suitable}</p>
+            <dl class="text-sm space-y-1">
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Size (L x W x H)</dt><dd class="text-gray-700 text-right">{c.size}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Total internal volume</dt><dd class="text-gray-700 text-right">{c.volume}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Net shipping load</dt><dd class="text-gray-700 text-right">{c.load}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-gray-400">Price</dt><dd class="text-gray-700 text-right font-semibold">{c.price}</dd></div>
+            </dl>
+          </div>
+        ))}
+      </div>
+      <p class="text-gray-600 leading-relaxed">
+        Specialist units including open top, flat rack, refrigerated and 10ft containers are available to order. Prices exclude VAT and delivery unless stated.
+      </p>
+    </div>
+  </section>
+
+  <!-- How to Buy -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">How to Buy</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {buyingSteps.map(s => (
+          <div class="bg-white border border-gray-100 rounded-xl p-5">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-bold mb-3">{s.step}</span>
+            <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-1.5">{s.title}</h4>
+            <p class="text-sm text-gray-500 leading-relaxed">{s.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Collection and Delivery -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Collection and Delivery</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {depots.map(d => (
+          <div class="flex items-start gap-2.5 bg-gray-50 border border-gray-100 rounded-lg p-3">
+            <svg class="w-4 h-4 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-sm text-gray-700">{d}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-gray-600 leading-relaxed mt-6">
+        Containers can be collected from depot or delivered nationwide. Delivery is by tilt bed lorry, which needs firm level ground and clear access of roughly twice the container length to unload. Where access is restricted, a HIAB crane lift can be arranged instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- Container Types and Uses -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Container Types and Uses</h2>
+      <div class="flex flex-wrap gap-3">
+        {containerUses.map(u => (
+          <span class="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 font-medium">{u}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-[var(--color-dark)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">Looking to Buy a Container?</h2>
+      <p class="text-gray-400 mt-3 max-w-xl mx-auto">Tell us the size and condition you need and we will quote including delivery to your site.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+        Get a Container Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
