@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import schedules from '../data/sailing-schedules.json';
+
+// Everything on this page is generated from src/data/sailing-schedules.json.
+// Weekly routine: correct the rows in "sailings", bump "updated". No markup changes.
+
+const { updated, source, sailings, lanes } = schedules;
+
+const today = new Date();
+const todayISO = today.toISOString().slice(0, 10);
+const daysSince = Math.floor((today.getTime() - new Date(updated).getTime()) / 86400000);
+const isStale = daysSince > 7;
+
+const fmtDate = (d: string) =>
+  d ? new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+
+// Transit is derived so there is one less field to keep in step each week.
+const transitDays = (ets: string, eta: string) =>
+  ets && eta ? Math.round((new Date(eta).getTime() - new Date(ets).getTime()) / 86400000) : null;
+
+const rows = sailings
+  .map(s => ({ ...s, transit: transitDays(s.ets, s.eta), past: s.ets < todayISO }))
+  .sort((a, b) => String(a.ets).localeCompare(String(b.ets)));
+
+const upcoming = rows.filter(r => !r.past).length;
+const exampleCount = rows.filter(r => r.example).length;
+const loadPorts = [...new Set(rows.map(r => r.loadPort).filter(Boolean))].sort();
+const destinations = [...new Set(rows.map(r => r.destination).filter(Boolean))].sort();
+
+const departureLanes = lanes.filter(l => l.departure);
+---
+
+<Layout
+  title="Export Sailing Schedule | UK Vehicle Exporters"
+  description="Working list of vehicle export sailings by load port, destination and departure date, reviewed and updated weekly."
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
+        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-white">Export Sailing Schedule</span>
+      </nav>
+      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Export Sailing Schedule</h1>
+      <p class="text-gray-400 mt-4 max-w-2xl leading-relaxed">
+        Sailings from UK and European ports by destination and departure date. Dates are indicative and must be reconfirmed with the carrier before a booking is committed.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mt-8">
+        <span class={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold ${isStale ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30' : 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'}`}>
+          <span class={`w-2 h-2 rounded-full ${isStale ? 'bg-amber-400' : 'bg-emerald-400'}`}></span>
+          Updated {fmtDate(updated)}
+          {daysSince > 0 && <span class="font-normal opacity-80">· {daysSince} day{daysSince === 1 ? '' : 's'} ago</span>}
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-gray-300 px-4 py-2 rounded-xl text-sm">
+          {upcoming} upcoming sailing{upcoming === 1 ? '' : 's'} · {rows.length} listed
+        </span>
+      </div>
+      {isStale && (
+        <p class="text-amber-300/90 text-sm mt-3">Not refreshed in over a week. Check the carrier schedules before quoting.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <!-- Sticky stack from lg up: the site nav goes position:fixed (81px) once you
+       scroll, so the filter bar sits below it and the table header below that.
+       Left non-sticky on mobile, where this bar is 345px tall stacked. -->
+  <section class="py-6 bg-white border-b border-gray-100 lg:sticky lg:top-[81px] lg:z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end gap-4">
+        <div class="relative flex-1 max-w-sm">
+          <label class="block text-xs font-medium text-gray-500 mb-1.5">Search</label>
+          <input
+            type="search"
+            id="sail-search"
+            placeholder="Vessel, port, destination, carrier"
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[var(--color-primary)] transition-colors"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-500 mb-1.5">Load port</label>
+          <select id="sail-port" class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
+            <option value="">All ports</option>
+            {loadPorts.map(p => <option value={p}>{p}</option>)}
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-500 mb-1.5">Destination</label>
+          <select id="sail-dest" class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
+            <option value="">All destinations</option>
+            {destinations.map(d => <option value={d}>{d}</option>)}
+          </select>
+        </div>
+        <label class="flex items-center gap-2 text-sm text-gray-600 pb-2.5 cursor-pointer">
+          <input type="checkbox" id="sail-hide-past" checked class="w-4 h-4 accent-[var(--color-primary)]" />
+          Hide departed
+        </label>
+      </div>
+      <p id="sail-count" class="text-xs text-gray-400 mt-3"></p>
+    </div>
+  </section>
+
+  <!-- Sailings table -->
+  <section class="py-10 lg:py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {exampleCount > 0 && (
+        <div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-5 text-sm text-amber-900">
+          <strong class="font-semibold">{exampleCount} example row{exampleCount === 1 ? '' : 's'} shown.</strong>
+          These are placeholders to demonstrate the layout, not real sailings. Replace them in <code class="text-xs bg-amber-100 px-1.5 py-0.5 rounded">src/data/sailing-schedules.json</code>.
+        </div>
+      )}
+
+      <!-- overflow-x-auto makes this a scroll container, which would trap a sticky
+           header; from lg up the table fits, so overflow is released and the
+           header can pin to the page instead, just below the sticky controls. -->
+      <div class="border border-gray-200 rounded-xl overflow-x-auto lg:overflow-visible">
+        <table class="w-full text-sm min-w-[720px]" id="sail-table">
+          <thead>
+            <tr class="bg-gray-50 text-left">
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="ets">Departure</button></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="port">Load port</button></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="dest">Destination</button></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="eta">Arrival</button></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Transit</th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Vessel</th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Voyage</th>
+            </tr>
+          </thead>
+          <tbody id="sail-body">
+            {rows.map(r => (
+              <tr
+                class={`sail-row border-b border-gray-100 last:border-0 hover:bg-gray-50/70 transition-colors ${r.past ? 'opacity-45' : ''}`}
+                data-port={r.loadPort}
+                data-dest={r.destination}
+                data-past={String(r.past)}
+                data-ets={r.ets}
+                data-eta={r.eta || ''}
+                data-search={`${r.vessel} ${r.loadPort} ${r.destination} ${r.carrier} ${r.voyage} ${r.lane}`.toLowerCase()}
+              >
+                <td class="px-4 py-3 whitespace-nowrap">
+                  <span class="font-semibold text-gray-900">{fmtDate(r.ets)}</span>
+                  {r.past && <span class="block text-[11px] text-gray-400">departed</span>}
+                </td>
+                <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{r.loadPort}</td>
+                <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{r.destination}</td>
+                <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{fmtDate(r.eta)}</td>
+                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{r.transit !== null ? `${r.transit} days` : '—'}</td>
+                <td class="px-4 py-3 text-gray-700 whitespace-nowrap">
+                  {r.vessel}
+                  {r.example && <span class="ml-2 text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Example</span>}
+                </td>
+                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{r.voyage}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p id="sail-empty" class="hidden text-center text-gray-400 text-sm py-12">No sailings match those filters.</p>
+      {rows.length === 0 && (
+        <p class="text-center text-gray-400 text-sm py-12">No sailings recorded yet. Add rows to src/data/sailing-schedules.json.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- Carrier lane reference -->
+  <section class="py-12 lg:py-14 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <details class="group">
+        <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+          <div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Carrier Lane Reference</h2>
+            <p class="text-sm text-gray-500 mt-1.5">{lanes.length} trade lanes, {departureLanes.length} departing Europe. Open a lane to check the carrier's current schedule when updating this list.</p>
+          </div>
+          <svg class="w-5 h-5 text-gray-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+
+        <div class="mt-6">
+          <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">Departures from Europe</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-8">
+            {departureLanes.map(l => (
+              <a href={l.source} target="_blank" rel="noopener" class="flex items-center justify-between gap-2 bg-white border border-gray-200 hover:border-[var(--color-primary)]/40 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition-all">
+                <span>{l.name}</span>
+                <svg class="w-3.5 h-3.5 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            ))}
+          </div>
+
+          <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">All Other Lanes</h3>
+          <div class="flex flex-wrap gap-2">
+            {lanes.filter(l => !l.departure).map(l => (
+              <a href={l.source} target="_blank" rel="noopener" class="bg-white border border-gray-200 hover:border-[var(--color-primary)]/40 rounded-full px-3 py-1.5 text-xs text-gray-600 transition-all">{l.name}</a>
+            ))}
+          </div>
+        </div>
+      </details>
+
+      <p class="text-sm text-gray-400 mt-8">
+        Lane list sourced from <a href={source.url} target="_blank" rel="noopener" class="text-[var(--color-primary)] hover:underline">{source.name}</a>. {source.note}
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pt-3 pb-16 lg:pb-20 bg-[var(--color-dark)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)]">Need Space on a Sailing?</h2>
+      <p class="text-gray-400 mt-3 max-w-xl mx-auto">Tell us the destination and the vehicle and we will confirm the next available sailing and rate.</p>
+      <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all mt-6">
+        Get a Shipping Quote
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const search = document.getElementById('sail-search') as HTMLInputElement;
+  const portSel = document.getElementById('sail-port') as HTMLSelectElement;
+  const destSel = document.getElementById('sail-dest') as HTMLSelectElement;
+  const hidePast = document.getElementById('sail-hide-past') as HTMLInputElement;
+  const body = document.getElementById('sail-body')!;
+  const countEl = document.getElementById('sail-count')!;
+  const emptyEl = document.getElementById('sail-empty')!;
+  const rows = () => Array.from(body.querySelectorAll<HTMLElement>('.sail-row'));
+
+  function apply() {
+    const term = search.value.trim().toLowerCase();
+    const port = portSel.value;
+    const dest = destSel.value;
+    let visible = 0;
+
+    rows().forEach(row => {
+      const show =
+        (!term || (row.dataset.search || '').includes(term)) &&
+        (!port || row.dataset.port === port) &&
+        (!dest || row.dataset.dest === dest) &&
+        (!hidePast.checked || row.dataset.past !== 'true');
+      row.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+
+    emptyEl.classList.toggle('hidden', visible > 0 || rows().length === 0);
+    countEl.textContent = `Showing ${visible} of ${rows().length} sailings`;
+  }
+
+  // Column sorting: departure and arrival sort by date, ports alphabetically.
+  let sortKey = 'ets';
+  let sortAsc = true;
+  document.querySelectorAll<HTMLButtonElement>('.sail-sort').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sort!;
+      sortAsc = key === sortKey ? !sortAsc : true;
+      sortKey = key;
+      const sorted = rows().sort((a, b) => {
+        const av = key === 'ets' ? a.dataset.ets! : key === 'eta' ? a.dataset.eta! : key === 'port' ? a.dataset.port! : a.dataset.dest!;
+        const bv = key === 'ets' ? b.dataset.ets! : key === 'eta' ? b.dataset.eta! : key === 'port' ? b.dataset.port! : b.dataset.dest!;
+        return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+      });
+      sorted.forEach(r => body.appendChild(r));
+    });
+  });
+
+  [search, portSel, destSel, hidePast].forEach(el => {
+    el.addEventListener(el === search ? 'input' : 'change', apply);
+  });
+  apply();
+</script>

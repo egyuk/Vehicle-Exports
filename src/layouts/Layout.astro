@@ -40,7 +40,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://autodeal
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body class="bg-white text-gray-800 antialiased overflow-x-hidden">
+  <!-- No overflow-x-hidden on body: html already sets it and that is what reaches
+       the viewport. On body it makes body a scroll container and breaks sticky. -->
+  <body class="bg-white text-gray-800 antialiased">
     <Header />
     <main>
       <slot />
