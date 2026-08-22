@@ -28,6 +28,7 @@ union; the source modules only interpret rows.
 | Sallaum Lines | HTML tables | Empty cells are **unclosed** `<td>`, so position-based parsing left-packs rows and misattributes dates. Bind via each cell's `headers` attribute instead |
 | NYK RoRo | WordPress ajax | vessel -> vesselNums -> vesselSearch -> showDetails chain; rotation HTML has one year header, so the year is carried forward across month wraps |
 | Höegh Autoliners | JSON API | `/api/vessel`'s params are swapped: `departureDate` is the *until* bound, `arrivalDate` the *from*. And a vessel's calls interleave two voyages date-wise, so pairing must be scoped to one `voyage_ID` |
+| EUKOR | jQuery-era `.do` POST | One POST takes every UK port against every foreign port at once (~330 codes from the page's own `var code/var des` script pairs). Rows with an empty vessel cell continue the sailing above; one port (`Port Klang (Pelabuhan Klang),`) has no country at all |
 
 Two lessons worth keeping:
 

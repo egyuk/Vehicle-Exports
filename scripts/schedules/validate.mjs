@@ -23,6 +23,7 @@ export const MIN_ROWS = {
   'NYK RoRo': 15,
   'Sallaum Lines': 10,
   'Höegh Autoliners': 10,
+  'EUKOR': 10,
   'Autoshippers': 20,
 };
 

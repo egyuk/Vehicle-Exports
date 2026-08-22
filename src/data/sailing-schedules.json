@@ -3,7 +3,7 @@
   "updated": "2026-08-22",
   "source": {
     "name": "Carrier schedules",
-    "note": "Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, \"K\" Line, NYK RoRo, Grimaldi, Sallaum Lines, Höegh Autoliners and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed."
+    "note": "Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, \"K\" Line, NYK RoRo, Grimaldi, Sallaum Lines, Höegh Autoliners, EUKOR and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed."
   },
   "sailings": [
     {
@@ -1735,6 +1735,28 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Masan, South Korea",
+      "vessel": "Tortugas",
+      "voyage": "EP617",
+      "carrier": "EUKOR",
+      "ets": "2026-07-01",
+      "eta": "2026-08-24",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Mokpo, South Korea",
+      "vessel": "Tortugas",
+      "voyage": "EP617",
+      "carrier": "EUKOR",
+      "ets": "2026-07-01",
+      "eta": "2026-08-23",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Veracruz, Mexico",
       "vessel": "Donington",
       "voyage": "52 A",
@@ -1834,45 +1856,12 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Auckland, New Zealand",
-      "vessel": "Torrens",
-      "voyage": "EF612-TRS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-03",
-      "eta": "2026-08-20",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Torrens",
       "voyage": "EF612-TRS",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-07-03",
       "eta": "2026-07-16",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brisbane, Australia",
-      "vessel": "Torrens",
-      "voyage": "EF612-TRS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-03",
-      "eta": "2026-08-24",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Torrens",
-      "voyage": "EF612-TRS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-03",
-      "eta": "2026-07-21",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -1906,17 +1895,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-07-03",
       "eta": "2026-08-29",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Kembla, Australia",
-      "vessel": "Torrens",
-      "voyage": "EF612-TRS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-03",
-      "eta": "2026-08-27",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -2263,23 +2241,23 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Morning Chant",
+      "voyage": "EP618",
+      "carrier": "",
+      "ets": "2026-07-12",
+      "eta": "2026-08-01",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Pyeongtaek, South Korea",
       "vessel": "Morning Chant",
       "voyage": "EP618",
       "carrier": "",
       "ets": "2026-07-12",
       "eta": "2026-09-01",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Reunion, Réunion",
-      "vessel": "Morning Chant",
-      "voyage": "EP618",
-      "carrier": "",
-      "ets": "2026-07-12",
-      "eta": "2026-08-01",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
     },
@@ -2516,39 +2494,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Pyeongtaek, South Korea",
-      "vessel": "Morning Chant",
-      "voyage": "S0618-MAT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-15",
-      "eta": "2026-09-03",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Shanghai, China",
-      "vessel": "Morning Chant",
-      "voyage": "S0618-MAT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-15",
-      "eta": "2026-08-28",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Singapore, Singapore",
-      "vessel": "Morning Chant",
-      "voyage": "S0618-MAT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-15",
-      "eta": "2026-08-15",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Tianjin-Xingang, China",
       "vessel": "Morning Chant",
       "voyage": "S0618-MAT",
@@ -2572,33 +2517,11 @@
     {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
-      "vessel": "Glovis Sunlight",
-      "voyage": "V6001-GVN",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-16",
-      "eta": "2026-07-28",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
       "vessel": "Tongala",
       "voyage": "EX606-TOL",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-07-16",
       "eta": "2026-07-25",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Glovis Sunlight",
-      "voyage": "V6001-GVN",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-16",
-      "eta": "2026-07-30",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -2621,17 +2544,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-07-16",
       "eta": "2026-07-30",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Halifax, Canada",
-      "vessel": "Glovis Sunlight",
-      "voyage": "V6001-GVN",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-07-16",
-      "eta": "2026-07-25",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -3330,23 +3242,23 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Morning Post",
+      "voyage": "EP620",
+      "carrier": "",
+      "ets": "2026-07-26",
+      "eta": "2026-08-19",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Pyeongtaek, South Korea",
       "vessel": "Morning Post",
       "voyage": "EP620",
       "carrier": "",
       "ets": "2026-07-26",
       "eta": "2026-09-17",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Reunion, Réunion",
-      "vessel": "Morning Post",
-      "voyage": "EP620",
-      "carrier": "",
-      "ets": "2026-07-26",
-      "eta": "2026-08-19",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
     },
@@ -3869,17 +3781,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Auckland, New Zealand",
-      "vessel": "Morning Cello",
-      "voyage": "EF614-MCO",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-06",
-      "eta": "2026-09-21",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Morning Cello",
       "voyage": "EF614-MCO",
@@ -3932,17 +3833,6 @@
       "eta": "2026-10-12",
       "lane": "Europe to Oceania",
       "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Galveston, USA",
-      "vessel": "Drive Green Highway",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-06",
-      "eta": "2026-08-27",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
     },
     {
       "loadPort": "Southampton",
@@ -4007,17 +3897,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-06",
       "eta": "2026-09-25",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Papeete, French Polynesia",
-      "vessel": "Morning Cello",
-      "voyage": "EF614-MCO",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-06",
-      "eta": "2026-09-13",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -4715,28 +4594,6 @@
       "notes": "departure not published, arrival date used"
     },
     {
-      "loadPort": "Liverpool",
-      "destination": "Halifax, Canada",
-      "vessel": "Atlantic Star",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-10",
-      "eta": "2026-08-18",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
-    },
-    {
-      "loadPort": "Liverpool",
-      "destination": "New York, USA",
-      "vessel": "Atlantic Star",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-10",
-      "eta": "2026-08-21",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
-    },
-    {
       "loadPort": "Southampton",
       "destination": "Vancouver, Canada",
       "vessel": "Genoa Express",
@@ -4804,39 +4661,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
-      "vessel": "Arc Defender",
-      "voyage": "EB616-ADF",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-14",
-      "eta": "2026-08-24",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Arc Defender",
-      "voyage": "EB616-ADF",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-14",
-      "eta": "2026-08-29",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Galveston, USA",
-      "vessel": "Arc Defender",
-      "voyage": "EB616-ADF",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-14",
-      "eta": "2026-09-03",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Limassol, Cyprus",
       "vessel": "Grande Ellade",
       "voyage": "",
@@ -4844,17 +4668,6 @@
       "ets": "2026-08-14",
       "eta": "2026-09-02",
       "lane": "Europe to Mediterranean",
-      "notes": "ETA derived from published transit time"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Hueneme, USA",
-      "vessel": "Hamabo Leader",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-14",
-      "eta": "2026-09-07",
-      "lane": "Europe to North America",
       "notes": "ETA derived from published transit time"
     },
     {
@@ -5144,17 +4957,6 @@
       "notes": "NAS service"
     },
     {
-      "loadPort": "Liverpool",
-      "destination": "Halifax, Canada",
-      "vessel": "Atlantic Sky",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-17",
-      "eta": "2026-08-25",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
-    },
-    {
       "loadPort": "Southampton",
       "destination": "Hitachi, Japan",
       "vessel": "Hamabo Leader",
@@ -5175,17 +4977,6 @@
       "eta": "2026-09-13",
       "lane": "Europe to North America",
       "notes": ""
-    },
-    {
-      "loadPort": "Liverpool",
-      "destination": "New York, USA",
-      "vessel": "Atlantic Sky",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-17",
-      "eta": "2026-08-28",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
     },
     {
       "loadPort": "Southampton",
@@ -5486,6 +5277,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Toyohashi, Japan",
+      "vessel": "Morning Composer",
+      "voyage": "EP621",
+      "carrier": "EUKOR",
+      "ets": "2026-08-20",
+      "eta": "2026-10-05",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Composer",
       "voyage": "EP621",
@@ -5494,6 +5296,17 @@
       "eta": "2026-10-01",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Yokohama, Japan",
+      "vessel": "Morning Composer",
+      "voyage": "EP621",
+      "carrier": "EUKOR",
+      "ets": "2026-08-20",
+      "eta": "2026-10-06",
+      "lane": "Europe to Far East",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -5661,17 +5474,6 @@
       "notes": "departure not published, arrival date used"
     },
     {
-      "loadPort": "Tilbury",
-      "destination": "Abidjan, Côte d'Ivoire",
-      "vessel": "Grande Sierra Leone",
-      "voyage": "GSL0426",
-      "carrier": "Grimaldi",
-      "ets": "2026-08-23",
-      "eta": "2026-09-16",
-      "lane": "Europe to Africa",
-      "notes": "RoRo closing 19/08"
-    },
-    {
       "loadPort": "Portsmouth",
       "destination": "Basseterre, St Kitts",
       "vessel": "Atlantic Klipper",
@@ -5717,17 +5519,6 @@
     },
     {
       "loadPort": "Tilbury",
-      "destination": "Cotonou, Benin",
-      "vessel": "Grande Sierra Leone",
-      "voyage": "GSL0426",
-      "carrier": "Grimaldi",
-      "ets": "2026-08-23",
-      "eta": "2026-09-09",
-      "lane": "Europe to Africa",
-      "notes": "RoRo closing 19/08"
-    },
-    {
-      "loadPort": "Tilbury",
       "destination": "Dakar, Senegal",
       "vessel": "Grande Sierra Leone",
       "voyage": "GSL0426",
@@ -5760,17 +5551,6 @@
       "notes": "RoRo closing 19/08 · via Antwerp"
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Galveston, USA",
-      "vessel": "Donington",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-23",
-      "eta": "2026-09-13",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
-    },
-    {
       "loadPort": "Portsmouth",
       "destination": "Georgetown, Guyana",
       "vessel": "Atlantic Klipper",
@@ -5782,17 +5562,6 @@
       "notes": "UK cut-off 19 Aug"
     },
     {
-      "loadPort": "Liverpool",
-      "destination": "Halifax, Canada",
-      "vessel": "Atlantic Sea",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-23",
-      "eta": "2026-08-31",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
-    },
-    {
       "loadPort": "Portsmouth",
       "destination": "Kingstown, St Vincent",
       "vessel": "Atlantic Klipper",
@@ -5802,17 +5571,6 @@
       "eta": "2026-09-02",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 19 Aug"
-    },
-    {
-      "loadPort": "Tilbury",
-      "destination": "Lagos, Nigeria",
-      "vessel": "Grande Sierra Leone",
-      "voyage": "GSL0426",
-      "carrier": "Grimaldi",
-      "ets": "2026-08-23",
-      "eta": "2026-09-10",
-      "lane": "Europe to Africa",
-      "notes": "RoRo closing 19/08"
     },
     {
       "loadPort": "Tilbury",
@@ -5846,17 +5604,6 @@
       "eta": "2026-09-12",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 19 Aug"
-    },
-    {
-      "loadPort": "Liverpool",
-      "destination": "New York, USA",
-      "vessel": "Atlantic Sea",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-08-23",
-      "eta": "2026-09-03",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
     },
     {
       "loadPort": "Tilbury",
@@ -5910,17 +5657,6 @@
       "carrier": "Grimaldi",
       "ets": "2026-08-23",
       "eta": "2026-09-15",
-      "lane": "Europe to Africa",
-      "notes": "RoRo closing 19/08"
-    },
-    {
-      "loadPort": "Tilbury",
-      "destination": "Tema, Ghana",
-      "vessel": "Grande Sierra Leone",
-      "voyage": "GSL0426",
-      "carrier": "Grimaldi",
-      "ets": "2026-08-23",
-      "eta": "2026-09-13",
       "lane": "Europe to Africa",
       "notes": "RoRo closing 19/08"
     },
@@ -6146,17 +5882,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Galveston, USA",
-      "vessel": "Morning Lena",
-      "voyage": "EC608-MOE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-25",
-      "eta": "2026-09-10",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Halifax, Canada",
       "vessel": "Glovis Corona",
       "voyage": "GLN097",
@@ -6196,17 +5921,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-25",
       "eta": "2026-09-17",
-      "lane": "Europe to South America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Manzanillo, Panama",
-      "vessel": "Morning Lena",
-      "voyage": "EC608-MOE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-25",
-      "eta": "2026-09-14",
       "lane": "Europe to South America",
       "notes": ""
     },
@@ -6795,17 +6509,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Auckland, New Zealand",
-      "vessel": "Lake Shirasagi",
-      "voyage": "EF616-LAS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-30",
-      "eta": "2026-10-16",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Lake Shirasagi",
       "voyage": "EF616-LAS",
@@ -6955,17 +6658,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-30",
       "eta": "2026-10-27",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Papeete, French Polynesia",
-      "vessel": "Lake Shirasagi",
-      "voyage": "EF616-LAS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-08-30",
-      "eta": "2026-10-08",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -7422,23 +7114,23 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Eco Star",
+      "voyage": "EP623",
+      "carrier": "",
+      "ets": "2026-09-05",
+      "eta": "2026-09-27",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Pyeongtaek, South Korea",
       "vessel": "Eco Star",
       "voyage": "EP623",
       "carrier": "",
       "ets": "2026-09-05",
       "eta": "2026-10-27",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Reunion, Réunion",
-      "vessel": "Eco Star",
-      "voyage": "EP623",
-      "carrier": "",
-      "ets": "2026-09-05",
-      "eta": "2026-09-27",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
     },
@@ -7694,17 +7386,6 @@
       "eta": "2026-09-16",
       "lane": "Europe to North America",
       "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Hueneme, USA",
-      "vessel": "Pleiades Leader",
-      "voyage": "",
-      "carrier": "",
-      "ets": "2026-09-07",
-      "eta": "2026-10-01",
-      "lane": "Europe to North America",
-      "notes": "ETA derived from published transit time"
     },
     {
       "loadPort": "Southampton",
@@ -9313,6 +8994,17 @@
       "notes": "UK cut-off 16 Sept"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "EUKOR",
+      "ets": "2026-09-20",
+      "eta": "2026-10-10",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Santa Marta, Colombia",
       "vessel": "Star First",
@@ -10391,17 +10083,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Yokohama, Japan",
-      "vessel": "Theben",
-      "voyage": "ED617-THN",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-03",
-      "eta": "2026-11-16",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
       "loadPort": "Portsmouth",
       "destination": "Basseterre, St Kitts",
       "vessel": "Luzon Strait",
@@ -10840,6 +10521,17 @@
       "eta": "2026-11-21",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Masan, South Korea",
+      "vessel": "Tosca",
+      "voyage": "EP626",
+      "carrier": "EUKOR",
+      "ets": "2026-10-10",
+      "eta": "2026-11-28",
+      "lane": "Europe to Far East",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",

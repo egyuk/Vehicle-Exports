@@ -134,6 +134,9 @@ const DESTINATION_ALIAS = {
   'Manzanillo/Pan': 'Manzanillo, Panama',
   'Manzanillo (Panama)': 'Manzanillo, Panama',
   'Manzanillo (Mexico)': 'Manzanillo, Mexico',
+  // NMT's bare "Reunion" is Le Port, the island's only RoRo port - the same call
+  // Höegh and EUKOR list as Port Reunion.
+  Reunion: 'Port Reunion, Réunion',
 };
 
 export const withCountry = port =>
