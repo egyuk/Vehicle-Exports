@@ -149,9 +149,14 @@ async function main() {
     updated: todayISO(),
     source: {
       name: 'Carrier schedules',
-      // Named but not linked: these carriers sell the same service to the same
-      // customers, so linking out from our schedule loses the enquiry.
-      note: 'Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, "K" Line, NYK RoRo, Grimaldi, Sallaum Lines, Höegh Autoliners, EUKOR, MOL ACE, ACL, Hyundai Glovis, UECC and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
+      // Deliberately does not name the carriers. They sell the same service to
+      // the same customers, so a list of them is a shopping list - naming them
+      // is the giveaway, whether or not it is linked. The per-source detail
+      // that used to live here (derived Autoshippers ETAs, transhipment) is a
+      // note about our own data quality and belongs in the repo, not on a page
+      // a customer reads. What stays is the line that protects a quote when a
+      // carrier moves a date.
+      note: 'Sailings are compiled from published carrier schedules. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
     },
     sailings: kept,
   };

@@ -217,15 +217,10 @@ const destinationGroups = (() => {
       {rows.length === 0 && (
         <p class="text-center text-gray-400 text-sm py-12">No sailings recorded yet. Add rows to src/data/sailing-schedules.json.</p>
       )}
-    </div>
-  </section>
 
-  <!-- Provenance. Deliberately names the carriers without linking out: they sell
-       the same service to the same customers, so sending visitors to them from
-       our own schedule loses the enquiry. -->
-  <section class="py-10 lg:py-12 bg-gray-50 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-sm text-gray-500 leading-relaxed max-w-4xl">{source.note}</p>
+      <!-- Small print, kept with the table it qualifies rather than given its
+           own band: it is one disclaimer, not a section. -->
+      <p class="text-xs text-gray-400 leading-relaxed mt-6 max-w-3xl">{source.note}</p>
     </div>
   </section>
 
