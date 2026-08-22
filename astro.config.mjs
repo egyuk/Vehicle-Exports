@@ -11,6 +11,8 @@ export default defineConfig({
   integrations: [sitemap()],
   redirects: {
     '/admin': '/admin/index.html',
+    // Page renamed for search; the old path was indexed and linked from the footer.
+    '/export-sailing-schedule': '/uk-car-sailing-schedule',
     // Target must match the post's `slug:` frontmatter, not the filename.
     '/car-export-news/china-car-exports-jump-73-in-may-as-high-fuel-prices-raise-interest-in-evs': '/car-export-news/china-car-exports',
   },

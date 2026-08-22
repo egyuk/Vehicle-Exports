@@ -129,7 +129,7 @@ are redirect stubs plus the Decap CMS `/admin` page, and the `£TBC` prices on
 
 The pipeline itself is documented in `scripts/schedules/README.md`.
 
-- **`noindex`?** `/export-sailing-schedule` now holds real commercial data
+- **`noindex`?** `/uk-car-sailing-schedule` now holds real commercial data
   (493 sailings). If it is an internal working list rather than public
   marketing, it should not be indexed. `src/layouts/Layout.astro` has no
   `noindex` prop yet.

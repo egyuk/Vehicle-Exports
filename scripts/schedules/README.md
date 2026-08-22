@@ -1,6 +1,6 @@
 # Sailing schedule pipeline
 
-Refreshes `src/data/sailing-schedules.json`, which drives `/export-sailing-schedule`.
+Refreshes `src/data/sailing-schedules.json`, which drives `/uk-car-sailing-schedule`.
 
 ```bash
 npm run schedules:update            # fetch, merge, validate, write

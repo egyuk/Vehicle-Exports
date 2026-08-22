@@ -1,6 +1,6 @@
 ---
 // Country-filtered slice of the sailing schedule, in the same format as
-// /export-sailing-schedule. Reads the same data file, so the weekly refresh
+// /uk-car-sailing-schedule. Reads the same data file, so the weekly refresh
 // updates every country page at once with no per-page maintenance.
 //
 //   <SailingSchedule country="Kenya" />
@@ -87,7 +87,7 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
         <div class="border border-gray-200 rounded-xl overflow-x-auto">
           <!-- No Voyage column here: on a country page's narrower content column
                it pushed the table into sideways scrolling. The full schedule at
-               /export-sailing-schedule still carries it. -->
+               /uk-car-sailing-schedule still carries it. -->
           <table class="w-full text-sm min-w-[620px]">
             <thead>
               <tr class="bg-gray-50 text-left border-b border-gray-200">
@@ -115,7 +115,7 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
         </div>
 
         <div class="flex flex-wrap items-center gap-4 mt-5">
-          <a href="/export-sailing-schedule" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-primary)] hover:underline">
+          <a href="/uk-car-sailing-schedule" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-primary)] hover:underline">
             Full sailing schedule
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -133,7 +133,7 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
           No confirmed sailings to {country} are listed at the moment. Sailings are added as carriers publish them —
           <a href="/contact" class="text-[var(--color-primary)] font-semibold hover:underline">get in touch</a> and we will
           confirm the next available departure, or
-          <a href="/export-sailing-schedule" class="text-[var(--color-primary)] font-semibold hover:underline">browse all destinations</a>.
+          <a href="/uk-car-sailing-schedule" class="text-[var(--color-primary)] font-semibold hover:underline">browse all destinations</a>.
         </p>
       </div>
     )}
