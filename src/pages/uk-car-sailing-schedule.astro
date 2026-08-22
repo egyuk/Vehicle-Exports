@@ -219,8 +219,10 @@ const destinationGroups = (() => {
       )}
 
       <!-- Small print, kept with the table it qualifies rather than given its
-           own band: it is one disclaimer, not a section. -->
-      <p class="text-xs text-gray-400 leading-relaxed mt-6 max-w-3xl">{source.note}</p>
+           own band: it is one disclaimer, not a section. Runs the full width so
+           it sits on a single line; no nowrap, so it still wraps on mobile
+           instead of forcing the page to scroll sideways. -->
+      <p class="text-xs font-bold italic text-gray-400 leading-relaxed mt-6">**{source.note}**</p>
     </div>
   </section>
 
