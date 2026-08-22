@@ -25,13 +25,14 @@ import * as hoegh from './sources/hoegh.mjs';
 import * as eukor from './sources/eukor.mjs';
 import * as dfds from './sources/dfds.mjs';
 import * as condor from './sources/condor.mjs';
+import * as stena from './sources/stena.mjs';
 import * as mol from './sources/mol.mjs';
 import * as acl from './sources/acl.mjs';
 import * as glovis from './sources/glovis.mjs';
 import * as uecc from './sources/uecc.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, dfds, condor, geest, autoshippers];
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, dfds, condor, stena, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 

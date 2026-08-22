@@ -26,6 +26,7 @@ export const MIN_ROWS = {
   'EUKOR': 10,
   'DFDS': 10,
   'Condor Ferries': 20,
+  'Stena Line': 30,
   // Few UK calls each, so the floors are low by nature.
   'MOL ACE': 5,
   'ACL': 10,

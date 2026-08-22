@@ -32,6 +32,7 @@ union; the source modules only interpret rows.
 | ACL | MyACL portal POST | GET the search page for the anti-forgery token, cookie and an embedded DevExpress port directory, then POST. Dates in the raw HTML are US M/D/YYYY - the dd/mm seen in a browser is client-side formatting |
 | Hyundai Glovis | PDF (Stena Glovis) | Weekly per-lane PDFs whose URL carries the ISO week; scrape the page for the current set. Vessel-column grid, sparse rows, so bind dates by x position. Uses xref-stream/ObjStm PDFs (see below) |
 | UECC | PDF | A day-by-day calendar, not a port table: read each vessel's rotation *down* its column. "II"/"ll" mean still at sea, and dd-mm dates need the year rolled from the issue date |
+| Stena Line | AEM JSON, per day | The freight extranet's timetable search 404s publicly; the same ro-pax departures are on the passenger route pages as `_jcr_content.timetable.<CODE>.<date>.json`. Codes are unguessable (HHDB, FIRO) - watch the page's own requests |
 | EUKOR | jQuery-era `.do` POST | One POST takes every UK port against every foreign port at once (~330 codes from the page's own `var code/var des` script pairs). Rows with an empty vessel cell continue the sailing above; one port (`Port Klang (Pelabuhan Klang),`) has no country at all |
 
 Two lessons worth keeping:

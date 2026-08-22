@@ -5639,6 +5639,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-22",
+      "eta": "2026-08-22",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-22",
+      "eta": "2026-08-22",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "Halifax, Canada",
       "vessel": "Atlantic Sea",
@@ -5714,6 +5736,17 @@
       "eta": "2026-09-15",
       "lane": "Europe to North America",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-22",
+      "eta": "2026-08-22",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Poole",
@@ -5804,6 +5837,28 @@
       "notes": "RoRo closing 19/08 · via Antwerp"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-23",
+      "eta": "2026-08-23",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-23",
+      "eta": "2026-08-23",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Freetown, Sierra Leone",
       "vessel": "Grande Sierra Leone",
@@ -5890,6 +5945,17 @@
       "eta": "2026-09-04",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 19 Aug"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-23",
+      "eta": "2026-08-23",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -6035,6 +6101,28 @@
       "notes": "TAL service"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-24",
+      "eta": "2026-08-24",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-24",
+      "eta": "2026-08-24",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Arc Integrity",
@@ -6110,6 +6198,17 @@
       "eta": "2026-09-25",
       "lane": "Europe to South America",
       "notes": "via Antwerp transhipment · ocean voyage GGU0526"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-24",
+      "eta": "2026-08-24",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -6231,6 +6330,28 @@
       "eta": "2026-09-24",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-25",
+      "eta": "2026-08-25",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-25",
+      "eta": "2026-08-25",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Bristol",
@@ -6398,6 +6519,17 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-25",
+      "eta": "2026-08-25",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "San Diego, USA",
       "vessel": "Glovis Corona",
@@ -6508,6 +6640,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-26",
+      "eta": "2026-08-26",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-26",
+      "eta": "2026-08-26",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Patriot",
@@ -6516,6 +6670,17 @@
       "ets": "2026-08-26",
       "eta": "2026-09-12",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-26",
+      "eta": "2026-08-26",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -6594,6 +6759,28 @@
       "eta": "2026-10-12",
       "lane": "Europe to Oceania",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-27",
+      "eta": "2026-08-27",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-27",
+      "eta": "2026-08-27",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -6684,6 +6871,17 @@
       "notes": "ETA derived from published transit time"
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-27",
+      "eta": "2026-08-27",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "St Helier, Jersey",
       "vessel": "Caesarea Trader",
@@ -6758,6 +6956,28 @@
       "ets": "2026-08-28",
       "eta": "2026-10-14",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-28",
+      "eta": "2026-08-28",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-28",
+      "eta": "2026-08-28",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -6912,6 +7132,17 @@
       "ets": "2026-08-28",
       "eta": "2026-10-25",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-28",
+      "eta": "2026-08-28",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -7080,6 +7311,28 @@
       "notes": "via Antwerp"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-29",
+      "eta": "2026-08-29",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-29",
+      "eta": "2026-08-29",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Lagos, Nigeria",
       "vessel": "Grande Luanda",
@@ -7133,6 +7386,17 @@
       "eta": "2026-10-05",
       "lane": "Europe to Oceania",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-29",
+      "eta": "2026-08-29",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -7267,6 +7531,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-30",
+      "eta": "2026-08-30",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-30",
+      "eta": "2026-08-30",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Fremantle, Australia",
       "vessel": "Lake Shirasagi",
@@ -7397,6 +7683,17 @@
       "eta": "2026-09-11",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 26 Aug"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-30",
+      "eta": "2026-08-30",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portbury",
@@ -7542,6 +7839,39 @@
       "notes": "ETA derived from published transit time"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-31",
+      "eta": "2026-08-31",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-31",
+      "eta": "2026-08-31",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-08-31",
+      "eta": "2026-08-31",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "St Helier, Jersey",
       "vessel": "Caesarea Trader",
@@ -7597,6 +7927,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-01",
+      "eta": "2026-09-01",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-01",
+      "eta": "2026-09-01",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "Halifax, Canada",
       "vessel": "Atlantic Sun",
@@ -7627,6 +7979,17 @@
       "ets": "2026-09-01",
       "eta": "2026-09-15",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-01",
+      "eta": "2026-09-01",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -7685,6 +8048,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-02",
+      "eta": "2026-09-02",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-02",
+      "eta": "2026-09-02",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Fort de France, Martinique",
       "vessel": "Höegh Manila",
@@ -7726,6 +8111,17 @@
       "ets": "2026-09-02",
       "eta": "2026-09-24",
       "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-02",
+      "eta": "2026-09-02",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -7795,6 +8191,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-03",
+      "eta": "2026-09-03",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-03",
+      "eta": "2026-09-03",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Livorno, Italy",
       "vessel": "Auto Energy",
@@ -7803,6 +8221,17 @@
       "ets": "2026-09-03",
       "eta": "2026-09-17",
       "lane": "Europe to Mediterranean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-03",
+      "eta": "2026-09-03",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -7916,6 +8345,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-04",
+      "eta": "2026-09-04",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-04",
+      "eta": "2026-09-04",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Durban, South Africa",
       "vessel": "Hoegh Trigger",
@@ -7969,6 +8420,17 @@
       "eta": "2026-09-26",
       "lane": "Europe to Africa",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-04",
+      "eta": "2026-09-04",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -8079,6 +8541,28 @@
       "eta": "2026-10-11",
       "lane": "Europe to Africa",
       "notes": "RoRo closing 02/09 · via Antwerp"
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-05",
+      "eta": "2026-09-05",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-05",
+      "eta": "2026-09-05",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -8356,6 +8840,17 @@
       "notes": "via Antwerp transhipment · ocean voyage GFR0626"
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-05",
+      "eta": "2026-09-05",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Santander, Spain",
       "vessel": "Höegh Trigger",
@@ -8521,6 +9016,28 @@
       "notes": "UK cut-off 2 Sept"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-06",
+      "eta": "2026-09-06",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-06",
+      "eta": "2026-09-06",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Georgetown, Guyana",
       "vessel": "Lombok Strait",
@@ -8563,6 +9080,17 @@
       "eta": "2026-09-18",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 2 Sept"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-06",
+      "eta": "2026-09-06",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -8686,6 +9214,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-07",
+      "eta": "2026-09-07",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-07",
+      "eta": "2026-09-07",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Halifax, Canada",
       "vessel": "Themisa",
@@ -8760,6 +9310,17 @@
       "ets": "2026-09-07",
       "eta": "2026-11-03",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-07",
+      "eta": "2026-09-07",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -8851,6 +9412,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-08",
+      "eta": "2026-09-08",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-08",
+      "eta": "2026-09-08",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Halifax, Canada",
       "vessel": "Thermopylae",
@@ -8917,6 +9500,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-08",
+      "eta": "2026-09-08",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Shanghai, China",
       "vessel": "Thermopylae",
@@ -8980,6 +9574,39 @@
       "ets": "2026-09-08",
       "eta": "2026-10-16",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-09",
+      "eta": "2026-09-09",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-09",
+      "eta": "2026-09-09",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-09",
+      "eta": "2026-09-09",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -9068,6 +9695,28 @@
       "ets": "2026-09-10",
       "eta": "2026-09-28",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-10",
+      "eta": "2026-09-10",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-10",
+      "eta": "2026-09-10",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -9181,6 +9830,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-10",
+      "eta": "2026-09-10",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Newcastle",
       "destination": "Santander, Spain",
       "vessel": "Höegh Detroit",
@@ -9233,6 +9893,39 @@
       "ets": "2026-09-10",
       "eta": "2026-09-11",
       "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-11",
+      "eta": "2026-09-11",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-11",
+      "eta": "2026-09-11",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-11",
+      "eta": "2026-09-11",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -9324,6 +10017,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-12",
+      "eta": "2026-09-12",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-12",
+      "eta": "2026-09-12",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Masan, South Korea",
       "vessel": "Glovis Courage",
@@ -9344,6 +10059,17 @@
       "eta": "2026-10-22",
       "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-12",
+      "eta": "2026-09-12",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -9454,6 +10180,28 @@
       "eta": "2026-10-19",
       "lane": "Europe to North America",
       "notes": "TAL service"
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-13",
+      "eta": "2026-09-13",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-13",
+      "eta": "2026-09-13",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -9632,6 +10380,17 @@
       "notes": "UK cut-off 9 Sept"
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-13",
+      "eta": "2026-09-13",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Santa Marta, Colombia",
       "vessel": "Baltic Klipper",
@@ -9786,6 +10545,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-14",
+      "eta": "2026-09-14",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-14",
+      "eta": "2026-09-14",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "Halifax, Canada",
       "vessel": "Atlantic Star",
@@ -9874,6 +10655,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-14",
+      "eta": "2026-09-14",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "St Helier, Jersey",
       "vessel": "Caesarea Trader",
@@ -9926,6 +10718,39 @@
       "ets": "2026-09-14",
       "eta": "2026-10-09",
       "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-15",
+      "eta": "2026-09-15",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-15",
+      "eta": "2026-09-15",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-15",
+      "eta": "2026-09-15",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -9984,6 +10809,28 @@
       "notes": "ETA at load port; departure not published"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-16",
+      "eta": "2026-09-16",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-16",
+      "eta": "2026-09-16",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Durban, South Africa",
       "vessel": "Liberty Promise",
@@ -10015,6 +10862,17 @@
       "eta": "2026-10-15",
       "lane": "Europe to Africa",
       "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-16",
+      "eta": "2026-09-16",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -10102,6 +10960,28 @@
       "ets": "2026-09-17",
       "eta": "2026-10-05",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-17",
+      "eta": "2026-09-17",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-17",
+      "eta": "2026-09-17",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -10281,6 +11161,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-17",
+      "eta": "2026-09-17",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Santander, Spain",
       "vessel": "Tamerlane",
@@ -10378,6 +11269,39 @@
       "eta": "2026-10-13",
       "lane": "Europe to North America",
       "notes": "NAS service"
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-18",
+      "eta": "2026-09-18",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-18",
+      "eta": "2026-09-18",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-18",
+      "eta": "2026-09-18",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -10501,6 +11425,28 @@
       "notes": "RoRo closing 16/09 · via Antwerp"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-19",
+      "eta": "2026-09-19",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-19",
+      "eta": "2026-09-19",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Halifax, Canada",
       "vessel": "Morning Christina",
@@ -10619,6 +11565,17 @@
       "ets": "2026-09-19",
       "eta": "2026-10-30",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-19",
+      "eta": "2026-09-19",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -10798,6 +11755,28 @@
       "notes": "via Antwerp"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-20",
+      "eta": "2026-09-20",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-20",
+      "eta": "2026-09-20",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Georgetown, Guyana",
       "vessel": "Star First",
@@ -10861,6 +11840,17 @@
       "ets": "2026-09-20",
       "eta": "2026-10-10",
       "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-20",
+      "eta": "2026-09-20",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -10963,6 +11953,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-21",
+      "eta": "2026-09-21",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-21",
+      "eta": "2026-09-21",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Durban, South Africa",
       "vessel": "Höegh Detroit",
@@ -11015,6 +12027,17 @@
       "ets": "2026-09-21",
       "eta": "2026-11-06",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-21",
+      "eta": "2026-09-21",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -11073,6 +12096,39 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-22",
+      "eta": "2026-09-22",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-22",
+      "eta": "2026-09-22",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-22",
+      "eta": "2026-09-22",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "St Helier, Jersey",
       "vessel": "Caesarea Trader",
@@ -11103,6 +12159,39 @@
       "ets": "2026-09-22",
       "eta": "2026-09-23",
       "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-23",
+      "eta": "2026-09-23",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-23",
+      "eta": "2026-09-23",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-23",
+      "eta": "2026-09-23",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -11161,6 +12250,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-24",
+      "eta": "2026-09-24",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-24",
+      "eta": "2026-09-24",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Endurance",
@@ -11169,6 +12280,17 @@
       "ets": "2026-09-24",
       "eta": "2026-10-13",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-24",
+      "eta": "2026-09-24",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -11227,6 +12349,28 @@
       "notes": "TAL service"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-25",
+      "eta": "2026-09-25",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-25",
+      "eta": "2026-09-25",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Drive Green Highway",
@@ -11246,6 +12390,17 @@
       "ets": "2026-09-25",
       "eta": "2026-11-03",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-25",
+      "eta": "2026-09-25",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -11370,6 +12525,28 @@
       "notes": "via Antwerp"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-26",
+      "eta": "2026-09-26",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-26",
+      "eta": "2026-09-26",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Lagos, Nigeria",
       "vessel": "Grande Gabon",
@@ -11412,6 +12589,17 @@
       "eta": "2026-10-30",
       "lane": "Europe to Africa",
       "notes": "via Antwerp"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-26",
+      "eta": "2026-09-26",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -11557,6 +12745,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-27",
+      "eta": "2026-09-27",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-27",
+      "eta": "2026-09-27",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Georgetown, Guyana",
       "vessel": "Atlantic Klipper",
@@ -11689,6 +12899,17 @@
       "notes": "UK cut-off 23 Sept"
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-27",
+      "eta": "2026-09-27",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "San Diego, USA",
       "vessel": "Glovis Cosmos",
@@ -11797,6 +13018,39 @@
       "eta": "2026-10-11",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 23 Sept"
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-28",
+      "eta": "2026-09-28",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-28",
+      "eta": "2026-09-28",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-28",
+      "eta": "2026-09-28",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -11909,6 +13163,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-29",
+      "eta": "2026-09-29",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-29",
+      "eta": "2026-09-29",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Fremantle, Australia",
       "vessel": "Toscana",
@@ -11997,6 +13273,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-29",
+      "eta": "2026-09-29",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "St Helier, Jersey",
       "vessel": "Caesarea Trader",
@@ -12016,6 +13303,28 @@
       "ets": "2026-09-29",
       "eta": "2026-09-29",
       "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-30",
+      "eta": "2026-09-30",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-30",
+      "eta": "2026-09-30",
+      "lane": "UK to Ireland",
       "notes": ""
     },
     {
@@ -12107,6 +13416,17 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-09-30",
+      "eta": "2026-09-30",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "San Diego, USA",
       "vessel": "Jasmine Leader",
@@ -12195,6 +13515,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-01",
+      "eta": "2026-10-01",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-01",
+      "eta": "2026-10-01",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Arc Defender",
@@ -12248,6 +13590,17 @@
       "eta": "2026-10-25",
       "lane": "Europe to South America",
       "notes": "via Antwerp transhipment · ocean voyage GHA0526"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-01",
+      "eta": "2026-10-01",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -12305,6 +13658,28 @@
       "notes": "via Antwerp transhipment · ocean voyage GHA0526"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-02",
+      "eta": "2026-10-02",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-02",
+      "eta": "2026-10-02",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Guangzhou (Xinsha), China",
       "vessel": "Helios Ray",
@@ -12336,6 +13711,17 @@
       "eta": "2026-11-15",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-02",
+      "eta": "2026-10-02",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
