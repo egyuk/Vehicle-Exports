@@ -114,6 +114,13 @@ export const COUNTRY = {
   Derince: 'Turkey', Iskenderun: 'Turkey', Yarimca: 'Turkey', Aqaba: 'Jordan',
   'East London': 'South Africa', Livorno: 'Italy', Piraeus: 'Greece', Malaga: 'Spain',
   Barcelona: 'Spain', Freeport: 'Bahamas', Newark: 'USA',
+  // UECC short-sea ports
+  Vigo: 'Spain', Sagunto: 'Spain', Pasajes: 'Spain', Bilbao: 'Spain',
+  Setubal: 'Portugal', Leixoes: 'Portugal', Lisbon: 'Portugal',
+  Derince: 'Turkey', Gemlik: 'Turkey', Trieste: 'Italy', Monfalcone: 'Italy',
+  // Glovis/Stena spellings
+  'Guangzhou (Xinsha)': 'China', Emden: 'Germany', Koper: 'Slovenia', Ravenna: 'Italy',
+  Venice: 'Italy', Sohar: 'Oman', 'Abu Dhabi': 'UAE', Hambantota: 'Sri Lanka',
 };
 
 /** Canal and strait transits: waypoints, never destinations. */
@@ -123,7 +130,7 @@ export const WAYPOINTS = /^(Panama Canal|Magellan Strait|Suez Canal)$/i;
 // these is repositioning around the range, not delivering. Iberia and the Med
 // stay in - Santander and Valletta are real destinations on these services.
 // Spellings cover WW's variants (Zeebruges, Goteborg, suffixed Turku/Hanko).
-export const NORTH_EUROPE = /^(Antwerp|Zeebrugge|Hamburg|Bremerhaven|Amsterdam|Flushing|Rotterdam|Le Havre|Cuxhaven|Esbjerg|Gothenburg|Goteborg|Wallhamn|Drammen|Oslo|Fredericia|Malmo|Gdynia|Uddevalla|Turku[^,]*|Hanko[^,]*|Zeebruges)$/i;
+export const NORTH_EUROPE = /^(Antwerp|Antwerpen|Zeebrugge|Hamburg|Bremerhaven|Amsterdam|Flushing|Rotterdam|Le Havre|Cuxhaven|Esbjerg|Gothenburg|Goteborg|Wallhamn|Drammen|Oslo|Fredericia|Malmo|Gdynia|Uddevalla|Turku[^,]*|Hanko[^,]*|Zeebruges)$/i;
 
 /**
  * Sources spell some ports differently, which fragments the destination filter.
@@ -161,6 +168,7 @@ const LANE_BY_COUNTRY = {
   Indonesia: 'Europe to Far East',
   UAE: 'Europe to Middle East', 'Saudi Arabia': 'Europe to Middle East', Jordan: 'Europe to Middle East',
   Turkey: 'Europe to Middle East', Oman: 'Europe to Middle East',
+  'Sri Lanka': 'Europe to Far East',
   USA: 'Europe to North America', Canada: 'Europe to North America', Mexico: 'Europe to North America',
   Brazil: 'Europe to South America', Argentina: 'Europe to South America', Uruguay: 'Europe to South America',
   Peru: 'Europe to South America', Ecuador: 'Europe to South America', Colombia: 'Europe to South America',
@@ -177,6 +185,7 @@ const LANE_BY_COUNTRY = {
   Egypt: 'Europe to Mediterranean', Portugal: 'Europe to Mediterranean',
   Cyprus: 'Europe to Mediterranean', Malta: 'Europe to Mediterranean', Greece: 'Europe to Mediterranean',
   Italy: 'Europe to Mediterranean', Spain: 'Europe to Mediterranean',
+  Slovenia: 'Europe to Mediterranean',
 };
 
 /** Lane for a "City, Country" destination; 'Europe export' when unknown. */

@@ -24,6 +24,11 @@ export const MIN_ROWS = {
   'Sallaum Lines': 10,
   'Höegh Autoliners': 10,
   'EUKOR': 10,
+  // Few UK calls each, so the floors are low by nature.
+  'MOL ACE': 5,
+  'ACL': 10,
+  'Hyundai Glovis': 10,
+  'UECC': 10,
   'Autoshippers': 20,
 };
 

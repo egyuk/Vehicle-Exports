@@ -28,6 +28,10 @@ union; the source modules only interpret rows.
 | Sallaum Lines | HTML tables | Empty cells are **unclosed** `<td>`, so position-based parsing left-packs rows and misattributes dates. Bind via each cell's `headers` attribute instead |
 | NYK RoRo | WordPress ajax | vessel -> vesselNums -> vesselSearch -> showDetails chain; rotation HTML has one year header, so the year is carried forward across month wraps |
 | Höegh Autoliners | JSON API | `/api/vessel`'s params are swapped: `departureDate` is the *until* bound, `arrivalDate` the *from*. Pair across voyage numbers - they are administrative, and Höegh's own search sells Southampton (voy 189) -> Kingston (voy 190) |
+| MOL ACE | ASP.NET ajax | Three steps: LocationLOV resolves UK port codes (skip the "DO NOT USE" tombstones), a dated search lists load calls, then a per-voyage search returns the rotation with (L)/(D) flags - the carrier states load vs discharge, so it need not be inferred |
+| ACL | MyACL portal POST | GET the search page for the anti-forgery token, cookie and an embedded DevExpress port directory, then POST. Dates in the raw HTML are US M/D/YYYY - the dd/mm seen in a browser is client-side formatting |
+| Hyundai Glovis | PDF (Stena Glovis) | Weekly per-lane PDFs whose URL carries the ISO week; scrape the page for the current set. Vessel-column grid, sparse rows, so bind dates by x position. Uses xref-stream/ObjStm PDFs (see below) |
+| UECC | PDF | A day-by-day calendar, not a port table: read each vessel's rotation *down* its column. "II"/"ll" mean still at sea, and dd-mm dates need the year rolled from the issue date |
 | EUKOR | jQuery-era `.do` POST | One POST takes every UK port against every foreign port at once (~330 codes from the page's own `var code/var des` script pairs). Rows with an empty vessel cell continue the sailing above; one port (`Port Klang (Pelabuhan Klang),`) has no country at all |
 
 Two lessons worth keeping:
@@ -37,6 +41,15 @@ Two lessons worth keeping:
 2. **Use the font's real `/W` glyph widths.** Estimated widths accumulate error
    across a wide row and land dates under the wrong island. `/W` is usually an
    *indirect* object (`/W 9 0 R`), which is easy to miss.
+
+A fourth, from adding Glovis: **modern PDFs hide their dictionaries.** Files
+written with xref streams pack fonts and page resources into compressed
+`/ObjStm` object streams, so a plain `obj ... endobj` scan finds no fonts and
+every page decodes as gibberish. `loadPdf` now inflates those. Two traps came
+with it: a simple (non-Type0) subset font writes **one-byte** codes, not 2-byte
+CIDs, and its literal strings are glyph codes that must still go through
+ToUnicode - so `` inside a string can mean the letter "D", and resolving
+escapes to whitespace before mapping silently eats characters.
 
 A third, learned the hard way: apply a page `cm` transform **only** if it is at
 the very start of the content stream. Content streams also place images with

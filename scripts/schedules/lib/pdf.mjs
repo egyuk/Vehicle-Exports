@@ -32,15 +32,48 @@ export function loadPdf(buffer) {
     try { return inflateSync(slice).toString('latin1'); } catch { return slice.toString('latin1'); }
   };
 
-  return { raw, objects, streamOf };
+  // Xref-stream PDFs hide their dictionaries (fonts, resources) inside /ObjStm
+  // compressed object streams - the plain obj/endobj scan never sees them, which
+  // is why such files used to decode as gibberish. Inflate each ObjStm and
+  // register its embedded objects. The header is N pairs of "objnum offset",
+  // then bodies start at /First. Streams themselves cannot nest in an ObjStm,
+  // so ToUnicode CMaps stay top-level and resolve as before. The bodies are
+  // also appended to `raw` so readFonts' /Font resource scan can see them.
+  let hidden = '';
+  for (const body of [...objects.values()]) {
+    if (!/\/Type\s*\/ObjStm/.test(body)) continue;
+    const n = Number((body.match(/\/N\s+(\d+)/) || [])[1]);
+    const first = Number((body.match(/\/First\s+(\d+)/) || [])[1]);
+    const content = streamOf(body);
+    if (!content || !n || Number.isNaN(first)) continue;
+    const header = content.slice(0, first).trim().split(/\s+/).map(Number);
+    for (let i = 0; i < n; i++) {
+      const objNum = header[2 * i];
+      const start = first + header[2 * i + 1];
+      const end = i + 1 < n ? first + header[2 * i + 3] : content.length;
+      const objBody = content.slice(start, end);
+      if (!objects.has(String(objNum))) objects.set(String(objNum), objBody);
+      hidden += objBody + '\n';
+    }
+  }
+
+  return { raw: raw + hidden, objects, streamOf };
 }
 
 /** Build fontName -> { unicode: Map<cid,char>, widths: Map<cid,width> }. */
 export function readFonts({ raw, objects, streamOf }) {
   const fonts = new Map();
 
-  for (const res of raw.matchAll(/\/Font\s*<<([\s\S]*?)>>/g)) {
-    for (const f of res[1].matchAll(/\/([A-Za-z0-9_.+-]+)\s+(\d+)\s+0\s+R/g)) {
+  // Font resources come inline (/Font <<...>>) or as an indirect dictionary
+  // (/Font 15 0 R) - resolve the latter to its object body so both scan alike.
+  const resourceDicts = [...raw.matchAll(/\/Font\s*<<([\s\S]*?)>>/g)].map(m => m[1]);
+  for (const m of raw.matchAll(/\/Font\s+(\d+)\s+0\s+R/g)) {
+    const body = objects.get(m[1]);
+    if (body) resourceDicts.push(body);
+  }
+
+  for (const res of resourceDicts) {
+    for (const f of res.matchAll(/\/([A-Za-z0-9_.+-]+)\s+(\d+)\s+0\s+R/g)) {
       const [, name, num] = f;
       if (fonts.has(name)) continue;
       const body = objects.get(num);
@@ -78,7 +111,19 @@ export function readFonts({ raw, objects, streamOf }) {
       const nums = (wBody.match(/-?\d+(?:\.\d+)?/g) || []).map(Number);
       for (let i = 0; i + 2 < nums.length + 1; i += 3) widths.set(nums[i], nums[i + 2]);
 
-      if (unicode.size || widths.size) fonts.set(name, { unicode, widths });
+      // Simple (non-Type0) subset fonts write single-byte codes and carry
+      // /Widths + /FirstChar instead of /W. Their ToUnicode maps byte codes.
+      const single = !/\/Subtype\s*\/Type0/.test(body);
+      if (single) {
+        const fc = Number((body.match(/\/FirstChar\s+(\d+)/) || [])[1] ?? NaN);
+        const wsRef = (body.match(/\/Widths\s+(\d+)\s+0\s+R/) || [])[1];
+        const wsInline = (body.match(/\/Widths\s*\[([\s\S]{0,20000}?)\]/) || [])[1];
+        const wsBody = wsRef ? (objects.get(wsRef) || '') : (wsInline || '');
+        const ws = (wsBody.match(/-?\d+(?:\.\d+)?/g) || []).map(Number);
+        if (!Number.isNaN(fc)) ws.forEach((w, i) => widths.set(fc + i, w));
+      }
+
+      if (unicode.size || widths.size) fonts.set(name, { unicode, widths, single });
     }
   }
   return fonts;
@@ -165,14 +210,29 @@ export function extractItems(pdf, { cellGap = DEFAULT_GAP } = {}) {
         };
         const glyphs = hex => {
           const clean = hex.replace(/\s+/g, '');
+          // Type0 fonts write 2-byte CIDs; simple subset fonts 1-byte codes.
+          const step = f?.single ? 2 : 4;
           let s = '';
-          for (let i = 0; i + 4 <= clean.length; i += 4) {
-            const cid = parseInt(clean.slice(i, i + 4), 16);
+          for (let i = 0; i + step <= clean.length; i += step) {
+            const cid = parseInt(clean.slice(i, i + step), 16);
             s += f?.unicode.get(cid) ?? '';
             // Exact advance where the font declares one; DW=1000 otherwise.
             penX += ((f?.widths.get(cid) ?? 1000) / 1000) * size;
           }
           return s;
+        };
+        // Literal strings in a simple subset font are glyph codes, not text -
+        // map them through the font's ToUnicode like any other CID.
+        const literal = t => {
+          const lit = decodeLiteral(t);
+          if (!f?.single || !f.unicode.size) return { text: lit, adv: lit.length * 0.5 * size };
+          let text = '', adv = 0;
+          for (const ch of lit) {
+            const code = ch.charCodeAt(0);
+            text += f.unicode.get(code) ?? ch;
+            adv += ((f.widths.get(code) ?? 500) / 1000) * size;
+          }
+          return { text, adv };
         };
 
         if (m[11] !== undefined) {
@@ -181,9 +241,9 @@ export function extractItems(pdf, { cellGap = DEFAULT_GAP } = {}) {
             if (p[1] !== undefined) { if (!cur) start = penX; cur += glyphs(p[1]); }
             else if (p[2] !== undefined) {
               if (!cur) start = penX;
-              const lit = decodeLiteral(p[2]);
-              cur += lit;
-              penX += lit.length * 0.5 * size;
+              const { text, adv } = literal(p[2]);
+              cur += text;
+              penX += adv;
             } else {
               const adj = parseFloat(p[3]);
               penX += (-adj / 1000) * size;
@@ -196,9 +256,9 @@ export function extractItems(pdf, { cellGap = DEFAULT_GAP } = {}) {
           emit(glyphs(m[12]), start);
         } else if (m[13] !== undefined) {
           const start = penX;
-          const lit = decodeLiteral(m[13]);
-          penX += lit.length * 0.5 * size;
-          emit(lit, start);
+          const { text, adv } = literal(m[13]);
+          penX += adv;
+          emit(text, start);
         }
       }
     }
@@ -210,11 +270,18 @@ export function extractItems(pdf, { cellGap = DEFAULT_GAP } = {}) {
   return items;
 }
 
+/**
+ * Decode a PDF literal string to its raw byte codes.
+ *
+ * The escapes \n \r \t \b \f are byte values, not text: in a subset font whose
+ * ToUnicode maps code 0x0d to "D", leaving them as whitespace loses the letter
+ * (Stena Glovis' "SCHEDULE" came out "SCHE\rULE"). Resolve every escape to its
+ * byte here and let the caller map bytes through the font.
+ */
 function decodeLiteral(t) {
-  return t
-    .replace(/\\\(/g, '(').replace(/\\\)/g, ')')
-    .replace(/\\(\d{3})/g, (_, o) => String.fromCharCode(parseInt(o, 8)))
-    .replace(/\\\\/g, '\\');
+  const named = { n: '\n', r: '\r', t: '\t', b: '\b', f: '\f' };
+  return t.replace(/\\(\d{1,3}|.)/gs, (_, e) =>
+    /^\d+$/.test(e) ? String.fromCharCode(parseInt(e, 8)) : (named[e] ?? e));
 }
 
 /** Group positioned items into rows, ordered top-to-bottom, left-to-right. */

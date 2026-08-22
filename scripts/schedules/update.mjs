@@ -23,9 +23,13 @@ import * as nyk from './sources/nyk.mjs';
 import * as sallaum from './sources/sallaum.mjs';
 import * as hoegh from './sources/hoegh.mjs';
 import * as eukor from './sources/eukor.mjs';
+import * as mol from './sources/mol.mjs';
+import * as acl from './sources/acl.mjs';
+import * as glovis from './sources/glovis.mjs';
+import * as uecc from './sources/uecc.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, geest, autoshippers];
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 
@@ -92,12 +96,20 @@ async function main() {
   const merged = [];
   for (const s of collected) {
     const k = dedupeKey(s);
-    if (seen.has(k)) continue;
     const nk = nearKey(s);
-    if ((near.get(nk) || []).some(e => Math.abs(daysBetween(e, s.ets)) <= NEAR_DAYS)) continue;
+    const twin = (near.get(nk) || []).find(e => Math.abs(daysBetween(e.ets, s.ets)) <= NEAR_DAYS);
+    if (seen.has(k) || twin) {
+      // The losing copy can still know something the winner doesn't. NMT lists
+      // several carriers' sailings without naming the operator, so a carrier's
+      // own duplicate of the same sailing fills that blank instead of being
+      // discarded whole - it is the same ship on the same voyage.
+      if (twin && !twin.row.carrier && s.carrier) twin.row.carrier = s.carrier;
+      continue;
+    }
     seen.add(k);
-    near.set(nk, [...(near.get(nk) || []), s.ets]);
-    merged.push({ ...s, vessel: canonicalVessel(s.vessel) });
+    const row = { ...s, vessel: canonicalVessel(s.vessel) };
+    near.set(nk, [...(near.get(nk) || []), { ets: s.ets, row }]);
+    merged.push(row);
   }
 
   const { errors, warnings, kept } = validateAll(merged, { year });
@@ -139,7 +151,7 @@ async function main() {
       name: 'Carrier schedules',
       // Named but not linked: these carriers sell the same service to the same
       // customers, so linking out from our schedule loses the enquiry.
-      note: 'Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, "K" Line, NYK RoRo, Grimaldi, Sallaum Lines, Höegh Autoliners, EUKOR and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
+      note: 'Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, "K" Line, NYK RoRo, Grimaldi, Sallaum Lines, Höegh Autoliners, EUKOR, MOL ACE, ACL, Hyundai Glovis, UECC and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
     },
     sailings: kept,
   };
