@@ -23,13 +23,15 @@ import * as nyk from './sources/nyk.mjs';
 import * as sallaum from './sources/sallaum.mjs';
 import * as hoegh from './sources/hoegh.mjs';
 import * as eukor from './sources/eukor.mjs';
+import * as dfds from './sources/dfds.mjs';
+import * as condor from './sources/condor.mjs';
 import * as mol from './sources/mol.mjs';
 import * as acl from './sources/acl.mjs';
 import * as glovis from './sources/glovis.mjs';
 import * as uecc from './sources/uecc.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, geest, autoshippers];
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, dfds, condor, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 
@@ -65,7 +67,9 @@ async function main() {
         failures.push(...errs);
         continue;
       }
-      collected.push(...sailings);
+      // Tag the origin so the near-duplicate pass can tell "two sources
+      // describing one sailing" from "one source listing a daily service".
+      collected.push(...sailings.map(s => ({ ...s, _source: source.name })));
     } catch (e) {
       log(`  FAIL ${e.message}`);
       failures.push(`${source.name}: ${e.message}`);
@@ -97,7 +101,12 @@ async function main() {
   for (const s of collected) {
     const k = dedupeKey(s);
     const nk = nearKey(s);
-    const twin = (near.get(nk) || []).find(e => Math.abs(daysBetween(e.ets, s.ets)) <= NEAR_DAYS);
+    // Only ever collapse across sources. Within one source the dates are
+    // authoritative: the Channel Islands ferries run the same vessel on the
+    // same route most days, and treating those as one sailing threw away 138
+    // real departures. A single source does not list a sailing twice.
+    const twin = (near.get(nk) || []).find(e =>
+      e.source !== s._source && Math.abs(daysBetween(e.ets, s.ets)) <= NEAR_DAYS);
     if (seen.has(k) || twin) {
       // The losing copy can still know something the winner doesn't. NMT lists
       // several carriers' sailings without naming the operator, so a carrier's
@@ -107,8 +116,9 @@ async function main() {
       continue;
     }
     seen.add(k);
-    const row = { ...s, vessel: canonicalVessel(s.vessel) };
-    near.set(nk, [...(near.get(nk) || []), { ets: s.ets, row }]);
+    const { _source, ...clean } = s;
+    const row = { ...clean, vessel: canonicalVessel(s.vessel) };
+    near.set(nk, [...(near.get(nk) || []), { ets: s.ets, source: _source, row }]);
     merged.push(row);
   }
 

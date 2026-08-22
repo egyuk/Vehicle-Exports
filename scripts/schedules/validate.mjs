@@ -24,6 +24,8 @@ export const MIN_ROWS = {
   'Sallaum Lines': 10,
   'Höegh Autoliners': 10,
   'EUKOR': 10,
+  'DFDS': 10,
+  'Condor Ferries': 20,
   // Few UK calls each, so the floors are low by nature.
   'MOL ACE': 5,
   'ACL': 10,
@@ -66,7 +68,11 @@ export function validateAll(sailings, { year = new Date().getFullYear() } = {}) 
     if (s.ets && !/^\d{4}-\d{2}-\d{2}$/.test(s.ets)) errors.push(`bad ets format: ${where}`);
     if (s.eta && !/^\d{4}-\d{2}-\d{2}$/.test(s.eta)) errors.push(`bad eta format: ${where}`);
 
-    if (s.eta && s.ets && s.eta <= s.ets) errors.push(`arrival not after departure: ${where} (eta ${s.eta})`);
+    // Same-day arrival is valid, not an error: the Channel Islands crossings
+    // are 3-10 hours and land on the departure date. Only an arrival strictly
+    // *before* departure is impossible. (This rule assumed every sailing was
+    // deep-sea and rejected the whole Guernsey and Jersey service.)
+    if (s.eta && s.ets && s.eta < s.ets) errors.push(`arrival before departure: ${where} (eta ${s.eta})`);
     if (s.eta && s.ets && daysBetween(s.ets, s.eta) > MAX_TRANSIT_DAYS) {
       errors.push(`transit over ${MAX_TRANSIT_DAYS} days: ${where} (eta ${s.eta})`);
     }

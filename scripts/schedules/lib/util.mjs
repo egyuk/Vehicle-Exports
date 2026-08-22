@@ -73,7 +73,7 @@ export const fmtShort = iso =>
 // --- geography -------------------------------------------------------------
 
 /** UK load ports. Only sailings departing these end up in the table. */
-export const UK_PORTS = /^(Southampton|Marchwood|Sheerness|Tilbury|Liverpool|Portsmouth|Immingham|Portbury|Killingholme|Teesport|Grimsby|London Gateway|Bristol)$/i;
+export const UK_PORTS = /^(Southampton|Marchwood|Sheerness|Tilbury|Liverpool|Portsmouth|Immingham|Portbury|Killingholme|Teesport|Grimsby|London Gateway|Bristol|Poole)$/i;
 
 export const COUNTRY = {
   Durban: 'South Africa', 'Port Elizabeth': 'South Africa', 'Cape Town': 'South Africa',
@@ -114,6 +114,8 @@ export const COUNTRY = {
   Derince: 'Turkey', Iskenderun: 'Turkey', Yarimca: 'Turkey', Aqaba: 'Jordan',
   'East London': 'South Africa', Livorno: 'Italy', Piraeus: 'Greece', Malaga: 'Spain',
   Barcelona: 'Spain', Freeport: 'Bahamas', Newark: 'USA',
+  // Channel Islands: short-sea, but a customs border and a real export lane.
+  'St Helier': 'Jersey', 'St Peter Port': 'Guernsey',
   // UECC short-sea ports
   Vigo: 'Spain', Sagunto: 'Spain', Pasajes: 'Spain', Bilbao: 'Spain',
   Setubal: 'Portugal', Leixoes: 'Portugal', Lisbon: 'Portugal',
@@ -184,6 +186,7 @@ const LANE_BY_COUNTRY = {
   'Puerto Rico': 'Europe to Caribbean',
   Egypt: 'Europe to Mediterranean', Portugal: 'Europe to Mediterranean',
   Cyprus: 'Europe to Mediterranean', Malta: 'Europe to Mediterranean', Greece: 'Europe to Mediterranean',
+  Jersey: 'UK to Channel Islands', Guernsey: 'UK to Channel Islands',
   Italy: 'Europe to Mediterranean', Spain: 'Europe to Mediterranean',
   Slovenia: 'Europe to Mediterranean',
 };

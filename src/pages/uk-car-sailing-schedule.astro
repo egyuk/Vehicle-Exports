@@ -190,7 +190,9 @@ const destinationGroups = (() => {
                 <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{r.loadPort}</td>
                 <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{flipDest(r.destination)}</td>
                 <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{fmtDate(r.eta)}</td>
-                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{r.transit !== null ? `${r.transit} days` : '—'}</td>
+                <!-- The Channel Islands crossings land the same day, so a bare
+                     "0 days" would read as missing data rather than 3 hours. -->
+                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{r.transit === null ? '—' : r.transit === 0 ? 'Same day' : `${r.transit} day${r.transit === 1 ? '' : 's'}`}</td>
                 <td class="px-4 py-3 text-gray-700 whitespace-nowrap">
                   {r.vessel}
                   {r.example && <span class="ml-2 text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Example</span>}

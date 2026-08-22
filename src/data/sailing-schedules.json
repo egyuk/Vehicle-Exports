@@ -5716,6 +5716,17 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-22",
+      "eta": "2026-08-22",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Tema, Ghana",
       "vessel": "Grande Sierra Leone",
@@ -5893,6 +5904,17 @@
     },
     {
       "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712333",
+      "carrier": "DFDS",
+      "ets": "2026-08-23",
+      "eta": "2026-08-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
       "destination": "St John's, Antigua",
       "vessel": "Atlantic Klipper",
       "voyage": "GL26033",
@@ -5901,6 +5923,28 @@
       "eta": "2026-09-07",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 19 Aug"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-23",
+      "eta": "2026-08-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-23",
+      "eta": "2026-08-23",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -6077,6 +6121,50 @@
       "eta": "2026-09-26",
       "lane": "Europe to South America",
       "notes": "via Antwerp transhipment · ocean voyage GGU0526"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712289",
+      "carrier": "DFDS",
+      "ets": "2026-08-24",
+      "eta": "2026-08-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680924",
+      "carrier": "DFDS",
+      "ets": "2026-08-24",
+      "eta": "2026-08-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-24",
+      "eta": "2026-08-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-24",
+      "eta": "2026-08-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -6343,6 +6431,50 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712307",
+      "carrier": "DFDS",
+      "ets": "2026-08-25",
+      "eta": "2026-08-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680911",
+      "carrier": "DFDS",
+      "ets": "2026-08-25",
+      "eta": "2026-08-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-25",
+      "eta": "2026-08-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-25",
+      "eta": "2026-08-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Bristol",
       "destination": "Tamatave, Madagascar",
       "vessel": "Höegh Trigger",
@@ -6384,6 +6516,39 @@
       "ets": "2026-08-26",
       "eta": "2026-09-12",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712334",
+      "carrier": "DFDS",
+      "ets": "2026-08-26",
+      "eta": "2026-08-27",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680931",
+      "carrier": "DFDS",
+      "ets": "2026-08-26",
+      "eta": "2026-08-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-26",
+      "eta": "2026-08-27",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -6517,6 +6682,50 @@
       "eta": "2026-10-09",
       "lane": "Europe to Oceania",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712295",
+      "carrier": "DFDS",
+      "ets": "2026-08-27",
+      "eta": "2026-08-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680944",
+      "carrier": "DFDS",
+      "ets": "2026-08-27",
+      "eta": "2026-08-27",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-27",
+      "eta": "2026-08-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-27",
+      "eta": "2026-08-27",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -6739,6 +6948,50 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712296",
+      "carrier": "DFDS",
+      "ets": "2026-08-28",
+      "eta": "2026-08-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680929",
+      "carrier": "DFDS",
+      "ets": "2026-08-28",
+      "eta": "2026-08-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-28",
+      "eta": "2026-08-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-28",
+      "eta": "2026-08-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Valletta, Malta",
       "vessel": "Grande Istanbul",
@@ -6880,6 +7133,28 @@
       "eta": "2026-10-05",
       "lane": "Europe to Oceania",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680926",
+      "carrier": "DFDS",
+      "ets": "2026-08-29",
+      "eta": "2026-08-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-29",
+      "eta": "2026-08-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -7169,6 +7444,39 @@
     },
     {
       "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712300",
+      "carrier": "DFDS",
+      "ets": "2026-08-30",
+      "eta": "2026-08-31",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-30",
+      "eta": "2026-08-31",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-30",
+      "eta": "2026-08-30",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
       "destination": "Turbo, Colombia",
       "vessel": "Luzon Strait",
       "voyage": "GL26034",
@@ -7234,6 +7542,50 @@
       "notes": "ETA derived from published transit time"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712309",
+      "carrier": "DFDS",
+      "ets": "2026-08-31",
+      "eta": "2026-09-01",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680947",
+      "carrier": "DFDS",
+      "ets": "2026-08-31",
+      "eta": "2026-08-31",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-31",
+      "eta": "2026-09-01",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-08-31",
+      "eta": "2026-08-31",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "Baltimore, USA",
       "vessel": "Atlantic Sun",
@@ -7275,6 +7627,50 @@
       "ets": "2026-09-01",
       "eta": "2026-09-15",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712315",
+      "carrier": "DFDS",
+      "ets": "2026-09-01",
+      "eta": "2026-09-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680942",
+      "carrier": "DFDS",
+      "ets": "2026-09-01",
+      "eta": "2026-09-01",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-01",
+      "eta": "2026-09-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-01",
+      "eta": "2026-09-01",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -7333,6 +7729,39 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712294",
+      "carrier": "DFDS",
+      "ets": "2026-09-02",
+      "eta": "2026-09-03",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680956",
+      "carrier": "DFDS",
+      "ets": "2026-09-02",
+      "eta": "2026-09-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-02",
+      "eta": "2026-09-03",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Vancouver, Canada",
       "vessel": "Montreal Express",
@@ -7385,6 +7814,39 @@
       "ets": "2026-09-03",
       "eta": "2026-09-14",
       "lane": "Europe to Mediterranean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712303",
+      "carrier": "DFDS",
+      "ets": "2026-09-03",
+      "eta": "2026-09-04",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680951",
+      "carrier": "DFDS",
+      "ets": "2026-09-03",
+      "eta": "2026-09-03",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-03",
+      "eta": "2026-09-04",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -7507,6 +7969,50 @@
       "eta": "2026-09-26",
       "lane": "Europe to Africa",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712335",
+      "carrier": "DFDS",
+      "ets": "2026-09-04",
+      "eta": "2026-09-05",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680936",
+      "carrier": "DFDS",
+      "ets": "2026-09-04",
+      "eta": "2026-09-04",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-04",
+      "eta": "2026-09-05",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-04",
+      "eta": "2026-09-04",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Sheerness",
@@ -7894,6 +8400,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680934",
+      "carrier": "DFDS",
+      "ets": "2026-09-05",
+      "eta": "2026-09-05",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-05",
+      "eta": "2026-09-05",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Tamatave, Madagascar",
       "vessel": "Höegh Trigger",
@@ -8049,6 +8577,17 @@
     },
     {
       "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712305",
+      "carrier": "DFDS",
+      "ets": "2026-09-06",
+      "eta": "2026-09-07",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
       "destination": "St John's, Antigua",
       "vessel": "Lombok Strait",
       "voyage": "GL26035",
@@ -8057,6 +8596,28 @@
       "eta": "2026-09-21",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 2 Sept"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-06",
+      "eta": "2026-09-07",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-06",
+      "eta": "2026-09-06",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -8202,6 +8763,50 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712306",
+      "carrier": "DFDS",
+      "ets": "2026-09-07",
+      "eta": "2026-09-08",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680925",
+      "carrier": "DFDS",
+      "ets": "2026-09-07",
+      "eta": "2026-09-07",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-07",
+      "eta": "2026-09-08",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-07",
+      "eta": "2026-09-07",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Tacoma, USA",
       "vessel": "Themisa",
@@ -8323,6 +8928,39 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712313",
+      "carrier": "DFDS",
+      "ets": "2026-09-08",
+      "eta": "2026-09-09",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680937",
+      "carrier": "DFDS",
+      "ets": "2026-09-08",
+      "eta": "2026-09-08",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-08",
+      "eta": "2026-09-09",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Tianjin-Xingang, China",
       "vessel": "Thermopylae",
@@ -8342,6 +8980,39 @@
       "ets": "2026-09-08",
       "eta": "2026-10-16",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712311",
+      "carrier": "DFDS",
+      "ets": "2026-09-09",
+      "eta": "2026-09-10",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680945",
+      "carrier": "DFDS",
+      "ets": "2026-09-09",
+      "eta": "2026-09-09",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-09",
+      "eta": "2026-09-10",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -8532,6 +9203,83 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712336",
+      "carrier": "DFDS",
+      "ets": "2026-09-10",
+      "eta": "2026-09-11",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680939",
+      "carrier": "DFDS",
+      "ets": "2026-09-10",
+      "eta": "2026-09-10",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-10",
+      "eta": "2026-09-11",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712317",
+      "carrier": "DFDS",
+      "ets": "2026-09-11",
+      "eta": "2026-09-12",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680920",
+      "carrier": "DFDS",
+      "ets": "2026-09-11",
+      "eta": "2026-09-11",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-11",
+      "eta": "2026-09-12",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-11",
+      "eta": "2026-09-11",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Pontus Highway",
@@ -8607,6 +9355,28 @@
       "eta": "2026-10-12",
       "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680949",
+      "carrier": "DFDS",
+      "ets": "2026-09-12",
+      "eta": "2026-09-12",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-12",
+      "eta": "2026-09-12",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -8885,6 +9655,39 @@
     },
     {
       "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712318",
+      "carrier": "DFDS",
+      "ets": "2026-09-13",
+      "eta": "2026-09-14",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-13",
+      "eta": "2026-09-14",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-13",
+      "eta": "2026-09-13",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
       "destination": "Turbo, Colombia",
       "vessel": "Baltic Klipper",
       "voyage": "GL26036",
@@ -9071,6 +9874,50 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712314",
+      "carrier": "DFDS",
+      "ets": "2026-09-14",
+      "eta": "2026-09-15",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680957",
+      "carrier": "DFDS",
+      "ets": "2026-09-14",
+      "eta": "2026-09-14",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-14",
+      "eta": "2026-09-15",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-14",
+      "eta": "2026-09-14",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Walvis Bay, Namibia",
       "vessel": "Sunrise Ace",
@@ -9079,6 +9926,39 @@
       "ets": "2026-09-14",
       "eta": "2026-10-09",
       "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712323",
+      "carrier": "DFDS",
+      "ets": "2026-09-15",
+      "eta": "2026-09-16",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680946",
+      "carrier": "DFDS",
+      "ets": "2026-09-15",
+      "eta": "2026-09-15",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-15",
+      "eta": "2026-09-16",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -9135,6 +10015,39 @@
       "eta": "2026-10-15",
       "lane": "Europe to Africa",
       "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712316",
+      "carrier": "DFDS",
+      "ets": "2026-09-16",
+      "eta": "2026-09-17",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680933",
+      "carrier": "DFDS",
+      "ets": "2026-09-16",
+      "eta": "2026-09-16",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-16",
+      "eta": "2026-09-17",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -9379,6 +10292,39 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712331",
+      "carrier": "DFDS",
+      "ets": "2026-09-17",
+      "eta": "2026-09-18",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680941",
+      "carrier": "DFDS",
+      "ets": "2026-09-17",
+      "eta": "2026-09-17",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-17",
+      "eta": "2026-09-18",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Tacoma, USA",
       "vessel": "Arc Honor",
@@ -9432,6 +10378,50 @@
       "eta": "2026-10-13",
       "lane": "Europe to North America",
       "notes": "NAS service"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712322",
+      "carrier": "DFDS",
+      "ets": "2026-09-18",
+      "eta": "2026-09-19",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680964",
+      "carrier": "DFDS",
+      "ets": "2026-09-18",
+      "eta": "2026-09-18",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-18",
+      "eta": "2026-09-19",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-18",
+      "eta": "2026-09-18",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -9654,6 +10644,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680928",
+      "carrier": "DFDS",
+      "ets": "2026-09-19",
+      "eta": "2026-09-19",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-19",
+      "eta": "2026-09-19",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Tema, Ghana",
       "vessel": "Grande Lagos",
@@ -9864,6 +10876,17 @@
     },
     {
       "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712329",
+      "carrier": "DFDS",
+      "ets": "2026-09-20",
+      "eta": "2026-09-21",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
       "destination": "St John's, Antigua",
       "vessel": "Star First",
       "voyage": "GL26037",
@@ -9872,6 +10895,28 @@
       "eta": "2026-10-05",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 16 Sept"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-20",
+      "eta": "2026-09-21",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-20",
+      "eta": "2026-09-20",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -9984,6 +11029,116 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712326",
+      "carrier": "DFDS",
+      "ets": "2026-09-21",
+      "eta": "2026-09-22",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680971",
+      "carrier": "DFDS",
+      "ets": "2026-09-21",
+      "eta": "2026-09-21",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-21",
+      "eta": "2026-09-22",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-21",
+      "eta": "2026-09-21",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712320",
+      "carrier": "DFDS",
+      "ets": "2026-09-22",
+      "eta": "2026-09-23",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680958",
+      "carrier": "DFDS",
+      "ets": "2026-09-22",
+      "eta": "2026-09-22",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-22",
+      "eta": "2026-09-23",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712310",
+      "carrier": "DFDS",
+      "ets": "2026-09-23",
+      "eta": "2026-09-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680962",
+      "carrier": "DFDS",
+      "ets": "2026-09-23",
+      "eta": "2026-09-23",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-23",
+      "eta": "2026-09-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Endurance",
@@ -10014,6 +11169,39 @@
       "ets": "2026-09-24",
       "eta": "2026-10-13",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712337",
+      "carrier": "DFDS",
+      "ets": "2026-09-24",
+      "eta": "2026-09-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680943",
+      "carrier": "DFDS",
+      "ets": "2026-09-24",
+      "eta": "2026-09-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-24",
+      "eta": "2026-09-25",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -10069,6 +11257,50 @@
       "ets": "2026-09-25",
       "eta": "2026-10-27",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712332",
+      "carrier": "DFDS",
+      "ets": "2026-09-25",
+      "eta": "2026-09-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680953",
+      "carrier": "DFDS",
+      "ets": "2026-09-25",
+      "eta": "2026-09-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-25",
+      "eta": "2026-09-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-25",
+      "eta": "2026-09-25",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -10180,6 +11412,28 @@
       "eta": "2026-10-30",
       "lane": "Europe to Africa",
       "notes": "via Antwerp"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680938",
+      "carrier": "DFDS",
+      "ets": "2026-09-26",
+      "eta": "2026-09-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-26",
+      "eta": "2026-09-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -10480,6 +11734,39 @@
     },
     {
       "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712324",
+      "carrier": "DFDS",
+      "ets": "2026-09-27",
+      "eta": "2026-09-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-27",
+      "eta": "2026-09-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-27",
+      "eta": "2026-09-27",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
       "destination": "Turbo, Colombia",
       "vessel": "Atlantic Klipper",
       "voyage": "GL26038",
@@ -10510,6 +11797,50 @@
       "eta": "2026-10-11",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 23 Sept"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712327",
+      "carrier": "DFDS",
+      "ets": "2026-09-28",
+      "eta": "2026-09-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680969",
+      "carrier": "DFDS",
+      "ets": "2026-09-28",
+      "eta": "2026-09-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-28",
+      "eta": "2026-09-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-09-28",
+      "eta": "2026-09-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -10666,6 +11997,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712339",
+      "carrier": "DFDS",
+      "ets": "2026-09-29",
+      "eta": "2026-09-30",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680954",
+      "carrier": "DFDS",
+      "ets": "2026-09-29",
+      "eta": "2026-09-29",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Hitachi, Japan",
       "vessel": "Harmony Leader",
@@ -10787,6 +12140,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4712338",
+      "carrier": "DFDS",
+      "ets": "2026-09-30",
+      "eta": "2026-10-01",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Stena Vinga",
+      "voyage": "4680950",
+      "carrier": "DFDS",
+      "ets": "2026-09-30",
+      "eta": "2026-09-30",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Xingang (Tianjin), China",
       "vessel": "Glovis Sonic",
@@ -10886,6 +12261,17 @@
       "notes": "via Antwerp transhipment · ocean voyage GHA0526"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4741521",
+      "carrier": "DFDS",
+      "ets": "2026-10-01",
+      "eta": "2026-10-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Valletta, Malta",
       "vessel": "Grande Istanbul",
@@ -10974,6 +12360,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Helier, Jersey",
+      "vessel": "Caesarea Trader",
+      "voyage": "4741715",
+      "carrier": "DFDS",
+      "ets": "2026-10-02",
+      "eta": "2026-10-03",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-02",
+      "eta": "2026-10-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Toyohashi, Japan",
       "vessel": "Theben",
@@ -11059,6 +12467,17 @@
       "ets": "2026-10-03",
       "eta": "2026-10-30",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-03",
+      "eta": "2026-10-03",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -11227,6 +12646,17 @@
       "notes": "UK cut-off 30 Sept"
     },
     {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-04",
+      "eta": "2026-10-04",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Turbo, Colombia",
       "vessel": "Luzon Strait",
@@ -11392,6 +12822,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-05",
+      "eta": "2026-10-05",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-06",
+      "eta": "2026-10-07",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Auckland, New Zealand",
       "vessel": "Hoegh Barcelona",
@@ -11500,6 +12952,17 @@
       "eta": "2026-11-19",
       "lane": "Europe to Oceania",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-07",
+      "eta": "2026-10-08",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -11645,6 +13108,17 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-08",
+      "eta": "2026-10-09",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Xingang (Tianjin), China",
       "vessel": "Tosca",
@@ -11656,6 +13130,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-09",
+      "eta": "2026-10-10",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-09",
+      "eta": "2026-10-09",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Masan, South Korea",
       "vessel": "Tosca",
@@ -11664,6 +13160,17 @@
       "ets": "2026-10-10",
       "eta": "2026-11-28",
       "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-10",
+      "eta": "2026-10-10",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -11711,6 +13218,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-11",
+      "eta": "2026-10-12",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-11",
+      "eta": "2026-10-11",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Altamira, Mexico",
       "vessel": "Donington",
@@ -11742,6 +13271,28 @@
       "eta": "2026-11-03",
       "lane": "Europe to North America",
       "notes": "TAL service"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-12",
+      "eta": "2026-10-13",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-12",
+      "eta": "2026-10-12",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -11829,6 +13380,17 @@
       "ets": "2026-10-13",
       "eta": "2026-10-15",
       "lane": "Europe to Mediterranean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-13",
+      "eta": "2026-10-14",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -11920,6 +13482,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-14",
+      "eta": "2026-10-15",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-15",
+      "eta": "2026-10-16",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Auckland, New Zealand",
       "vessel": "Höegh Copenhagen",
@@ -11983,6 +13567,28 @@
       "ets": "2026-10-16",
       "eta": "2026-12-03",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-16",
+      "eta": "2026-10-17",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-16",
+      "eta": "2026-10-16",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -12063,6 +13669,17 @@
       "notes": "via Antwerp transhipment · ocean voyage GRS0526"
     },
     {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-17",
+      "eta": "2026-10-17",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Vitoria, Brazil",
       "vessel": "Great Cotonou",
@@ -12129,6 +13746,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-18",
+      "eta": "2026-10-19",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-18",
+      "eta": "2026-10-18",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Hitachi, Japan",
       "vessel": "Cosmos Leader",
@@ -12159,6 +13798,28 @@
       "ets": "2026-10-19",
       "eta": "2026-11-10",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-19",
+      "eta": "2026-10-20",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-19",
+      "eta": "2026-10-19",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -12236,6 +13897,72 @@
       "ets": "2026-10-20",
       "eta": "2026-11-17",
       "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-20",
+      "eta": "2026-10-21",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-21",
+      "eta": "2026-10-22",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-22",
+      "eta": "2026-10-23",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-23",
+      "eta": "2026-10-24",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-23",
+      "eta": "2026-10-23",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-24",
+      "eta": "2026-10-24",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -12338,6 +14065,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-25",
+      "eta": "2026-10-26",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-25",
+      "eta": "2026-10-25",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Patriot",
@@ -12368,6 +14117,28 @@
       "ets": "2026-10-26",
       "eta": "2026-11-15",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-26",
+      "eta": "2026-10-27",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-26",
+      "eta": "2026-10-26",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -12470,6 +14241,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-27",
+      "eta": "2026-10-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Arc Integrity",
@@ -12500,6 +14282,17 @@
       "ets": "2026-10-28",
       "eta": "2026-11-18",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-28",
+      "eta": "2026-10-29",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -12624,6 +14417,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-29",
+      "eta": "2026-10-30",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Altamira, Mexico",
       "vessel": "Brooklands",
@@ -12657,6 +14461,28 @@
       "notes": "TAL service"
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-30",
+      "eta": "2026-10-31",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-30",
+      "eta": "2026-10-30",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Veracruz, Mexico",
       "vessel": "Brooklands",
@@ -12666,6 +14492,17 @@
       "eta": "2026-11-24",
       "lane": "Europe to North America",
       "notes": "TAL service"
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-31",
+      "eta": "2026-10-31",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -12789,6 +14626,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-11-01",
+      "eta": "2026-11-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Tacoma, USA",
       "vessel": "Tbn 5",
@@ -12877,6 +14725,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-11-02",
+      "eta": "2026-11-03",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-11-02",
+      "eta": "2026-11-02",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Nereus Highway",
@@ -12919,6 +14789,17 @@
       "eta": "2026-11-17",
       "lane": "Europe to North America",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-11-03",
+      "eta": "2026-11-04",
+      "lane": "UK to Channel Islands",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -13009,6 +14890,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-12-11",
+      "eta": "2026-12-11",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-12-14",
+      "eta": "2026-12-14",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Arc Commitment",
@@ -13039,6 +14942,17 @@
       "ets": "2026-12-18",
       "eta": "2027-01-07",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-12-18",
+      "eta": "2026-12-18",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
