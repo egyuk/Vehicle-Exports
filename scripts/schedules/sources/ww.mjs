@@ -8,12 +8,10 @@
 //
 // ~320 voyage fetches per run; kept sequential with a small delay out of
 // politeness. Each voyage is tiny JSON, so the run is bandwidth-light.
-import { fetchCached, UK_PORTS, withCountry, titleCase, laneFor } from '../lib/util.mjs';
+import { fetchCached, UK_PORTS, NORTH_EUROPE, withCountry, titleCase, laneFor } from '../lib/util.mjs';
 
 const BASE = 'https://www.walleniuswilhelmsen.com/actions/maps-api-middleware-module';
 
-// Rotation legs, not export destinations (same reasoning as the NMT source).
-const NORTH_EUROPE = /^(Antwerp|Zeebrugge|Hamburg|Bremerhaven|Amsterdam|Flushing|Rotterdam|Le Havre|Cuxhaven|Esbjerg|Gothenburg|Goteborg|Wallhamn|Drammen|Oslo|Fredericia|Malmo|Gdynia|Uddevalla|Turku[^,]*|Hanko[^,]*|Zeebruges)$/i;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 

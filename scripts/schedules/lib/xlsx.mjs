@@ -85,7 +85,10 @@ export function sheetGrid(files, sheetName) {
   return grid;
 }
 
-if (process.argv[2]) {
+// Debug harness: `node lib/xlsx.mjs <file.xlsx>` dumps the sheets. The entry
+// check matters - without it, importing this module from update.mjs while
+// passing any flag (--dry-run) made this block read the flag as a filename.
+if (process.argv[1]?.endsWith('xlsx.mjs') && process.argv[2]) {
   const files = readXlsx(process.argv[2]);
   console.log('entries:', Object.keys(files).filter(f => /xml$/.test(f)).join(', ').slice(0, 300));
   const sheets = Object.keys(files).filter(f => /^xl\/worksheets\/sheet\d+\.xml$/.test(f));

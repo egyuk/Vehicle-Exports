@@ -21,9 +21,10 @@ import * as autoshippers from './sources/autoshippers.mjs';
 import * as ww from './sources/ww.mjs';
 import * as nyk from './sources/nyk.mjs';
 import * as sallaum from './sources/sallaum.mjs';
+import * as hoegh from './sources/hoegh.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, geest, autoshippers];
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 
@@ -123,7 +124,7 @@ async function main() {
       name: 'Carrier schedules',
       // Named but not linked: these carriers sell the same service to the same
       // customers, so linking out from our schedule loses the enquiry.
-      note: 'Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, "K" Line, NYK RoRo, Grimaldi, Sallaum Lines and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
+      note: 'Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, "K" Line, NYK RoRo, Grimaldi, Sallaum Lines, Höegh Autoliners and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
     },
     sailings: kept,
   };

@@ -27,6 +27,7 @@ union; the source modules only interpret rows.
 | Wallenius Wilhelmsen | JSON API | Site search is broken server-side; the voyage endpoints work (~320 GETs). Port names embed US state codes ("MANZANILLO, PA" is Panama) - use the API country field |
 | Sallaum Lines | HTML tables | Empty cells are **unclosed** `<td>`, so position-based parsing left-packs rows and misattributes dates. Bind via each cell's `headers` attribute instead |
 | NYK RoRo | WordPress ajax | vessel -> vesselNums -> vesselSearch -> showDetails chain; rotation HTML has one year header, so the year is carried forward across month wraps |
+| Höegh Autoliners | JSON API | `/api/vessel`'s params are swapped: `departureDate` is the *until* bound, `arrivalDate` the *from*. And a vessel's calls interleave two voyages date-wise, so pairing must be scoped to one `voyage_ID` |
 
 Two lessons worth keeping:
 
@@ -80,12 +81,15 @@ Known dead ends, so nobody re-treads them: NMT's HTML schedule renders
 client-side and returns nothing; its per-lane API endpoints are not public (only
 `/api/schedules/services`, the lane directory). Grimaldi's Europe–South America
 PDF has its ToUnicode maps inside compressed object streams and cannot currently
-be decoded. Höegh's schedule search posts a server action that returns nothing
-outside a real browser session.
+be decoded. Höegh's port-pair *search* posts a server action that returns nothing
+outside a real browser session - but that search was never the data path: the
+page's client bundle loads a vessel directory from m.hoegh.com and then GETs
+`/api/vessel` per vessel, both plain JSON (see `sources/hoegh.mjs`).
 
 ## Gaps
 
-- No Middle East lane from any source.
+- Middle East coverage is thin: NMT's lanes plus whatever Höegh voyage
+  happens to load in the UK before Oman/India (most run from Antwerp only).
 - Grimaldi publish only West Africa for UK departures; their South America
   schedule is undecodable (above).
 - Geest Q2/Q4 archives parse fine but contribute nothing once past.

@@ -22,6 +22,7 @@ export const MIN_ROWS = {
   'Wallenius Wilhelmsen': 150,
   'NYK RoRo': 15,
   'Sallaum Lines': 10,
+  'Höegh Autoliners': 10,
   'Autoshippers': 20,
 };
 
