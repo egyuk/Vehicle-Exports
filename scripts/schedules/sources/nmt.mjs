@@ -8,13 +8,49 @@
 import { pdfRows, rowText } from '../lib/pdf.mjs';
 import { fetchCached, dmyToISO, UK_PORTS, withCountry, carrierFromVessel, titleCase } from '../lib/util.mjs';
 
-const LANES = {
-  'europe-to-africa': 'Europe to Africa',
-  'europe-to-far-east': 'Europe to Far East',
-  'europe-to-oceania': 'Europe to Oceania',
-  'europe-to-north-america': 'Europe to North America',
-  'europe-to-south-america': 'Europe to South America',
-};
+const SERVICES_API = 'https://nmtshipping.com/api/schedules/services';
+
+// Fallback if the services API is unavailable: every Europe-origin lane NMT
+// published as of 2026-08. The list is normally derived at run time so a lane
+// NMT adds later is picked up without a code change.
+const FALLBACK_LANES = [
+  'europe-short-sea-atlantic-sea', 'europe-short-sea-baltic-sea', 'europe-short-sea-black-sea',
+  'europe-short-sea-mediterranean-sea', 'europe-short-sea-north-sea',
+  'europe-to-africa', 'europe-to-africa-grimaldi-msc', 'europe-to-africa-hoegh-wwl',
+  'europe-to-africa-sallaum-niledutch', 'europe-to-caribbean', 'europe-to-far-east',
+  'europe-to-mediterranean', 'europe-to-middle-and-far-east', 'europe-to-middle-east',
+  'europe-to-middle-east-hoegh-bahri', 'europe-to-north-america', 'europe-to-north-america-nmt',
+  'europe-to-oceania', 'europe-to-south-america',
+];
+
+const slugify = n => n.replace(/\s+/g, ' ').trim().toLowerCase()
+  .replace(/[(),]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// Carrier variants ("Europe to Africa (Hoegh-WWL)") are the same trade lane as
+// far as the site is concerned, so the parenthetical is dropped to stop the
+// lane filter fragmenting.
+const laneLabel = n => n.replace(/\s*\([^)]*\)+/g, '').replace(/\s+/g, ' ').trim();
+
+/** Europe-origin lanes, from the API where possible. */
+async function listLanes(log) {
+  try {
+    const services = JSON.parse(await fetchCached(SERVICES_API, { binary: false }));
+    const eu = services
+      .map(s => String(s.name || ''))
+      .filter(n => /^Europe/i.test(n))
+      .map(n => ({ slug: slugify(n), lane: laneLabel(n) }));
+    if (eu.length) return eu;
+    log('  services API returned no Europe lanes, using fallback list');
+  } catch {
+    log('  services API unavailable, using fallback lane list');
+  }
+  return FALLBACK_LANES.map(slug => ({
+    slug,
+    lane: laneLabel(slug.replace(/-/g, ' ').replace(/\beurope\b/i, 'Europe')
+      .replace(/\bto\b/, 'to').replace(/\b([a-z])/g, (_, c) => c.toUpperCase())
+      .replace(/\bTo\b/, 'to')),
+  }));
+}
 
 const isDate = t => /^\d{2}\/\d{2}\/\d{2}$/.test(t);
 
@@ -31,10 +67,20 @@ export const url = 'https://nmtshipping.com/schedules';
 
 export async function collect({ log = () => {} } = {}) {
   const sailings = [];
+  const lanes = await listLanes(log);
+  log(`  ${lanes.length} Europe-origin lanes`);
+  let laneFailures = 0;
 
-  for (const [slug, lane] of Object.entries(LANES)) {
-    const buf = await fetchCached(`https://nmtshipping.com/schedules/${slug}/pdf`);
-    const rows = pdfRows(buf);
+  for (const { slug, lane } of lanes) {
+    let rows;
+    try {
+      rows = pdfRows(await fetchCached(`https://nmtshipping.com/schedules/${slug}/pdf`));
+    } catch (e) {
+      // One lane 404ing (renamed, withdrawn) must not lose the other eighteen.
+      log(`  ${slug}: skipped (${e.message.slice(0, 60)})`);
+      laneFailures++;
+      continue;
+    }
 
     const blocks = [];
     let current = null;
@@ -89,8 +135,9 @@ export async function collect({ log = () => {} } = {}) {
         }
       }
     }
-    log(`  ${slug}: ${blocks.length} rotations -> ${count} UK sailings`);
+    if (blocks.length || count) log(`  ${slug}: ${blocks.length} rotations -> ${count} UK sailings`);
   }
 
+  if (laneFailures === lanes.length) throw new Error('NMT: every lane failed to fetch');
   return sailings;
 }

@@ -137,7 +137,8 @@ The pipeline itself is documented in `scripts/schedules/README.md`.
 - **Duplicate section**: `src/pages/import-uk-cars/kenya.astro` also carries a
   `<SailingSchedule>`, added before the country page was identified as the
   intended home. Harmless but probably wants removing.
-- **Coverage gaps**: no *current* Middle East sailings. NYK RoRo (now in the pipeline) serves Jeddah/Dammam/Jebel Ali, so rows will appear automatically when a UK rotation next reaches them; South America is now well covered (Grimaldi snapshot + WW + NYK). Grimaldi's Europe–South America PDF cannot be decoded — its
+- **Coverage gaps**: Middle East is now covered (Aqaba, Jeddah) after adding the
+  missing NMT Europe-origin lanes. South America is now well covered (Grimaldi snapshot + WW + NYK). Grimaldi's Europe–South America PDF cannot be decoded — its
   ToUnicode CMaps sit inside compressed object streams.
   **George is asking Grimaldi for an Excel/CSV version (2026-08-22).** Their
   West Africa schedule is already Excel-generated and parses perfectly, so the
@@ -145,6 +146,20 @@ The pipeline itself is documented in `scripts/schedules/README.md`.
   parser beside `scripts/schedules/sources/grimaldi.mjs` — no PDF decoding
   needed. Deliberately not solved with extra tooling (Python/pdfplumber), since
   the pipeline must stay dependency-free for the weekly cloud run.
+- **No Höegh Autoliners source.** Their schedule shows sailings we do not carry
+  (e.g. Southampton to Kingston, Jamaica). Their search is a Next.js server
+  action and the form does not function outside a real browser session - typed
+  input never registers and no request fires, so there is nothing to replay.
+  They publish no PDF or public API — /trade-routes describes which ports each
+  service calls but carries no dated sailings.
+  Options: ask Höegh for a feed, or paste a manual snapshot and add it like the
+  Grimaldi South America sheet. If asking, name the four trades that matter:
+  europe-to-caribbean-and-mexico, europe-to-africa-the-indian-ocean-and-oceania,
+  europe-to-middle-east, europe-to-us-east-coast.
+- **NMT lanes without PDFs**: 5 of their 19 Europe-origin lanes (the short-sea
+  Atlantic/Baltic/Black Sea ones, Africa Hoegh-WWL, Africa Sallaum-Niledutch,
+  Middle East Hoegh-Bahri) have a page but no PDF export, so they return 404 and
+  are skipped. Not a bug our end.
 - **Geest quarterly URLs**: `scripts/schedules/sources/geest.mjs` holds a `KNOWN`
   array of current-quarter PDF URLs because the site's schedule page also links
   old archives. Add the Q4 URL when it is published.

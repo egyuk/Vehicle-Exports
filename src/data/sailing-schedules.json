@@ -3788,7 +3788,7 @@
       "carrier": "",
       "ets": "2026-08-05",
       "eta": "2026-08-14",
-      "lane": "Europe to Far East",
+      "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -3799,7 +3799,7 @@
       "carrier": "",
       "ets": "2026-08-05",
       "eta": "2026-09-12",
-      "lane": "Europe to Far East",
+      "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -3810,7 +3810,7 @@
       "carrier": "",
       "ets": "2026-08-05",
       "eta": "2026-09-15",
-      "lane": "Europe to Far East",
+      "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -5409,6 +5409,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Tilbury",
+      "destination": "Abidjan, Côte d'Ivoire",
+      "vessel": "Grande Sierra Leone",
+      "voyage": "GSL0426",
+      "carrier": "Grimaldi",
+      "ets": "2026-08-22",
+      "eta": "2026-09-15",
+      "lane": "Europe to Africa",
+      "notes": "departure not published, arrival date used"
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "Baltimore, USA",
       "vessel": "Atlantic Sea",
@@ -5431,6 +5442,17 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Tilbury",
+      "destination": "Cotonou, Benin",
+      "vessel": "Grande Sierra Leone",
+      "voyage": "GSL0426",
+      "carrier": "Grimaldi",
+      "ets": "2026-08-22",
+      "eta": "2026-09-09",
+      "lane": "Europe to Africa",
+      "notes": "departure not published, arrival date used"
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "Halifax, Canada",
       "vessel": "Atlantic Sea",
@@ -5450,6 +5472,17 @@
       "ets": "2026-08-22",
       "eta": "2026-09-08",
       "lane": "Europe to North America",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Tilbury",
+      "destination": "Lagos, Nigeria",
+      "vessel": "Grande Sierra Leone",
+      "voyage": "GSL0426",
+      "carrier": "Grimaldi",
+      "ets": "2026-08-22",
+      "eta": "2026-09-09",
+      "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -5494,6 +5527,17 @@
       "ets": "2026-08-22",
       "eta": "2026-09-15",
       "lane": "Europe to North America",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Tilbury",
+      "destination": "Tema, Ghana",
+      "vessel": "Grande Sierra Leone",
+      "voyage": "GSL0426",
+      "carrier": "Grimaldi",
+      "ets": "2026-08-22",
+      "eta": "2026-09-12",
+      "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -5794,6 +5838,17 @@
       "notes": "TAL service"
     },
     {
+      "loadPort": "Teesport",
+      "destination": "Aqaba, Jordan",
+      "vessel": "Aicc Kunpeng",
+      "voyage": "26AKU03",
+      "carrier": "",
+      "ets": "2026-08-24",
+      "eta": "2026-09-09",
+      "lane": "Europe to Middle East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Arc Integrity",
@@ -5849,6 +5904,28 @@
       "notes": "TAL service"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Galveston, USA",
+      "vessel": "Morning Lena",
+      "voyage": "EC608",
+      "carrier": "",
+      "ets": "2026-08-24",
+      "eta": "2026-09-08",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Manzanillo (Mexico)",
+      "vessel": "Morning Lena",
+      "voyage": "EC608",
+      "carrier": "",
+      "ets": "2026-08-24",
+      "eta": "2026-09-12",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Montevideo, Uruguay",
       "vessel": "Grande Sierra Leone",
@@ -5902,6 +5979,17 @@
       "eta": "2026-09-20",
       "lane": "Europe to North America",
       "notes": "TAL service"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Veracruz, Mexico",
+      "vessel": "Morning Lena",
+      "voyage": "EC608",
+      "carrier": "",
+      "ets": "2026-08-24",
+      "eta": "2026-09-28",
+      "lane": "Europe to Caribbean",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -6872,6 +6960,17 @@
       "notes": "RoRo closing 02/09"
     },
     {
+      "loadPort": "Liverpool",
+      "destination": "Baltimore, USA",
+      "vessel": "Atlantic Sail",
+      "voyage": "ATS7026",
+      "carrier": "",
+      "ets": "2026-09-05",
+      "eta": "2026-09-19",
+      "lane": "Europe to North America",
+      "notes": "departure not published, arrival date used"
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Cotonou, Benin",
       "vessel": "Grande Cotonou",
@@ -6914,6 +7013,17 @@
       "eta": "2026-09-30",
       "lane": "Europe to Africa",
       "notes": "RoRo closing 02/09 · via Antwerp"
+    },
+    {
+      "loadPort": "Liverpool",
+      "destination": "Halifax, Canada",
+      "vessel": "Atlantic Sail",
+      "voyage": "ATS7026",
+      "carrier": "",
+      "ets": "2026-09-05",
+      "eta": "2026-09-14",
+      "lane": "Europe to North America",
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Southampton",
@@ -6991,6 +7101,28 @@
       "eta": "2026-10-12",
       "lane": "Europe to South America",
       "notes": "via Antwerp transhipment · ocean voyage GFR0626"
+    },
+    {
+      "loadPort": "Liverpool",
+      "destination": "New York, USA",
+      "vessel": "Atlantic Sail",
+      "voyage": "ATS7026",
+      "carrier": "",
+      "ets": "2026-09-05",
+      "eta": "2026-09-16",
+      "lane": "Europe to North America",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Liverpool",
+      "destination": "Norfolk, USA",
+      "vessel": "Atlantic Sail",
+      "voyage": "ATS7026",
+      "carrier": "",
+      "ets": "2026-09-05",
+      "eta": "2026-09-21",
+      "lane": "Europe to North America",
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Tilbury",
@@ -8897,6 +9029,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Aqaba, Jordan",
+      "vessel": "Tbn Anji",
+      "voyage": "SEP",
+      "carrier": "",
+      "ets": "2026-09-27",
+      "eta": "2026-10-15",
+      "lane": "Europe to Middle East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Nereus Highway",
       "voyage": "18 A",
@@ -8971,6 +9114,17 @@
       "eta": "2026-10-08",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 23 Sept"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Jeddah, Saudi Arabia",
+      "vessel": "Tbn Anji",
+      "voyage": "SEP",
+      "carrier": "",
+      "ets": "2026-09-27",
+      "eta": "2026-10-16",
+      "lane": "Europe to Middle East",
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Portsmouth",
