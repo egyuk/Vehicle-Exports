@@ -12,11 +12,14 @@
 //   bound and arrivalDate the *from*. The form's defaults prove it - an empty
 //   search sends departureDate=now+1y, arrivalDate=today. The obvious reading
 //   (departure from, arrival until) returns [] for every vessel.
-// - A vessel's calls interleave two voyages date-wise: the old voyage's
-//   discharge tail and the next voyage's loading head overlap by weeks. Pairing
-//   "UK call -> every later call" must be scoped to one voyage_ID; pairing the
-//   date-sorted list attaches the inbound trade's UK discharge to the outbound
-//   trade's destinations.
+// - Do NOT scope pairing to one voyage_ID. The voyage number is an
+//   administrative boundary, not a physical one: Höegh Manila's Southampton
+//   call sits on voyage 189 while the Caribbean discharges three weeks later
+//   are voyage 190, and Höegh's own search sells Southampton -> Kingston
+//   across it (labelled with the discharge call's voyage). Pair each UK call
+//   with every later call of the vessel in date order; the UK/North-Europe
+//   exclusions are what keep the inbound trade's discharge tail out, and the
+//   validator's 120-day transit cap bounds the horizon.
 import { fetchCached, NORTH_EUROPE, laneFor } from '../lib/util.mjs';
 
 const VESSELS = 'https://m.hoegh.com/vesselintegration/rest/vessel/';
@@ -80,42 +83,37 @@ export async function collect({ log = () => {} } = {}) {
     }
     await sleep(100);
 
-    const voyages = new Map();
-    for (const c of calls) {
-      if (!voyages.has(c.voyage_ID)) voyages.set(c.voyage_ID, []);
-      voyages.get(c.voyage_ID).push(c);
-    }
+    // Whole rotation in date order - see the voyage-boundary note up top.
+    // A ballast repositioning carries no cargo, in either direction.
+    const ports = calls
+      .filter(c => !/ballast/i.test(c.trade_NAME || ''))
+      .sort((a, b) => (a.arrival_DATE || a.departure_DATE).localeCompare(b.arrival_DATE || b.departure_DATE));
 
-    for (const ports of voyages.values()) {
-      // A ballast repositioning carries no cargo, whatever ports it touches.
-      if (/ballast/i.test(ports[0].trade_NAME || '')) continue;
-      ports.sort((a, b) => (a.arrival_DATE || a.departure_DATE).localeCompare(b.arrival_DATE || b.departure_DATE));
+    for (let i = 0; i < ports.length; i++) {
+      const load = ports[i];
+      if (load.country_NAME !== 'United Kingdom') continue;
+      const ets = load.departure_DATE || load.arrival_DATE;
+      if (!ets) continue;
+      ukCalls++;
 
-      for (let i = 0; i < ports.length; i++) {
-        const load = ports[i];
-        if (load.country_NAME !== 'United Kingdom') continue;
-        const ets = load.departure_DATE || load.arrival_DATE;
-        if (!ets) continue;
-        ukCalls++;
-
-        for (let j = i + 1; j < ports.length; j++) {
-          const to = ports[j];
-          if (!to.arrival_DATE || to.arrival_DATE <= ets) continue;
-          const port = cleanPort(to.port_NAME || '');
-          if (EXCLUDED_COUNTRIES.has(to.country_NAME) || NORTH_EUROPE.test(port)) continue;
-          const destination = `${port}, ${COUNTRY_NAME[to.country_NAME] || to.country_NAME}`;
-          sailings.push({
-            loadPort: cleanPort(load.port_NAME),
-            destination,
-            vessel: vesselCase(v.VESSEL_NAME),
-            voyage: String(load.voyage_NO || ''),
-            carrier: 'Höegh Autoliners',
-            ets,
-            eta: to.arrival_DATE,
-            lane: laneFor(destination),
-            notes: '',
-          });
-        }
+      for (let j = i + 1; j < ports.length; j++) {
+        const to = ports[j];
+        if (!to.arrival_DATE || to.arrival_DATE <= ets) continue;
+        const port = cleanPort(to.port_NAME || '');
+        if (EXCLUDED_COUNTRIES.has(to.country_NAME) || NORTH_EUROPE.test(port)) continue;
+        const destination = `${port}, ${COUNTRY_NAME[to.country_NAME] || to.country_NAME}`;
+        sailings.push({
+          loadPort: cleanPort(load.port_NAME),
+          destination,
+          vessel: vesselCase(v.VESSEL_NAME),
+          // The discharge call's voyage, matching what Höegh's own search shows.
+          voyage: String(to.voyage_NO || ''),
+          carrier: 'Höegh Autoliners',
+          ets,
+          eta: to.arrival_DATE,
+          lane: laneFor(destination),
+          notes: '',
+        });
       }
     }
   }

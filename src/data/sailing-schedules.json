@@ -5881,6 +5881,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Bristol",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-09-29",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Ennore, India",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-11-01",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Halifax, Canada",
       "vessel": "Glovis Corona",
@@ -5925,6 +5947,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Bristol",
+      "destination": "Mumbai, India",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-10-25",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "New York, USA",
       "vessel": "Morning Lena",
@@ -5936,6 +5969,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Bristol",
+      "destination": "Pipavav Port, India",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-10-24",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Pisco, Peru",
       "vessel": "Morning Lena",
@@ -5944,6 +5988,50 @@
       "ets": "2026-08-25",
       "eta": "2026-09-20",
       "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-09-27",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Port Louis, Mauritius",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-10-08",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-10-07",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Port Sultan Qaboos, Oman",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-10-17",
+      "lane": "Europe to Middle East",
       "notes": ""
     },
     {
@@ -5978,6 +6066,39 @@
       "eta": "2026-09-10",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Santander, Spain",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-09-08",
+      "lane": "Europe to Mediterranean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Tamatave, Madagascar",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-10-04",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Tangier, Morocco",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-25",
+      "eta": "2026-09-10",
+      "lane": "Europe to Africa",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -6174,6 +6295,17 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-28",
       "eta": "2026-09-16",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Trotter",
+      "voyage": "55",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-08-28",
+      "eta": "2026-09-17",
       "lane": "Europe to Africa",
       "notes": ""
     },
@@ -6762,6 +6894,28 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Cartagena, Colombia",
+      "vessel": "Höegh Manila",
+      "voyage": "190",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-02",
+      "eta": "2026-09-28",
+      "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Fort de France, Martinique",
+      "vessel": "Höegh Manila",
+      "voyage": "190",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-02",
+      "eta": "2026-09-25",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Jacksonville, USA",
       "vessel": "Hoegh Manila",
       "voyage": "",
@@ -6773,6 +6927,28 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Kingston, Jamaica",
+      "vessel": "Höegh Manila",
+      "voyage": "190",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-02",
+      "eta": "2026-09-30",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Pointe à Pitre, Guadeloupe",
+      "vessel": "Höegh Manila",
+      "voyage": "190",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-02",
+      "eta": "2026-09-24",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Vancouver, Canada",
       "vessel": "Montreal Express",
       "voyage": "",
@@ -6781,6 +6957,28 @@
       "eta": "2026-10-02",
       "lane": "Europe to North America",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Veracruz, Mexico",
+      "vessel": "Höegh Manila",
+      "voyage": "190",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-02",
+      "eta": "2026-10-04",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Vigo, Spain",
+      "vessel": "Höegh Manila",
+      "voyage": "190",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-02",
+      "eta": "2026-09-15",
+      "lane": "Europe to Mediterranean",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -6959,6 +7157,28 @@
       "notes": "RoRo closing 02/09 · via Antwerp"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-09-29",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Ennore, India",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-11-01",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Freetown, Sierra Leone",
       "vessel": "Grande Cotonou",
@@ -7058,6 +7278,17 @@
       "notes": "via Antwerp transhipment · ocean voyage GFR0626"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Mumbai, India",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-10-25",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Liverpool",
       "destination": "New York, USA",
       "vessel": "Atlantic Sail",
@@ -7091,6 +7322,17 @@
       "notes": "via Antwerp transhipment · ocean voyage GFR0626"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Pipavav Port, India",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-10-24",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Point Noire, Congo",
       "vessel": "Grande Cotonou",
@@ -7100,6 +7342,17 @@
       "eta": "2026-10-08",
       "lane": "Europe to Africa",
       "notes": "RoRo closing 02/09 · via Antwerp"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-09-27",
+      "lane": "Europe to Africa",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -7114,6 +7367,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Port Louis, Mauritius",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-10-08",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Port Reunion, Réunion",
       "vessel": "Eco Star",
       "voyage": "EP623",
@@ -7122,6 +7386,28 @@
       "eta": "2026-09-27",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-10-07",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Sultan Qaboos, Oman",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-10-17",
+      "lane": "Europe to Middle East",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -7144,6 +7430,17 @@
       "eta": "2026-10-06",
       "lane": "Europe to South America",
       "notes": "via Antwerp transhipment · ocean voyage GFR0626"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Santander, Spain",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-09-08",
+      "lane": "Europe to Mediterranean",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -7177,6 +7474,28 @@
       "eta": "2026-10-08",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Tamatave, Madagascar",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-10-04",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Tangier, Morocco",
+      "vessel": "Höegh Trigger",
+      "voyage": "64",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-05",
+      "eta": "2026-09-10",
+      "lane": "Europe to Africa",
+      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -7344,6 +7663,39 @@
       "notes": "UK cut-off 2 Sept"
     },
     {
+      "loadPort": "Newcastle",
+      "destination": "Auckland, New Zealand",
+      "vessel": "Höegh Berlin",
+      "voyage": "140",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-07",
+      "eta": "2026-10-26",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Baltimore, USA",
+      "vessel": "Höegh Berlin",
+      "voyage": "140",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-07",
+      "eta": "2026-09-24",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Berlin",
+      "voyage": "140",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-07",
+      "eta": "2026-11-06",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Themisa",
@@ -7366,6 +7718,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Newcastle",
+      "destination": "Jacksonville, USA",
+      "vessel": "Höegh Berlin",
+      "voyage": "140",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-07",
+      "eta": "2026-09-27",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Manzanillo, Panama",
       "vessel": "Themisa",
@@ -7374,6 +7737,17 @@
       "ets": "2026-09-07",
       "eta": "2026-09-23",
       "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Berlin",
+      "voyage": "140",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-07",
+      "eta": "2026-10-31",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -7396,6 +7770,17 @@
       "ets": "2026-09-07",
       "eta": "2026-10-02",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Berlin",
+      "voyage": "140",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-07",
+      "eta": "2026-11-03",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -10215,6 +10600,39 @@
       "notes": "UK cut-off 30 Sept"
     },
     {
+      "loadPort": "Bristol",
+      "destination": "Auckland, New Zealand",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-05",
+      "eta": "2026-11-25",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Baltimore, USA",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-05",
+      "eta": "2026-10-26",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-05",
+      "eta": "2026-12-06",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Brisbane, Australia",
       "vessel": "Traviata",
@@ -10259,6 +10677,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Bristol",
+      "destination": "Jacksonville, USA",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-05",
+      "eta": "2026-10-28",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-05",
+      "eta": "2026-11-30",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Melbourne, Australia",
       "vessel": "Traviata",
@@ -10266,6 +10706,17 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-05",
       "eta": "2026-11-15",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Bristol",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-05",
+      "eta": "2026-12-03",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -11448,6 +11899,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Auckland, New Zealand",
+      "vessel": "Höegh Sunrise",
+      "voyage": "9",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-11-01",
+      "eta": "2026-12-26",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Tbn 5",
       "voyage": "ED619-TB5",
@@ -11455,6 +11917,17 @@
       "ets": "2026-11-01",
       "eta": "2026-11-13",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Sunrise",
+      "voyage": "9",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-11-01",
+      "eta": "2026-11-26",
+      "lane": "Europe to Africa",
       "notes": ""
     },
     {
@@ -11481,6 +11954,39 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Sunrise",
+      "voyage": "9",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-11-01",
+      "eta": "2026-12-18",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Noumea, New Caledonia",
+      "vessel": "Höegh Sunrise",
+      "voyage": "9",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-11-01",
+      "eta": "2026-12-30",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Höegh Sunrise",
+      "voyage": "9",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-11-01",
+      "eta": "2026-11-24",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Port Hueneme, USA",
       "vessel": "Tbn 5",
       "voyage": "ED619-TB5",
@@ -11488,6 +11994,17 @@
       "ets": "2026-11-01",
       "eta": "2026-11-28",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Sunrise",
+      "voyage": "9",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-11-01",
+      "eta": "2026-12-21",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
