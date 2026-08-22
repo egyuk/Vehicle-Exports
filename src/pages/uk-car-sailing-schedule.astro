@@ -158,7 +158,9 @@ const destinationGroups = (() => {
       <!-- overflow-x-auto makes this a scroll container, which would trap a sticky
            header; from lg up the table fits, so overflow is released and the
            header can pin to the page instead, just below the sticky controls. -->
-      <div class="border border-gray-200 rounded-xl overflow-x-auto lg:overflow-visible">
+      <!-- scroll-mt clears the sticky nav (and, from lg, the filter bar too) when
+           a page change scrolls back to the top of the table. -->
+      <div id="sail-wrap" class="border border-gray-200 rounded-xl overflow-x-auto lg:overflow-visible scroll-mt-24 lg:scroll-mt-[230px]">
         <table class="w-full text-sm min-w-[620px]" id="sail-table">
           <thead>
             <tr class="bg-gray-50 text-left">
@@ -199,6 +201,18 @@ const destinationGroups = (() => {
         </table>
       </div>
 
+      <!-- Pagination. Built by the script so the page still lists every sailing
+           for crawlers if JS never runs; without JS all rows stay visible and
+           this bar stays hidden. -->
+      <nav id="sail-pager" class="hidden mt-5 flex-col sm:flex-row sm:items-center sm:justify-between gap-3" aria-label="Schedule pages">
+        <p id="sail-range" class="text-sm text-gray-500"></p>
+        <div class="flex items-center gap-1">
+          <button type="button" id="sail-prev" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] disabled:opacity-40 disabled:pointer-events-none transition-colors">Previous</button>
+          <div id="sail-pages" class="flex items-center gap-1"></div>
+          <button type="button" id="sail-next" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] disabled:opacity-40 disabled:pointer-events-none transition-colors">Next</button>
+        </div>
+      </nav>
+
       <p id="sail-empty" class="hidden text-center text-gray-400 text-sm py-12">No sailings match those filters.</p>
       {rows.length === 0 && (
         <p class="text-center text-gray-400 text-sm py-12">No sailings recorded yet. Add rows to src/data/sailing-schedules.json.</p>
@@ -238,24 +252,96 @@ const destinationGroups = (() => {
   const emptyEl = document.getElementById('sail-empty')!;
   const rows = () => Array.from(body.querySelectorAll<HTMLElement>('.sail-row'));
 
-  function apply() {
+  const pager = document.getElementById('sail-pager')!;
+  const rangeEl = document.getElementById('sail-range')!;
+  const pagesEl = document.getElementById('sail-pages')!;
+  const prevBtn = document.getElementById('sail-prev') as HTMLButtonElement;
+  const nextBtn = document.getElementById('sail-next') as HTMLButtonElement;
+  const wrap = document.getElementById('sail-wrap')!;
+
+  const PAGE_SIZE = 20;
+  let page = 1;
+  // Rows passing the filters, in current sort order. Paging slices this rather
+  // than re-filtering, so the two concerns stay independent: `matched` is what
+  // the filters chose, the slice is what this page shows.
+  let matched: HTMLElement[] = [];
+
+  /** Page buttons, windowed around the current page so 60 pages stay usable. */
+  function pageNumbers(current: number, total: number) {
+    if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+    const out: (number | '…')[] = [1];
+    const from = Math.max(2, current - 1);
+    const to = Math.min(total - 1, current + 1);
+    if (from > 2) out.push('…');
+    for (let i = from; i <= to; i++) out.push(i);
+    if (to < total - 1) out.push('…');
+    out.push(total);
+    return out;
+  }
+
+  function render() {
+    const total = Math.max(1, Math.ceil(matched.length / PAGE_SIZE));
+    page = Math.min(page, total);
+    const start = (page - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+
+    // Hide everything, then reveal this page's slice. Toggling only across
+    // `matched` would leave filtered-out rows visible, since nothing else
+    // touches them.
+    rows().forEach(row => row.classList.add('hidden'));
+    matched.slice(start, end).forEach(row => row.classList.remove('hidden'));
+
+    countEl.textContent = matched.length
+      ? `Showing ${start + 1}–${Math.min(end, matched.length)} of ${matched.length} sailings`
+      : `Showing 0 of ${rows().length} sailings`;
+    rangeEl.textContent = `Page ${page} of ${total}`;
+
+    pager.classList.toggle('hidden', matched.length <= PAGE_SIZE);
+    pager.classList.toggle('flex', matched.length > PAGE_SIZE);
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === total;
+
+    pagesEl.replaceChildren(...pageNumbers(page, total).map(n => {
+      if (n === '…') {
+        const span = document.createElement('span');
+        span.className = 'px-1 text-sm text-gray-400';
+        span.textContent = '…';
+        return span;
+      }
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = String(n);
+      btn.className = n === page
+        ? 'min-w-[38px] px-3 py-2 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white'
+        : 'min-w-[38px] px-3 py-2 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] transition-colors';
+      if (n === page) btn.setAttribute('aria-current', 'page');
+      btn.addEventListener('click', () => goTo(n));
+      return btn;
+    }));
+  }
+
+  function goTo(n: number) {
+    page = n;
+    render();
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function apply({ keepPage = false } = {}) {
     const term = search.value.trim().toLowerCase();
     const port = portSel.value;
     const dest = destSel.value;
-    let visible = 0;
 
-    rows().forEach(row => {
-      const show =
-        (!term || (row.dataset.search || '').includes(term)) &&
-        (!port || row.dataset.port === port) &&
-        (!dest || row.dataset.dest === dest) &&
-        (!hidePast.checked || row.dataset.past !== 'true');
-      row.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
+    matched = rows().filter(row =>
+      (!term || (row.dataset.search || '').includes(term)) &&
+      (!port || row.dataset.port === port) &&
+      (!dest || row.dataset.dest === dest) &&
+      (!hidePast.checked || row.dataset.past !== 'true'));
 
-    emptyEl.classList.toggle('hidden', visible > 0 || rows().length === 0);
-    countEl.textContent = `Showing ${visible} of ${rows().length} sailings`;
+    // A narrower filter can leave fewer pages than the one being viewed, so
+    // start over unless the caller is only re-sorting.
+    if (!keepPage) page = 1;
+    emptyEl.classList.toggle('hidden', matched.length > 0 || rows().length === 0);
+    render();
   }
 
   // Column sorting: departure and arrival sort by date, ports alphabetically.
@@ -272,11 +358,17 @@ const destinationGroups = (() => {
         return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
       });
       sorted.forEach(r => body.appendChild(r));
+      // Re-sorting changes which rows fall on page 1, so re-slice. The page
+      // number is kept: sorting is a re-ordering, not a new result set.
+      apply({ keepPage: true });
     });
   });
 
+  prevBtn.addEventListener('click', () => goTo(page - 1));
+  nextBtn.addEventListener('click', () => goTo(page + 1));
+
   [search, portSel, destSel, hidePast].forEach(el => {
-    el.addEventListener(el === search ? 'input' : 'change', apply);
+    el.addEventListener(el === search ? 'input' : 'change', () => apply());
   });
   apply();
 </script>
