@@ -1,5 +1,6 @@
 ---
 import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
 
 // TODO: replace all placeholder figures/text below with verified Australia-specific facts
 // (import duty rate, GST rate, registration authority, eligible vehicle age rules, ports, etc.)
@@ -12,6 +13,7 @@ const quickFacts = [
 
 const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
   { href: '#why-ship', label: 'Our Other Services' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
 ];
@@ -120,6 +122,18 @@ const countryName = 'Australia';
       </li>
     </ul>
   </div>
+
+  <!-- Sailing schedule. Driven by countryName, so a copy of this template only
+       needs countryName changing - the rows follow automatically from
+       src/data/sailing-schedules.json, which the weekly refresh updates.
+       If a country has no sailings listed yet it shows an enquiry prompt
+       instead of an empty table, so it is safe to leave in place. -->
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to ${countryName}`}
+  />
 
   <div id="documentation-booking">
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Documentation Required for Booking</h3>

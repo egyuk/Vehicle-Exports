@@ -10,7 +10,9 @@ interface Props {
 }
 
 const { title, description = 'UK Vehicle Exporters - Find Your Perfect Car for Export', image } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://autodeal-lyart.vercel.app');
+// Astro.site comes from astro.config.mjs; the fallback only applies if that is
+// unset, so it must name the same domain rather than an old preview URL.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://vehicleexports.co.uk');
 ---
 
 <!doctype html>

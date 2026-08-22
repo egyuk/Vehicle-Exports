@@ -1,6 +1,6 @@
 {
   "_readme": "Weekly working list of sailings. Add one object per sailing to \"sailings\". Fields: loadPort, destination, vessel, voyage, carrier, ets (departure), eta (arrival), lane, notes. Dates must be YYYY-MM-DD. Transit time is calculated from ets/eta, do not enter it. Rows with \"example\": true are demo rows - delete them once real sailings are in. Bump \"updated\" whenever you refresh the list. \"lanes\" is the carrier lane directory used for the reference links lower down the page.",
-  "updated": "2026-08-21",
+  "updated": "2026-08-22",
   "source": {
     "name": "Carrier schedules",
     "url": "https://www.geestline.com/",
@@ -152,17 +152,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Zeebrugge",
-      "vessel": "Torrens",
-      "voyage": "TRSEF612",
-      "carrier": "",
-      "ets": "2026-07-02",
-      "eta": "2026-07-03",
-      "lane": "Europe to Oceania",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Nereus Highway",
       "voyage": "16 A",
@@ -251,7 +240,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Santander",
+      "destination": "Santander, Spain",
       "vessel": "Undine",
       "voyage": "UNDEE611",
       "carrier": "",
@@ -306,7 +295,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Morning Chant",
       "voyage": "EP618",
       "carrier": "",
@@ -317,7 +306,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Jakarta",
+      "destination": "Jakarta, Indonesia",
       "vessel": "Morning Chant",
       "voyage": "EP618",
       "carrier": "",
@@ -328,7 +317,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Kelang",
+      "destination": "Port Kelang, Malaysia",
       "vessel": "Morning Chant",
       "voyage": "EP618",
       "carrier": "",
@@ -350,7 +339,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Reunion",
+      "destination": "Reunion, Réunion",
       "vessel": "Morning Chant",
       "voyage": "EP618",
       "carrier": "",
@@ -383,7 +372,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Chant",
       "voyage": "EP618",
       "carrier": "",
@@ -427,7 +416,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Cartagena",
+      "destination": "Cartagena, Colombia",
       "vessel": "Glovis Sunlight",
       "voyage": "GVN056",
       "carrier": "Hyundai Glovis",
@@ -592,7 +581,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Morning Lisa",
       "voyage": "EP619",
       "carrier": "",
@@ -680,7 +669,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Toyohashi",
+      "destination": "Toyohashi, Japan",
       "vessel": "Morning Lisa",
       "voyage": "EP619",
       "carrier": "",
@@ -691,7 +680,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Lisa",
       "voyage": "EP619",
       "carrier": "",
@@ -823,7 +812,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Morning Post",
       "voyage": "EP620",
       "carrier": "",
@@ -834,7 +823,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Jakarta",
+      "destination": "Jakarta, Indonesia",
       "vessel": "Morning Post",
       "voyage": "EP620",
       "carrier": "",
@@ -845,7 +834,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Kelang",
+      "destination": "Port Kelang, Malaysia",
       "vessel": "Morning Post",
       "voyage": "EP620",
       "carrier": "",
@@ -867,7 +856,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Reunion",
+      "destination": "Reunion, Réunion",
       "vessel": "Morning Post",
       "voyage": "EP620",
       "carrier": "",
@@ -900,7 +889,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Post",
       "voyage": "EP620",
       "carrier": "",
@@ -933,7 +922,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Manta",
+      "destination": "Manta, Ecuador",
       "vessel": "Platinum Ray",
       "voyage": "PLY054",
       "carrier": "",
@@ -977,7 +966,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "San Diego",
+      "destination": "San Diego, USA",
       "vessel": "Platinum Ray",
       "voyage": "PLY054",
       "carrier": "",
@@ -988,7 +977,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Santa Marta",
+      "destination": "Santa Marta, Colombia",
       "vessel": "Platinum Ray",
       "voyage": "PLY054",
       "carrier": "",
@@ -1021,7 +1010,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Papeete",
+      "destination": "Papeete, French Polynesia",
       "vessel": "Morning Cello",
       "voyage": "MCOEF614",
       "carrier": "",
@@ -1252,7 +1241,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Manzanillo (Panama)",
+      "destination": "Manzanillo (Panama), Panama",
       "vessel": "Brands Hatch",
       "voyage": "BHTED613",
       "carrier": "",
@@ -1406,17 +1395,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Bremerhaven",
-      "vessel": "Hera Highway",
-      "voyage": "HEH12A",
-      "carrier": "",
-      "ets": "2026-08-08",
-      "eta": "2026-08-10",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Hera Highway",
       "voyage": "HEH12A",
@@ -1549,7 +1527,7 @@
     },
     {
       "loadPort": "Liverpool",
-      "destination": "Norfolk",
+      "destination": "Norfolk, USA",
       "vessel": "Atlantic Star",
       "voyage": "AST7526",
       "carrier": "",
@@ -1593,17 +1571,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Zeebrugge",
-      "vessel": "Hera Highway",
-      "voyage": "HEH12A",
-      "carrier": "",
-      "ets": "2026-08-08",
-      "eta": "2026-08-13",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Arc Defender",
       "voyage": "ADFEB616",
@@ -1611,17 +1578,6 @@
       "ets": "2026-08-09",
       "eta": "2026-08-19",
       "lane": "Europe to North America",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Bremerhaven",
-      "vessel": "Morning Champion",
-      "voyage": "EP622",
-      "carrier": "",
-      "ets": "2026-08-09",
-      "eta": "2026-08-12",
-      "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -1648,7 +1604,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Hong Kong",
+      "destination": "Hong Kong, Hong Kong",
       "vessel": "Morning Champion",
       "voyage": "EP622",
       "carrier": "",
@@ -1659,7 +1615,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Morning Champion",
       "voyage": "EP622",
       "carrier": "",
@@ -1670,7 +1626,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Keelung",
+      "destination": "Keelung, Taiwan",
       "vessel": "Morning Champion",
       "voyage": "EP622",
       "carrier": "",
@@ -1703,7 +1659,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Toyohashi",
+      "destination": "Toyohashi, Japan",
       "vessel": "Morning Champion",
       "voyage": "EP622",
       "carrier": "",
@@ -1714,7 +1670,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Wallhamn",
+      "destination": "Wallhamn, Sweden",
       "vessel": "Morning Champion",
       "voyage": "EP622",
       "carrier": "",
@@ -1725,7 +1681,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Champion",
       "voyage": "EP622",
       "carrier": "",
@@ -1956,7 +1912,7 @@
     },
     {
       "loadPort": "Liverpool",
-      "destination": "Norfolk",
+      "destination": "Norfolk, USA",
       "vessel": "Atlantic Sky",
       "voyage": "ATK7526",
       "carrier": "",
@@ -2000,7 +1956,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Benicia",
+      "destination": "Benicia, USA",
       "vessel": "Cma Cgm Monza",
       "voyage": "COZ013S",
       "carrier": "",
@@ -2022,7 +1978,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Manta",
+      "destination": "Manta, Ecuador",
       "vessel": "Cma Cgm Monza",
       "voyage": "COZ013S",
       "carrier": "",
@@ -2044,7 +2000,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "San Diego",
+      "destination": "San Diego, USA",
       "vessel": "Cma Cgm Monza",
       "voyage": "COZ013S",
       "carrier": "",
@@ -2132,7 +2088,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Hong Kong",
+      "destination": "Hong Kong, Hong Kong",
       "vessel": "Morning Composer",
       "voyage": "EP621",
       "carrier": "",
@@ -2143,7 +2099,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Morning Composer",
       "voyage": "EP621",
       "carrier": "",
@@ -2154,7 +2110,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Keelung",
+      "destination": "Keelung, Taiwan",
       "vessel": "Morning Composer",
       "voyage": "EP621",
       "carrier": "",
@@ -2209,24 +2165,13 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Composer",
       "voyage": "EP621",
       "carrier": "",
       "ets": "2026-08-20",
       "eta": "2026-10-01",
       "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Liverpool",
-      "destination": "Antwerp",
-      "vessel": "Atlantic Sun",
-      "voyage": "ASU7926",
-      "carrier": "",
-      "ets": "2026-08-22",
-      "eta": "2026-08-28",
-      "lane": "Europe to North America",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -2275,17 +2220,6 @@
     },
     {
       "loadPort": "Liverpool",
-      "destination": "Hamburg",
-      "vessel": "Atlantic Sun",
-      "voyage": "ASU7926",
-      "carrier": "",
-      "ets": "2026-08-22",
-      "eta": "2026-08-26",
-      "lane": "Europe to North America",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Liverpool",
       "destination": "New York, USA",
       "vessel": "Atlantic Sea",
       "voyage": "ATE7426",
@@ -2308,7 +2242,7 @@
     },
     {
       "loadPort": "Liverpool",
-      "destination": "Norfolk",
+      "destination": "Norfolk, USA",
       "vessel": "Atlantic Sea",
       "voyage": "ATE7426",
       "carrier": "",
@@ -2319,7 +2253,7 @@
     },
     {
       "loadPort": "Liverpool",
-      "destination": "Norfolk",
+      "destination": "Norfolk, USA",
       "vessel": "Atlantic Sun",
       "voyage": "ASU7926",
       "carrier": "",
@@ -2660,7 +2594,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Benicia",
+      "destination": "Benicia, USA",
       "vessel": "Glovis Corona",
       "voyage": "GLN097",
       "carrier": "Hyundai Glovis",
@@ -2682,23 +2616,12 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Manta",
+      "destination": "Manta, Ecuador",
       "vessel": "Glovis Corona",
       "voyage": "GLN097",
       "carrier": "Hyundai Glovis",
       "ets": "2026-08-25",
       "eta": "2026-09-14",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Panama Canal",
-      "vessel": "Glovis Corona",
-      "voyage": "GLN097",
-      "carrier": "Hyundai Glovis",
-      "ets": "2026-08-25",
-      "eta": "2026-09-12",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
     },
@@ -2715,7 +2638,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "San Diego",
+      "destination": "San Diego, USA",
       "vessel": "Glovis Corona",
       "voyage": "GLN097",
       "carrier": "Hyundai Glovis",
@@ -2726,7 +2649,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Santa Marta",
+      "destination": "Santa Marta, Colombia",
       "vessel": "Glovis Corona",
       "voyage": "GLN097",
       "carrier": "Hyundai Glovis",
@@ -2990,7 +2913,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Papeete",
+      "destination": "Papeete, French Polynesia",
       "vessel": "Lake Shirasagi",
       "voyage": "LSGEF616",
       "carrier": "",
@@ -3177,7 +3100,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Callao",
+      "destination": "Callao, Peru",
       "vessel": "Gentle Leader",
       "voyage": "GEL123",
       "carrier": "",
@@ -3188,7 +3111,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Cartagena",
+      "destination": "Cartagena, Colombia",
       "vessel": "Gentle Leader",
       "voyage": "GEL123",
       "carrier": "",
@@ -3320,7 +3243,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Eco Star",
       "voyage": "EP623",
       "carrier": "",
@@ -3331,7 +3254,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Jakarta",
+      "destination": "Jakarta, Indonesia",
       "vessel": "Eco Star",
       "voyage": "EP623",
       "carrier": "",
@@ -3397,7 +3320,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Kelang",
+      "destination": "Port Kelang, Malaysia",
       "vessel": "Eco Star",
       "voyage": "EP623",
       "carrier": "",
@@ -3419,7 +3342,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Reunion",
+      "destination": "Reunion, Réunion",
       "vessel": "Eco Star",
       "voyage": "EP623",
       "carrier": "",
@@ -3463,7 +3386,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Eco Star",
       "voyage": "EP623",
       "carrier": "",
@@ -3848,28 +3771,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Antwerp",
-      "vessel": "Sunrise Ace",
-      "voyage": "SRS145A",
-      "carrier": "",
-      "ets": "2026-09-14",
-      "eta": "2026-09-22",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Bremerhaven",
-      "vessel": "Sunrise Ace",
-      "voyage": "SRS145A",
-      "carrier": "",
-      "ets": "2026-09-14",
-      "eta": "2026-09-18",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Dar es Salaam, Tanzania",
       "vessel": "Sunrise Ace",
       "voyage": "SRS145A",
@@ -3898,17 +3799,6 @@
       "carrier": "",
       "ets": "2026-09-14",
       "eta": "2026-10-24",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Sheerness",
-      "vessel": "Sunrise Ace",
-      "voyage": "SRS145A",
-      "carrier": "",
-      "ets": "2026-09-14",
-      "eta": "2026-09-24",
       "lane": "Europe to Africa",
       "notes": ""
     },
@@ -4123,7 +4013,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Morning Carol",
       "voyage": "EP625",
       "carrier": "",
@@ -4134,7 +4024,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Jakarta",
+      "destination": "Jakarta, Indonesia",
       "vessel": "Morning Carol",
       "voyage": "EP625",
       "carrier": "",
@@ -4189,7 +4079,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Kelang",
+      "destination": "Port Kelang, Malaysia",
       "vessel": "Morning Carol",
       "voyage": "EP625",
       "carrier": "",
@@ -4255,7 +4145,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Carol",
       "voyage": "EP625",
       "carrier": "",
@@ -4871,7 +4761,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Glovis Sonic",
       "voyage": "GSC067",
       "carrier": "Hyundai Glovis",
@@ -4882,7 +4772,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xinsha",
+      "destination": "Xinsha, China",
       "vessel": "Glovis Sonic",
       "voyage": "GSC067",
       "carrier": "Hyundai Glovis",
@@ -4959,7 +4849,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Toyohashi",
+      "destination": "Toyohashi, Japan",
       "vessel": "Theben",
       "voyage": "E0617",
       "carrier": "",
@@ -4970,7 +4860,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Helios Ray",
       "voyage": "HRY067",
       "carrier": "",
@@ -4981,7 +4871,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xinsha",
+      "destination": "Xinsha, China",
       "vessel": "Helios Ray",
       "voyage": "HRY067",
       "carrier": "",
@@ -5256,7 +5146,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Hong Kong",
+      "destination": "Hong Kong, Hong Kong",
       "vessel": "Tosca",
       "voyage": "EP626",
       "carrier": "",
@@ -5267,7 +5157,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha)",
+      "destination": "Huangpu (Xinsha), China",
       "vessel": "Tosca",
       "voyage": "EP626",
       "carrier": "",
@@ -5278,7 +5168,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Keelung",
+      "destination": "Keelung, Taiwan",
       "vessel": "Tosca",
       "voyage": "EP626",
       "carrier": "",
@@ -5311,7 +5201,7 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin)",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Tosca",
       "voyage": "EP626",
       "carrier": "",

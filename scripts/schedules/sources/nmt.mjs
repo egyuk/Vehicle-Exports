@@ -18,6 +18,14 @@ const LANES = {
 
 const isDate = t => /^\d{2}\/\d{2}\/\d{2}$/.test(t);
 
+// Rotation legs, not export destinations. A vessel calling Southampton then
+// Sheerness or Antwerp is still loading in Europe; listing those as
+// "destinations" put UK-to-UK rows in the table.
+const NORTH_EUROPE = /^(Antwerp|Zeebrugge|Hamburg|Bremerhaven|Amsterdam|Flushing|Rotterdam|Le Havre|Cuxhaven|Esbjerg)$/i;
+
+// A canal transit is a waypoint, not somewhere cargo discharges.
+const WAYPOINT = /^Panama Canal$/i;
+
 export const name = 'NMT Shipping';
 export const url = 'https://nmtshipping.com/schedules';
 
@@ -65,6 +73,7 @@ export async function collect({ log = () => {} } = {}) {
         for (let j = i + 1; j < b.ports.length; j++) {
           const to = b.ports[j];
           if (!to.arrival || to.arrival <= ets) continue;
+          if (UK_PORTS.test(to.port) || NORTH_EUROPE.test(to.port) || WAYPOINT.test(to.port)) continue;
           sailings.push({
             loadPort: from.port,
             destination: withCountry(to.port),

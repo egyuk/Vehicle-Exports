@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://autodeal-lyart.vercel.app/sitemap-index.xml

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
 ---
 
 <Layout title="Vehicle Import / Export to Kenya | UK Vehicle Exporters" description="Import a UK vehicle to Kenya with UK Vehicle Exporters. Estimate customs value and import duty using KRA's CRSP schedule.">
@@ -269,6 +270,13 @@ import Layout from '../../layouts/Layout.astro';
       </p>
     </div>
   </section>
+
+  <!-- Sailings to Kenya, filtered from the shared schedule data -->
+  <SailingSchedule
+    country="Kenya"
+    heading="Sailings to Kenya"
+    intro="Upcoming vehicle sailings from UK ports to Mombasa. Dates are the carriers' own estimates and must be reconfirmed before a booking is committed."
+  />
 
   <!-- Testimonials -->
   <section class="py-16 lg:py-20 bg-gray-50">

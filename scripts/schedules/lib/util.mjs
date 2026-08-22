@@ -96,6 +96,12 @@ export const COUNTRY = {
   Santos: 'Brazil', Paranagua: 'Brazil', 'Rio de Janeiro': 'Brazil', Itajai: 'Brazil',
   Vitoria: 'Brazil', Suape: 'Brazil', 'Rio Grande': 'Brazil', Zarate: 'Argentina',
   'Buenos Aires': 'Argentina', Montevideo: 'Uruguay', Limassol: 'Cyprus', Valletta: 'Malta',
+  'Xingang (Tianjin)': 'China', Xingang: 'China', 'Huangpu (Xinsha)': 'China', Xinsha: 'China',
+  'Hong Kong': 'Hong Kong', Keelung: 'Taiwan', Toyohashi: 'Japan', Jakarta: 'Indonesia',
+  'Port Kelang': 'Malaysia', Norfolk: 'USA', Benicia: 'USA', 'San Diego': 'USA',
+  Manta: 'Ecuador', Callao: 'Peru', Cartagena: 'Colombia', 'Santa Marta': 'Colombia',
+  Papeete: 'French Polynesia', Reunion: 'Réunion', Santander: 'Spain',
+  Wallhamn: 'Sweden', 'Manzanillo (Panama)': 'Panama',
 };
 
 export const withCountry = port => (COUNTRY[port] ? `${port}, ${COUNTRY[port]}` : port);
