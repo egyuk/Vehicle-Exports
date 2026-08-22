@@ -73,7 +73,7 @@ export const fmtShort = iso =>
 // --- geography -------------------------------------------------------------
 
 /** UK load ports. Only sailings departing these end up in the table. */
-export const UK_PORTS = /^(Southampton|Sheerness|Tilbury|Liverpool|Portsmouth|Immingham|Portbury|Killingholme|Teesport|Grimsby|London Gateway)$/i;
+export const UK_PORTS = /^(Southampton|Marchwood|Sheerness|Tilbury|Liverpool|Portsmouth|Immingham|Portbury|Killingholme|Teesport|Grimsby|London Gateway|Bristol)$/i;
 
 export const COUNTRY = {
   Durban: 'South Africa', 'Port Elizabeth': 'South Africa', 'Cape Town': 'South Africa',

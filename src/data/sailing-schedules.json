@@ -3451,6 +3451,28 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Cotonou, Benin",
+      "vessel": "Ocean Express",
+      "voyage": "26OX02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-07-31",
+      "eta": "2026-08-17",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Dakar, Senegal",
+      "vessel": "Ocean Express",
+      "voyage": "26OX02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-07-31",
+      "eta": "2026-08-11",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
       "loadPort": "Sheerness",
       "destination": "Dar es Salaam, Tanzania",
       "vessel": "Onyx Ace",
@@ -3460,6 +3482,28 @@
       "eta": "2026-08-26",
       "lane": "Europe to Africa",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Ocean Express",
+      "voyage": "26OX02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-07-31",
+      "eta": "2026-08-31",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "East London, South Africa",
+      "vessel": "Ocean Express",
+      "voyage": "26OX02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-07-31",
+      "eta": "2026-08-28",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Southampton",
@@ -3592,6 +3636,17 @@
       "eta": "2026-08-14",
       "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Walvis Bay, Namibia",
+      "vessel": "Ocean Express",
+      "voyage": "26OX02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-07-31",
+      "eta": "2026-08-22",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Sheerness",
@@ -4254,6 +4309,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
+      "vessel": "Ocean Explorer",
+      "voyage": "26OE07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-08",
+      "eta": "2026-08-20",
+      "lane": "Europe to North America",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Bata, Equatorial Guinea",
       "vessel": "Grande Lagos",
@@ -4274,6 +4340,17 @@
       "eta": "2026-08-31",
       "lane": "Europe to North America",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brunswick, USA",
+      "vessel": "Ocean Explorer",
+      "voyage": "26OE07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-08",
+      "eta": "2026-08-18",
+      "lane": "Europe to North America",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Southampton",
@@ -4329,6 +4406,17 @@
       "eta": "2026-08-17",
       "lane": "Europe to North America",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Jacksonville, USA",
+      "vessel": "Ocean Explorer",
+      "voyage": "26OE07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-08",
+      "eta": "2026-08-26",
+      "lane": "Europe to North America",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Tilbury",
@@ -4673,6 +4761,39 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Conakry, Guinea",
+      "vessel": "Silver Glory",
+      "voyage": "26SG06",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-13",
+      "eta": "2026-08-28",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Dakar, Senegal",
+      "vessel": "Silver Glory",
+      "voyage": "26SG06",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-13",
+      "eta": "2026-08-25",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Silver Glory",
+      "voyage": "26SG06",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-13",
+      "eta": "2026-09-25",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Limassol, Cyprus",
       "vessel": "MSC Giselle",
       "voyage": "",
@@ -4681,6 +4802,17 @@
       "eta": "2026-09-05",
       "lane": "Europe to Mediterranean",
       "notes": "ETA derived from published transit time"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Silver Glory",
+      "voyage": "26SG06",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-13",
+      "eta": "2026-09-22",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Southampton",
@@ -6168,6 +6300,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Bristol",
+      "destination": "Taichung",
+      "vessel": "Tethys Highway",
+      "voyage": "TET009",
+      "carrier": "",
+      "ets": "2026-08-26",
+      "eta": "2026-10-14",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Vancouver, Canada",
       "vessel": "Detroit Express",
@@ -6476,6 +6619,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Cotonou, Benin",
+      "vessel": "Ocean Legacy",
+      "voyage": "26OG07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-29",
+      "eta": "2026-09-13",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Dakar, Senegal",
       "vessel": "Grande Luanda",
@@ -6520,6 +6674,17 @@
       "notes": "via Antwerp"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Lome, Togo",
+      "vessel": "Ocean Legacy",
+      "voyage": "26OG07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-29",
+      "eta": "2026-09-12",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Malabo, Equatorial Guinea",
       "vessel": "Grande Luanda",
@@ -6554,6 +6719,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Walvis Bay, Namibia",
+      "vessel": "Ocean Legacy",
+      "voyage": "26OG07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-29",
+      "eta": "2026-09-20",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Auckland, New Zealand",
       "vessel": "Lake Shirasagi",
       "voyage": "EF616-LAS",
@@ -6573,6 +6749,17 @@
       "eta": "2026-09-11",
       "lane": "Europe to North America",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
+      "vessel": "Silver Ray",
+      "voyage": "26SR07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-30",
+      "eta": "2026-09-13",
+      "lane": "Europe to North America",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Portsmouth",
@@ -6606,6 +6793,17 @@
       "eta": "2026-09-17",
       "lane": "Europe to North America",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brunswick, USA",
+      "vessel": "Silver Ray",
+      "voyage": "26SR07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-08-30",
+      "eta": "2026-09-10",
+      "lane": "Europe to North America",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Portsmouth",
@@ -7841,6 +8039,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Dakar, Senegal",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-09-25",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Davisville, USA",
       "vessel": "Brooklands",
       "voyage": "42 A",
@@ -7849,6 +8058,28 @@
       "eta": "2026-10-19",
       "lane": "Europe to North America",
       "notes": "TAL service"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-10-18",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "East London, South Africa",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-10-16",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Southampton",
@@ -7907,6 +8138,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Lome, Togo",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-09-30",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Manta, Ecuador",
       "vessel": "Elektra",
       "voyage": "EC609-ELX",
@@ -7959,6 +8201,28 @@
       "eta": "2026-10-10",
       "lane": "Europe to South America",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Pointe Noire, Congo",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-10-05",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-10-14",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Portsmouth",
@@ -8016,6 +8280,17 @@
       "notes": "TAL service"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Walvis Bay, Namibia",
+      "vessel": "Ocean Navigator",
+      "voyage": "26ON02",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-13",
+      "eta": "2026-10-09",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Willemstad, Curaçao",
       "vessel": "Baltic Klipper",
@@ -8069,6 +8344,61 @@
       "eta": "2026-10-09",
       "lane": "Europe to Africa",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Cotonou, Benin",
+      "vessel": "Liberty Promise",
+      "voyage": "26LP07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-16",
+      "eta": "2026-10-01",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Douala, Cameroon",
+      "vessel": "Liberty Promise",
+      "voyage": "26LP07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-16",
+      "eta": "2026-10-05",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Liberty Promise",
+      "voyage": "26LP07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-16",
+      "eta": "2026-10-19",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "East London, South Africa",
+      "vessel": "Liberty Promise",
+      "voyage": "26LP07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-16",
+      "eta": "2026-10-17",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Liberty Promise",
+      "voyage": "26LP07",
+      "carrier": "Sallaum Lines",
+      "ets": "2026-09-16",
+      "eta": "2026-10-15",
+      "lane": "Europe to Africa",
+      "notes": "ETA at load port; departure not published"
     },
     {
       "loadPort": "Southampton",

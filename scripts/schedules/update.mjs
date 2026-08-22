@@ -20,9 +20,10 @@ import * as geest from './sources/geest.mjs';
 import * as autoshippers from './sources/autoshippers.mjs';
 import * as ww from './sources/ww.mjs';
 import * as nyk from './sources/nyk.mjs';
+import * as sallaum from './sources/sallaum.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, geest, autoshippers];
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 

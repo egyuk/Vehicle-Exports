@@ -25,6 +25,7 @@ union; the source modules only interpret rows.
 | Geest | Print to PDF, Flate | TJ arrays of hex CIDs, flipped y axis, **two sub-columns per port** |
 | Autoshippers | HTML | Tables use `rowspan`; the grid must be expanded before reading |
 | Wallenius Wilhelmsen | JSON API | Site search is broken server-side; the voyage endpoints work (~320 GETs). Port names embed US state codes ("MANZANILLO, PA" is Panama) - use the API country field |
+| Sallaum Lines | HTML tables | Empty cells are **unclosed** `<td>`, so position-based parsing left-packs rows and misattributes dates. Bind via each cell's `headers` attribute instead |
 | NYK RoRo | WordPress ajax | vessel -> vesselNums -> vesselSearch -> showDetails chain; rotation HTML has one year header, so the year is carried forward across month wraps |
 
 Two lessons worth keeping:
