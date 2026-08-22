@@ -5,7 +5,7 @@ import schedules from '../data/sailing-schedules.json';
 // Everything on this page is generated from src/data/sailing-schedules.json.
 // Weekly routine: correct the rows in "sailings", bump "updated". No markup changes.
 
-const { updated, source, sailings, lanes } = schedules;
+const { updated, source, sailings } = schedules;
 
 const today = new Date();
 const todayISO = today.toISOString().slice(0, 10);
@@ -64,7 +64,6 @@ const destinationGroups = (() => {
     .sort((a, b) => a.country.localeCompare(b.country));
 })();
 
-const departureLanes = lanes.filter(l => l.departure);
 ---
 
 <Layout
@@ -106,8 +105,11 @@ const departureLanes = lanes.filter(l => l.departure);
        Left non-sticky on mobile, where this bar is 345px tall stacked. -->
   <section class="py-6 bg-white border-b border-gray-100 lg:sticky lg:top-[81px] lg:z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col lg:flex-row lg:items-end gap-4">
-        <div class="relative flex-1 max-w-sm">
+      <!-- Mobile: two columns, with Search and Load UK Ports sharing the first
+           row and Destination spanning both beneath, since its option labels are
+           long. Reverts to a single flex row from lg. -->
+      <div class="grid grid-cols-2 gap-4 lg:flex lg:flex-row lg:items-end">
+        <div class="relative lg:flex-1 lg:max-w-sm">
           <label class="block text-xs font-medium text-gray-500 mb-1.5">Search</label>
           <input
             type="search"
@@ -118,14 +120,14 @@ const departureLanes = lanes.filter(l => l.departure);
         </div>
         <div>
           <label class="block text-xs font-medium text-gray-500 mb-1.5">Load UK Ports</label>
-          <select id="sail-port" class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
+          <select id="sail-port" class="w-full lg:w-auto bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
             <option value="">All UK Ports</option>
             {loadPorts.map(p => <option value={p}>{p}</option>)}
           </select>
         </div>
-        <div>
+        <div class="col-span-2 lg:col-span-1">
           <label class="block text-xs font-medium text-gray-500 mb-1.5">Destination</label>
-          <select id="sail-dest" class="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
+          <select id="sail-dest" class="w-full lg:w-auto bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
             <option value="">All destinations</option>
             {destinationGroups.map(g => (
               <optgroup label={g.country}>
@@ -134,7 +136,7 @@ const departureLanes = lanes.filter(l => l.departure);
             ))}
           </select>
         </div>
-        <label class="flex items-center gap-2 text-sm text-gray-600 pb-2.5 cursor-pointer">
+        <label class="col-span-2 lg:col-span-1 flex items-center gap-2 text-sm text-gray-600 lg:pb-2.5 cursor-pointer">
           <input type="checkbox" id="sail-hide-past" checked class="w-4 h-4 accent-[var(--color-primary)]" />
           Hide departed
         </label>
@@ -204,41 +206,12 @@ const departureLanes = lanes.filter(l => l.departure);
     </div>
   </section>
 
-  <!-- Carrier lane reference -->
-  <section class="py-12 lg:py-14 bg-gray-50 border-t border-gray-100">
+  <!-- Provenance. Deliberately names the carriers without linking out: they sell
+       the same service to the same customers, so sending visitors to them from
+       our own schedule loses the enquiry. -->
+  <section class="py-10 lg:py-12 bg-gray-50 border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <details class="group">
-        <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
-          <div>
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)]">Carrier Lane Reference</h2>
-            <p class="text-sm text-gray-500 mt-1.5">{lanes.length} trade lanes, {departureLanes.length} departing Europe. Open a lane to check the carrier's current schedule when updating this list.</p>
-          </div>
-          <svg class="w-5 h-5 text-gray-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-
-        <div class="mt-6">
-          <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">Departures from Europe</h3>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-8">
-            {departureLanes.map(l => (
-              <a href={l.source} target="_blank" rel="noopener" class="flex items-center justify-between gap-2 bg-white border border-gray-200 hover:border-[var(--color-primary)]/40 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition-all">
-                <span>{l.name}</span>
-                <svg class="w-3.5 h-3.5 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
-            ))}
-          </div>
-
-          <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">All Other Lanes</h3>
-          <div class="flex flex-wrap gap-2">
-            {lanes.filter(l => !l.departure).map(l => (
-              <a href={l.source} target="_blank" rel="noopener" class="bg-white border border-gray-200 hover:border-[var(--color-primary)]/40 rounded-full px-3 py-1.5 text-xs text-gray-600 transition-all">{l.name}</a>
-            ))}
-          </div>
-        </div>
-      </details>
-
-      <p class="text-sm text-gray-400 mt-8">
-        Lane list sourced from <a href={source.url} target="_blank" rel="noopener" class="text-[var(--color-primary)] hover:underline">{source.name}</a>. {source.note}
-      </p>
+      <p class="text-sm text-gray-500 leading-relaxed max-w-4xl">{source.note}</p>
     </div>
   </section>
 

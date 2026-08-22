@@ -39,27 +39,6 @@ const dedupeKey = s =>
   `${canonicalVessel(s.vessel).toLowerCase().replace(/[^a-z0-9]/g, '')}` +
   `|${s.destination.split(',')[0].trim().toLowerCase()}|${s.ets}`;
 
-/** Refresh the 89-lane carrier directory used by the page's reference section. */
-async function fetchLanes() {
-  const json = await fetchCached('https://nmtshipping.com/api/schedules/services', {
-    binary: false,
-    maxAgeMinutes: fresh ? 0 : 60,
-  });
-  const services = JSON.parse(json);
-  const slugify = n => n.replace(/\s+/g, ' ').trim().toLowerCase()
-    .replace(/[(),]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  return services.map(s => {
-    const name = s.name.replace(/\s+/g, ' ').trim();
-    const slug = slugify(s.name);
-    return {
-      id: s.id,
-      name,
-      departure: /^Europe\b/i.test(name),
-      source: `https://nmtshipping.com/schedules/${slug}`,
-      pdf: `https://nmtshipping.com/schedules/${slug}/pdf`,
-    };
-  });
-}
 
 async function main() {
   const previous = JSON.parse(readFileSync(DATA, 'utf8'));
@@ -133,11 +112,20 @@ async function main() {
     return;
   }
 
+  // `lanes` was a carrier lane directory for the old manual weekly check. That
+  // workflow is gone, so it is dropped rather than carried forward by the spread.
+  const { lanes, ...carried } = previous;
+
   const next = {
-    ...previous,
+    ...carried,
     updated: todayISO(),
+    source: {
+      name: 'Carrier schedules',
+      // Named but not linked: these carriers sell the same service to the same
+      // customers, so linking out from our schedule loses the enquiry.
+      note: 'Compiled from published carrier schedules — NMT Shipping, Wallenius Wilhelmsen, "K" Line, NYK RoRo, Grimaldi, Sallaum Lines and Geest Line — plus a residue from Autoshippers where the arrival is derived from a published transit time rather than confirmed by the carrier. Some sailings tranship en route, and where a carrier publishes only an arrival at the load port the departure will be later than the date shown. All dates are carrier estimates and must be reconfirmed before a booking is committed.',
+    },
     sailings: kept,
-    lanes: await fetchLanes().catch(() => previous.lanes),
   };
   writeFileSync(DATA, JSON.stringify(next, null, 2));
   log(`\nWrote ${DATA}`);

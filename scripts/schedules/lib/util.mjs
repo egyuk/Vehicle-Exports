@@ -100,6 +100,7 @@ export const COUNTRY = {
   'Hong Kong': 'Hong Kong', Keelung: 'Taiwan', Toyohashi: 'Japan', Jakarta: 'Indonesia',
   'Port Kelang': 'Malaysia', Norfolk: 'USA', Benicia: 'USA', 'San Diego': 'USA',
   Manta: 'Ecuador', Callao: 'Peru', Cartagena: 'Colombia', 'Santa Marta': 'Colombia',
+  Taichung: 'Taiwan', Kaohsiung: 'Taiwan',
   Papeete: 'French Polynesia', Reunion: 'Réunion', Santander: 'Spain',
   Wallhamn: 'Sweden', 'Manzanillo (Panama)': 'Panama',
   // NYK port spellings
@@ -118,7 +119,19 @@ export const COUNTRY = {
 /** Canal and strait transits: waypoints, never destinations. */
 export const WAYPOINTS = /^(Panama Canal|Magellan Strait|Suez Canal)$/i;
 
-export const withCountry = port => (COUNTRY[port] ? `${port}, ${COUNTRY[port]}` : port);
+/**
+ * Sources spell some ports differently, which fragments the destination filter.
+ * There are three real Manzanillos (Panama, Mexico, Dominican Republic), so the
+ * qualifier has to survive as the country rather than be dropped.
+ */
+const DESTINATION_ALIAS = {
+  'Manzanillo/Pan': 'Manzanillo, Panama',
+  'Manzanillo (Panama)': 'Manzanillo, Panama',
+  'Manzanillo (Mexico)': 'Manzanillo, Mexico',
+};
+
+export const withCountry = port =>
+  DESTINATION_ALIAS[port] || (COUNTRY[port] ? `${port}, ${COUNTRY[port]}` : port);
 
 // Country -> trade lane, for sources whose data does not name one.
 const LANE_BY_COUNTRY = {
