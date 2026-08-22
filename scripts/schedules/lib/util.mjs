@@ -102,9 +102,63 @@ export const COUNTRY = {
   Manta: 'Ecuador', Callao: 'Peru', Cartagena: 'Colombia', 'Santa Marta': 'Colombia',
   Papeete: 'French Polynesia', Reunion: 'Réunion', Santander: 'Spain',
   Wallhamn: 'Sweden', 'Manzanillo (Panama)': 'Panama',
+  // NYK port spellings
+  'Long Beach': 'USA', Hitachi: 'Japan', Tomakomai: 'Japan', 'Toyohashi Jinno': 'Japan',
+  'Nagoya Kinjyo': 'Japan', 'Yokohama Daikoku': 'Japan', 'Shanghai Haitong Waigaoq.': 'China',
+  'Cartagena Puerto Bahia': 'Colombia', 'Manzanillo/Pan': 'Panama', Balboa: 'Panama',
+  'San Antonio': 'Chile', Iquique: 'Chile', 'Puerto Cabello': 'Venezuela',
+  'Puerto Limon': 'Costa Rica', 'Puerto Caldera': 'Costa Rica', 'Puerto Cortes': 'Honduras',
+  'Puerto Quetzal': 'Guatemala', 'Santo To.de Cas': 'Guatemala', Corinto: 'Nicaragua',
+  'Santo Domingo': 'Dominican Republic', 'Lazaro Cardenas': 'Mexico', Mundra: 'India',
+  Derince: 'Turkey', Iskenderun: 'Turkey', Yarimca: 'Turkey', Aqaba: 'Jordan',
+  'East London': 'South Africa', Livorno: 'Italy', Piraeus: 'Greece', Malaga: 'Spain',
+  Barcelona: 'Spain', Freeport: 'Bahamas', Newark: 'USA',
 };
 
+/** Canal and strait transits: waypoints, never destinations. */
+export const WAYPOINTS = /^(Panama Canal|Magellan Strait|Suez Canal)$/i;
+
 export const withCountry = port => (COUNTRY[port] ? `${port}, ${COUNTRY[port]}` : port);
+
+// Country -> trade lane, for sources whose data does not name one.
+const LANE_BY_COUNTRY = {
+  'South Africa': 'Europe to Africa', Kenya: 'Europe to Africa', Tanzania: 'Europe to Africa',
+  Namibia: 'Europe to Africa', Nigeria: 'Europe to Africa', Ghana: 'Europe to Africa',
+  "Côte d'Ivoire": 'Europe to Africa', Senegal: 'Europe to Africa', Benin: 'Europe to Africa',
+  Togo: 'Europe to Africa', Angola: 'Europe to Africa', Congo: 'Europe to Africa',
+  Cameroon: 'Europe to Africa', Gabon: 'Europe to Africa', Guinea: 'Europe to Africa',
+  'Sierra Leone': 'Europe to Africa', Gambia: 'Europe to Africa', Mauritania: 'Europe to Africa',
+  Morocco: 'Europe to Africa', 'Equatorial Guinea': 'Europe to Africa', Liberia: 'Europe to Africa',
+  Mozambique: 'Europe to Africa', Réunion: 'Europe to Africa',
+  Australia: 'Europe to Oceania', 'New Zealand': 'Europe to Oceania', 'French Polynesia': 'Europe to Oceania',
+  'New Caledonia': 'Europe to Oceania', Fiji: 'Europe to Oceania',
+  Singapore: 'Europe to Far East', India: 'Europe to Far East', 'South Korea': 'Europe to Far East',
+  China: 'Europe to Far East', Japan: 'Europe to Far East', Malaysia: 'Europe to Far East',
+  Thailand: 'Europe to Far East', 'Hong Kong': 'Europe to Far East', Taiwan: 'Europe to Far East',
+  Indonesia: 'Europe to Far East',
+  UAE: 'Europe to Middle East', 'Saudi Arabia': 'Europe to Middle East', Jordan: 'Europe to Middle East',
+  Turkey: 'Europe to Middle East',
+  USA: 'Europe to North America', Canada: 'Europe to North America', Mexico: 'Europe to North America',
+  Brazil: 'Europe to South America', Argentina: 'Europe to South America', Uruguay: 'Europe to South America',
+  Peru: 'Europe to South America', Ecuador: 'Europe to South America', Colombia: 'Europe to South America',
+  Chile: 'Europe to South America', Panama: 'Europe to South America',
+  Venezuela: 'Europe to South America', 'Costa Rica': 'Europe to Caribbean', Honduras: 'Europe to Caribbean',
+  Guatemala: 'Europe to Caribbean', Nicaragua: 'Europe to Caribbean', 'Dominican Republic': 'Europe to Caribbean',
+  Bahamas: 'Europe to Caribbean', Barbados: 'Europe to Caribbean', Guyana: 'Europe to Caribbean',
+  Grenada: 'Europe to Caribbean', 'St Vincent': 'Europe to Caribbean', 'St Lucia': 'Europe to Caribbean',
+  Dominica: 'Europe to Caribbean', 'Sint Maarten': 'Europe to Caribbean', Antigua: 'Europe to Caribbean',
+  'St Kitts': 'Europe to Caribbean', Trinidad: 'Europe to Caribbean', 'Curaçao': 'Europe to Caribbean',
+  Egypt: 'Europe to Mediterranean', Portugal: 'Europe to Mediterranean',
+  Cyprus: 'Europe to Mediterranean', Malta: 'Europe to Mediterranean', Greece: 'Europe to Mediterranean',
+  Italy: 'Europe to Mediterranean', Spain: 'Europe to Mediterranean',
+};
+
+/** Lane for a "City, Country" destination; 'Europe export' when unknown. */
+export const laneFor = destination => {
+  const parts = String(destination).split(',');
+  const country = parts.length > 1 ? parts[parts.length - 1].trim() : parts[0].trim();
+  return LANE_BY_COUNTRY[country] || 'Europe export';
+};
 
 /**
  * Name a carrier only where the vessel name makes it unambiguous. A wrong

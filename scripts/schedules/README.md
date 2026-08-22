@@ -24,6 +24,8 @@ union; the source modules only interpret rows.
 | Grimaldi | Excel → PDF, Flate | Two blocks in one sheet; only the first calls Tilbury |
 | Geest | Print to PDF, Flate | TJ arrays of hex CIDs, flipped y axis, **two sub-columns per port** |
 | Autoshippers | HTML | Tables use `rowspan`; the grid must be expanded before reading |
+| Wallenius Wilhelmsen | JSON API | Site search is broken server-side; the voyage endpoints work (~320 GETs). Port names embed US state codes ("MANZANILLO, PA" is Panama) - use the API country field |
+| NYK RoRo | WordPress ajax | vessel -> vesselNums -> vesselSearch -> showDetails chain; rotation HTML has one year header, so the year is carried forward across month wraps |
 
 Two lessons worth keeping:
 

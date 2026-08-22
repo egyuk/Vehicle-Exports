@@ -26,7 +26,18 @@ const rows = sailings
 const upcoming = rows.filter(r => !r.past).length;
 const exampleCount = rows.filter(r => r.example).length;
 const loadPorts = [...new Set(rows.map(r => r.loadPort).filter(Boolean))].sort();
-const destinations = [...new Set(rows.map(r => r.destination).filter(Boolean))].sort();
+// Shown as "Country, Port" but stored as "Port, Country": the trailing country
+// segment is load-bearing for the per-country pages, lane inference and dedupe,
+// so this flip is display-only.
+const flipDest = (d: string) => {
+  const i = d.lastIndexOf(',');
+  return i === -1 ? d : `${d.slice(i + 1).trim()}, ${d.slice(0, i).trim()}`;
+};
+
+// localeCompare, not the default sort: accented country names (Côte d'Ivoire,
+// Curaçao, Réunion) otherwise order oddly within their letter group.
+const destinations = [...new Set(rows.map(r => flipDest(r.destination)).filter(Boolean))]
+  .sort((a, b) => a.localeCompare(b));
 
 const departureLanes = lanes.filter(l => l.departure);
 ---
@@ -117,7 +128,7 @@ const departureLanes = lanes.filter(l => l.departure);
            header; from lg up the table fits, so overflow is released and the
            header can pin to the page instead, just below the sticky controls. -->
       <div class="border border-gray-200 rounded-xl overflow-x-auto lg:overflow-visible">
-        <table class="w-full text-sm min-w-[720px]" id="sail-table">
+        <table class="w-full text-sm min-w-[620px]" id="sail-table">
           <thead>
             <tr class="bg-gray-50 text-left">
               <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="ets">Departure</button></th>
@@ -126,7 +137,6 @@ const departureLanes = lanes.filter(l => l.departure);
               <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="eta">Arrival</button></th>
               <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Transit</th>
               <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Vessel</th>
-              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Voyage</th>
             </tr>
           </thead>
           <tbody id="sail-body">
@@ -134,7 +144,7 @@ const departureLanes = lanes.filter(l => l.departure);
               <tr
                 class={`sail-row border-b border-gray-100 last:border-0 hover:bg-gray-50/70 transition-colors ${r.past ? 'opacity-45' : ''}`}
                 data-port={r.loadPort}
-                data-dest={r.destination}
+                data-dest={flipDest(r.destination)}
                 data-past={String(r.past)}
                 data-ets={r.ets}
                 data-eta={r.eta || ''}
@@ -145,14 +155,13 @@ const departureLanes = lanes.filter(l => l.departure);
                   {r.past && <span class="block text-[11px] text-gray-400">departed</span>}
                 </td>
                 <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{r.loadPort}</td>
-                <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{r.destination}</td>
+                <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{flipDest(r.destination)}</td>
                 <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{fmtDate(r.eta)}</td>
                 <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{r.transit !== null ? `${r.transit} days` : '—'}</td>
                 <td class="px-4 py-3 text-gray-700 whitespace-nowrap">
                   {r.vessel}
                   {r.example && <span class="ml-2 text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Example</span>}
                 </td>
-                <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{r.voyage}</td>
               </tr>
             ))}
           </tbody>

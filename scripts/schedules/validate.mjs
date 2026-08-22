@@ -15,8 +15,12 @@ const MAX_TRANSIT_DAYS = 120;
 export const MIN_ROWS = {
   'NMT Shipping': 100,
   'Grimaldi': 40,
+  // Manual snapshot of a single quarter, so the floor is low by nature.
+  'Grimaldi South America': 10,
   '"K" Line': 30,
   'Geest Line': 20,
+  'Wallenius Wilhelmsen': 150,
+  'NYK RoRo': 15,
   'Autoshippers': 20,
 };
 

@@ -15,11 +15,14 @@ import { validateSource, validateAll, diffReport, formatDiff } from './validate.
 import * as nmt from './sources/nmt.mjs';
 import * as kline from './sources/kline.mjs';
 import * as grimaldi from './sources/grimaldi.mjs';
+import * as grimaldiSam from './sources/grimaldi-sam.mjs';
 import * as geest from './sources/geest.mjs';
 import * as autoshippers from './sources/autoshippers.mjs';
+import * as ww from './sources/ww.mjs';
+import * as nyk from './sources/nyk.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, grimaldi, geest, autoshippers];
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 

@@ -72,11 +72,12 @@ if `Astro.site` is unset, but it named the old preview URL).
 `china-car-exports`, so the old URL 404'd. Redirect target corrected. The
 Morocco post's redirect was already right.
 
-## 4. 98 MB unreferenced video ships in every deploy
+## 4. 98 MB unreferenced video — FIXED 2026-08-22
 
-`public/assets/images/section/video.mp4` is 98.45 MB and is referenced nowhere
-in the source or built HTML. The next largest asset is 1.14 MB. Deleting it
-would cut deploy size by roughly 95%.
+Removed from the repo AND from git history (git filter-branch + force push, all
+commit SHAs changed). Deploys went 136 MB -> 37 MB, .git 151 MB -> 51 MB. A
+backup copy lives at C:/Users/georg/Desktop/vehicleexports-backup/video.mp4 —
+the only remaining copy, since history no longer holds it.
 
 ## 5. 533 placeholder `#` links across 132 pages
 
@@ -136,10 +137,14 @@ The pipeline itself is documented in `scripts/schedules/README.md`.
 - **Duplicate section**: `src/pages/import-uk-cars/kenya.astro` also carries a
   `<SailingSchedule>`, added before the country page was identified as the
   intended home. Harmless but probably wants removing.
-- **Coverage gaps**: no Middle East lane from any source; South America is thin
-  (14 rows). Grimaldi's Europe–South America PDF cannot be decoded — its
-  ToUnicode CMaps sit inside compressed object streams. Asking Grimaldi for an
-  Excel version is the realistic fix.
+- **Coverage gaps**: no *current* Middle East sailings. NYK RoRo (now in the pipeline) serves Jeddah/Dammam/Jebel Ali, so rows will appear automatically when a UK rotation next reaches them; South America is now well covered (Grimaldi snapshot + WW + NYK). Grimaldi's Europe–South America PDF cannot be decoded — its
+  ToUnicode CMaps sit inside compressed object streams.
+  **George is asking Grimaldi for an Excel/CSV version (2026-08-22).** Their
+  West Africa schedule is already Excel-generated and parses perfectly, so the
+  same source almost certainly exists for South America. When it arrives, add a
+  parser beside `scripts/schedules/sources/grimaldi.mjs` — no PDF decoding
+  needed. Deliberately not solved with extra tooling (Python/pdfplumber), since
+  the pipeline must stay dependency-free for the weekly cloud run.
 - **Geest quarterly URLs**: `scripts/schedules/sources/geest.mjs` holds a `KNOWN`
   array of current-quarter PDF URLs because the site's schedule page also links
   old archives. Add the Q4 URL when it is published.

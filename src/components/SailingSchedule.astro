@@ -56,6 +56,13 @@ const upcoming = sailings
   .filter(s => matches(s.destination) && s.ets >= today)
   .sort((a, b) => a.ets.localeCompare(b.ets));
 
+// Shown as "Country, Port" but stored as "Port, Country" — the trailing country
+// segment is what `matches()` above filters on, so this flip is display-only.
+const flipDest = (d: string) => {
+  const i = d.lastIndexOf(',');
+  return i === -1 ? d : `${d.slice(i + 1).trim()}, ${d.slice(0, i).trim()}`;
+};
+
 const rows = upcoming.slice(0, limit).map(s => ({ ...s, transit: transitDays(s.ets, s.eta) }));
 const ports = [...new Set(upcoming.map(s => s.loadPort))];
 const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
@@ -97,7 +104,7 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
                 <tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50/70 transition-colors">
                   <td class="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">{fmtDate(s.ets)}</td>
                   <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{s.loadPort}</td>
-                  <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{s.destination}</td>
+                  <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{flipDest(s.destination)}</td>
                   <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{fmtDate(s.eta)}</td>
                   <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{s.transit !== null ? `${s.transit} days` : '—'}</td>
                   <td class="px-4 py-3 text-gray-700 whitespace-nowrap">{s.vessel}</td>
