@@ -10,11 +10,9 @@ export default defineConfig({
   site: 'https://vehicleexports.co.uk',
   integrations: [sitemap()],
   redirects: {
+    // Not a legacy redirect — resolves the bare /admin URL to the Decap CMS
+    // panel's static page. Keep even though old-URL redirects were dropped.
     '/admin': '/admin/index.html',
-    // Page renamed for search; the old path was indexed and linked from the footer.
-    '/export-sailing-schedule': '/uk-car-sailing-schedule',
-    // Target must match the post's `slug:` frontmatter, not the filename.
-    '/car-export-news/china-car-exports-jump-73-in-may-as-high-fuel-prices-raise-interest-in-evs': '/car-export-news/china-car-exports',
   },
   vite: {
     plugins: [tailwindcss()]

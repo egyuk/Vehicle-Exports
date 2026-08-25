@@ -3,7 +3,7 @@
 // Wraps Layout with the hero, quick-facts bar, table of contents, sidebar
 // and final CTA used across country pages. Page-specific body content
 // (the id-tagged <h2> sections referenced by tocLinks) goes in the
-// default slot; see src/pages/countries-we-ship-to/australia.astro for a full example.
+// default slot; see src/pages/car-shipping/australia.astro for a full example.
 import Layout from './Layout.astro';
 
 interface QuickFact {
@@ -55,7 +55,7 @@ const {
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/countries-we-ship-to" class="hover:text-[var(--color-primary)] transition-colors">Countries We Ship To</a>
+        <a href="/car-shipping/destinations" class="hover:text-[var(--color-primary)] transition-colors">Countries We Ship To</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-white">{countryName}</span>
       </nav>
@@ -149,7 +149,7 @@ const {
                 <li><a href="/car-export-news/complete-guide-exporting-vehicles-from-uk" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Complete UK export guide</a></li>
                 <li><a href="/car-export-news/understanding-vehicle-shipping-costs" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Understanding shipping costs</a></li>
                 <li><a href="/faq" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Export FAQs</a></li>
-                <li><a href="/countries-we-ship-to" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>More destinations</a></li>
+                <li><a href="/car-shipping/destinations" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>More destinations</a></li>
               </slot>
             </ul>
           </div>

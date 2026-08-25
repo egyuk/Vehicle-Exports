@@ -39,7 +39,7 @@ main navigation and therefore appear on every page.
 
 Listed in both:
 - `src/components/Header.astro` (nav dropdown, ~line 89 onward)
-- `src/pages/countries-we-ship-to.astro` (hub page, ~line 24 onward)
+- `src/pages/car-shipping/destinations.astro` (hub page, ~line 24 onward)
 
 Missing: Bangladesh, Barbados, Botswana, Canada, Cayman Islands, Cyprus, Ghana,
 Great Britain, Hong Kong, Indonesia, Malaysia, Namibia, New Zealand, Singapore,
@@ -51,7 +51,7 @@ Only these country routes actually build: `africa`, `australia`,
 
 Two ways out: build the pages, or trim the nav to what exists.
 
-Building is now cheaper than it was — `src/pages/countries-we-ship-to/australia.astro`
+Building is now cheaper than it was — `src/pages/car-shipping/australia.astro`
 is the template and already includes the sailing schedule section, which pulls
 its own data from `countryName`. The schedule data covers many of these
 countries already (Canada, Ghana, Tanzania, Singapore, South Africa,
@@ -109,7 +109,7 @@ Both ship in the DOM. Make one an `h1` and the other a `div`/`p`. Affects 16 pag
 
 - 36 titles over 60 characters, 11 descriptions over 160 — will truncate in results.
 - 3 duplicate descriptions: four pages fall back to the Layout default
-  (`/about`, `/contact`, `/countries-we-ship-to`, +1); `europe` and
+  (`/about`, `/contact`, `/car-shipping/destinations`, +1); `europe` and
   `hong-kong-shipping` share one; the two Hilux listings share one.
 - ~307 images with no `width`/`height` (layout shift), ~136 with no `loading`.
 - Homepage HTML is ~280 KB, roughly double the next heaviest page.
