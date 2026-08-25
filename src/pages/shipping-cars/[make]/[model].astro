@@ -39,7 +39,7 @@ const { makeName, modelName, vehicles } = Astro.props;
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/shipping-cars" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
+        <a href="/shipping-cars" class="hover:text-[var(--color-primary)] transition-colors">Shipping Cars</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <a href={`/shipping-cars/${makeName.toLowerCase().replace(/ /g, '-')}`} class="hover:text-[var(--color-primary)] transition-colors">{makeName}</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
