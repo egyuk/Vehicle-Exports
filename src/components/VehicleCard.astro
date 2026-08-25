@@ -21,8 +21,8 @@ const { slug, make, model, title, price, oldPrice, mileage, fuel, transmission, 
 const image = images && images.length > 0 ? images[0] : '';
 const isHorizontal = layout === 'horizontal';
 const vehicleUrl = make && model
-  ? `/carsforexport/${make.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}/${slug}`
-  : `/carsforexport/${slug}`;
+  ? `/shipping-cars/${make.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}/${slug}`
+  : `/shipping-cars/${slug}`;
 ---
 
 {isHorizontal ? (

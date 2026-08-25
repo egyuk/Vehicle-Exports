@@ -43,7 +43,7 @@ const models = [...new Set(vehicles.map(v => v.data.model))].sort();
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/carsforexport" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
+        <a href="/shipping-cars" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-white">{makeName}</span>
       </nav>
@@ -64,7 +64,7 @@ const models = [...new Set(vehicles.map(v => v.data.model))].sort();
           <span class="text-sm text-gray-500 py-1.5">Models:</span>
           {models.map(model => (
             <a
-              href={`/carsforexport/${makeName.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}`}
+              href={`/shipping-cars/${makeName.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}`}
               class="px-4 py-1.5 rounded-full text-sm font-medium border border-gray-200 text-gray-600 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
             >
               {model}
@@ -77,7 +77,7 @@ const models = [...new Set(vehicles.map(v => v.data.model))].sort();
         <p class="text-sm text-gray-500">
           Showing <span class="font-semibold text-gray-900">{vehicles.length}</span> vehicles
         </p>
-        <a href="/carsforexport" class="text-sm text-[var(--color-primary)] font-semibold hover:underline">View all cars</a>
+        <a href="/shipping-cars" class="text-sm text-[var(--color-primary)] font-semibold hover:underline">View all cars</a>
       </div>
 
       {vehicles.length > 0 ? (

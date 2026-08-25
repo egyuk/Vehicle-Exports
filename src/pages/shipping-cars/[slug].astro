@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { vehicle } = Astro.props;
 const makeSlug = slugify(vehicle.data.make);
 const modelSlug = slugify(vehicle.data.model);
-const newUrl = `/carsforexport/${makeSlug}/${modelSlug}/${vehicle.id}`;
+const newUrl = `/shipping-cars/${makeSlug}/${modelSlug}/${vehicle.id}`;
 
 return Astro.redirect(newUrl, 301);
 ---

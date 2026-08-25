@@ -55,7 +55,7 @@ const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Gre
       <!-- Search Bar - white card, full width -->
       <div class="bg-white rounded-xl shadow-xl overflow-hidden">
         <!-- Mobile: keyword search -->
-        <form action="/carsforexport" method="get" class="p-4 lg:hidden">
+        <form action="/shipping-cars" method="get" class="p-4 lg:hidden">
           <input type="hidden" name="condition" id="hero-condition-mobile" value="" />
           <div class="flex gap-3 items-center">
             <div class="flex-1 relative">
@@ -69,7 +69,7 @@ const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Gre
         </form>
 
         <!-- Desktop: dropdown filters -->
-        <form action="/carsforexport" method="get" class="p-4 hidden lg:block">
+        <form action="/shipping-cars" method="get" class="p-4 hidden lg:block">
           <input type="hidden" name="condition" id="hero-condition" value="" />
           <!-- Basic filter row -->
           <div class="flex flex-nowrap gap-3 items-center">
@@ -130,19 +130,19 @@ const colors = ['Color', 'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Gre
 
       <!-- Body Type Quick Links -->
       <div class="flex flex-wrap gap-6 mt-5">
-        <a href="/carsforexport/body/coupe" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+        <a href="/shipping-cars/body/coupe" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
           Coupe
         </a>
-        <a href="/carsforexport/body/minivan" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+        <a href="/shipping-cars/body/minivan" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
           Minivan
         </a>
-        <a href="/carsforexport/body/sedan" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+        <a href="/shipping-cars/body/sedan" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
           Sedan
         </a>
-        <a href="/carsforexport/body/hatchback" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+        <a href="/shipping-cars/body/hatchback" class="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 17h8M6 17H4v-2l2-4h2l2-3h4l2 3h2l2 4v2h-2"/></svg>
           Hatchback
         </a>

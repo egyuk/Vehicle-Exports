@@ -101,7 +101,7 @@ own embed — this is a static build, so an API route would need an adapter).
 
 ## 7. Duplicate `<h1>` on every vehicle detail page
 
-`src/pages/carsforexport/[make]/[model]/[vehicleSlug].astro` renders the vehicle
+`src/pages/shipping-cars/[make]/[model]/[vehicleSlug].astro` renders the vehicle
 title twice — line ~122 (mobile title block) and line ~191 (desktop price card).
 Both ship in the DOM. Make one an `h1` and the other a `div`/`p`. Affects 16 pages.
 

@@ -57,11 +57,11 @@ const hasImages = images && images.length > 0;
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400">
         <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/carsforexport" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
+        <a href="/shipping-cars" class="hover:text-[var(--color-primary)] transition-colors">Cars for Export</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href={`/carsforexport/${makeSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{make}</a>
+        <a href={`/shipping-cars/${makeSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{make}</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href={`/carsforexport/${makeSlug}/${modelSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{model}</a>
+        <a href={`/shipping-cars/${makeSlug}/${modelSlug}`} class="hover:text-[var(--color-primary)] transition-colors whitespace-nowrap">{model}</a>
         <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-white">{title}</span>
       </nav>
