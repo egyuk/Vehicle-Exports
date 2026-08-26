@@ -146,16 +146,16 @@ The pipeline itself is documented in `scripts/schedules/README.md`.
   parser beside `scripts/schedules/sources/grimaldi.mjs` — no PDF decoding
   needed. Deliberately not solved with extra tooling (Python/pdfplumber), since
   the pipeline must stay dependency-free for the weekly cloud run.
-- **No Höegh Autoliners source.** Their schedule shows sailings we do not carry
-  (e.g. Southampton to Kingston, Jamaica). Their search is a Next.js server
-  action and the form does not function outside a real browser session - typed
-  input never registers and no request fires, so there is nothing to replay.
-  They publish no PDF or public API — /trade-routes describes which ports each
-  service calls but carries no dated sailings.
-  Options: ask Höegh for a feed, or paste a manual snapshot and add it like the
-  Grimaldi South America sheet. If asking, name the four trades that matter:
-  europe-to-caribbean-and-mexico, europe-to-africa-the-indian-ocean-and-oceania,
-  europe-to-middle-east, europe-to-us-east-coast.
+- **Höegh Autoliners — SOLVED 2026-08 (was "no source").** The port-pair search
+  really is a dead server action, but it was never the data path: the page's
+  client bundle loads a vessel directory from m.hoegh.com and GETs `/api/vessel`
+  per vessel, both plain JSON. See `scripts/schedules/sources/hoegh.mjs`, which
+  also builds through-routes over both Caribbean feeder hubs — Kingston and
+  Pointe-à-Pitre (added 2026-08-26; Guyana, Suriname, Barbados, French Guiana
+  etc., flagged in `notes`). Wallenius Wilhelmsen was cross-checked for the same
+  pattern and has no comparable hub — its apparent matches are cross-trade
+  coincidences, and its South America / Central America services never call the
+  UK, so there is nothing to transship.
 - **NMT lanes without PDFs**: 5 of their 19 Europe-origin lanes (the short-sea
   Atlantic/Baltic/Black Sea ones, Africa Hoegh-WWL, Africa Sallaum-Niledutch,
   Middle East Hoegh-Bahri) have a page but no PDF export, so they return 404 and

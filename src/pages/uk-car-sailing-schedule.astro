@@ -181,14 +181,17 @@ const destinationGroups = (() => {
                 data-past={String(r.past)}
                 data-ets={r.ets}
                 data-eta={r.eta || ''}
-                data-search={`${r.vessel} ${r.loadPort} ${r.destination} ${r.carrier} ${r.voyage} ${r.lane}`.toLowerCase()}
+                data-search={`${r.vessel} ${r.loadPort} ${r.destination} ${r.carrier} ${r.voyage} ${r.lane} ${r.notes}`.toLowerCase()}
               >
                 <td class="px-4 py-3 whitespace-nowrap">
                   <span class="font-semibold text-gray-900">{fmtDate(r.ets)}</span>
                   {r.past && <span class="block text-[11px] text-gray-400">departed</span>}
                 </td>
                 <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{r.loadPort}</td>
-                <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">{flipDest(r.destination)}</td>
+                <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
+                  {flipDest(r.destination)}
+                  {r.notes && <span class="block text-[11px] font-normal text-gray-400 whitespace-normal max-w-[240px]">{r.notes}</span>}
+                </td>
                 <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{fmtDate(r.eta)}</td>
                 <!-- The Channel Islands crossings land the same day, so a bare
                      "0 days" would read as missing data rather than 3 hours. -->
