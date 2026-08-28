@@ -24,6 +24,12 @@ const rows = sailings
   .sort((a, b) => String(a.ets).localeCompare(String(b.ets)));
 
 const upcoming = rows.filter(r => !r.past).length;
+
+// Only the next departures are rendered into the HTML — the full list made
+// this page ~1.5 MB. The script below fetches ./data.json after first paint
+// and re-renders rows per page from it; without JS these stand as the page.
+// Matches the script's PAGE_SIZE so the table doesn't jump when JS takes over.
+const initialRows = rows.filter(r => !r.past).slice(0, 10);
 const exampleCount = rows.filter(r => r.example).length;
 const loadPorts = [...new Set(rows.map(r => r.loadPort).filter(Boolean))].sort();
 // Shown as "Country, Port" but stored as "Port, Country": the trailing country
@@ -141,7 +147,7 @@ const destinationGroups = (() => {
           Hide departed
         </label>
       </div>
-      <p id="sail-count" class="text-xs text-gray-400 mt-3"></p>
+      <p id="sail-count" class="text-xs text-gray-400 mt-3">Showing the next {initialRows.length} departures of {rows.length} listed sailings</p>
     </div>
   </section>
 
@@ -173,19 +179,10 @@ const destinationGroups = (() => {
             </tr>
           </thead>
           <tbody id="sail-body">
-            {rows.map(r => (
-              <tr
-                class={`sail-row border-b border-gray-100 last:border-0 hover:bg-gray-50/70 transition-colors ${r.past ? 'opacity-45' : ''}`}
-                data-port={r.loadPort}
-                data-dest={flipDest(r.destination)}
-                data-past={String(r.past)}
-                data-ets={r.ets}
-                data-eta={r.eta || ''}
-                data-search={`${r.vessel} ${r.loadPort} ${r.destination} ${r.carrier} ${r.voyage} ${r.lane} ${r.notes}`.toLowerCase()}
-              >
+            {initialRows.map(r => (
+              <tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50/70 transition-colors">
                 <td class="px-4 py-3 whitespace-nowrap">
                   <span class="font-semibold text-gray-900">{fmtDate(r.ets)}</span>
-                  {r.past && <span class="block text-[11px] text-gray-400">departed</span>}
                 </td>
                 <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{r.loadPort}</td>
                 <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
@@ -206,9 +203,9 @@ const destinationGroups = (() => {
         </table>
       </div>
 
-      <!-- Pagination. Built by the script so the page still lists every sailing
-           for crawlers if JS never runs; without JS all rows stay visible and
-           this bar stays hidden. -->
+      <!-- Pagination. Built by the script once ./data.json has loaded; without
+           JS the pager stays hidden and the pre-rendered upcoming departures
+           above stand as the page. -->
       <nav id="sail-pager" class="hidden mt-5 flex-col sm:flex-row sm:items-center sm:justify-between gap-3" aria-label="Schedule pages">
         <p id="sail-range" class="text-sm text-gray-500"></p>
         <div class="flex items-center gap-1">
@@ -245,6 +242,10 @@ const destinationGroups = (() => {
 </Layout>
 
 <script>
+  // The HTML ships only the next few departures; this script fetches the full
+  // list from ./data.json after first paint and takes over the table. Only the
+  // visible page of rows exists in the DOM at any time, which is what keeps
+  // the page light — the old version rendered all ~1,500 rows and hid them.
   const search = document.getElementById('sail-search') as HTMLInputElement;
   const portSel = document.getElementById('sail-port') as HTMLSelectElement;
   const destSel = document.getElementById('sail-dest') as HTMLSelectElement;
@@ -252,7 +253,6 @@ const destinationGroups = (() => {
   const body = document.getElementById('sail-body')!;
   const countEl = document.getElementById('sail-count')!;
   const emptyEl = document.getElementById('sail-empty')!;
-  const rows = () => Array.from(body.querySelectorAll<HTMLElement>('.sail-row'));
 
   const pager = document.getElementById('sail-pager')!;
   const rangeEl = document.getElementById('sail-range')!;
@@ -261,12 +261,46 @@ const destinationGroups = (() => {
   const nextBtn = document.getElementById('sail-next') as HTMLButtonElement;
   const wrap = document.getElementById('sail-wrap')!;
 
-  const PAGE_SIZE = 20;
+  type Sail = {
+    ets: string; eta: string; port: string; dest: string; vessel: string;
+    notes: string; example?: boolean;
+    transit: number | null; past: boolean; search: string;
+  };
+
+  const PAGE_SIZE = 10;
   let page = 1;
+  let all: Sail[] = [];
   // Rows passing the filters, in current sort order. Paging slices this rather
   // than re-filtering, so the two concerns stay independent: `matched` is what
   // the filters chose, the slice is what this page shows.
-  let matched: HTMLElement[] = [];
+  let matched: Sail[] = [];
+
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const fmtDate = (d: string) =>
+    d ? new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+  const esc = (s: string) =>
+    s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+  // Mirrors the server-rendered row markup in the tbody above — keep in step.
+  function rowHTML(r: Sail) {
+    return `<tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50/70 transition-colors${r.past ? ' opacity-45' : ''}">
+      <td class="px-4 py-3 whitespace-nowrap">
+        <span class="font-semibold text-gray-900">${fmtDate(r.ets)}</span>
+        ${r.past ? '<span class="block text-[11px] text-gray-400">departed</span>' : ''}
+      </td>
+      <td class="px-4 py-3 text-gray-900 whitespace-nowrap">${esc(r.port)}</td>
+      <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
+        ${esc(r.dest)}
+        ${r.notes ? `<span class="block text-[11px] font-normal text-gray-400 whitespace-normal max-w-[240px]">${esc(r.notes)}</span>` : ''}
+      </td>
+      <td class="px-4 py-3 text-gray-600 whitespace-nowrap">${fmtDate(r.eta)}</td>
+      <td class="px-4 py-3 text-gray-500 whitespace-nowrap">${r.transit === null ? '—' : r.transit === 0 ? 'Same day' : `${r.transit} day${r.transit === 1 ? '' : 's'}`}</td>
+      <td class="px-4 py-3 text-gray-700 whitespace-nowrap">
+        ${esc(r.vessel)}
+        ${r.example ? '<span class="ml-2 text-[10px] font-bold uppercase tracking-wide text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Example</span>' : ''}
+      </td>
+    </tr>`;
+  }
 
   /** Page buttons, windowed around the current page so 60 pages stay usable. */
   function pageNumbers(current: number, total: number) {
@@ -287,15 +321,11 @@ const destinationGroups = (() => {
     const start = (page - 1) * PAGE_SIZE;
     const end = start + PAGE_SIZE;
 
-    // Hide everything, then reveal this page's slice. Toggling only across
-    // `matched` would leave filtered-out rows visible, since nothing else
-    // touches them.
-    rows().forEach(row => row.classList.add('hidden'));
-    matched.slice(start, end).forEach(row => row.classList.remove('hidden'));
+    body.innerHTML = matched.slice(start, end).map(rowHTML).join('');
 
     countEl.textContent = matched.length
       ? `Showing ${start + 1}–${Math.min(end, matched.length)} of ${matched.length} sailings`
-      : `Showing 0 of ${rows().length} sailings`;
+      : `Showing 0 of ${all.length} sailings`;
     rangeEl.textContent = `Page ${page} of ${total}`;
 
     pager.classList.toggle('hidden', matched.length <= PAGE_SIZE);
@@ -333,33 +363,33 @@ const destinationGroups = (() => {
     const port = portSel.value;
     const dest = destSel.value;
 
-    matched = rows().filter(row =>
-      (!term || (row.dataset.search || '').includes(term)) &&
-      (!port || row.dataset.port === port) &&
-      (!dest || row.dataset.dest === dest) &&
-      (!hidePast.checked || row.dataset.past !== 'true'));
+    matched = all.filter(r =>
+      (!term || r.search.includes(term)) &&
+      (!port || r.port === port) &&
+      (!dest || r.dest === dest) &&
+      (!hidePast.checked || !r.past));
 
     // A narrower filter can leave fewer pages than the one being viewed, so
     // start over unless the caller is only re-sorting.
     if (!keepPage) page = 1;
-    emptyEl.classList.toggle('hidden', matched.length > 0 || rows().length === 0);
+    emptyEl.classList.toggle('hidden', matched.length > 0 || all.length === 0);
     render();
   }
 
   // Column sorting: departure and arrival sort by date, ports alphabetically.
   let sortKey = 'ets';
   let sortAsc = true;
+  const sortVal = (r: Sail, key: string) =>
+    key === 'ets' ? r.ets : key === 'eta' ? r.eta : key === 'port' ? r.port : r.dest;
   document.querySelectorAll<HTMLButtonElement>('.sail-sort').forEach(btn => {
     btn.addEventListener('click', () => {
+      if (!all.length) return;
       const key = btn.dataset.sort!;
       sortAsc = key === sortKey ? !sortAsc : true;
       sortKey = key;
-      const sorted = rows().sort((a, b) => {
-        const av = key === 'ets' ? a.dataset.ets! : key === 'eta' ? a.dataset.eta! : key === 'port' ? a.dataset.port! : a.dataset.dest!;
-        const bv = key === 'ets' ? b.dataset.ets! : key === 'eta' ? b.dataset.eta! : key === 'port' ? b.dataset.port! : b.dataset.dest!;
-        return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
-      });
-      sorted.forEach(r => body.appendChild(r));
+      all.sort((a, b) => sortAsc
+        ? sortVal(a, key).localeCompare(sortVal(b, key))
+        : sortVal(b, key).localeCompare(sortVal(a, key)));
       // Re-sorting changes which rows fall on page 1, so re-slice. The page
       // number is kept: sorting is a re-ordering, not a new result set.
       apply({ keepPage: true });
@@ -370,7 +400,23 @@ const destinationGroups = (() => {
   nextBtn.addEventListener('click', () => goTo(page + 1));
 
   [search, portSel, destSel, hidePast].forEach(el => {
-    el.addEventListener(el === search ? 'input' : 'change', () => apply());
+    el.addEventListener(el === search ? 'input' : 'change', () => { if (all.length) apply(); });
   });
-  apply();
+
+  const transitDays = (ets: string, eta: string) =>
+    ets && eta ? Math.round((new Date(eta).getTime() - new Date(ets).getTime()) / 86400000) : null;
+
+  fetch('/uk-car-sailing-schedule/data.json')
+    .then(r => { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+    .then((data: { sailings: any[] }) => {
+      all = data.sailings.map(s => ({
+        ...s,
+        transit: transitDays(s.ets, s.eta),
+        past: s.ets < todayISO,
+        search: `${s.vessel} ${s.port} ${s.dest} ${s.carrier} ${s.voyage} ${s.lane} ${s.notes}`.toLowerCase(),
+      }));
+      apply();
+    })
+    // On failure the server-rendered upcoming departures simply stand.
+    .catch(() => {});
 </script>
