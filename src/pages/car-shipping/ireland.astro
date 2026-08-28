@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
 
 const quickFacts = [
   { label: 'Shipping Time', value: '3-7 days', sub: 'RoRo, Irish Sea crossing' },
@@ -354,6 +355,13 @@ const popularBrands = ['Land Rover', 'MINI', 'BMW', 'Mercedes-Benz', 'Audi', 'Po
       </div>
     </div>
   </section>
+
+  <SailingSchedule
+    country="Ireland"
+    id="sailings"
+    background="gray"
+    heading="Sailing Schedule to Ireland"
+  />
 
   <!-- Final CTA -->
   <section class="py-12 bg-[var(--color-dark)]">

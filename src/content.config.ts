@@ -10,6 +10,10 @@ const countries = defineCollection({
     heroImage: z.string().optional(),
     region: z.string(),
     parentSlug: z.string().optional(),
+    // Destination country as it appears after the comma in the schedule data's
+    // "Port, Country" strings (e.g. "Malta"). When set, the page shows a
+    // country-filtered <SailingSchedule>. Leave unset on region pages.
+    scheduleCountry: z.string().optional(),
     shippingTime: z.string().optional().default(''),
     popularBrands: z.array(z.string()).optional().default([]),
     popularModels: z.array(z.string()).optional().default([]),

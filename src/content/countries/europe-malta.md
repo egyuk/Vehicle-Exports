@@ -5,6 +5,7 @@ description: "Premium UK vehicles shipped to Malta. Fast Mediterranean shipping,
 heroImage: "https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800&q=80"
 region: "Europe — Malta"
 parentSlug: "europe"
+scheduleCountry: "Malta"
 shippingTime: "5-7 days"
 popularBrands: ["Toyota", "BMW", "Mercedes-Benz", "Volkswagen", "Audi"]
 popularModels: ["Toyota Yaris", "BMW 3 Series", "Mercedes C-Class", "VW Golf", "Audi A3"]

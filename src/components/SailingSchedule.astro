@@ -22,6 +22,13 @@ interface Props {
   standalone?: boolean;
   /** Anchor id, so a page's table of contents can link to it. */
   id?: string;
+  /**
+   * With no upcoming sailings the section disappears entirely (default) rather
+   * than showing a "no confirmed sailings" notice — on a marketing page an
+   * empty schedule reads as "we don't ship there", which is wrong for
+   * destinations served via transhipment hubs. Pass false to keep the notice.
+   */
+  hideWhenEmpty?: boolean;
 }
 
 const {
@@ -32,6 +39,7 @@ const {
   background = 'white',
   standalone = true,
   id,
+  hideWhenEmpty = true,
 } = Astro.props;
 
 const { updated, sailings } = schedules;
@@ -68,6 +76,7 @@ const ports = [...new Set(upcoming.map(s => s.loadPort))];
 const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
 ---
 
+{(rows.length > 0 || !hideWhenEmpty) && (
 <section id={id} class={standalone ? `py-16 lg:py-20 ${sectionBg}` : ''}>
   <div class={standalone ? 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' : ''}>
     <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
@@ -142,3 +151,4 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
     )}
   </div>
 </section>
+)}

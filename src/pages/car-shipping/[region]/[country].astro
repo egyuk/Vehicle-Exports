@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import SailingSchedule from '../../../components/SailingSchedule.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 
 const { country } = Astro.props;
 const { Content } = await render(country);
-const { title, description, region, parentSlug, shippingTime, popularBrands, popularModels, ports, keyFacts, heroImage } = country.data;
+const { title, description, region, parentSlug, shippingTime, popularBrands, popularModels, ports, keyFacts, heroImage, scheduleCountry } = country.data;
 
 // Get sibling countries (same parent)
 const allCountries = await getCollection('countries');
@@ -80,6 +81,12 @@ const siblings = allCountries.filter(c => c.data.parentSlug === parentSlug && c.
           <div class="prose prose-base lg:prose-lg max-w-none prose-headings:font-[family-name:var(--font-heading)] prose-headings:text-gray-900 prose-a:text-[var(--color-primary)] prose-strong:text-gray-900 overflow-hidden break-words">
             <Content />
           </div>
+
+          {scheduleCountry && (
+            <div class="mt-12">
+              <SailingSchedule country={scheduleCountry} standalone={false} id="sailings" />
+            </div>
+          )}
         </div>
 
         <!-- Sidebar -->
