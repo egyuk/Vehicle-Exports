@@ -25,8 +25,6 @@ images:
 featured: false
 ---
 
-# 2023 McLaren MC20
-
 3.0 V6 Cielo Spyder Convertible DCT Euro 6 (s/s) 2dr
 
 £245,000

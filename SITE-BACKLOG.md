@@ -99,11 +99,14 @@ handler, and no `name` on the input. Submitting discards the address silently
 and shows no feedback. Needs a real endpoint (hosted form service or the ESP's
 own embed — this is a static build, so an API route would need an adapter).
 
-## 7. Duplicate `<h1>` on every vehicle detail page
+## 7. Duplicate `<h1>` on every vehicle detail page — FIXED 2026-08-28
 
-`src/pages/shipping-cars/[make]/[model]/[vehicleSlug].astro` renders the vehicle
-title twice — line ~122 (mobile title block) and line ~191 (desktop price card).
-Both ship in the DOM. Make one an `h1` and the other a `div`/`p`. Affects 16 pages.
+Was: `src/pages/shipping-cars/[make]/[model]/[vehicleSlug].astro` rendered the
+vehicle title twice (mobile title block + desktop price card), and the McLaren
+MC20's markdown body opened with its own `#` heading, giving that page three.
+The desktop price-card title is now a `p` (identical classes, so it renders the
+same); the mobile block keeps the sole `h1`. The MC20 heading was removed —
+no other vehicle markdown contains one. Audit after: 0 pages with multiple h1s.
 
 ## 8. Smaller SEO and performance items
 
