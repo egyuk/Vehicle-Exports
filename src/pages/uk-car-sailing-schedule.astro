@@ -170,12 +170,12 @@ const destinationGroups = (() => {
         <table class="w-full text-sm min-w-[620px]" id="sail-table">
           <thead>
             <tr class="bg-gray-50 text-left">
-              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="ets">Departure Date</button></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="ets"><span class="sm:hidden">Date</span><span class="hidden sm:inline">Departure Date</span></button></th>
               <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="port">UK Port</button></th>
-              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="dest">Destination / Port</button></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="dest"><span class="sm:hidden">Destination</span><span class="hidden sm:inline">Destination / Port</span></button></th>
               <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10"><button type="button" class="sail-sort font-semibold text-gray-500 text-xs uppercase tracking-wide hover:text-[var(--color-primary)] transition-colors" data-sort="eta">Arrival Date</button></th>
-              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Transit Time</th>
-              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide">Vessel / Ship</th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Transit</span><span class="hidden sm:inline">Transit Time</span></th>
+              <th class="px-4 py-3 bg-gray-50 shadow-[inset_0_-1px_0_#e5e7eb] lg:sticky lg:top-[222px] lg:z-10 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Vessel</span><span class="hidden sm:inline">Vessel / Ship</span></th>
             </tr>
           </thead>
           <tbody id="sail-body">
