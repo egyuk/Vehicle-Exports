@@ -17,6 +17,11 @@ interface TocLink {
   label: string;
 }
 
+interface Faq {
+  q: string;
+  a: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -30,6 +35,10 @@ interface Props {
   destinationPorts?: string[];
   finalCtaHeading?: string;
   finalCtaText?: string;
+  /** Cheapest headline rate, e.g. "£1,250" — shown as a hero chip and fed into the Service schema. */
+  fromPrice?: string;
+  /** Renders a collapsible FAQ section (before the final CTA) plus FAQPage structured data. Answers are plain text — no markup. */
+  faqs?: Faq[];
 }
 
 const {
@@ -42,10 +51,74 @@ const {
   tocLinks,
   popularBrands = [],
   destinationPorts = [],
+  fromPrice,
+  faqs = [],
   intro = `UK Vehicle Exporters Ltd sources and exports quality vehicles from the UK to ${countryName}. We handle the whole process, from car sourcing, tax-free supply (VAT reclaiming), buy on your behalf, negotiations, inspections, collection and delivery to the port, loading onto the ship, UK customs clearance, VAT-reclaiming, and shipping to your destination port (${destinationPorts.join(', ') || countryName}).`,
   finalCtaHeading = 'Talk It Through with an Export Specialist',
   finalCtaText = `If you'd like to talk through any part of shipping your car to ${countryName}, our team is happy to help.`,
 } = Astro.props;
+
+// Structured data. BreadcrumbList and Service always; FAQPage only when the
+// page supplies FAQs. Google reads JSON-LD from the body, so these render
+// alongside the content rather than needing a head slot.
+const site = Astro.site?.href?.replace(/\/$/, '') ?? 'https://vehicleexports.co.uk';
+const pageUrl = site + Astro.url.pathname;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site + '/' },
+    { '@type': 'ListItem', position: 2, name: 'All Destinations', item: site + '/car-shipping/destinations' },
+    { '@type': 'ListItem', position: 3, name: countryName, item: pageUrl },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Car Shipping from the UK to ${countryName}`,
+  serviceType: 'Vehicle shipping and export',
+  description,
+  url: pageUrl,
+  areaServed: { '@type': 'Country', name: countryName },
+  provider: {
+    '@type': 'Organization',
+    name: 'UK Vehicle Exporters',
+    url: site,
+    telephone: '+44 1872 491409',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Penstraze Business Centre',
+      addressLocality: 'Truro',
+      addressRegion: 'Cornwall',
+      postalCode: 'TR4 8PN',
+      addressCountry: 'GB',
+    },
+  },
+  ...(fromPrice
+    ? {
+        offers: {
+          '@type': 'Offer',
+          price: fromPrice.replace(/[^\d.]/g, ''),
+          priceCurrency: 'GBP',
+          description: `RoRo car shipping to ${countryName} from ${fromPrice}`,
+        },
+      }
+    : {}),
+};
+
+const faqSchema = faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
 ---
 
 <Layout title={title} description={description}>
@@ -64,8 +137,18 @@ const {
       </span>
       <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">{heading}</h1>
       <p class="text-gray-400 mt-4 text-lg">{intro}</p>
+      {fromPrice && (
+        <p class="inline-flex items-center gap-2 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 px-4 py-2 rounded-xl text-sm font-semibold mt-6">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          RoRo shipping from {fromPrice} per vehicle
+        </p>
+      )}
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
   <!-- Key Facts -->
   {quickFacts.length > 0 && (
@@ -166,6 +249,31 @@ const {
       </div>
     </div>
   </section>
+
+  <!-- FAQ -->
+  {faqs.length > 0 && (
+    <section id="faq" class="py-16 lg:py-20 bg-gray-50 scroll-mt-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-2">
+          {countryName} Car Shipping FAQs
+        </h2>
+        <p class="text-gray-600 mb-8">Common questions about shipping a vehicle from the UK to {countryName}.</p>
+        <!-- CSS columns rather than grid: an open <details> only grows its own
+             column, and single-column order is preserved top-to-bottom. -->
+        <div class="lg:columns-2 lg:gap-4 space-y-3">
+          {faqs.map(f => (
+            <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden lg:break-inside-avoid">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer px-5 py-4 font-semibold text-gray-900 list-none [&::-webkit-details-marker]:hidden hover:text-[var(--color-primary)] transition-colors">
+                {f.q}
+                <svg class="w-4 h-4 shrink-0 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <p class="px-5 pb-4 text-gray-600 leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Final CTA -->
   <section class="py-12 bg-[var(--color-dark)]">

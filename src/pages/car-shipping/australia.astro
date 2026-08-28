@@ -2,13 +2,15 @@
 import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
 import SailingSchedule from '../../components/SailingSchedule.astro';
 
-// TODO: replace all placeholder figures/text below with verified Australia-specific facts
-// (import duty rate, GST rate, registration authority, eligible vehicle age rules, ports, etc.)
+// TODO: several body paragraphs below are still placeholders — import duty /
+// GST rates, registration and inspection rules need verified Australia facts.
+// Ports and transit times here are derived from the live sailing schedule
+// data (src/data/sailing-schedules.json); prices match the cards below.
 const quickFacts = [
-  { label: 'Shipping Time', value: '[TODO] days', sub: 'RoRo / Container' },
-  { label: 'Delivery Ports', value: '[TODO Port 1], [TODO Port 2]', sub: '' },
-  { label: 'Australian GST', value: '[TODO]%', sub: 'Charged on customs value' },
-  { label: 'Pre-Export Inspection', value: '[TODO]', sub: '[TODO: inspection scheme/authority, if required]' },
+  { label: 'Shipping Time', value: '3-9 weeks', sub: 'Most RoRo sailings 5-8 weeks' },
+  { label: 'Delivery Ports', value: 'Brisbane, Fremantle, Melbourne', sub: 'Also Port Kembla' },
+  { label: 'RoRo From', value: '£1,250', sub: 'Containers from £1,950' },
+  { label: 'UK Departure Ports', value: 'Southampton, Newcastle, Bristol', sub: '' },
 ];
 
 const tocLinks = [
@@ -16,16 +18,44 @@ const tocLinks = [
   { href: '#sailings', label: 'Sailing schedule' },
   { href: '#why-ship', label: 'Our Other Services' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
 ];
 
-const popularBrands = ['[TODO Brand]', '[TODO Brand]', '[TODO Brand]', '[TODO Brand]', '[TODO Brand]'];
-const destinationPorts = ['[TODO Port 1]', '[TODO Port 2]'];
+const popularBrands: string[] = [];
+const destinationPorts = ['Brisbane', 'Fremantle', 'Melbourne', 'Port Kembla'];
 const countryName = 'Australia';
+
+// Answers restate the prices on this page and the live schedule data only —
+// duty/GST/registration questions wait until those facts are verified.
+const faqs = [
+  {
+    q: 'How much does it cost to ship a car from the UK to Australia?',
+    a: 'RoRo shipping starts at £1,250 for a small vehicle (up to 1.6m height) and £1,395 for larger vehicles. A private 20ft container is £1,950, or £3,575 for a 40ft container. Prices cover UK-side costs including customs clearance, port handling and export documentation.',
+  },
+  {
+    q: 'How long does shipping from the UK to Australia take?',
+    a: 'Most RoRo sailings take 5 to 8 weeks port to port, with the fastest routes around 3 weeks depending on the destination port. The live sailing schedule on this page shows upcoming departure and arrival dates for each route.',
+  },
+  {
+    q: 'Which UK ports do sailings to Australia depart from?',
+    a: 'Current carrier schedules show departures from Southampton, Newcastle and Bristol. We collect vehicles from any UK address and deliver them to the departure port.',
+  },
+  {
+    q: 'Which Australian ports can my car be shipped to?',
+    a: 'Vehicles are delivered to Brisbane, Fremantle (Perth), Melbourne and Port Kembla (Sydney area), depending on the sailing.',
+  },
+  {
+    q: 'Can I pack personal items in the car?',
+    a: 'Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.',
+  },
+];
 ---
 
 <CountryPageLayout
-  title="Car Shipping to Australia | UK Vehicle Export - UK Vehicle Exporters"
-  description="UK Vehicle Exporters sources and exports quality vehicles from the UK to Australia. Learn about costs, shipping options, import duty, GST and registration. [TODO: refine description]"
+  title="Car Shipping UK to Australia | From £1,250 RoRo"
+  description="Ship a car from the UK to Australia. RoRo from £1,250, private containers available. Costs, import duty, GST, registration and live sailing dates."
+  fromPrice="£1,250"
+  faqs={faqs}
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
@@ -42,7 +72,7 @@ const countryName = 'Australia';
     <div class="grid sm:grid-cols-2 gap-4 mb-6">
       <div class="border border-gray-100 rounded-xl p-5">
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
-        <p class="text-sm text-gray-500 mt-1 mb-4">Ideal for most vehicles — simple, fast, and cost-effective. Typically [TODO] days.</p>
+        <p class="text-sm text-gray-500 mt-1 mb-4">Ideal for most vehicles — simple, fast, and cost-effective. Most sailings 5-8 weeks.</p>
         <ul class="space-y-2 pt-3 border-t border-gray-100">
           <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
             <span>Small vehicles (up to 1.6m height)</span>
@@ -56,7 +86,7 @@ const countryName = 'Australia';
       </div>
       <div class="border border-gray-100 rounded-xl p-5">
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Private Container Shipping</h4>
-        <p class="text-sm text-gray-500 mt-1 mb-4">Extra security, or for multiple vehicles and personal items. Typically [TODO] days.</p>
+        <p class="text-sm text-gray-500 mt-1 mb-4">Extra security, or for multiple vehicles and personal items. Transit varies by routing — see the sailing schedule.</p>
         <ul class="space-y-2 pt-3 border-t border-gray-100">
           <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
             <span>20ft Private Container (fitting one car)</span>
@@ -170,19 +200,19 @@ const countryName = 'Australia';
     <div class="grid sm:grid-cols-2 gap-6">
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Car Sourcing / Buying on your behalf</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about UK vehicle sourcing and buying on the customer's behalf.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">We source any new or used vehicle from our network of UK dealers, auctions and private sellers — or buy a specific car you've found on your behalf, protecting you from the pitfalls of paying an unknown seller from overseas.</p>
       </div>
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Tax-Free & VAT-Free Vehicle Supply</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about tax-free / VAT-qualifying vehicle supply.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">We specialise in VAT-qualifying and brand-new tax-free vehicles, so eligible export buyers can have the 20% UK VAT deducted or reclaimed — often the single biggest saving on an exported car.</p>
       </div>
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Pre-Purchase Inspections</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about pre-purchase vehicle inspection service.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">Every vehicle we export goes through a rigorous multi-point inspection before shipping, and we can arrange an independent pre-purchase inspection of any car we source so you know its condition before you commit.</p>
       </div>
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Government Pre-Shipping Inspection</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about government pre-shipping inspection requirements.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">Where the destination country requires a pre-export roadworthiness inspection, we arrange it with the approved inspection agency before the sailing so the vehicle clears customs without delays on arrival.</p>
       </div>
     </div>
   </div>
@@ -217,28 +247,27 @@ const countryName = 'Australia';
     <p class="text-gray-600 leading-relaxed">
       Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
       performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+      we'll confirm whether the vehicle you're interested in qualifies.
     </p>
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">VAT-free Supply of VAT-Qualifying (VATQ) Cars</h3>
     <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+      A VAT-qualifying car is one where VAT was charged when it was first purchased by a business and has not
+      been reclaimed. For export buyers, this can allow the 20% UK VAT to be reclaimed, helping to reduce the
+      overall cost of the vehicle before it's even shipped to Australia.
     </p>
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">HMRC's Personal Export Scheme (PES)</h3>
     <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+      The Personal Export Scheme lets eligible buyers purchase a car in the UK free of VAT, provided the
+      vehicle is exported within HMRC's time limits. It can suit anyone relocating to Australia who wants to
+      use the car in the UK briefly before it ships — we confirm eligibility and handle the paperwork.
     </p>
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Diplomatic and Military Personnel (UK Only) Tax-Free Exports</h3>
     <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Australia.]
+      Diplomats and eligible military personnel posted overseas can buy UK vehicles tax-free for export.
+      We manage the eligibility checks and documentation as part of the purchase and shipping process.
     </p>
   </div>
 

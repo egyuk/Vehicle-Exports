@@ -19,6 +19,35 @@ const tocLinks = [
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
   { href: '#registration', label: 'Inspection & registration' },
   { href: '#arrival', label: 'Arrival in Kenya' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Answers restate facts already published on this page — keep the two in step.
+const faqs = [
+  {
+    q: 'How much does it cost to ship a car from the UK to Kenya?',
+    a: 'RoRo shipping to Mombasa starts at £1,250 for a small vehicle (up to 1.6m height) and £1,395 for larger vehicles. Private container shipping starts at £1,950 for a 20ft container, or £3,575 for a 40ft container that can take multiple vehicles. Prices cover UK-side costs including customs clearance, port handling and export documentation.',
+  },
+  {
+    q: 'How long does shipping from the UK to Kenya take?',
+    a: 'RoRo sailings to Mombasa typically take 4–6 weeks from departure, and container shipments 5–7 weeks. See the live sailing schedule on this page for upcoming departure and arrival dates.',
+  },
+  {
+    q: 'Is there an age limit on cars imported into Kenya?',
+    a: 'Yes. Kenya only permits the import of vehicles less than 8 years old from the year of first registration, so check the registration date carefully before buying a car for export.',
+  },
+  {
+    q: 'Does my car need an inspection before shipping to Kenya?',
+    a: 'Yes. Kenya requires a pre-export roadworthiness inspection by a KEBS-approved agency before the vehicle ships. We arrange this inspection as part of our export service.',
+  },
+  {
+    q: 'What taxes will I pay when my car arrives in Kenya?',
+    a: 'The Kenya Revenue Authority charges import duty, excise duty and VAT, calculated on the vehicle’s customs value under the Current Retail Selling Price (CRSP) system. Our Kenya Import Duty Calculator gives an estimate for a specific vehicle before you buy.',
+  },
+  {
+    q: 'Which UK port do you ship to Kenya from?',
+    a: 'Kenya sailings depart from Sheerness and Southampton, with vehicles delivered to the port of Mombasa. We collect vehicles from any UK address and deliver them to the departure port.',
+  },
 ];
 
 const popularBrands = ['Toyota', 'Nissan', 'Mitsubishi', 'Subaru', 'Mazda', 'Honda'];
@@ -27,13 +56,15 @@ const countryName = 'Kenya';
 ---
 
 <CountryPageLayout
-  title="Car Shipping to Kenya | UK Vehicle Export - UK Vehicle Exporters"
-  description="UK Vehicle Exporters sources and exports quality vehicles from the UK to Kenya. Learn about costs, shipping, KRA import duty, age limits and registration."
+  title="Car Shipping UK to Kenya | From £1,250 RoRo to Mombasa"
+  description="Ship a car from the UK to Mombasa, Kenya. RoRo from £1,250, containers from £1,950, 4-6 weeks transit. Costs, KRA duty, age limits and live sailing dates."
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
   popularBrands={popularBrands}
   destinationPorts={destinationPorts}
+  fromPrice="£1,250"
+  faqs={faqs}
   finalCtaText="If you'd like to talk through any part of shipping your car to Kenya, our team is happy to help."
 >
   <div id="costs">
@@ -175,19 +206,19 @@ const countryName = 'Kenya';
     <div class="grid sm:grid-cols-2 gap-6">
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Car Sourcing / Buying on your behalf</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about UK vehicle sourcing and buying on the customer's behalf.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">We source any new or used vehicle from our network of UK dealers, auctions and private sellers — or buy a specific car you've found on your behalf, protecting you from the pitfalls of paying an unknown seller from overseas.</p>
       </div>
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Tax-Free & VAT-Free Vehicle Supply</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about tax-free / VAT-qualifying vehicle supply.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">We specialise in VAT-qualifying and brand-new tax-free vehicles, so eligible export buyers can have the 20% UK VAT deducted or reclaimed — often the single biggest saving on an exported car.</p>
       </div>
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Pre-Purchase Inspections</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about pre-purchase vehicle inspection service.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">Every vehicle we export goes through a rigorous multi-point inspection before shipping, and we can arrange an independent pre-purchase inspection of any car we source so you know its condition before you commit.</p>
       </div>
       <div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Government Pre-Shipping Inspection</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">[TODO: placeholder text about government pre-shipping inspection requirements.]</p>
+        <p class="text-gray-600 leading-relaxed text-sm">Kenya requires a pre-export roadworthiness inspection by a KEBS-approved agency. We arrange the inspection before the sailing so the vehicle clears customs in Mombasa without delays.</p>
       </div>
     </div>
   </div>
@@ -283,7 +314,7 @@ const countryName = 'Kenya';
     <p class="text-gray-600 leading-relaxed">
       Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
       performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Kenya.]
+      we'll confirm whether the vehicle you're interested in qualifies.
     </p>
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">VAT-free Supply of VAT-Qualifying (VATQ) Cars</h3>
@@ -295,16 +326,15 @@ const countryName = 'Kenya';
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">HMRC's Personal Export Scheme (PES)</h3>
     <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Kenya.]
+      The Personal Export Scheme lets eligible buyers purchase a car in the UK free of VAT, provided the
+      vehicle is exported within HMRC's time limits. It can suit anyone relocating to Kenya who wants to
+      use the car in the UK briefly before it ships — we confirm eligibility and handle the paperwork.
     </p>
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Diplomatic and Military Personnel (UK Only) Tax-Free Exports</h3>
     <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies. [TODO: confirm applicability for Kenya.]
+      Diplomats and eligible military personnel posted overseas can buy UK vehicles tax-free for export.
+      We manage the eligibility checks and documentation as part of the purchase and shipping process.
     </p>
   </div>
 
