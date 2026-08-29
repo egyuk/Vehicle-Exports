@@ -1,18 +1,20 @@
 ---
+import { services } from '../data/services';
+
 const benefits = [
   {
     title: 'UK Vehicle Supply & Sourcing',
-    description: 'We can source any new or used vehicle from any manufacturer in the UK for you, from our network of dealers, car classified websites, auctions or directly from manufactures, and deliver to you in your country for guaranteed cheapest rates.',
+    description: 'We can source any new or used vehicle from any manufacturer in the UK for you, from our network of dealers, car classified websites, auctions or directly from manufacturers, and deliver to you in your country for guaranteed cheapest rates.',
     image: '/assets/images/services/sourcing.jpeg',
   },
   {
     title: 'UK Tax / VAT Free Car Exports',
-    description: 'We specialise in the selection vehicles that are eligible for VAT refunds and Tax deduction, provided that they are being exported outside of the EU. We have access to a large range of used "VAT Qualifying" and Brand New Tax-Free vehicles.',
+    description: 'We specialise in the selection of vehicles that are eligible for VAT refunds and Tax deduction, provided that they are being exported outside of the EU. We have access to a large range of used "VAT Qualifying" and Brand New Tax-Free vehicles.',
     image: '/assets/images/services/vat-exports.jpeg',
   },
   {
     title: 'UK Vehicle Shipping & Exports',
-    description: 'We offer specialist vehicle shipping services to any country from the UK, by either RoRo Container methods, and can guarantee the best shipping prices. We can offer an all-inclusive shipping service where we collect your vehicle or goods from any UK address and ship them to your desired country.',
+    description: 'We offer specialist vehicle shipping services to any country from the UK, by either RoRo or Container methods, and can guarantee the best shipping prices. We can offer an all-inclusive shipping service where we collect your vehicle or goods from any UK address and ship them to your desired country.',
     image: '/assets/images/services/shipping.jpeg',
   },
   {
@@ -22,15 +24,22 @@ const benefits = [
   },
   {
     title: 'UK Vehicle Collection & Delivery',
-    description: 'We can collect any vehicle from any UK address and deliver them to any of the UK ports of departure (Southampton, Tilbury, Sheerness, Felixtowe, Immingham etc) at a rate of £1 per mile, driven on DVLA plates or on a carrier.',
+    description: 'We can collect any vehicle from any UK address and deliver them to any of the UK ports of departure (Southampton, Tilbury, Sheerness, Felixstowe, Immingham etc) at a rate of £1 per mile, driven on DVLA plates or on a carrier.',
     image: '/assets/images/services/collection-delivery.jpeg',
   },
   {
     title: 'UK Vehicle Customs Clearance',
-    description: "We prepare have access to the UK government's customs system and make declarations on exports as well as prepare all documentation needed at the UK Port of exit, including the Bill of Lading, Export Certificate etc",
+    description: "We have access to the UK government's customs system and make declarations on exports as well as prepare all documentation needed at the UK Port of exit, including the Bill of Lading, Export Certificate etc.",
     image: '/assets/images/services/customs-clearance.jpeg',
   },
 ];
+
+// Each homepage card links through to its service page, matched by image
+// (titles match the services data too, but the image is the stable key).
+const hrefFor = (image: string) => {
+  const s = services.find(s => s.image === image);
+  return s ? `/services/${s.slug}` : '/services';
+};
 ---
 
 <section class="pt-5 pb-5 bg-white">
@@ -44,7 +53,7 @@ const benefits = [
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {benefits.map(benefit => (
-        <div class="service-card rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all group">
+        <a href={hrefFor(benefit.image)} class="service-card block rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all group">
           <div class="aspect-[16/10] overflow-hidden">
             <img src={benefit.image} alt={benefit.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
           </div>
@@ -52,7 +61,7 @@ const benefits = [
             <h3 class="font-bold text-[var(--color-primary)] text-lg font-[family-name:var(--font-heading)] leading-snug">{benefit.title}</h3>
             <p class="text-sm text-gray-600 mt-2 leading-relaxed">{benefit.description}</p>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
