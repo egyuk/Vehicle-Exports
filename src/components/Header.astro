@@ -1,10 +1,17 @@
 ---
 import { services } from '../data/services';
 import { shippingServices } from '../data/shippingServices';
+import { continentCountries } from '../data/destinations';
 
 // The Shipping mega menu mirrors the Shipping Services list on /car-shipping;
 // car shipping itself gets the photo banner above the cards instead of a card.
-const shippingCards = shippingServices.map(s => ({ name: s.name, href: `/shipping-services/${s.slug}`, desc: s.shortDesc }));
+const shippingCards = shippingServices.map(s => ({ name: s.name, href: `/shipping/${s.slug}`, desc: s.shortDesc }));
+
+// Countries grouped under unlinked continent headings, from the shared
+// destinations data (continents with no countries yet are skipped).
+const countryGroups = Object.entries(continentCountries)
+  .filter(([, countries]) => countries.length > 0)
+  .map(([title, countries]) => ({ title, links: countries }));
 
 const navLinks = [
   {
@@ -27,7 +34,7 @@ const navLinks = [
   },
   {
     name: 'Shipping',
-    href: '/shipping-services',
+    href: '/shipping',
     mega: {
       banner: {
         name: 'Car Shipping',
@@ -38,7 +45,7 @@ const navLinks = [
       cards: shippingCards,
       cardCols: 3,
       mobileHeading: 'Shipping worldwide from the UK',
-      allLink: { name: 'All shipping services', desc: 'Every way we ship from the UK, in one place.', href: '/shipping-services' },
+      allLink: { name: 'All shipping services', desc: 'Every way we ship from the UK, in one place.', href: '/shipping' },
       featured: {
         tag: 'Shipping Worldwide from the UK',
         title: 'Live sailing schedules',
@@ -88,33 +95,19 @@ const navLinks = [
   {
     name: 'Countries',
     href: '/car-shipping',
-    columns: 2,
-    dropdown: [
-      { name: 'Australia', href: '/car-shipping/australia' },
-      { name: 'Bangladesh', href: '/car-shipping/bangladesh' },
-      { name: 'Barbados', href: '/car-shipping/barbados' },
-      { name: 'Botswana', href: '/car-shipping/botswana' },
-      { name: 'Canada', href: '/car-shipping/canada' },
-      { name: 'Cayman Islands', href: '/car-shipping/cayman-islands' },
-      { name: 'Cyprus', href: '/car-shipping/cyprus' },
-      { name: 'Ghana', href: '/car-shipping/ghana' },
-      { name: 'Great Britain', href: '/car-shipping/great-britain' },
-      { name: 'Hong Kong', href: '/car-shipping/hong-kong' },
-      { name: 'Indonesia', href: '/car-shipping/indonesia' },
-      { name: 'Kenya', href: '/car-shipping/kenya' },
-      { name: 'Malaysia', href: '/car-shipping/malaysia' },
-      { name: 'Namibia', href: '/car-shipping/namibia' },
-      { name: 'New Zealand', href: '/car-shipping/new-zealand' },
-      { name: 'Singapore', href: '/car-shipping/singapore' },
-      { name: 'South Africa', href: '/car-shipping/south-africa' },
-      { name: 'Sri Lanka', href: '/car-shipping/sri-lanka' },
-      { name: 'Tanzania', href: '/car-shipping/tanzania' },
-      { name: 'Thailand', href: '/car-shipping/thailand' },
-      { name: 'Trinidad and Tobago', href: '/car-shipping/trinidad-and-tobago' },
-      { name: 'Uganda', href: '/car-shipping/uganda' },
-      { name: 'USA', href: '/usa-import-america-car-shipping' },
-      { name: 'All Destinations', href: '/car-shipping' },
-    ],
+    mega: {
+      groups: countryGroups,
+      cardCols: 4,
+      align: 'right',
+      mobileHeading: 'Shipping to countries worldwide',
+      featured: {
+        tag: 'Shipping Worldwide from the UK',
+        title: "Don't see your country?",
+        text: 'We ship to almost any destination worldwide — tell us where the vehicle is going and we will confirm the route.',
+        cta: 'Get a quote',
+        href: '/contact',
+      },
+    },
   },
 ];
 ---
@@ -177,9 +170,9 @@ const navLinks = [
               )}
 
               {/* Mega menu — service cards variant */}
-              {link.mega && link.mega.cards && (
-                <div class:list={["absolute top-full pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50", link.mega.cardCols === 3 ? "left-1/2 -translate-x-1/2" : "left-0"]}>
-                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid gap-5", link.mega.featured ? (link.mega.cardCols === 3 ? "w-[820px] xl:w-[920px] grid-cols-[1fr_190px] xl:grid-cols-[1fr_220px]" : "w-[680px] xl:w-[820px] grid-cols-[1fr_200px] xl:grid-cols-[1fr_240px]") : "w-[560px]"]}>
+              {link.mega && (link.mega.cards || link.mega.groups) && (
+                <div class:list={["absolute top-full pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50", link.mega.align === 'right' ? "right-0" : link.mega.cardCols >= 3 ? "left-1/2 -translate-x-1/2" : "left-0"]}>
+                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid gap-5", link.mega.featured ? (link.mega.cardCols >= 3 ? "w-[820px] xl:w-[920px] grid-cols-[1fr_190px] xl:grid-cols-[1fr_220px]" : "w-[680px] xl:w-[820px] grid-cols-[1fr_200px] xl:grid-cols-[1fr_240px]") : "w-[560px]"]}>
                     <div>
                     {link.mega.banner && (
                       <a href={link.mega.banner.href} class="group/mb relative block rounded-xl overflow-hidden mb-4">
@@ -191,7 +184,23 @@ const navLinks = [
                         </span>
                       </a>
                     )}
-                    <div class:list={["grid gap-2", link.mega.cardCols === 3 ? "grid-cols-3 gap-x-3" : "grid-cols-2"]}>
+                    {link.mega.groups ? (
+                      <div class:list={[link.mega.cardCols === 4 ? "columns-4" : "columns-3", "gap-4"]}>
+                        {link.mega.groups.map(gr => (
+                          <div class="break-inside-avoid mb-4">
+                            <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2 pb-1.5 border-b border-gray-100">{gr.title}</h4>
+                            <ul class="space-y-0.5">
+                              {gr.links.map(item => (
+                                <li>
+                                  <a href={item.href} class="block rounded-lg px-2 py-1 -mx-2 text-[13.5px] font-medium text-[var(--color-dark)] hover:text-[var(--color-primary)] hover:bg-orange-50/70 transition-colors">{item.name}</a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                    <div class:list={["grid", link.mega.cardCols === 4 ? "grid-cols-4 gap-x-3 gap-y-0.5" : link.mega.cardCols === 3 ? "grid-cols-3 gap-x-3 gap-2" : "grid-cols-2 gap-2"]}>
                       {link.mega.cards.map(item => (
                         <a href={item.href} class="group/mi block rounded-xl p-2.5 hover:bg-orange-50/70 transition-colors">
                           <span class="block text-[13.5px] font-semibold leading-snug text-[var(--color-dark)] group-hover/mi:text-[var(--color-primary)] transition-colors">{item.name}</span>
@@ -200,12 +209,13 @@ const navLinks = [
                               <img src={item.image} alt="" width="80" height="56" loading="lazy" class="w-20 h-14 shrink-0 rounded-lg object-cover" />
                               <span class="min-w-0 text-[12px] text-gray-400 leading-snug">{item.desc}</span>
                             </span>
-                          ) : (
+                          ) : item.desc ? (
                             <span class="block mt-1.5 text-[12px] text-gray-400 leading-snug">{item.desc}</span>
-                          )}
+                          ) : null}
                         </a>
                       ))}
                     </div>
+                    )}
                     </div>
 
                     {link.mega.featured && (
@@ -303,7 +313,7 @@ const navLinks = [
   <div class="px-4 py-4 space-y-1">
     {navLinks.map(link => (
       <div class="mobile-nav-item">
-        {link.mega && link.mega.cards ? (
+        {link.mega && (link.mega.cards || link.mega.groups) ? (
           <div>
             <button class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
               {link.name}
@@ -323,11 +333,31 @@ const navLinks = [
                   </span>
                 </a>
               )}
+              {link.mega.groups ? (
+                <div class="space-y-5">
+                  {link.mega.groups.map(gr => (
+                    <div>
+                      <span class="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2 pb-1.5 border-b border-gray-100">{gr.title}</span>
+                      <div class="grid grid-cols-2 gap-x-5 gap-y-1.5">
+                        {gr.links.map(item => (
+                          <a href={item.href} class="block text-[14px] font-bold leading-snug text-[var(--color-dark)] py-0.5">{item.name}</a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  {link.mega.allLink && (
+                    <a href={link.mega.allLink.href} class="block">
+                      <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">{link.mega.allLink.name}</span>
+                      <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{link.mega.allLink.desc}</span>
+                    </a>
+                  )}
+                </div>
+              ) : (
               <div class="grid grid-cols-2 gap-x-5 gap-y-6">
                 {link.mega.cards.map(item => (
                   <a href={item.href} class="block">
                     <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">{item.mobileName ?? item.name}</span>
-                    <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{item.desc}</span>
+                    {item.desc && <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{item.desc}</span>}
                   </a>
                 ))}
                 {link.mega.allLink && (
@@ -337,6 +367,7 @@ const navLinks = [
                   </a>
                 )}
               </div>
+              )}
             </div>
           </div>
         ) : link.mega ? (

@@ -158,7 +158,8 @@ export const services: Service[] = [
   },
   {
     slug: 'new-used-car-exports',
-    name: 'New & Used Car Exports',
+    name: 'New / Used Car Export',
+    navName: 'New/Used Car Export',
     shortDesc: 'Inspected new and used cars sourced in the UK and exported worldwide.',
     metaDescription:
       'New and used car exports from the UK: vehicles sourced from dealers and auctions, inspected, and shipped worldwide by RoRo or container.',

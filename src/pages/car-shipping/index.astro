@@ -46,55 +46,9 @@ const countries = [
   'Zimbabwe – Beitbridge, Plumtree, Harare',
 ];
 
-const shippingServiceLinks = shippingServices.map(s => ({ name: s.name, href: `/shipping-services/${s.slug}` }));
+const shippingServiceLinks = shippingServices.map(s => ({ name: s.name, href: `/shipping/${s.slug}` }));
 
-interface CountryLink {
-  name: string;
-  href: string;
-}
-
-// Master list of individual destination countries, grouped by continent.
-// This is the full list (including lower-volume destinations like Bangladesh)
-// — the main nav "Countries" dropdown only surfaces a curated subset.
-const continentCountries: Record<string, CountryLink[]> = {
-  Africa: [
-    { name: 'Botswana', href: '/car-shipping/botswana' },
-    { name: 'Ghana', href: '/car-shipping/ghana' },
-    { name: 'Kenya', href: '/car-shipping/kenya' },
-    { name: 'Namibia', href: '/car-shipping/namibia' },
-    { name: 'South Africa', href: '/car-shipping/south-africa' },
-    { name: 'Tanzania', href: '/car-shipping/tanzania' },
-    { name: 'Uganda', href: '/car-shipping/uganda' },
-  ],
-  Asia: [
-    { name: 'Bangladesh', href: '/car-shipping/bangladesh' },
-    { name: 'Hong Kong', href: '/car-shipping/hong-kong' },
-    { name: 'Indonesia', href: '/car-shipping/indonesia' },
-    { name: 'Malaysia', href: '/car-shipping/malaysia' },
-    { name: 'Singapore', href: '/car-shipping/singapore' },
-    { name: 'Sri Lanka', href: '/car-shipping/sri-lanka' },
-    { name: 'Thailand', href: '/car-shipping/thailand' },
-  ],
-  Caribbean: [
-    { name: 'Barbados', href: '/car-shipping/barbados' },
-    { name: 'Cayman Islands', href: '/car-shipping/cayman-islands' },
-    { name: 'Trinidad and Tobago', href: '/car-shipping/trinidad-and-tobago' },
-  ],
-  Europe: [
-    { name: 'Cyprus', href: '/car-shipping/cyprus' },
-    { name: 'Great Britain', href: '/car-shipping/great-britain' },
-    { name: 'Ireland', href: '/car-shipping/ireland' },
-  ],
-  'Middle East': [],
-  'North America': [
-    { name: 'Canada', href: '/car-shipping/canada' },
-    { name: 'USA', href: '/usa-import-america-car-shipping' },
-  ],
-  Oceania: [
-    { name: 'Australia', href: '/car-shipping/australia' },
-    { name: 'New Zealand', href: '/car-shipping/new-zealand' },
-  ],
-};
+import { continentCountries } from '../../data/destinations';
 
 // Regional overview guides (written content), matched into their continent by `region`.
 // A continent can have more than one guide (e.g. Asia has a general guide plus a

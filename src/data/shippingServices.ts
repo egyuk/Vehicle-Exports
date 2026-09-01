@@ -1,6 +1,6 @@
 // Single source of truth for the shipping-service landing pages. Used by:
-//  - src/pages/shipping-services/[slug].astro  (one landing page per service)
-//  - src/pages/shipping-services/index.astro   (hub page)
+//  - src/pages/shipping/[slug].astro  (one landing page per service)
+//  - src/pages/shipping/index.astro   (hub page)
 //  - src/components/Header.astro               ("Vehicle Shipping" dropdown)
 //  - src/pages/car-shipping/index.astro        (Shipping Services pill links)
 // Every figure here must already appear elsewhere on the site — RoRo and
@@ -72,7 +72,7 @@ export const shippingServices: ShippingService[] = [
       { title: 'Ship and release', text: 'The vehicle sails secured in its container and is released to you at the destination port.' },
     ],
     links: [
-      { name: 'Container shipping', href: '/shipping-services/container-shipping' },
+      { name: 'Container shipping', href: '/shipping/container-shipping' },
       { name: 'Our export process', href: '/process' },
     ],
   },
@@ -121,7 +121,7 @@ export const shippingServices: ShippingService[] = [
     ],
     links: [
       { name: 'Shipping rates', href: '/car-shipping/shipping-rates' },
-      { name: 'RoRo shipping', href: '/shipping-services/roro-shipping' },
+      { name: 'RoRo shipping', href: '/shipping/roro-shipping' },
     ],
   },
   {
@@ -145,7 +145,7 @@ export const shippingServices: ShippingService[] = [
     ],
     links: [
       { name: 'UK car sailing schedule', href: '/uk-car-sailing-schedule' },
-      { name: 'Caravan & van shipping', href: '/shipping-services/caravan-van-shipping' },
+      { name: 'Caravan & van shipping', href: '/shipping/caravan-van-shipping' },
     ],
   },
   {
@@ -168,7 +168,7 @@ export const shippingServices: ShippingService[] = [
       { title: 'Ship and release', text: 'The machinery sails on the booked vessel and is released at destination.' },
     ],
     links: [
-      { name: 'Tractor shipping', href: '/shipping-services/tractor-shipping' },
+      { name: 'Tractor shipping', href: '/shipping/tractor-shipping' },
       { name: 'Get a quote', href: '/contact' },
     ],
   },
@@ -216,7 +216,7 @@ export const shippingServices: ShippingService[] = [
       { title: 'Sail and clear', text: 'The container sails and is cleared and released at the destination port.' },
     ],
     links: [
-      { name: 'Container shipping', href: '/shipping-services/container-shipping' },
+      { name: 'Container shipping', href: '/shipping/container-shipping' },
       { name: 'Export FAQs', href: '/faq' },
     ],
   },
@@ -240,7 +240,7 @@ export const shippingServices: ShippingService[] = [
       { title: 'Sail and collect', text: 'The tractor sails on the booked departure and is released at destination.' },
     ],
     links: [
-      { name: 'Plant machinery & equipment', href: '/shipping-services/plant-machinery-equipment' },
+      { name: 'Plant machinery & equipment', href: '/shipping/plant-machinery-equipment' },
       { name: 'Get a quote', href: '/contact' },
     ],
   },

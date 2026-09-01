@@ -27,7 +27,7 @@ import { shippingServices } from '../../data/shippingServices';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {shippingServices.map(s => (
-          <a href={`/shipping-services/${s.slug}`} class="group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all">
+          <a href={`/shipping/${s.slug}`} class="group bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all">
             <h2 class="text-lg font-semibold text-gray-900 group-hover:text-[var(--color-primary)] leading-snug transition-colors font-[family-name:var(--font-heading)]">{s.name}</h2>
             <p class="text-sm text-gray-500 mt-2 leading-snug">{s.shortDesc}</p>
             <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-primary)] mt-4">
