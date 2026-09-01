@@ -98,7 +98,7 @@ export const services: Service[] = [
     ],
     links: [
       { name: 'UK car sailing schedule', href: '/uk-car-sailing-schedule' },
-      { name: 'Destinations we ship to', href: '/car-shipping/destinations' },
+      { name: 'Destinations we ship to', href: '/car-shipping' },
       { name: 'Shipping rates', href: '/car-shipping/shipping-rates' },
     ],
   },

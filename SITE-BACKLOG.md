@@ -39,7 +39,8 @@ main navigation and therefore appear on every page.
 
 Listed in both:
 - `src/components/Header.astro` (nav dropdown, ~line 89 onward)
-- `src/pages/car-shipping/destinations.astro` (hub page, ~line 24 onward)
+- `src/pages/car-shipping/index.astro` (the destinations hub was merged into
+  `/car-shipping` in Sep 2026; the continent list starts ~line 70)
 
 Missing: Bangladesh, Barbados, Botswana, Canada, Cayman Islands, Cyprus, Ghana,
 Great Britain, Hong Kong, Indonesia, Malaysia, Namibia, New Zealand, Singapore,
@@ -112,7 +113,8 @@ no other vehicle markdown contains one. Audit after: 0 pages with multiple h1s.
 
 - 36 titles over 60 characters, 11 descriptions over 160 — will truncate in results.
 - 3 duplicate descriptions: four pages fall back to the Layout default
-  (`/about`, `/contact`, `/car-shipping/destinations`, +1); `europe` and
+  (`/about`, `/contact`, `/car-shipping/destinations` — since merged into
+  `/car-shipping`, +1); `europe` and
   `hong-kong-shipping` share one; the two Hilux listings share one.
 - ~307 images with no `width`/`height` (layout shift), ~136 with no `loading`.
 - Homepage HTML is ~280 KB, roughly double the next heaviest page.

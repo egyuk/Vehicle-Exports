@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/car-shipping/destinations",
+      "destination": "/car-shipping",
+      "permanent": true
+    }
+  ]
+}
