@@ -374,6 +374,19 @@ const navLinks = [
 
 </div>
 
+<style>
+  /* Touch devices: .open (toggled by tap) mirrors the hover-revealed dropdown state */
+  #main-nav :global(.group.open > div) {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    translate: 0;
+  }
+  #main-nav :global(.group.open > a > svg) {
+    rotate: 180deg;
+  }
+</style>
+
 <script>
   import { addScrollEffect } from '../scripts/scroll-effects';
 
@@ -392,6 +405,26 @@ const navLinks = [
   }
 
   btn?.addEventListener('click', () => setMenu(!menuOpen));
+
+  // Touch devices showing the desktop nav (e.g. iPad landscape) have no
+  // hover, so the first tap opens a dropdown and the second follows the link.
+  if (window.matchMedia('(hover: none)').matches) {
+    const groups = [...document.querySelectorAll('#main-nav .group')];
+    const closeAll = () => groups.forEach(g => g.classList.remove('open'));
+    groups.forEach(g => {
+      if (!g.querySelector(':scope > div')) return; // no dropdown panel
+      g.querySelector(':scope > a')?.addEventListener('click', e => {
+        if (!g.classList.contains('open')) {
+          e.preventDefault();
+          closeAll();
+          g.classList.add('open');
+        }
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!groups.some(g => g.contains(e.target as Node))) closeAll();
+    });
+  }
 
   document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
     btn.addEventListener('click', () => {
