@@ -2,9 +2,16 @@
 // (the joint venture that runs Glovis' European network) as weekly per-lane
 // PDFs.
 //
-// URLs carry the ISO week: .../Sailing-Schedule-Stena-Glovis-C35_2026_fareast.pdf.
-// The schedule page is scraped for the current set rather than guessing the
-// week, so a renumbering or a new lane is picked up automatically.
+// URLs carry the ISO week: .../Sailing-Schedule-Stena-Glovis-C35_2026_fareast.pdf,
+// sometimes as a fortnight ("C32-33"). The schedule page is scraped for the
+// current set rather than guessing the week, so a renumbering or a new lane is
+// picked up automatically.
+//
+// The page itself is unreliable: it has shipped with every DOWNLOAD anchor's
+// href empty (Sep 2026), and non-browser user agents can be served a shell
+// with no schedule section at all, while the weekly PDFs stay up at
+// /app/uploads/. So when the scrape finds no links, recent week numbers are
+// probed at the known URL pattern instead.
 //
 // Layout is a vessel-column grid: a "Vessel Name" header row, then one row per
 // port with a date under each vessel that calls there. Rows are sparse - most
@@ -19,6 +26,44 @@ const INDEX = 'https://stenaglovis.com/customer-service/schedule/';
 // Lanes worth fetching. The combined "all schedules" PDF repeats these, and
 // the ferry/shortsea and Turkey shuttle files are intra-European.
 const WANTED = /_(fareast|transatlantic|africa|middleeast|globalservices)\.pdf$/i;
+const LANES = ['fareast', 'transatlantic', 'africa', 'middleeast', 'globalservices'];
+
+const isoWeek = d => {
+  const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7));
+  const yearStart = Date.UTC(t.getUTCFullYear(), 0, 1);
+  return { week: Math.ceil(((t - yearStart) / 86400000 + 1) / 7), year: t.getUTCFullYear() };
+};
+
+const headOk = async url => {
+  try { return (await fetch(url, { method: 'HEAD' })).ok; } catch { return false; }
+};
+
+/**
+ * The page's links are broken; find this week's file set directly. The week
+ * token is probed a few weeks back and in both single ("C36") and fortnight
+ * ("C35-36") forms; a lane file that 404s is skipped rather than fatal, since
+ * lanes have come and gone from the published set before.
+ */
+async function probeUploads(log) {
+  const { week, year } = isoWeek(new Date());
+  const tokens = [];
+  for (const w of [week, week - 1, week - 2]) tokens.push(`C${w}`, `C${w}-${w + 1}`, `C${w - 1}-${w}`);
+  const urlFor = (tok, lane) =>
+    `https://stenaglovis.com/app/uploads/Sailing-Schedule-Stena-Glovis-${tok}_${year}_${lane}.pdf`;
+  for (const tok of [...new Set(tokens)]) {
+    if (!(await headOk(urlFor(tok, 'fareast')))) continue;
+    log(`  no links on the page - probing uploads found week ${tok}`);
+    const urls = [];
+    for (const lane of LANES) {
+      const u = urlFor(tok, lane);
+      if (lane === 'fareast' || await headOk(u)) urls.push(u);
+      else log(`  ${lane}: not published for ${tok}`);
+    }
+    return urls;
+  }
+  return [];
+}
 
 const ISO = /^(\d{2})\.(\d{2})\.(\d{4})$/;
 const dotDateToISO = d => {
@@ -43,9 +88,10 @@ export const url = INDEX;
 
 export async function collect({ log = () => {} } = {}) {
   const html = await fetchCached(INDEX, { binary: false, maxAgeMinutes: 60 });
-  const pdfs = [...new Set([...html.matchAll(/href="(https:\/\/stenaglovis\.com\/app\/uploads\/[^"]*\.pdf)"/gi)].map(m => m[1]))]
+  let pdfs = [...new Set([...html.matchAll(/href="(https:\/\/stenaglovis\.com\/app\/uploads\/[^"]*\.pdf)"/gi)].map(m => m[1]))]
     .filter(u => WANTED.test(u));
-  if (!pdfs.length) throw new Error('Glovis: no lane PDFs linked - schedule page changed');
+  if (!pdfs.length) pdfs = await probeUploads(log);
+  if (!pdfs.length) throw new Error('Glovis: no lane PDFs linked or probeable - schedule page changed');
   log(`  ${pdfs.length} lane PDFs`);
 
   const sailings = [];

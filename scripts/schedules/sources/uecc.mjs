@@ -8,8 +8,9 @@
 //
 // Two quirks:
 // - "II" and "ll" mark a vessel still alongside or at sea; they are not ports.
-// - Dates are dd-mm with the year only in "Date of Issue: 21-08-26", so a
-//   December-to-January rotation has to roll the year forward.
+// - Dates are dd-mm (the separator drifts between "-" and "/" across issues)
+//   with the year only in "Date of Issue: 21-08-26", so a December-to-January
+//   rotation has to roll the year forward.
 //
 // Most UECC calls are intra-North-Europe and get excluded; what survives is
 // the Iberia/Mediterranean lane out of Portbury and Tilbury.
@@ -34,7 +35,7 @@ export async function collect({ log = () => {} } = {}) {
 
   const rows = pdfRows(await fetchCached(pdf));
   const issue = rows.map(r => r.cells.map(c => c.text).join(' ')).join(' ')
-    .match(/Date of Issue:\s*(\d{2})-(\d{2})-(\d{2})/);
+    .match(/Date of Issue:\s*(\d{2})[-\/](\d{2})[-\/](\d{2})/);
   if (!issue) throw new Error('UECC: issue date not found - layout changed');
   const startYear = 2000 + Number(issue[3]);
   log(`  issued ${issue[1]}-${issue[2]}-${issue[3]}`);
@@ -72,7 +73,7 @@ export async function collect({ log = () => {} } = {}) {
     const cells = row.cells;
     const dayIdx = cells.findIndex(c => DAY.test(c.text));
     if (dayIdx === -1) continue;
-    const dm = cells[dayIdx + 1]?.text.match(/^(\d{2})-(\d{2})$/);
+    const dm = cells[dayIdx + 1]?.text.match(/^(\d{2})[-\/](\d{2})$/);
     if (!dm) continue;
     const date = `${yearFor(dm[1], dm[2])}-${dm[2]}-${dm[1]}`;
 
@@ -80,7 +81,7 @@ export async function collect({ log = () => {} } = {}) {
       const text = c.text.trim();
       if (!text || CONTINUATION.test(text) || /^\d{4,6}$/.test(text)) continue;
       if (VOYAGE_CODE.test(text)) continue;
-      if (/^\d{2}-\d{2}$/.test(text)) continue; // the repeated Date column
+      if (/^\d{2}[-\/]\d{2}$/.test(text)) continue; // the repeated Date column
       const col = nearest(c.x);
       if (col) col.calls.push({ port: titleCase(text), date });
     }
