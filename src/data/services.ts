@@ -14,6 +14,8 @@ export interface ServiceStep {
 export interface Service {
   slug: string;
   name: string;
+  /** Punchy short name for the mobile nav panel; falls back to `name`. */
+  navName?: string;
   /** One-liner for nav cards. */
   shortDesc: string;
   /** Meta description, ≤160 chars. */
@@ -30,6 +32,7 @@ export const services: Service[] = [
   {
     slug: 'vehicle-sourcing',
     name: 'UK Vehicle Supply & Sourcing',
+    navName: 'Vehicle Sourcing',
     shortDesc: 'Any new or used vehicle from our UK dealer, auction and trade network.',
     metaDescription:
       'We source any new or used vehicle from UK dealers, auctions and private sellers, inspect it and export it to your country.',
@@ -55,6 +58,7 @@ export const services: Service[] = [
   {
     slug: 'tax-free-car-exports',
     name: 'UK Tax / VAT Free Car Exports',
+    navName: 'Tax-Free Exports',
     shortDesc: 'VAT-qualifying and brand-new tax-free vehicles for export buyers.',
     metaDescription:
       'Buy VAT-qualifying or brand-new tax-free UK vehicles and save the 20% UK VAT when the car is exported. We handle eligibility and the paperwork.',
@@ -79,6 +83,7 @@ export const services: Service[] = [
   {
     slug: 'vehicle-shipping',
     name: 'UK Vehicle Shipping & Exports',
+    navName: 'Vehicle Shipping',
     shortDesc: 'RoRo and container shipping to any country from the UK.',
     metaDescription:
       'RoRo and container car shipping from the UK to any country. RoRo from £1,250, 20ft containers from £1,950, with collection from any UK address.',
@@ -105,6 +110,7 @@ export const services: Service[] = [
   {
     slug: 'car-purchase-brokerage',
     name: 'Car Purchase Brokerage Service',
+    navName: 'Purchase Brokerage',
     shortDesc: 'We buy any car on your behalf from any UK dealership or seller.',
     metaDescription:
       'Found a car in the UK? We verify it, negotiate and buy it on your behalf, then export it — protecting you from fraudulent sellers.',
@@ -129,6 +135,7 @@ export const services: Service[] = [
   {
     slug: 'vehicle-collection-delivery',
     name: 'UK Vehicle Collection & Delivery',
+    navName: 'Collection & Delivery',
     shortDesc: 'Collection from any UK address and delivery to the departure port.',
     metaDescription:
       'We collect vehicles from any UK address and deliver them to the departure port — Southampton, Tilbury, Sheerness, Felixstowe, Immingham — at £1 per mile.',
@@ -153,6 +160,7 @@ export const services: Service[] = [
   {
     slug: 'customs-clearance',
     name: 'UK Vehicle Customs Clearance',
+    navName: 'Customs Clearance',
     shortDesc: 'Export declarations, Bill of Lading and all port documentation.',
     metaDescription:
       'UK export customs clearance for vehicles: declarations filed on the UK customs system, Bill of Lading, export certificates and DVLA documentation.',

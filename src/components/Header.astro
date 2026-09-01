@@ -263,7 +263,7 @@ const navLinks = [
 <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[998] hidden lg:hidden" aria-hidden="true"></div>
 
 <!-- Mobile Sidebar Drawer -->
-<div id="mobile-menu" class="fixed top-0 left-0 h-full w-[280px] bg-white z-[999] transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto">
+<div id="mobile-menu" class="fixed top-0 left-0 h-full w-full bg-white z-[999] transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto flex flex-col">
   <!-- Sidebar Header -->
   <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
     <a href="/" class="flex items-center gap-2">
@@ -278,18 +278,18 @@ const navLinks = [
   <div class="px-4 py-4 space-y-1">
     {navLinks.map(link => (
       <div class="mobile-nav-item">
-        {link.mega ? (
+        {link.mega && link.mega.cards ? (
+          <button class="mobile-subpanel-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
+            {link.name}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+        ) : link.mega ? (
           <div>
             <button class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
               {link.name}
               <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="mobile-dropdown hidden pl-3 space-y-3 mt-1 mb-1">
-              {(link.mega.cards || []).map(item => (
-                <a href={item.href} class="block px-3 py-2 text-sm text-gray-500 hover:text-[var(--color-primary)] rounded-lg hover:bg-gray-50 transition-colors">
-                  {item.name}
-                </a>
-              ))}
               {(link.mega.columns || []).map(col => (
                 <div>
                   <span class="block px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{col.title}</span>
@@ -330,13 +330,6 @@ const navLinks = [
     ))}
   </div>
 
-  <!-- Bottom Actions -->
-  <div class="px-4 pt-3 border-t border-gray-100">
-    <a href="/contact" class="block text-center bg-[var(--color-primary)] text-white px-6 py-3 rounded-lg text-sm font-semibold mb-4">
-      Contact Us
-    </a>
-  </div>
-
   <!-- Contact Details -->
   <div class="px-4 pt-4 border-t border-gray-100">
     <h4 class="text-[var(--color-dark)] font-semibold text-lg font-[family-name:var(--font-heading)] px-3 mb-4">Contact Us</h4>
@@ -364,6 +357,34 @@ const navLinks = [
       </div>
     </div>
   </div>
+
+  <!-- Bottom full-width action -->
+  <a href="/contact" class="block w-full mt-auto text-center bg-[var(--color-primary)] text-white py-4 text-base font-semibold shrink-0">
+    Contact Us
+  </a>
+</div>
+
+<!-- Mobile Services Sub-panel (slides in over the drawer) -->
+<div id="mobile-services-panel" class="fixed top-0 left-0 h-full w-full bg-white z-[1000] transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto">
+  <button id="mobile-services-back" class="w-full flex items-center gap-2.5 px-4 py-4 border-b border-gray-100 text-left" aria-label="Back to menu">
+    <svg class="w-5 h-5 text-[var(--color-dark)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    <span class="text-lg font-extrabold font-[family-name:var(--font-heading)] text-[var(--color-dark)]">Our Export Services</span>
+  </button>
+  <div class="px-5 py-5 pb-8">
+    <h4 class="text-[var(--color-primary)] text-lg font-bold font-[family-name:var(--font-heading)] leading-snug mb-6">Experts in exporting cars from the UK worldwide</h4>
+    <div class="grid grid-cols-2 gap-x-5 gap-y-6">
+      {services.map(s => (
+        <a href={`/services/${s.slug}`} class="block">
+          <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">{s.navName ?? s.name}</span>
+          <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{s.shortDesc}</span>
+        </a>
+      ))}
+      <a href="/services" class="block">
+        <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">All export services</span>
+        <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">See everything we do, from sourcing to customs clearance.</span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -373,6 +394,8 @@ const navLinks = [
   const menu = document.getElementById('mobile-menu');
   const overlay = document.getElementById('mobile-menu-overlay');
   const closeBtn = document.getElementById('mobile-menu-close');
+  const servicesPanel = document.getElementById('mobile-services-panel');
+  const servicesBack = document.getElementById('mobile-services-back');
 
   function openMenu() {
     menu?.classList.remove('-translate-x-full');
@@ -382,6 +405,7 @@ const navLinks = [
 
   function closeMenu() {
     menu?.classList.add('-translate-x-full');
+    servicesPanel?.classList.add('-translate-x-full');
     overlay?.classList.add('hidden');
     document.body.style.overflow = '';
   }
@@ -389,6 +413,11 @@ const navLinks = [
   btn?.addEventListener('click', openMenu);
   closeBtn?.addEventListener('click', closeMenu);
   overlay?.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-subpanel-btn').forEach(b => {
+    b.addEventListener('click', () => servicesPanel?.classList.remove('-translate-x-full'));
+  });
+  servicesBack?.addEventListener('click', () => servicesPanel?.classList.add('-translate-x-full'));
 
   document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
     btn.addEventListener('click', () => {
