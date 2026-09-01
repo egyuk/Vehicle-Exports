@@ -13,9 +13,6 @@ export default defineConfig({
     // Not a legacy redirect — resolves the bare /admin URL to the Decap CMS
     // panel's static page. Keep even though old-URL redirects were dropped.
     '/admin': '/admin/index.html',
-    // The destinations hub was merged into /car-shipping (Sep 2026). vercel.json
-    // serves the real 301; this covers dev and any non-Vercel host.
-    '/car-shipping/destinations': '/car-shipping',
   },
   vite: {
     plugins: [tailwindcss()]

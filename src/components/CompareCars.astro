@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 
+const slugify = (str: string) => str.toLowerCase().replace(/ /g, '-');
+
 const allVehicles = await getCollection('vehicles');
 const vehicles = allVehicles
   .filter(v => v.data.images && v.data.images.length > 0)
@@ -30,7 +32,7 @@ for (let i = 0; i < vehicles.length - 1; i += 2) {
               <!-- Two car images with VS badge -->
               <div class="grid grid-cols-2 relative">
                 {pair.map(v => (
-                  <a href={`/shipping-cars/${v.id}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
+                  <a href={`/shipping-cars/${slugify(v.data.make)}/${slugify(v.data.model)}/${v.id}`} class="block aspect-[4/3] bg-gray-100 overflow-hidden group">
                     <img
                       src={v.data.images![0]}
                       alt={v.data.title}

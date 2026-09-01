@@ -1,8 +1,8 @@
 ---
 interface Props {
   slug: string;
-  make?: string;
-  model?: string;
+  make: string;
+  model: string;
   title: string;
   price: number;
   oldPrice?: number;
@@ -20,9 +20,7 @@ interface Props {
 const { slug, make, model, title, price, oldPrice, mileage, fuel, transmission, bodyType, year, images, featured, condition = 'Used', layout = 'vertical' } = Astro.props;
 const image = images && images.length > 0 ? images[0] : '';
 const isHorizontal = layout === 'horizontal';
-const vehicleUrl = make && model
-  ? `/shipping-cars/${make.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}/${slug}`
-  : `/shipping-cars/${slug}`;
+const vehicleUrl = `/shipping-cars/${make.toLowerCase().replace(/ /g, '-')}/${model.toLowerCase().replace(/ /g, '-')}/${slug}`;
 ---
 
 {isHorizontal ? (
