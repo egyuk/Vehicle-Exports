@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { shippingServices } from '../../data/shippingServices';
 
 const containerSizes = [
   {
@@ -45,21 +46,7 @@ const countries = [
   'Zimbabwe – Beitbridge, Plumtree, Harare',
 ];
 
-const shippingServices = [
-  'Caravan Van Shipping',
-  'Classic Vehicle Shipping',
-  'Coach Bus Shipping',
-  'Container Shipping',
-  'Land Rover Shipping',
-  'Motorhome Shipping',
-  'Plant Machinery Equipment',
-  'RoRo Shipping',
-  'Vehicle Shipping',
-  'Shipping Household Goods',
-  'Tractor Shipping',
-  'Used Car Exports',
-  'Vehicle Shipping',
-];
+const shippingServiceLinks = shippingServices.map(s => ({ name: s.name, href: `/shipping-services/${s.slug}` }));
 
 interface CountryLink {
   name: string;
@@ -254,8 +241,8 @@ const continents = Object.entries(continentCountries).map(([name, countries]) =>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Shipping Services</h2>
       <div class="flex flex-wrap gap-3">
-        {shippingServices.map(s => (
-          <span class="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 font-medium">{s}</span>
+        {shippingServiceLinks.map(s => (
+          <a href={s.href} class="bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 font-medium hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors">{s.name}</a>
         ))}
       </div>
     </div>

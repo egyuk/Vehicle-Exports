@@ -1,7 +1,7 @@
 // Single source of truth for the six export services. Used by:
 //  - src/pages/services/[slug].astro  (one landing page per service)
 //  - src/pages/services/index.astro   (hub page)
-//  - src/components/Header.astro      ("Our Export Services" dropdown cards)
+//  - src/components/Header.astro      ("Car Export Services" dropdown cards)
 //  - src/components/WhyChooseUs.astro (homepage card links)
 // Every figure here must already appear elsewhere on the site — prices from
 // the country pages, ports and the £1/mile rate from the homepage cards.
@@ -81,33 +81,6 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: 'vehicle-shipping',
-    name: 'UK Vehicle Shipping & Exports',
-    navName: 'Vehicle Shipping',
-    shortDesc: 'RoRo and container shipping to any country from the UK.',
-    metaDescription:
-      'RoRo and container car shipping from the UK to any country. RoRo from £1,250, 20ft containers from £1,950, with collection from any UK address.',
-    image: '/assets/images/services/shipping.jpeg',
-    intro:
-      'We ship vehicles to any country from the UK by RoRo or container and guarantee competitive rates. Our all-inclusive service collects your vehicle from any UK address, handles the export paperwork and delivers it to your destination port.',
-    points: [
-      'RoRo shipping from £1,250 (vehicles up to 1.6m height) and £1,395 for larger vehicles',
-      'Private 20ft containers from £1,950 and 40ft containers from £3,575',
-      'UK-side costs included: customs clearance, port handling and export documentation',
-      'Live sailing schedules for hundreds of departures worldwide',
-    ],
-    steps: [
-      { title: 'Get a quote', text: 'Tell us the vehicle and destination and we confirm the rate and the next available sailing.' },
-      { title: 'Collection and documents', text: 'We collect the vehicle, complete the export declaration and prepare the Bill of Lading.' },
-      { title: 'Sail and collect', text: 'The vehicle sails on the booked departure and is released to you at the destination port.' },
-    ],
-    links: [
-      { name: 'UK car sailing schedule', href: '/uk-car-sailing-schedule' },
-      { name: 'Destinations we ship to', href: '/car-shipping' },
-      { name: 'Shipping rates', href: '/car-shipping/shipping-rates' },
-    ],
-  },
-  {
     slug: 'car-purchase-brokerage',
     name: 'Car Purchase Brokerage Service',
     navName: 'Purchase Brokerage',
@@ -181,6 +154,32 @@ export const services: Service[] = [
     links: [
       { name: 'Our export process', href: '/process' },
       { name: 'Export FAQs', href: '/faq' },
+    ],
+  },
+  {
+    slug: 'new-used-car-exports',
+    name: 'New & Used Car Exports',
+    shortDesc: 'Inspected new and used cars sourced in the UK and exported worldwide.',
+    metaDescription:
+      'New and used car exports from the UK: vehicles sourced from dealers and auctions, inspected, and shipped worldwide by RoRo or container.',
+    image: '/images/11291ecc0d784d8e81e7ea2ef334ba69.jpg',
+    intro:
+      'We export new and used cars from the UK every week — sourced from our dealer, auction and trade network or supplied by you, inspected before shipment, and shipped worldwide by RoRo or container.',
+    points: [
+      'New and used stock sourced from UK dealers, auctions and private sellers',
+      'Every vehicle goes through a multi-point inspection before it ships',
+      'VAT-qualifying used cars and brand-new tax-free vehicles save 20% UK VAT on export',
+      'RoRo or container shipping to suit the vehicle and destination',
+    ],
+    steps: [
+      { title: 'Choose the car', text: 'Browse our export-ready stock or tell us the spec to source.' },
+      { title: 'Inspect and buy', text: 'The vehicle is history-checked, inspected and purchased.' },
+      { title: 'Export worldwide', text: 'It ships by RoRo or container and is released at your destination port.' },
+    ],
+    links: [
+      { name: 'Browse new cars', href: '/shipping-cars?condition=New' },
+      { name: 'Browse used cars', href: '/shipping-cars?condition=Used' },
+      { name: 'Tax-free car exports', href: '/services/tax-free-car-exports' },
     ],
   },
 ];

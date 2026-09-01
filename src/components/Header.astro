@@ -1,14 +1,21 @@
 ---
 import { services } from '../data/services';
+import { shippingServices } from '../data/shippingServices';
+
+// The Shipping mega menu mirrors the Shipping Services list on /car-shipping;
+// car shipping itself gets the photo banner above the cards instead of a card.
+const shippingCards = shippingServices.map(s => ({ name: s.name, href: `/shipping-services/${s.slug}`, desc: s.shortDesc }));
 
 const navLinks = [
   {
-    name: 'Our Export Services',
+    name: 'Car Export Services',
     href: '/services',
     mega: {
       // Rendered as a card grid (see the cards branch below) — one card per
       // service page, from the shared services data module.
-      cards: services.map(s => ({ name: s.name, href: `/services/${s.slug}`, desc: s.shortDesc, image: s.image })),
+      cards: services.map(s => ({ name: s.name, href: `/services/${s.slug}`, desc: s.shortDesc, image: s.image, mobileName: s.navName })),
+      mobileHeading: 'Exporting cars from the UK worldwide',
+      allLink: { name: 'All export services', desc: 'See everything we do, from sourcing to customs clearance.', href: '/services' },
       featured: {
         tag: 'Exporting Cars from the UK to Countries Worldwide',
         title: 'Free export quote',
@@ -19,13 +26,27 @@ const navLinks = [
     },
   },
   {
-    name: 'Car Shipping',
-    href: '/car-shipping',
-    dropdown: [
-      { name: 'Shipping Rates', href: '/car-shipping/shipping-rates' },
-      { name: 'Ireland', href: '/car-shipping/ireland' },
-      { name: 'Kenya', href: '/import-uk-cars/kenya' },
-    ],
+    name: 'Shipping',
+    href: '/shipping-services',
+    mega: {
+      banner: {
+        name: 'Car Shipping',
+        href: '/car-shipping',
+        desc: 'RoRo and container car shipping from the UK to any country — rates, ports and destinations.',
+        image: '/assets/images/services/shipping.jpeg',
+      },
+      cards: shippingCards,
+      cardCols: 3,
+      mobileHeading: 'Shipping worldwide from the UK',
+      allLink: { name: 'All shipping services', desc: 'Every way we ship from the UK, in one place.', href: '/shipping-services' },
+      featured: {
+        tag: 'Shipping Worldwide from the UK',
+        title: 'Live sailing schedules',
+        text: 'Hundreds of upcoming departures from UK ports — find the next sailing to your destination.',
+        cta: 'View sailing schedule',
+        href: '/uk-car-sailing-schedule',
+      },
+    },
   },
   {
     name: 'Process',
@@ -157,18 +178,34 @@ const navLinks = [
 
               {/* Mega menu — service cards variant */}
               {link.mega && link.mega.cards && (
-                <div class="absolute top-full left-0 pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid gap-5", link.mega.featured ? "w-[680px] xl:w-[820px] grid-cols-[1fr_200px] xl:grid-cols-[1fr_240px]" : "w-[560px]"]}>
-                    <div class="grid grid-cols-2 gap-2">
+                <div class:list={["absolute top-full pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50", link.mega.cardCols === 3 ? "left-1/2 -translate-x-1/2" : "left-0"]}>
+                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid gap-5", link.mega.featured ? (link.mega.cardCols === 3 ? "w-[820px] xl:w-[920px] grid-cols-[1fr_190px] xl:grid-cols-[1fr_220px]" : "w-[680px] xl:w-[820px] grid-cols-[1fr_200px] xl:grid-cols-[1fr_240px]") : "w-[560px]"]}>
+                    <div>
+                    {link.mega.banner && (
+                      <a href={link.mega.banner.href} class="group/mb relative block rounded-xl overflow-hidden mb-4">
+                        <img src={link.mega.banner.image} alt="" width="640" height="120" loading="lazy" class="w-full h-[110px] object-cover group-hover/mb:scale-105 transition-transform duration-500" />
+                        <span class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10"></span>
+                        <span class="absolute inset-0 p-5 flex flex-col justify-center">
+                          <span class="text-white font-bold text-lg font-[family-name:var(--font-heading)] leading-tight">{link.mega.banner.name}</span>
+                          <span class="text-white/85 text-[12.5px] leading-snug mt-1 max-w-[420px]">{link.mega.banner.desc}</span>
+                        </span>
+                      </a>
+                    )}
+                    <div class:list={["grid gap-2", link.mega.cardCols === 3 ? "grid-cols-3 gap-x-3" : "grid-cols-2"]}>
                       {link.mega.cards.map(item => (
                         <a href={item.href} class="group/mi block rounded-xl p-2.5 hover:bg-orange-50/70 transition-colors">
                           <span class="block text-[13.5px] font-semibold leading-snug text-[var(--color-dark)] group-hover/mi:text-[var(--color-primary)] transition-colors">{item.name}</span>
-                          <span class="flex items-start gap-3 mt-2">
-                            <img src={item.image} alt="" width="80" height="56" loading="lazy" class="w-20 h-14 shrink-0 rounded-lg object-cover" />
-                            <span class="min-w-0 text-[12px] text-gray-400 leading-snug">{item.desc}</span>
-                          </span>
+                          {item.image ? (
+                            <span class="flex items-start gap-3 mt-2">
+                              <img src={item.image} alt="" width="80" height="56" loading="lazy" class="w-20 h-14 shrink-0 rounded-lg object-cover" />
+                              <span class="min-w-0 text-[12px] text-gray-400 leading-snug">{item.desc}</span>
+                            </span>
+                          ) : (
+                            <span class="block mt-1.5 text-[12px] text-gray-400 leading-snug">{item.desc}</span>
+                          )}
                         </a>
                       ))}
+                    </div>
                     </div>
 
                     {link.mega.featured && (
@@ -273,18 +310,32 @@ const navLinks = [
               <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div class="mobile-dropdown hidden px-3 pt-3 pb-5">
-              <h4 class="text-[var(--color-primary)] text-lg font-bold font-[family-name:var(--font-heading)] leading-snug mb-5">Exporting cars from the UK worldwide</h4>
+              {link.mega.mobileHeading && (
+                <h4 class="text-[var(--color-primary)] text-lg font-bold font-[family-name:var(--font-heading)] leading-snug mb-5">{link.mega.mobileHeading}</h4>
+              )}
+              {link.mega.banner && (
+                <a href={link.mega.banner.href} class="relative block rounded-xl overflow-hidden mb-5">
+                  <img src={link.mega.banner.image} alt="" width="640" height="120" loading="lazy" class="w-full h-[100px] object-cover" />
+                  <span class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10"></span>
+                  <span class="absolute inset-0 p-4 flex flex-col justify-center">
+                    <span class="text-white font-bold text-base font-[family-name:var(--font-heading)] leading-tight">{link.mega.banner.name}</span>
+                    <span class="text-white/85 text-[12px] leading-snug mt-1">{link.mega.banner.desc}</span>
+                  </span>
+                </a>
+              )}
               <div class="grid grid-cols-2 gap-x-5 gap-y-6">
-                {services.map(s => (
-                  <a href={`/services/${s.slug}`} class="block">
-                    <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">{s.navName ?? s.name}</span>
-                    <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{s.shortDesc}</span>
+                {link.mega.cards.map(item => (
+                  <a href={item.href} class="block">
+                    <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">{item.mobileName ?? item.name}</span>
+                    <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{item.desc}</span>
                   </a>
                 ))}
-                <a href="/services" class="block col-span-2">
-                  <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">All export services</span>
-                  <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">See everything we do, from sourcing to customs clearance.</span>
-                </a>
+                {link.mega.allLink && (
+                  <a href={link.mega.allLink.href} class="block col-span-2">
+                    <span class="block text-[14px] font-bold leading-snug text-[var(--color-dark)]">{link.mega.allLink.name}</span>
+                    <span class="block text-[12.5px] text-gray-500 mt-1.5 leading-snug">{link.mega.allLink.desc}</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>

@@ -36,7 +36,9 @@ const benefits = [
 
 // Each homepage card links through to its service page, matched by image
 // (titles match the services data too, but the image is the stable key).
+// Shipping is the exception: its service page was folded into /car-shipping.
 const hrefFor = (image: string) => {
+  if (image === '/assets/images/services/shipping.jpeg') return '/car-shipping';
   const s = services.find(s => s.image === image);
   return s ? `/services/${s.slug}` : '/services';
 };
