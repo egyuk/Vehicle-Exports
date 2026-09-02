@@ -1,6 +1,6 @@
 {
   "_readme": "Weekly working list of sailings. Add one object per sailing to \"sailings\". Fields: loadPort, destination, vessel, voyage, carrier, ets (departure), eta (arrival), lane, notes. Dates must be YYYY-MM-DD. Transit time is calculated from ets/eta, do not enter it. Rows with \"example\": true are demo rows - delete them once real sailings are in. Bump \"updated\" whenever you refresh the list. \"lanes\" is the carrier lane directory used for the reference links lower down the page.",
-  "updated": "2026-09-01",
+  "updated": "2026-09-02",
   "source": {
     "name": "Carrier schedules",
     "note": "Sailings are compiled from published carrier schedules. All dates are carrier estimates and must be reconfirmed before a booking is committed."
@@ -113,72 +113,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-05-13",
       "eta": "2026-07-01",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Titania",
-      "voyage": "ED608-TTA",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-05-14",
-      "eta": "2026-05-25",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Manzanillo, Panama",
-      "vessel": "Titania",
-      "voyage": "ED608-TTA",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-05-14",
-      "eta": "2026-05-30",
-      "lane": "Europe to South America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Hueneme, USA",
-      "vessel": "Titania",
-      "voyage": "ED608-TTA",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-05-14",
-      "eta": "2026-06-12",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Shanghai, China",
-      "vessel": "Titania",
-      "voyage": "ED608-TTA",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-05-14",
-      "eta": "2026-07-01",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Tacoma, USA",
-      "vessel": "Titania",
-      "voyage": "ED608-TTA",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-05-14",
-      "eta": "2026-06-16",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Yokohama, Japan",
-      "vessel": "Titania",
-      "voyage": "ED608-TTA",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-05-14",
-      "eta": "2026-06-28",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -1080,7 +1014,7 @@
       "voyage": "EF611-TLI",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-06-13",
-      "eta": "2026-09-11",
+      "eta": "2026-09-12",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -1553,7 +1487,7 @@
       "voyage": "EF612-TRS",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-07-03",
-      "eta": "2026-09-22",
+      "eta": "2026-09-21",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -2453,7 +2387,7 @@
       "destination": "Shanghai, China",
       "vessel": "Morning Lisa",
       "voyage": "EP619",
-      "carrier": "EUKOR",
+      "carrier": "",
       "ets": "2026-07-23",
       "eta": "2026-08-29",
       "lane": "Europe to Far East",
@@ -2653,7 +2587,7 @@
       "voyage": "S0620-MPS",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-07-26",
-      "eta": "2026-08-31",
+      "eta": "2026-08-30",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -2906,7 +2840,7 @@
       "voyage": "26OX02",
       "carrier": "Sallaum Lines",
       "ets": "2026-07-31",
-      "eta": "2026-09-03",
+      "eta": "2026-09-04",
       "lane": "Europe to Africa",
       "notes": "ETA at load port; departure not published"
     },
@@ -3192,7 +3126,7 @@
       "voyage": "EE613-LSE",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-04",
-      "eta": "2026-09-12",
+      "eta": "2026-09-13",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3225,7 +3159,7 @@
       "voyage": "EE613-LSE",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-04",
-      "eta": "2026-09-08",
+      "eta": "2026-09-09",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3258,7 +3192,7 @@
       "voyage": "EE613-LSE",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-04",
-      "eta": "2026-09-10",
+      "eta": "2026-09-11",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3313,7 +3247,7 @@
       "voyage": "EF614-MCO",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-06",
-      "eta": "2026-10-02",
+      "eta": "2026-10-01",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3346,7 +3280,7 @@
       "voyage": "EF614-MCO",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-06",
-      "eta": "2026-10-15",
+      "eta": "2026-10-13",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3390,7 +3324,7 @@
       "voyage": "EF614-MCO",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-06",
-      "eta": "2026-10-09",
+      "eta": "2026-10-07",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3412,7 +3346,7 @@
       "voyage": "EF614-MCO",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-06",
-      "eta": "2026-09-29",
+      "eta": "2026-09-27",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3423,7 +3357,7 @@
       "voyage": "EF614-MCO",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-06",
-      "eta": "2026-10-06",
+      "eta": "2026-10-04",
       "lane": "Europe to Oceania",
       "notes": ""
     },
@@ -3662,12 +3596,12 @@
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Hera Highway",
-      "voyage": "HEH12A",
+      "voyage": "12 A",
       "carrier": "\"K\" Line",
       "ets": "2026-08-08",
-      "eta": "2026-08-26",
+      "eta": "2026-08-31",
       "lane": "Europe to North America",
-      "notes": ""
+      "notes": "NAS service"
     },
     {
       "loadPort": "Southampton",
@@ -3684,12 +3618,12 @@
       "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Hera Highway",
-      "voyage": "HEH12A",
+      "voyage": "12 A",
       "carrier": "\"K\" Line",
       "ets": "2026-08-08",
-      "eta": "2026-08-31",
+      "eta": "2026-09-04",
       "lane": "Europe to North America",
-      "notes": ""
+      "notes": "NAS service"
     },
     {
       "loadPort": "Southampton",
@@ -3706,12 +3640,12 @@
       "loadPort": "Southampton",
       "destination": "Charleston, USA",
       "vessel": "Hera Highway",
-      "voyage": "HEH12A",
+      "voyage": "12 A",
       "carrier": "\"K\" Line",
       "ets": "2026-08-08",
-      "eta": "2026-09-02",
+      "eta": "2026-09-07",
       "lane": "Europe to North America",
-      "notes": ""
+      "notes": "NAS service"
     },
     {
       "loadPort": "Southampton",
@@ -4215,7 +4149,7 @@
       "voyage": "002",
       "carrier": "NYK RoRo",
       "ets": "2026-08-17",
-      "eta": "2026-09-15",
+      "eta": "2026-09-16",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -4237,7 +4171,7 @@
       "voyage": "002",
       "carrier": "NYK RoRo",
       "ets": "2026-08-17",
-      "eta": "2026-10-01",
+      "eta": "2026-10-02",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -4248,7 +4182,7 @@
       "voyage": "002",
       "carrier": "NYK RoRo",
       "ets": "2026-08-17",
-      "eta": "2026-09-13",
+      "eta": "2026-09-18",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -4292,7 +4226,7 @@
       "voyage": "002",
       "carrier": "NYK RoRo",
       "ets": "2026-08-17",
-      "eta": "2026-09-29",
+      "eta": "2026-09-30",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -4578,7 +4512,7 @@
       "voyage": "ED614-MPR",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-21",
-      "eta": "2026-09-03",
+      "eta": "2026-09-04",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -4622,7 +4556,7 @@
       "voyage": "ED614-MPR",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-21",
-      "eta": "2026-09-08",
+      "eta": "2026-09-09",
       "lane": "Europe to South America",
       "notes": ""
     },
@@ -4666,7 +4600,7 @@
       "voyage": "ED614-MPR",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-21",
-      "eta": "2026-10-07",
+      "eta": "2026-10-10",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -4688,7 +4622,7 @@
       "voyage": "ED614-MPR",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-21",
-      "eta": "2026-10-04",
+      "eta": "2026-10-07",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -4886,7 +4820,7 @@
       "voyage": "EB617-ARI",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-24",
-      "eta": "2026-09-09",
+      "eta": "2026-09-11",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -4941,7 +4875,7 @@
       "voyage": "EB617-ARI",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-24",
-      "eta": "2026-09-14",
+      "eta": "2026-09-16",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -5282,7 +5216,7 @@
       "voyage": "EB610-PTT",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-27",
-      "eta": "2026-09-07",
+      "eta": "2026-09-08",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -5304,7 +5238,7 @@
       "voyage": "EB610-PTT",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-08-27",
-      "eta": "2026-09-12",
+      "eta": "2026-09-14",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -5870,28 +5804,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Holyhead",
-      "destination": "Dublin, Ireland",
-      "vessel": "Stena Adventurer",
-      "voyage": "",
-      "carrier": "Stena Line",
-      "ets": "2026-09-01",
-      "eta": "2026-09-01",
-      "lane": "UK to Ireland",
-      "notes": ""
-    },
-    {
-      "loadPort": "Holyhead",
-      "destination": "Dublin, Ireland",
-      "vessel": "Stena Estrid",
-      "voyage": "",
-      "carrier": "Stena Line",
-      "ets": "2026-09-01",
-      "eta": "2026-09-01",
-      "lane": "UK to Ireland",
-      "notes": ""
-    },
-    {
       "loadPort": "Southampton",
       "destination": "Fremantle, Australia",
       "vessel": "Lake Shirasagi",
@@ -5944,50 +5856,6 @@
       "ets": "2026-09-01",
       "eta": "2026-10-25",
       "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Fishguard",
-      "destination": "Rosslare, Ireland",
-      "vessel": "Stena Nordica",
-      "voyage": "",
-      "carrier": "Stena Line",
-      "ets": "2026-09-01",
-      "eta": "2026-09-01",
-      "lane": "UK to Ireland",
-      "notes": ""
-    },
-    {
-      "loadPort": "Portsmouth",
-      "destination": "St Helier, Jersey",
-      "vessel": "Caesarea Trader",
-      "voyage": "4712315",
-      "carrier": "DFDS",
-      "ets": "2026-09-01",
-      "eta": "2026-09-02",
-      "lane": "UK to Channel Islands",
-      "notes": ""
-    },
-    {
-      "loadPort": "Portsmouth",
-      "destination": "St Peter Port, Guernsey",
-      "vessel": "Condor Islander",
-      "voyage": "",
-      "carrier": "Condor Ferries",
-      "ets": "2026-09-01",
-      "eta": "2026-09-02",
-      "lane": "UK to Channel Islands",
-      "notes": ""
-    },
-    {
-      "loadPort": "Poole",
-      "destination": "St Peter Port, Guernsey",
-      "vessel": "Condor Voyager",
-      "voyage": "",
-      "carrier": "Condor Ferries",
-      "ets": "2026-09-01",
-      "eta": "2026-09-01",
-      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -6086,17 +5954,6 @@
       "carrier": "DFDS",
       "ets": "2026-09-02",
       "eta": "2026-09-03",
-      "lane": "UK to Channel Islands",
-      "notes": ""
-    },
-    {
-      "loadPort": "Portsmouth",
-      "destination": "St Helier, Jersey",
-      "vessel": "Stena Vinga",
-      "voyage": "4680956",
-      "carrier": "DFDS",
-      "ets": "2026-09-02",
-      "eta": "2026-09-02",
       "lane": "UK to Channel Islands",
       "notes": ""
     },
@@ -6308,17 +6165,6 @@
       "eta": "2026-10-16",
       "lane": "Europe to Caribbean",
       "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Philipsburg, Sint Maarten",
-      "vessel": "Höegh Manila",
-      "voyage": "155",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-03",
-      "eta": "2026-10-28",
-      "lane": "Europe to Caribbean",
-      "notes": "Via Kingston, Jamaica — transhipment to Höegh Yokohama"
     },
     {
       "loadPort": "Southampton",
@@ -7410,17 +7256,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Themisa",
-      "voyage": "ED615-THE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-09-21",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
       "loadPort": "Holyhead",
       "destination": "Dublin, Ireland",
       "vessel": "Stena Adventurer",
@@ -7440,17 +7275,6 @@
       "ets": "2026-09-09",
       "eta": "2026-09-09",
       "lane": "UK to Ireland",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Halifax, Canada",
-      "vessel": "Themisa",
-      "voyage": "ED615-THE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-09-16",
-      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -7477,45 +7301,12 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Manzanillo, Panama",
-      "vessel": "Themisa",
-      "voyage": "ED615-THE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-09-25",
-      "lane": "Europe to South America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "New York, USA",
-      "vessel": "Themisa",
-      "voyage": "ED615-THE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-09-18",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Port Hueneme, USA",
       "vessel": "Pleiades Leader",
       "voyage": "124",
       "carrier": "NYK RoRo",
       "ets": "2026-09-09",
       "eta": "2026-10-02",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Hueneme, USA",
-      "vessel": "Themisa",
-      "voyage": "ED615-THE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-10-04",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -7565,17 +7356,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Tacoma, USA",
-      "vessel": "Themisa",
-      "voyage": "ED615-THE",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-10-08",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Yokohama Daikoku, Japan",
       "vessel": "Pleiades Leader",
       "voyage": "124",
@@ -7587,24 +7367,13 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Yokohama, Japan",
+      "destination": "Brunswick, USA",
       "vessel": "Themisa",
       "voyage": "ED615-THE",
       "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-09",
-      "eta": "2026-10-21",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Newcastle",
-      "destination": "Brisbane, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
       "ets": "2026-09-10",
-      "eta": "2026-11-11",
-      "lane": "Europe to Oceania",
+      "eta": "2026-09-22",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -7641,17 +7410,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Newcastle",
-      "destination": "Durban, South Africa",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-10",
-      "eta": "2026-10-15",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
       "loadPort": "Southampton",
       "destination": "Durban, South Africa",
       "vessel": "Ocean Navigator",
@@ -7674,14 +7432,14 @@
       "notes": "ETA at load port; departure not published"
     },
     {
-      "loadPort": "Newcastle",
-      "destination": "Fremantle, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
+      "loadPort": "Southampton",
+      "destination": "Halifax, Canada",
+      "vessel": "Themisa",
+      "voyage": "ED615-THE",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-10",
-      "eta": "2026-10-28",
-      "lane": "Europe to Oceania",
+      "eta": "2026-09-17",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -7696,14 +7454,25 @@
       "notes": "ETA at load port; departure not published"
     },
     {
-      "loadPort": "Newcastle",
-      "destination": "Melbourne, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
+      "loadPort": "Southampton",
+      "destination": "Manzanillo, Panama",
+      "vessel": "Themisa",
+      "voyage": "ED615-THE",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-10",
-      "eta": "2026-11-05",
-      "lane": "Europe to Oceania",
+      "eta": "2026-09-26",
+      "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "New York, USA",
+      "vessel": "Themisa",
+      "voyage": "ED615-THE",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-10",
+      "eta": "2026-09-19",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -7718,17 +7487,6 @@
       "notes": "ETA at load port; departure not published"
     },
     {
-      "loadPort": "Newcastle",
-      "destination": "Port Elizabeth, South Africa",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-10",
-      "eta": "2026-10-13",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
       "loadPort": "Southampton",
       "destination": "Port Elizabeth, South Africa",
       "vessel": "Ocean Navigator",
@@ -7740,14 +7498,14 @@
       "notes": "ETA at load port; departure not published"
     },
     {
-      "loadPort": "Newcastle",
-      "destination": "Port Kembla, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
+      "loadPort": "Southampton",
+      "destination": "Port Hueneme, USA",
+      "vessel": "Themisa",
+      "voyage": "ED615-THE",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-10",
-      "eta": "2026-11-08",
-      "lane": "Europe to Oceania",
+      "eta": "2026-10-05",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -7759,17 +7517,6 @@
       "ets": "2026-09-10",
       "eta": "2026-09-10",
       "lane": "UK to Ireland",
-      "notes": ""
-    },
-    {
-      "loadPort": "Newcastle",
-      "destination": "Santander, Spain",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-10",
-      "eta": "2026-09-26",
-      "lane": "Europe to Mediterranean",
       "notes": ""
     },
     {
@@ -7807,24 +7554,35 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
+      "destination": "Tacoma, USA",
+      "vessel": "Themisa",
+      "voyage": "ED615-THE",
       "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-11",
-      "eta": "2026-09-26",
+      "ets": "2026-09-10",
+      "eta": "2026-10-09",
       "lane": "Europe to North America",
       "notes": ""
     },
     {
       "loadPort": "Southampton",
-      "destination": "Charleston, USA",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
+      "destination": "Yokohama, Japan",
+      "vessel": "Themisa",
+      "voyage": "ED615-THE",
       "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-10",
+      "eta": "2026-10-21",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
       "ets": "2026-09-11",
-      "eta": "2026-09-25",
-      "lane": "Europe to North America",
+      "eta": "2026-11-11",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -7850,36 +7608,58 @@
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Halifax, Canada",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
-      "carrier": "Wallenius Wilhelmsen",
+      "loadPort": "Newcastle",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
       "ets": "2026-09-11",
-      "eta": "2026-09-20",
-      "lane": "Europe to North America",
+      "eta": "2026-10-14",
+      "lane": "Europe to Africa",
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "New York, USA",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
-      "carrier": "Wallenius Wilhelmsen",
+      "loadPort": "Newcastle",
+      "destination": "Fremantle, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
       "ets": "2026-09-11",
-      "eta": "2026-09-22",
-      "lane": "Europe to North America",
+      "eta": "2026-10-28",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Pyeongtaek, South Korea",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
-      "carrier": "Wallenius Wilhelmsen",
+      "loadPort": "Newcastle",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
       "ets": "2026-09-11",
-      "eta": "2026-10-30",
-      "lane": "Europe to Far East",
+      "eta": "2026-11-05",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-11",
+      "eta": "2026-10-12",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Newcastle",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-11",
+      "eta": "2026-11-08",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -7894,14 +7674,14 @@
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Shanghai, China",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
-      "carrier": "Wallenius Wilhelmsen",
+      "loadPort": "Newcastle",
+      "destination": "Santander, Spain",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
       "ets": "2026-09-11",
-      "eta": "2026-10-25",
-      "lane": "Europe to Far East",
+      "eta": "2026-09-26",
+      "lane": "Europe to Mediterranean",
       "notes": ""
     },
     {
@@ -7949,17 +7729,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Tianjin-Xingang, China",
-      "vessel": "Thermopylae",
-      "voyage": "EX607-THY",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-11",
-      "eta": "2026-10-28",
-      "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
       "loadPort": "Tilbury",
       "destination": "Abidjan, Côte d'Ivoire",
       "vessel": "Grande Cotonou",
@@ -7974,12 +7743,12 @@
       "loadPort": "Southampton",
       "destination": "Auckland, New Zealand",
       "vessel": "Tannhauser",
-      "voyage": "EF617-TAH",
+      "voyage": "TAHEF617",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-12",
       "eta": "2026-10-26",
       "lane": "Europe to Oceania",
-      "notes": ""
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Southampton",
@@ -8011,6 +7780,28 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-12",
       "eta": "2026-09-28",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brunswick, USA",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-09-25",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Charleston, USA",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-09-24",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -8092,6 +7883,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Halifax, Canada",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-09-19",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Lagos, Nigeria",
       "vessel": "Grande Cotonou",
@@ -8147,6 +7949,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "New York, USA",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-09-21",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Point Noire, Congo",
       "vessel": "Grande Cotonou",
@@ -8169,6 +7982,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Pyeongtaek, South Korea",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-10-29",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Fishguard",
       "destination": "Rosslare, Ireland",
       "vessel": "Stena Nordica",
@@ -8177,6 +8001,17 @@
       "ets": "2026-09-12",
       "eta": "2026-09-12",
       "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Shanghai, China",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-10-24",
+      "lane": "Europe to Far East",
       "notes": ""
     },
     {
@@ -8221,6 +8056,17 @@
       "ets": "2026-09-12",
       "eta": "2026-09-30",
       "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Tianjin-Xingang, China",
+      "vessel": "Thermopylae",
+      "voyage": "EX607-THY",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-12",
+      "eta": "2026-10-27",
+      "lane": "Europe to Far East",
       "notes": ""
     },
     {
@@ -8830,6 +8676,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Altamira, Mexico",
+      "vessel": "Höegh Yokohama",
+      "voyage": "155",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-21",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Liberty Promise",
       "voyage": "26LP07",
@@ -8841,6 +8698,28 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Basseterre, St Kitts",
+      "vessel": "Höegh Yokohama",
+      "voyage": "426",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-27",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Bridgetown, Barbados",
+      "vessel": "Höegh Yokohama",
+      "voyage": "426",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-24",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Liberty Promise",
       "voyage": "26LP07",
@@ -8849,6 +8728,39 @@
       "eta": "2026-09-30",
       "lane": "Europe to North America",
       "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Cartagena, Colombia",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-12",
+      "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Castries, St Lucia",
+      "vessel": "Höegh Yokohama",
+      "voyage": "425",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-14",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Degrad des Cannes, French Guiana",
+      "vessel": "Höegh Yokohama",
+      "voyage": "424",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-30",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Pointe-à-Pitre, Guadeloupe — transhipment to Höegh Caribia"
     },
     {
       "loadPort": "Holyhead",
@@ -8873,6 +8785,138 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Fort de France, Martinique",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-09",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Georgetown, Guyana",
+      "vessel": "Höegh Yokohama",
+      "voyage": "425",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-09",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Kingston, Jamaica",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-14",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Kingstown, St Vincent",
+      "vessel": "Höegh Yokohama",
+      "voyage": "426",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-25",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Manzanillo, Panama",
+      "vessel": "Höegh Yokohama",
+      "voyage": "7",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-10",
+      "lane": "Europe to South America",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Nassau, Bahamas",
+      "vessel": "Höegh Yokohama",
+      "voyage": "6",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-28",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Oranjestad, Aruba",
+      "vessel": "Höegh Yokohama",
+      "voyage": "426",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-19",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Paramaribo, Suriname",
+      "vessel": "Höegh Yokohama",
+      "voyage": "425",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-10",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Philipsburg, Sint Maarten",
+      "vessel": "Höegh Yokohama",
+      "voyage": "155",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-31",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Pointe à Pitre, Guadeloupe",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-08",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port of Spain, Trinidad",
+      "vessel": "Höegh Yokohama",
+      "voyage": "6",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-22",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Roseau, Dominica",
+      "vessel": "Höegh Yokohama",
+      "voyage": "426",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-26",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
+    },
+    {
       "loadPort": "Fishguard",
       "destination": "Rosslare, Ireland",
       "vessel": "Stena Nordica",
@@ -8882,6 +8926,39 @@
       "eta": "2026-09-16",
       "lane": "UK to Ireland",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "San Juan, Puerto Rico",
+      "vessel": "Höegh Yokohama",
+      "voyage": "155",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-30",
+      "lane": "Europe to Caribbean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Santa Marta, Colombia",
+      "vessel": "Höegh Yokohama",
+      "voyage": "7",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-08",
+      "lane": "Europe to South America",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Santo Domingo, Dominican Republic",
+      "vessel": "Höegh Yokohama",
+      "voyage": "7",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-06",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
     },
     {
       "loadPort": "Portsmouth",
@@ -8906,6 +8983,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "St John's, Antigua",
+      "vessel": "Höegh Yokohama",
+      "voyage": "6",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-24",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "St Peter Port, Guernsey",
       "vessel": "Condor Islander",
@@ -8915,6 +9003,61 @@
       "eta": "2026-09-17",
       "lane": "UK to Channel Islands",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "St. George's, Grenada",
+      "vessel": "Höegh Yokohama",
+      "voyage": "6",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-23",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Pacific"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Tangier, Morocco",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-09-27",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Veracruz, Mexico",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-10-18",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Vigo, Spain",
+      "vessel": "Höegh Yokohama",
+      "voyage": "154",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-09-25",
+      "lane": "Europe to Mediterranean",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Willemstad, Curaçao",
+      "vessel": "Höegh Yokohama",
+      "voyage": "426",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-16",
+      "eta": "2026-11-20",
+      "lane": "Europe to Caribbean",
+      "notes": "Via Kingston, Jamaica — transhipment to Höegh Caribia"
     },
     {
       "loadPort": "Southampton",
@@ -9259,6 +9402,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Huangpu (Xinsha), China",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "EUKOR",
+      "ets": "2026-09-18",
+      "eta": "2026-10-30",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Jacksonville, USA",
       "vessel": "Höegh Berlin",
       "voyage": "140",
@@ -9270,14 +9424,25 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Jakarta/T.Priok, Indonesia",
+      "destination": "Jakarta, Indonesia",
       "vessel": "Morning Carol",
-      "voyage": "T0625-MRC",
-      "carrier": "Wallenius Wilhelmsen",
+      "voyage": "EP625",
+      "carrier": "EUKOR",
       "ets": "2026-09-18",
       "eta": "2026-10-23",
       "lane": "Europe to Far East",
-      "notes": ""
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Masan, South Korea",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "",
+      "ets": "2026-09-18",
+      "eta": "2026-11-14",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Southampton",
@@ -9292,6 +9457,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Port Kelang, Malaysia",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "EUKOR",
+      "ets": "2026-09-18",
+      "eta": "2026-10-19",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Port Kembla, Australia",
       "vessel": "Höegh Berlin",
       "voyage": "140",
@@ -9303,14 +9479,14 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Reunion, Réunion",
+      "destination": "Pyeongtaek, South Korea",
       "vessel": "Morning Carol",
       "voyage": "EP625",
-      "carrier": "EUKOR",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-18",
-      "eta": "2026-10-09",
-      "lane": "Europe to Africa",
-      "notes": ""
+      "eta": "2026-11-08",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Fishguard",
@@ -9322,6 +9498,28 @@
       "eta": "2026-09-18",
       "lane": "UK to Ireland",
       "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Shanghai, China",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-18",
+      "eta": "2026-11-02",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Singapore, Singapore",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-18",
+      "eta": "2026-10-20",
+      "lane": "Europe to Far East",
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Portsmouth",
@@ -9369,14 +9567,14 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Tianjin-Xingang, China",
+      "destination": "Xingang (Tianjin), China",
       "vessel": "Morning Carol",
-      "voyage": "T0625-MRC",
-      "carrier": "Wallenius Wilhelmsen",
+      "voyage": "EP625",
+      "carrier": "EUKOR",
       "ets": "2026-09-18",
       "eta": "2026-11-06",
       "lane": "Europe to Far East",
-      "notes": ""
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Tilbury",
@@ -9387,17 +9585,6 @@
       "ets": "2026-09-19",
       "eta": "2026-10-09",
       "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
-      "vessel": "Morning Christina",
-      "voyage": "EA625-MGT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-10-01",
-      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -9430,17 +9617,6 @@
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-19",
       "eta": "2026-10-06",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Morning Christina",
-      "voyage": "EA625-MGT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-10-04",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -9546,45 +9722,12 @@
     {
       "loadPort": "Southampton",
       "destination": "Halifax, Canada",
-      "vessel": "Morning Christina",
-      "voyage": "EA625-MGT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-09-26",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Halifax, Canada",
       "vessel": "Platinum Ray",
       "voyage": "PLY054",
       "carrier": "",
       "ets": "2026-09-19",
       "eta": "2026-09-26",
       "lane": "Europe to North America",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Huangpu (Xinsha), China",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "EUKOR",
-      "ets": "2026-09-19",
-      "eta": "2026-10-31",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Jakarta, Indonesia",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "EUKOR",
-      "ets": "2026-09-19",
-      "eta": "2026-10-24",
-      "lane": "Europe to Far East",
       "notes": "departure not published, arrival date used"
     },
     {
@@ -9633,17 +9776,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Masan, South Korea",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "",
-      "ets": "2026-09-19",
-      "eta": "2026-11-14",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Melbourne, Australia",
       "vessel": "Tamerlane",
       "voyage": "EE616-TLE",
@@ -9666,17 +9798,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "New York, USA",
-      "vessel": "Morning Christina",
-      "voyage": "EA625-MGT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-09-28",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Port Hueneme, USA",
       "vessel": "Arc Honor",
       "voyage": "ED616-AHN",
@@ -9685,17 +9806,6 @@
       "eta": "2026-10-22",
       "lane": "Europe to North America",
       "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Kelang, Malaysia",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "EUKOR",
-      "ets": "2026-09-19",
-      "eta": "2026-10-20",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Southampton",
@@ -9711,22 +9821,11 @@
     {
       "loadPort": "Southampton",
       "destination": "Pyeongtaek, South Korea",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
+      "vessel": "Arc Honor",
+      "voyage": "ED616-AHN",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-19",
       "eta": "2026-11-10",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Pyeongtaek, South Korea",
-      "vessel": "Morning Christina",
-      "voyage": "EA625-MGT",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-11-07",
       "lane": "Europe to Far East",
       "notes": ""
     },
@@ -9740,28 +9839,6 @@
       "eta": "2026-09-19",
       "lane": "UK to Ireland",
       "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Shanghai, China",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-11-04",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Singapore, Singapore",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-19",
-      "eta": "2026-10-22",
-      "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Portsmouth",
@@ -9820,14 +9897,14 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Xingang (Tianjin), China",
-      "vessel": "Morning Carol",
-      "voyage": "EP625",
-      "carrier": "EUKOR",
+      "destination": "Yokohama, Japan",
+      "vessel": "Arc Honor",
+      "voyage": "ED616-AHN",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-09-19",
       "eta": "2026-11-07",
       "lane": "Europe to Far East",
-      "notes": "departure not published, arrival date used"
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -9918,6 +9995,17 @@
       "notes": "UK cut-off 16 Sept"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Jakarta/T.Priok, Indonesia",
+      "vessel": "Morning Carol",
+      "voyage": "T0625-MRC",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-20",
+      "eta": "2026-10-25",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Manzanillo, Dominican Republic",
       "vessel": "Star First",
@@ -9938,6 +10026,17 @@
       "eta": "2026-10-02",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 16 Sept"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Reunion, Réunion",
+      "vessel": "Morning Carol",
+      "voyage": "EP625",
+      "carrier": "EUKOR",
+      "ets": "2026-09-20",
+      "eta": "2026-10-11",
+      "lane": "Europe to Africa",
+      "notes": ""
     },
     {
       "loadPort": "Fishguard",
@@ -10017,6 +10116,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Tianjin-Xingang, China",
+      "vessel": "Morning Carol",
+      "voyage": "T0625-MRC",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-20",
+      "eta": "2026-11-08",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "loadPort": "Portsmouth",
       "destination": "Turbo, Colombia",
       "vessel": "Star First",
@@ -10047,6 +10157,28 @@
       "ets": "2026-09-21",
       "eta": "2026-11-26",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
+      "vessel": "Morning Christina",
+      "voyage": "EA625-MGT",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-21",
+      "eta": "2026-10-03",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brunswick, USA",
+      "vessel": "Morning Christina",
+      "voyage": "EA625-MGT",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-21",
+      "eta": "2026-10-06",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -10094,6 +10226,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Halifax, Canada",
+      "vessel": "Morning Christina",
+      "voyage": "EA625-MGT",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-21",
+      "eta": "2026-09-28",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
       "loadPort": "Bristol",
       "destination": "Melbourne, Australia",
       "vessel": "Höegh Sunlight",
@@ -10102,6 +10245,17 @@
       "ets": "2026-09-21",
       "eta": "2026-11-19",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "New York, USA",
+      "vessel": "Morning Christina",
+      "voyage": "EA625-MGT",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-21",
+      "eta": "2026-09-30",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -10124,6 +10278,17 @@
       "ets": "2026-09-21",
       "eta": "2026-11-22",
       "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Pyeongtaek, South Korea",
+      "vessel": "Morning Christina",
+      "voyage": "EA625-MGT",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-21",
+      "eta": "2026-11-07",
+      "lane": "Europe to Far East",
       "notes": ""
     },
     {
@@ -10259,6 +10424,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-11-11",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
       "loadPort": "Holyhead",
       "destination": "Dublin, Ireland",
       "vessel": "Stena Adventurer",
@@ -10281,6 +10457,61 @@
       "notes": ""
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-10-14",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Fremantle, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-10-28",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-11-05",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-10-12",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-11-08",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
       "loadPort": "Fishguard",
       "destination": "Rosslare, Ireland",
       "vessel": "Stena Nordica",
@@ -10289,6 +10520,17 @@
       "ets": "2026-09-23",
       "eta": "2026-09-23",
       "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Santander, Spain",
+      "vessel": "Höegh Detroit",
+      "voyage": "132",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-09-23",
+      "eta": "2026-09-26",
+      "lane": "Europe to Mediterranean",
       "notes": ""
     },
     {
@@ -10337,17 +10579,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Brisbane, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-11-11",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Davisville, USA",
       "vessel": "Drive Green Highway",
       "voyage": "104 A",
@@ -10381,28 +10612,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Durban, South Africa",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-10-15",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Fremantle, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-10-28",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Drive Green Highway",
       "voyage": "104 A",
@@ -10413,39 +10622,6 @@
       "notes": "TAL service"
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Melbourne, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-11-05",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Elizabeth, South Africa",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-10-13",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Port Kembla, Australia",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-11-08",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
       "loadPort": "Fishguard",
       "destination": "Rosslare, Ireland",
       "vessel": "Stena Nordica",
@@ -10454,17 +10630,6 @@
       "ets": "2026-09-24",
       "eta": "2026-09-24",
       "lane": "UK to Ireland",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Santander, Spain",
-      "vessel": "Höegh Detroit",
-      "voyage": "132",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-09-24",
-      "eta": "2026-09-26",
-      "lane": "Europe to Mediterranean",
       "notes": ""
     },
     {
@@ -10622,17 +10787,6 @@
       "notes": "RoRo closing 23/09"
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
-      "vessel": "Endurance",
-      "voyage": "EB653-EDU",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-26",
-      "eta": "2026-10-07",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
       "loadPort": "Tilbury",
       "destination": "Bata, Equatorial Guinea",
       "vessel": "Grande Gabon",
@@ -10642,17 +10796,6 @@
       "eta": "2026-10-27",
       "lane": "Europe to Africa",
       "notes": "RoRo closing 23/09 · via Antwerp"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Endurance",
-      "voyage": "EB653-EDU",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-26",
-      "eta": "2026-10-11",
-      "lane": "Europe to North America",
-      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -10730,17 +10873,6 @@
       "eta": "2026-10-17",
       "lane": "Europe to Africa",
       "notes": "RoRo closing 23/09 · via Antwerp"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Galveston, USA",
-      "vessel": "Endurance",
-      "voyage": "EB653-EDU",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-26",
-      "eta": "2026-10-16",
-      "lane": "Europe to North America",
-      "notes": ""
     },
     {
       "loadPort": "Tilbury",
@@ -10833,6 +10965,17 @@
     {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
+      "vessel": "Endurance",
+      "voyage": "EB653-EDU",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-27",
+      "eta": "2026-10-08",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
       "vessel": "Glovis Cosmos",
       "voyage": "",
       "carrier": "Hyundai Glovis",
@@ -10862,6 +11005,17 @@
       "eta": "2026-10-06",
       "lane": "Europe to Caribbean",
       "notes": "UK cut-off 23 Sept"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brunswick, USA",
+      "vessel": "Endurance",
+      "voyage": "EB653-EDU",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-27",
+      "eta": "2026-10-12",
+      "lane": "Europe to North America",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -10972,6 +11126,17 @@
       "eta": "2026-10-25",
       "lane": "Europe to Africa",
       "notes": "ETA at load port; departure not published"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Galveston, USA",
+      "vessel": "Endurance",
+      "voyage": "EB653-EDU",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-27",
+      "eta": "2026-10-17",
+      "lane": "Europe to North America",
+      "notes": ""
     },
     {
       "loadPort": "Portsmouth",
@@ -11733,39 +11898,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Southampton",
-      "destination": "Aqaba, Jordan",
-      "vessel": "Tbn Anji",
-      "voyage": "OKT",
-      "carrier": "",
-      "ets": "2026-10-01",
-      "eta": "2026-10-15",
-      "lane": "Europe to Middle East",
-      "notes": "departure not published, arrival date used"
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
-      "vessel": "Arc Defender",
-      "voyage": "EB620-ADF",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-01",
-      "eta": "2026-10-12",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Brunswick, USA",
-      "vessel": "Arc Defender",
-      "voyage": "EB620-ADF",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-01",
-      "eta": "2026-10-16",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
       "loadPort": "Holyhead",
       "destination": "Dublin, Ireland",
       "vessel": "Stena Adventurer",
@@ -11786,28 +11918,6 @@
       "eta": "2026-10-01",
       "lane": "UK to Ireland",
       "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Galveston, USA",
-      "vessel": "Arc Defender",
-      "voyage": "EB620-ADF",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-01",
-      "eta": "2026-10-21",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Jeddah, Saudi Arabia",
-      "vessel": "Tbn Anji",
-      "voyage": "OKT",
-      "carrier": "",
-      "ets": "2026-10-01",
-      "eta": "2026-10-16",
-      "lane": "Europe to Middle East",
-      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Southampton",
@@ -11920,6 +12030,28 @@
       "notes": "via Antwerp transhipment · ocean voyage GHA0526"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
+      "vessel": "Arc Defender",
+      "voyage": "EB620-ADF",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-10-02",
+      "eta": "2026-10-13",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brunswick, USA",
+      "vessel": "Arc Defender",
+      "voyage": "EB620-ADF",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-10-02",
+      "eta": "2026-10-17",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
       "loadPort": "Holyhead",
       "destination": "Dublin, Ireland",
       "vessel": "Stena Adventurer",
@@ -11939,6 +12071,17 @@
       "ets": "2026-10-02",
       "eta": "2026-10-02",
       "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Galveston, USA",
+      "vessel": "Arc Defender",
+      "voyage": "EB620-ADF",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-10-02",
+      "eta": "2026-10-22",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -13438,6 +13581,17 @@
       "notes": "RoRo closing 07/10"
     },
     {
+      "loadPort": "Southampton",
+      "destination": "Aqaba, Jordan",
+      "vessel": "Aicc Fenghuang",
+      "voyage": "TBN",
+      "carrier": "",
+      "ets": "2026-10-10",
+      "eta": "2026-10-25",
+      "lane": "Europe to Middle East",
+      "notes": "departure not published, arrival date used"
+    },
+    {
       "loadPort": "Tilbury",
       "destination": "Cotonou, Benin",
       "vessel": "Grande Luanda",
@@ -13812,6 +13966,28 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Adventurer",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-13",
+      "eta": "2026-10-13",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
+      "loadPort": "Holyhead",
+      "destination": "Dublin, Ireland",
+      "vessel": "Stena Estrid",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-13",
+      "eta": "2026-10-13",
+      "lane": "UK to Ireland",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Durban, South Africa",
       "vessel": "Tombarra",
@@ -13865,6 +14041,17 @@
       "eta": "2026-11-27",
       "lane": "Europe to Oceania",
       "notes": "departure not published, arrival date used"
+    },
+    {
+      "loadPort": "Fishguard",
+      "destination": "Rosslare, Ireland",
+      "vessel": "Stena Nordica",
+      "voyage": "",
+      "carrier": "Stena Line",
+      "ets": "2026-10-13",
+      "eta": "2026-10-13",
+      "lane": "UK to Ireland",
+      "notes": ""
     },
     {
       "loadPort": "Southampton",
@@ -14011,17 +14198,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
-      "vessel": "Manon",
-      "voyage": "EC610-MAN",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-15",
-      "eta": "2026-10-25",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Brisbane, Australia",
       "vessel": "Höegh Copenhagen",
       "voyage": "101",
@@ -14038,20 +14214,20 @@
       "voyage": "EC610-MAN",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-15",
-      "eta": "2026-10-27",
+      "eta": "2026-10-28",
       "lane": "Europe to North America",
       "notes": ""
     },
     {
       "loadPort": "Southampton",
-      "destination": "Dar es Salaam, Tanzania",
-      "vessel": "Garnet Ace",
-      "voyage": "0133A",
-      "carrier": "MOL ACE",
+      "destination": "Dakar, Senegal",
+      "vessel": "Tbn",
+      "voyage": "AFRICA",
+      "carrier": "",
       "ets": "2026-10-15",
-      "eta": "2026-11-19",
+      "eta": "2026-10-22",
       "lane": "Europe to Africa",
-      "notes": ""
+      "notes": "departure not published, arrival date used"
     },
     {
       "loadPort": "Southampton",
@@ -14060,7 +14236,7 @@
       "voyage": "EC610-MAN",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-15",
-      "eta": "2026-11-01",
+      "eta": "2026-11-02",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -14093,7 +14269,7 @@
       "voyage": "EC610-MAN",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-15",
-      "eta": "2026-11-07",
+      "eta": "2026-11-08",
       "lane": "Europe to South America",
       "notes": ""
     },
@@ -14104,7 +14280,7 @@
       "voyage": "EC610-MAN",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-15",
-      "eta": "2026-11-05",
+      "eta": "2026-11-06",
       "lane": "Europe to South America",
       "notes": ""
     },
@@ -14121,24 +14297,13 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Mombasa, Kenya",
-      "vessel": "Garnet Ace",
-      "voyage": "0133A",
-      "carrier": "MOL ACE",
+      "destination": "New York, USA",
+      "vessel": "Manon",
+      "voyage": "EC610-MAN",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-15",
-      "eta": "2026-11-20",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Mumbai, India",
-      "vessel": "Garnet Ace",
-      "voyage": "0133A",
-      "carrier": "MOL ACE",
-      "ets": "2026-10-15",
-      "eta": "2026-11-26",
-      "lane": "Europe to Far East",
+      "eta": "2026-10-25",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -14148,7 +14313,7 @@
       "voyage": "EC610-MAN",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-15",
-      "eta": "2026-11-11",
+      "eta": "2026-11-12",
       "lane": "Europe to South America",
       "notes": ""
     },
@@ -14176,13 +14341,35 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Walvis Bay, Namibia",
+      "destination": "Dar es Salaam, Tanzania",
       "vessel": "Garnet Ace",
       "voyage": "0133A",
       "carrier": "MOL ACE",
-      "ets": "2026-10-15",
-      "eta": "2026-11-08",
+      "ets": "2026-10-16",
+      "eta": "2026-11-19",
       "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Mombasa, Kenya",
+      "vessel": "Garnet Ace",
+      "voyage": "0133A",
+      "carrier": "MOL ACE",
+      "ets": "2026-10-16",
+      "eta": "2026-11-20",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Mumbai, India",
+      "vessel": "Garnet Ace",
+      "voyage": "0133A",
+      "carrier": "MOL ACE",
+      "ets": "2026-10-16",
+      "eta": "2026-11-27",
+      "lane": "Europe to Far East",
       "notes": ""
     },
     {
@@ -14205,6 +14392,17 @@
       "ets": "2026-10-16",
       "eta": "2026-10-16",
       "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Walvis Bay, Namibia",
+      "vessel": "Garnet Ace",
+      "voyage": "0133A",
+      "carrier": "MOL ACE",
+      "ets": "2026-10-16",
+      "eta": "2026-11-09",
+      "lane": "Europe to Africa",
       "notes": ""
     },
     {
@@ -14549,14 +14747,14 @@
       "notes": ""
     },
     {
-      "loadPort": "Portsmouth",
-      "destination": "St Peter Port, Guernsey",
-      "vessel": "Condor Islander",
-      "voyage": "",
-      "carrier": "Condor Ferries",
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
+      "vessel": "Tirranna",
+      "voyage": "EA628-TIR",
+      "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-10-22",
-      "eta": "2026-10-23",
-      "lane": "UK to Channel Islands",
+      "eta": "2026-11-01",
+      "lane": "Europe to North America",
       "notes": ""
     },
     {
@@ -14565,7 +14763,7 @@
       "vessel": "Tirranna",
       "voyage": "EA628-TIR",
       "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-23",
+      "ets": "2026-10-22",
       "eta": "2026-11-04",
       "lane": "Europe to North America",
       "notes": ""
@@ -14576,8 +14774,8 @@
       "vessel": "Tirranna",
       "voyage": "EA628-TIR",
       "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-23",
-      "eta": "2026-11-05",
+      "ets": "2026-10-22",
+      "eta": "2026-11-06",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -14587,8 +14785,8 @@
       "vessel": "Tirranna",
       "voyage": "EA628-TIR",
       "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-23",
-      "eta": "2026-10-30",
+      "ets": "2026-10-22",
+      "eta": "2026-10-28",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -14598,9 +14796,20 @@
       "vessel": "Tirranna",
       "voyage": "EA628-TIR",
       "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-10-23",
-      "eta": "2026-11-01",
+      "ets": "2026-10-22",
+      "eta": "2026-10-30",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Portsmouth",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Islander",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-10-22",
+      "eta": "2026-10-23",
+      "lane": "UK to Channel Islands",
       "notes": ""
     },
     {
@@ -14627,17 +14836,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Brisbane, Australia",
-      "vessel": "Höegh Seoul",
-      "voyage": "152",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-24",
-      "eta": "2026-12-08",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Morning Lily",
       "voyage": "ED618-MLL",
@@ -14660,17 +14858,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Durban, South Africa",
-      "vessel": "Höegh Seoul",
-      "voyage": "152",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-24",
-      "eta": "2026-11-15",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Manzanillo, Panama",
       "vessel": "Morning Lily",
       "voyage": "ED618-MLL",
@@ -14678,17 +14865,6 @@
       "ets": "2026-10-24",
       "eta": "2026-11-07",
       "lane": "Europe to South America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Melbourne, Australia",
-      "vessel": "Höegh Seoul",
-      "voyage": "152",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-24",
-      "eta": "2026-12-02",
-      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -14715,17 +14891,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Elizabeth, South Africa",
-      "vessel": "Höegh Seoul",
-      "voyage": "152",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-24",
-      "eta": "2026-11-13",
-      "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Port Hueneme, USA",
       "vessel": "Morning Lily",
       "voyage": "ED618-MLL",
@@ -14737,17 +14902,6 @@
     },
     {
       "loadPort": "Southampton",
-      "destination": "Port Kembla, Australia",
-      "vessel": "Höegh Seoul",
-      "voyage": "152",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-24",
-      "eta": "2026-12-05",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
       "destination": "Pyeongtaek, South Korea",
       "vessel": "Morning Lily",
       "voyage": "ED618-MLL",
@@ -14755,17 +14909,6 @@
       "ets": "2026-10-24",
       "eta": "2026-12-10",
       "lane": "Europe to Far East",
-      "notes": ""
-    },
-    {
-      "loadPort": "Southampton",
-      "destination": "Santander, Spain",
-      "vessel": "Höegh Seoul",
-      "voyage": "152",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-24",
-      "eta": "2026-10-27",
-      "lane": "Europe to Mediterranean",
       "notes": ""
     },
     {
@@ -14813,17 +14956,6 @@
       "notes": ""
     },
     {
-      "loadPort": "Liverpool",
-      "destination": "Baltimore, USA",
-      "vessel": "Atlantic Sky",
-      "voyage": "ATK7726",
-      "carrier": "ACL",
-      "ets": "2026-10-25",
-      "eta": "2026-11-07",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Hera Highway",
@@ -14857,39 +14989,6 @@
       "notes": "NAS service"
     },
     {
-      "loadPort": "Liverpool",
-      "destination": "Halifax, Canada",
-      "vessel": "Atlantic Sky",
-      "voyage": "ATK7726",
-      "carrier": "ACL",
-      "ets": "2026-10-25",
-      "eta": "2026-11-02",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Liverpool",
-      "destination": "New York, USA",
-      "vessel": "Atlantic Sky",
-      "voyage": "ATK7726",
-      "carrier": "ACL",
-      "ets": "2026-10-25",
-      "eta": "2026-11-05",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "loadPort": "Liverpool",
-      "destination": "Norfolk, USA",
-      "vessel": "Atlantic Sky",
-      "voyage": "ATK7726",
-      "carrier": "ACL",
-      "ets": "2026-10-25",
-      "eta": "2026-11-09",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
       "loadPort": "Portsmouth",
       "destination": "St Peter Port, Guernsey",
       "vessel": "Condor Islander",
@@ -14912,6 +15011,17 @@
       "notes": ""
     },
     {
+      "loadPort": "Liverpool",
+      "destination": "Baltimore, USA",
+      "vessel": "Atlantic Sky",
+      "voyage": "ATK7726",
+      "carrier": "ACL",
+      "ets": "2026-10-26",
+      "eta": "2026-11-08",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
       "loadPort": "Southampton",
       "destination": "Baltimore, USA",
       "vessel": "Patriot",
@@ -14920,6 +15030,17 @@
       "ets": "2026-10-26",
       "eta": "2026-11-05",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Seoul",
+      "voyage": "152",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-26",
+      "eta": "2026-12-10",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -14935,6 +15056,17 @@
     },
     {
       "loadPort": "Southampton",
+      "destination": "Durban, South Africa",
+      "vessel": "Höegh Seoul",
+      "voyage": "152",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-26",
+      "eta": "2026-11-17",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
       "destination": "Galveston, USA",
       "vessel": "Patriot",
       "voyage": "EB624-PTT",
@@ -14942,6 +15074,83 @@
       "ets": "2026-10-26",
       "eta": "2026-11-14",
       "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Liverpool",
+      "destination": "Halifax, Canada",
+      "vessel": "Atlantic Sky",
+      "voyage": "ATK7726",
+      "carrier": "ACL",
+      "ets": "2026-10-26",
+      "eta": "2026-11-02",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Seoul",
+      "voyage": "152",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-26",
+      "eta": "2026-12-04",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Liverpool",
+      "destination": "New York, USA",
+      "vessel": "Atlantic Sky",
+      "voyage": "ATK7726",
+      "carrier": "ACL",
+      "ets": "2026-10-26",
+      "eta": "2026-11-05",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Liverpool",
+      "destination": "Norfolk, USA",
+      "vessel": "Atlantic Sky",
+      "voyage": "ATK7726",
+      "carrier": "ACL",
+      "ets": "2026-10-26",
+      "eta": "2026-11-09",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Elizabeth, South Africa",
+      "vessel": "Höegh Seoul",
+      "voyage": "152",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-26",
+      "eta": "2026-11-15",
+      "lane": "Europe to Africa",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Seoul",
+      "voyage": "152",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-26",
+      "eta": "2026-12-07",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Santander, Spain",
+      "vessel": "Höegh Seoul",
+      "voyage": "152",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-26",
+      "eta": "2026-10-29",
+      "lane": "Europe to Mediterranean",
       "notes": ""
     },
     {
@@ -15251,6 +15460,28 @@
       "eta": "2026-11-22",
       "lane": "Europe to North America",
       "notes": "TAL service"
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Noumea, New Caledonia",
+      "vessel": "Hoegh Sunrise",
+      "voyage": "S6009-HSU",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-10-31",
+      "eta": "2026-12-29",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "loadPort": "Southampton",
+      "destination": "Santander, Spain",
+      "vessel": "Hoegh Sunrise",
+      "voyage": "S6009-HSU",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-10-31",
+      "eta": "2026-11-04",
+      "lane": "Europe to Mediterranean",
+      "notes": ""
     },
     {
       "loadPort": "Poole",
@@ -15600,7 +15831,7 @@
       "voyage": "EB623-ACM",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-11-05",
-      "eta": "2026-11-17",
+      "eta": "2026-11-16",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -15611,7 +15842,7 @@
       "voyage": "EB623-ACM",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-11-05",
-      "eta": "2026-11-21",
+      "eta": "2026-11-20",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -15622,7 +15853,7 @@
       "voyage": "EB623-ACM",
       "carrier": "Wallenius Wilhelmsen",
       "ets": "2026-11-05",
-      "eta": "2026-11-26",
+      "eta": "2026-11-25",
       "lane": "Europe to North America",
       "notes": ""
     },
@@ -15975,6 +16206,17 @@
       "carrier": "Condor Ferries",
       "ets": "2026-12-28",
       "eta": "2026-12-28",
+      "lane": "UK to Channel Islands",
+      "notes": ""
+    },
+    {
+      "loadPort": "Poole",
+      "destination": "St Peter Port, Guernsey",
+      "vessel": "Condor Voyager",
+      "voyage": "",
+      "carrier": "Condor Ferries",
+      "ets": "2026-12-30",
+      "eta": "2026-12-30",
       "lane": "UK to Channel Islands",
       "notes": ""
     },

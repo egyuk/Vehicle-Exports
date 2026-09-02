@@ -55,7 +55,7 @@ allVehicles.forEach(v => {
       </div>
     </div>
 
-    <!-- Body Types Tab (default) — horizontal slider with pagination -->
+    <!-- Body Types Tab (default) — horizontal slider; autoplays and can be dragged, no dots -->
     <div id="body-types-panel" class="brand-panel">
       <div class="swiper body-type-swiper">
         <div class="swiper-wrapper">
@@ -71,7 +71,6 @@ allVehicles.forEach(v => {
             </div>
           ))}
         </div>
-        <div class="swiper-pagination body-type-pagination mt-10"></div>
       </div>
     </div>
 
@@ -92,7 +91,6 @@ allVehicles.forEach(v => {
             </div>
           ))}
         </div>
-        <div class="swiper-pagination brand-pagination mt-6"></div>
       </div>
     </div>
   </div>
@@ -100,17 +98,15 @@ allVehicles.forEach(v => {
 
 <script>
   import Swiper from 'swiper';
-  import { Autoplay, Pagination } from 'swiper/modules';
+  import { Autoplay } from 'swiper/modules';
   import 'swiper/css';
-  import 'swiper/css/pagination';
 
   new Swiper('.body-type-swiper', {
-    modules: [Autoplay, Pagination],
+    modules: [Autoplay],
     slidesPerView: 2,
     spaceBetween: 12,
     loop: true,
     autoplay: { delay: 4000, disableOnInteraction: false },
-    pagination: { el: '.body-type-pagination', clickable: true },
     breakpoints: {
       480: { slidesPerView: 3, spaceBetween: 16 },
       640: { slidesPerView: 4, spaceBetween: 20 },
@@ -120,12 +116,11 @@ allVehicles.forEach(v => {
   });
 
   new Swiper('.brand-swiper', {
-    modules: [Autoplay, Pagination],
+    modules: [Autoplay],
     slidesPerView: 2,
     spaceBetween: 16,
     loop: true,
     autoplay: { delay: 3000, disableOnInteraction: false },
-    pagination: { el: '.brand-pagination', clickable: true },
     breakpoints: {
       480: { slidesPerView: 3 },
       640: { slidesPerView: 4 },
