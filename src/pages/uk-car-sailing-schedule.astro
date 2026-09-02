@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import schedules from '../data/sailing-schedules.json';
+import { hubPorts } from '../data/destinations';
 
 // Everything on this page is generated from src/data/sailing-schedules.json.
 // Weekly routine: correct the rows in "sailings", bump "updated". No markup changes.
@@ -109,7 +110,7 @@ const destinationGroups = (() => {
   <!-- Sticky stack from lg up: the site nav goes position:fixed (81px) once you
        scroll, so the filter bar sits below it and the table header below that.
        Left non-sticky on mobile, where this bar is 345px tall stacked. -->
-  <section class="py-6 bg-white border-b border-gray-100 lg:sticky lg:top-[81px] lg:z-20">
+  <section id="sail-controls" class="py-6 bg-white border-b border-gray-100 scroll-mt-20 lg:sticky lg:top-[81px] lg:z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Mobile: two columns, with Search and Load UK Ports sharing the first
            row and Destination spanning both beneath, since its option labels are
@@ -133,10 +134,15 @@ const destinationGroups = (() => {
         </div>
         <div class="col-span-2 lg:col-span-1">
           <label class="block text-xs font-medium text-gray-500 mb-1.5">Destination</label>
-          <select id="sail-dest" class="w-full lg:w-auto bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
+          {/* data-hubs: landlocked country -> the "Country, Port" values it is
+              landed at, for the script's empty-state message. */}
+          <select id="sail-dest" data-hubs={JSON.stringify(hubPorts)} class="w-full lg:w-auto bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 outline-none focus:border-[var(--color-primary)] transition-colors">
             <option value="">All destinations</option>
             {destinationGroups.map(g => (
               <optgroup label={g.country}>
+                {/* Bare country name as the value: the filter treats it as
+                    "every port in this country" (see the script's apply()). */}
+                {g.ports.length > 1 && <option value={g.country}>All {g.country} ports</option>}
                 {g.ports.map(p => <option value={p.value}>{p.label}</option>)}
               </optgroup>
             ))}
@@ -363,17 +369,62 @@ const destinationGroups = (() => {
     const port = portSel.value;
     const dest = destSel.value;
 
+    // A bare country name (the "All X ports" option) matches every "X, Port".
     matched = all.filter(r =>
       (!term || r.search.includes(term)) &&
       (!port || r.port === port) &&
-      (!dest || r.dest === dest) &&
+      (!dest || r.dest === dest || r.dest.startsWith(dest + ', ')) &&
       (!hidePast.checked || !r.past));
 
     // A narrower filter can leave fewer pages than the one being viewed, so
     // start over unless the caller is only re-sorting.
     if (!keepPage) page = 1;
+    emptyEl.innerHTML = emptyMessage(dest);
     emptyEl.classList.toggle('hidden', matched.length > 0 || all.length === 0);
     render();
+  }
+
+  // Name the destination when it is the reason for an empty result: the
+  // Countries menu links here for destinations without their own page. A
+  // landlocked one (data-hubs, from destinations.ts) is pointed at the sailings
+  // for the port it is landed at, with a button that switches the filter there
+  // when that port is on the schedule.
+  const HUBS: Record<string, string[]> = JSON.parse(destSel.dataset.hubs || '{}');
+  function emptyMessage(dest: string) {
+    if (!dest) return 'No sailings match those filters.';
+    const hubs = HUBS[dest];
+    if (!hubs?.length) return `No sailings to ${esc(dest)} are listed right now. Tell us the destination and we will confirm the next route.`;
+    const values = new Set([...destSel.options].map(o => o.value));
+    const hubLinks = hubs.map(h => {
+      const [country, port] = h.split(', ');
+      const label = `${esc(port)} (${esc(country)})`;
+      return values.has(h)
+        ? `<button type="button" class="sail-hub font-semibold text-[var(--color-primary)] hover:underline" data-value="${esc(h)}">${label}</button>`
+        : label;
+    });
+    return `No direct sailings to ${esc(dest)} are listed. Vehicles for ${esc(dest)} are landed at ${hubLinks.join(' or ')} and carried on from there, so check those sailings, or tell us the destination and we will confirm the route.`;
+  }
+  emptyEl.addEventListener('click', e => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.sail-hub');
+    if (!btn) return;
+    destSel.value = btn.dataset.value!;
+    apply();
+  });
+
+  // The Countries nav menu links here as ?country=X for destinations without
+  // a page of their own. Pre-select X — its "All ports" option, or the one
+  // port when there is only one — and bring the filters into view.
+  const wantedCountry = new URLSearchParams(location.search).get('country')?.trim().slice(0, 60);
+  if (wantedCountry) {
+    let opt = [...destSel.options].find(o => o.value === wantedCountry || o.value.startsWith(wantedCountry + ', '));
+    // A country with no sailings on the list gets a stand-in option, so the
+    // page says so by name rather than quietly showing every sailing.
+    if (!opt) {
+      opt = new Option(wantedCountry, wantedCountry);
+      destSel.add(opt);
+    }
+    destSel.value = opt.value;
+    document.getElementById('sail-controls')?.scrollIntoView({ block: 'start' });
   }
 
   // Column sorting: departure and arrival sort by date, ports alphabetically.
@@ -415,6 +466,12 @@ const destinationGroups = (() => {
         past: s.ets < todayISO,
         search: `${s.vessel} ${s.port} ${s.dest} ${s.carrier} ${s.voyage} ${s.lane} ${s.notes}`.toLowerCase(),
       }));
+      // A ?country= link to a destination whose sailings have all departed
+      // would land on the empty state with those rows one checkbox away, so
+      // show them (dimmed, marked departed) rather than nothing.
+      const wanted = destSel.value;
+      const toWanted = (r: Sail) => r.dest === wanted || r.dest.startsWith(wanted + ', ');
+      if (wantedCountry && wanted && !all.some(r => toWanted(r) && !r.past) && all.some(toWanted)) hidePast.checked = false;
       apply();
     })
     // On failure the server-rendered upcoming departures simply stand.

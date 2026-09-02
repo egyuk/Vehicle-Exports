@@ -52,6 +52,14 @@ Only these country routes actually build: `africa`, `australia`,
 
 Two ways out: build the pages, or trim the nav to what exists.
 
+**Nav side-stepped 2026-09-02:** `src/data/destinations.ts` now links only the
+countries that have a page to that page; every other country (now every
+destination on the sailing schedule, ~85 in all) links to
+`/uk-car-sailing-schedule?country=X`, which pre-filters the schedule. So the
+nav and the `/car-shipping` hub no longer 404, but the missing country pages
+are still missing — building them (and pointing `countryPages` at them) is
+still the real fix.
+
 Building is now cheaper than it was — `src/pages/car-shipping/australia.astro`
 is the template and already includes the sailing schedule section, which pulls
 its own data from `countryName`. The schedule data covers many of these

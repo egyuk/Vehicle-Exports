@@ -20,39 +20,14 @@ const containerSizes = [
   },
 ];
 
-const countries = [
-  'Australia – Brisbane, Melbourne, Fremantle, Sydney',
-  'Barbados – Bridgetown',
-  'Botswana – Gaborone',
-  'Cameroon – Douala',
-  'Cyprus – Limassol',
-  'Gambia – Banjul',
-  'Ghana – Tema and Takoradi',
-  'Hong Kong Port',
-  'Kenya Shipping – Mombasa',
-  'Malaysia – Port Klang',
-  'Malta – Valletta',
-  'Mozambique – Maputo and Beira',
-  'Namibia – Walvis Bay',
-  'New Zealand – Auckland',
-  'Nigeria – Tin Can Island – Apapa – Lagos',
-  'Senegal – Dakar',
-  'Singapore Port',
-  'South Africa – Durban – Port Elizabeth – Cape Town',
-  'Tanzania – Dar es Salaam',
-  'Thailand – Laem Chabang',
-  'Trinidad & Tobago – Port of Spain',
-  'United States of America – USA',
-  'Zimbabwe – Beitbridge, Plumtree, Harare',
-];
 
 const shippingServiceLinks = shippingServices.map(s => ({ name: s.name, href: `/shipping/${s.slug}` }));
 
 import { continentCountries } from '../../data/destinations';
 
-// Regional overview guides (written content), matched into their continent by `region`.
-// A continent can have more than one guide (e.g. Asia has a general guide plus a
-// Hong Kong-specific one), so group into arrays rather than overwriting by key.
+// Regional overview guides (written content), grouped by their `region` for the
+// Export Destinations section. A region can have more than one guide (Asia has a
+// general guide plus a Hong Kong-specific one), so group into arrays.
 const allGuides = await getCollection('countries');
 const topLevelGuides = allGuides.filter(c => !c.data.parentSlug);
 const guidesByContinent = new Map<string, typeof topLevelGuides>();
@@ -62,11 +37,8 @@ for (const guide of topLevelGuides) {
   guidesByContinent.set(guide.data.region, existing);
 }
 
-const continents = Object.entries(continentCountries).map(([name, countries]) => ({
-  name,
-  countries,
-  guides: guidesByContinent.get(name) ?? [],
-}));
+// Country groups for Countries We Ship To, in the data order from destinations.ts.
+const continents = Object.entries(continentCountries).map(([name, countries]) => ({ name, countries }));
 ---
 
 <Layout
@@ -175,15 +147,29 @@ const continents = Object.entries(continentCountries).map(([name, countries]) =>
     </div>
   </section>
 
-  <!-- Countries We Ship To -->
+  <!-- Countries We Ship To: the Countries nav menu, country by country with
+       the ports we ship to there. Both the list and the ports come from
+       src/data/destinations.ts, and each country links where the menu does
+       (its own page, or the sailing schedule filtered to it). -->
   <section class="pt-3 pb-16 lg:pb-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-8">Countries We Ship To</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {countries.map(c => (
-          <div class="flex items-start gap-2.5 bg-gray-50 border border-gray-100 rounded-lg p-3">
-            <svg class="w-4 h-4 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <span class="text-sm text-gray-700">{c}</span>
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Countries We Ship To</h2>
+      <p class="text-gray-500 leading-relaxed max-w-3xl mb-8">Every country we ship to and the ports we deliver to there (or the hub port we route through), by continent. Choose a country to see its sailings.</p>
+      <div class="space-y-8">
+        {continents.filter(c => c.countries.length > 0).map(c => (
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 pb-2 border-b border-gray-100">{c.name}</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {c.countries.map(country => (
+                <a href={country.href} class="flex items-start gap-2.5 bg-gray-50 hover:bg-orange-50/70 border border-gray-100 rounded-lg p-3 transition-colors">
+                  <svg class="w-4 h-4 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                  <span class="text-sm text-gray-700 leading-snug">
+                    <span class="font-semibold text-gray-900">{country.name}</span>
+                    {country.ports.length > 0 && <span> – {country.ports.join(', ')}</span>}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -210,12 +196,14 @@ const continents = Object.entries(continentCountries).map(([name, countries]) =>
         <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mt-3 font-[family-name:var(--font-heading)]">Export Destinations</h2>
         <p class="text-gray-500 mt-4 max-w-2xl mx-auto">We export quality UK vehicles to destinations worldwide, organised by continent below.</p>
       </div>
-      {continents.map((continent) => (
+      {/* One block per region that has a written guide, keyed by the guides'
+          own `region` (the country list above uses finer groups, e.g. West
+          Africa, so it is not the index here). */}
+      {[...guidesByContinent].map(([region, guides]) => (
         <div>
-          <h3 class="text-2xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-5 pb-3 border-b border-gray-100">Car Shipping and Export to {continent.name}</h3>
-
-          {(() => {
-            const guideCards = continent.guides.map((guide) => (
+          <h3 class="text-2xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-5 pb-3 border-b border-gray-100">Car Shipping and Export to {region}</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {guides.map((guide) => (
               <a href={`/car-shipping/${guide.data.slug}`} class="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg hover:border-[var(--color-primary)]/20 transition-all duration-300">
                 <div class="aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
                   {guide.data.heroImage ? (
@@ -236,50 +224,8 @@ const continents = Object.entries(continentCountries).map(([name, countries]) =>
                   <p class="text-sm text-gray-500 mt-2 line-clamp-2">{guide.data.description}</p>
                 </div>
               </a>
-            ));
-
-            const countryPills = (
-              <div class="grid grid-cols-2 gap-3 content-start">
-                {continent.countries.map((country) => (
-                  <a href={country.href} class="flex items-center gap-2 px-4 py-3 bg-gray-50 hover:bg-orange-50/70 rounded-xl text-sm font-medium text-gray-700 hover:text-[var(--color-primary)] transition-colors">
-                    <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    {country.name}
-                  </a>
-                ))}
-              </div>
-            );
-
-            // Guide + countries: guide keeps its original card size, countries fill the rest of the row.
-            if (continent.guides.length > 0 && continent.countries.length > 0) {
-              return (
-                <div class="flex flex-col lg:flex-row gap-6">
-                  <div class="lg:w-80 lg:shrink-0 space-y-4">{guideCards}</div>
-                  <div class="flex-1">{countryPills}</div>
-                </div>
-              );
-            }
-
-            // Guide only (e.g. Middle East, no countries yet): full-width guide grid.
-            if (continent.guides.length > 0) {
-              return <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">{guideCards}</div>;
-            }
-
-            // Countries only (no matching guide yet): full-width country grid.
-            if (continent.countries.length > 0) {
-              return (
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {continent.countries.map((country) => (
-                    <a href={country.href} class="flex items-center gap-2 px-4 py-3 bg-gray-50 hover:bg-orange-50/70 rounded-xl text-sm font-medium text-gray-700 hover:text-[var(--color-primary)] transition-colors">
-                      <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                      {country.name}
-                    </a>
-                  ))}
-                </div>
-              );
-            }
-
-            return null;
-          })()}
+            ))}
+          </div>
         </div>
       ))}
     </div>

@@ -13,6 +13,20 @@ const countryGroups = Object.entries(continentCountries)
   .filter(([, countries]) => countries.length > 0)
   .map(([title, countries]) => ({ title, links: countries }));
 
+// The desktop panel lays the groups out in fixed columns, largest group first
+// into the shortest column, so the tallest group sets the panel height. CSS
+// columns could not split a group, so a group landing at the wrong point in
+// the data order left the panel a whole group taller than it needed to be.
+const COUNTRY_COLS = 5;
+const countryColumns: (typeof countryGroups)[] = Array.from({ length: COUNTRY_COLS }, () => []);
+const columnHeights = new Array(COUNTRY_COLS).fill(0);
+for (const gr of [...countryGroups].sort((a, b) => b.links.length - a.links.length)) {
+  const i = columnHeights.indexOf(Math.min(...columnHeights));
+  countryColumns[i].push(gr);
+  columnHeights[i] += gr.links.length + 1; // +1 for the heading
+}
+countryColumns.forEach(col => col.sort((a, b) => a.title.localeCompare(b.title)));
+
 const navLinks = [
   {
     name: 'Car Export Services',
@@ -60,45 +74,11 @@ const navLinks = [
     href: '/process',
   },
   {
-    name: 'Vehicle Sourcing',
-    href: '/shipping-cars',
-    mega: {
-      columns: [
-        {
-          title: 'By Body Type',
-          links: [
-            { name: 'SUV & 4x4', href: '/shipping-cars/body/suv' },
-            { name: 'Sedan', href: '/shipping-cars/body/sedan' },
-            { name: 'Coupe', href: '/shipping-cars/body/coupe' },
-            { name: 'Pickup Truck', href: '/shipping-cars/body/pickup-truck' },
-          ],
-        },
-        {
-          title: 'Browse Listings',
-          links: [
-            { name: 'All Vehicles', href: '/shipping-cars' },
-            { name: 'Featured Vehicles', href: '/shipping-cars?featured=true' },
-            { name: 'New Arrivals', href: '/shipping-cars?condition=New' },
-            { name: 'Used Cars', href: '/shipping-cars?condition=Used' },
-          ],
-        },
-      ],
-      featured: {
-        tag: 'In stock now',
-        title: 'Ready to ship',
-        text: 'Browse the latest UK vehicles prepared for worldwide export.',
-        cta: 'View all stock',
-        href: '/shipping-cars',
-      },
-    },
-  },
-  {
     name: 'Countries',
     href: '/car-shipping',
     mega: {
-      groups: countryGroups,
-      cardCols: 4,
-      align: 'right',
+      groups: countryGroups,          // mobile menu, in data order
+      groupColumns: countryColumns,   // desktop panel, packed by size
       mobileHeading: 'Shipping to countries worldwide',
       featured: {
         tag: 'Shipping Worldwide from the UK',
@@ -138,7 +118,10 @@ const navLinks = [
 
   <!-- Main Nav -->
   <nav id="main-nav" class="bg-white border-b border-gray-100 relative z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- relative: the Countries panel is too wide to hang off its own nav item
+         without running past the left edge of the viewport, so it positions
+         against this container instead and lines up with the content edge. -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-[80px]">
         <!-- Logo -->
         <a href="/" class="flex items-center gap-3 shrink-0">
@@ -148,7 +131,7 @@ const navLinks = [
         <!-- Desktop Nav -->
         <div class="hidden lg:flex items-center gap-0">
           {navLinks.map(link => (
-            <div class="relative group">
+            <div class:list={[link.mega?.groupColumns ? "static" : "relative", "group"]}>
               <a href={link.href} class:list={["flex items-center gap-1.5 px-3 xl:px-5 py-2 text-[16px] font-medium hover:text-[var(--color-primary)] transition-colors", link.color || 'text-[var(--color-dark)]']}>
                 {link.name}
                 {(link.dropdown || link.mega) && (
@@ -169,10 +152,13 @@ const navLinks = [
                 </div>
               )}
 
-              {/* Mega menu — service cards variant */}
+              {/* Mega menu — service cards / country groups variant.
+                  The groups panel sits on the container (see the comment on
+                  it); top-[60px] is where the nav link ends inside the 80px
+                  row, i.e. the same place top-full puts the other panels. */}
               {link.mega && (link.mega.cards || link.mega.groups) && (
-                <div class:list={["absolute top-full pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50", link.mega.align === 'right' ? "right-0" : link.mega.cardCols >= 3 ? "left-1/2 -translate-x-1/2" : "left-0"]}>
-                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid gap-5", link.mega.featured ? (link.mega.cardCols >= 3 ? "w-[820px] xl:w-[920px] grid-cols-[1fr_190px] xl:grid-cols-[1fr_220px]" : "w-[680px] xl:w-[820px] grid-cols-[1fr_200px] xl:grid-cols-[1fr_240px]") : "w-[560px]"]}>
+                <div class:list={["absolute pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50", link.mega.groupColumns ? "top-[60px] right-8" : link.mega.cardCols >= 3 ? "top-full left-1/2 -translate-x-1/2" : "top-full left-0"]}>
+                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 grid gap-5", link.mega.groupColumns ? "w-[900px] xl:w-[1080px] grid-cols-[1fr_190px] xl:grid-cols-[1fr_220px]" : link.mega.featured ? (link.mega.cardCols >= 3 ? "w-[820px] xl:w-[920px] grid-cols-[1fr_190px] xl:grid-cols-[1fr_220px]" : "w-[680px] xl:w-[820px] grid-cols-[1fr_200px] xl:grid-cols-[1fr_240px]") : "w-[560px]"]}>
                     <div>
                     {link.mega.banner && (
                       <a href={link.mega.banner.href} class="group/mb relative block rounded-xl overflow-hidden mb-4">
@@ -184,18 +170,22 @@ const navLinks = [
                         </span>
                       </a>
                     )}
-                    {link.mega.groups ? (
-                      <div class:list={[link.mega.cardCols === 4 ? "columns-4" : "columns-3", "gap-4"]}>
-                        {link.mega.groups.map(gr => (
-                          <div class="break-inside-avoid mb-4">
-                            <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2 pb-1.5 border-b border-gray-100">{gr.title}</h4>
-                            <ul class="space-y-0.5">
-                              {gr.links.map(item => (
-                                <li>
-                                  <a href={item.href} class="block rounded-lg px-2 py-1 -mx-2 text-[13.5px] font-medium text-[var(--color-dark)] hover:text-[var(--color-primary)] hover:bg-orange-50/70 transition-colors">{item.name}</a>
-                                </li>
-                              ))}
-                            </ul>
+                    {link.mega.groupColumns ? (
+                      <div class="grid grid-cols-5 gap-4">
+                        {link.mega.groupColumns.map(col => (
+                          <div>
+                            {col.map(gr => (
+                              <div class="mb-4">
+                                <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1.5 pb-1.5 border-b border-gray-100">{gr.title}</h4>
+                                <ul>
+                                  {gr.links.map(item => (
+                                    <li>
+                                      <a href={item.href} class="block rounded-md px-2 py-[2px] -mx-2 text-[13px] font-medium leading-snug text-[var(--color-dark)] hover:text-[var(--color-primary)] hover:bg-orange-50/70 transition-colors">{item.name}</a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
                           </div>
                         ))}
                       </div>
@@ -242,44 +232,6 @@ const navLinks = [
                             </a>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Mega menu — column-links variant */}
-              {link.mega && link.mega.columns && (
-                <div class="absolute top-full left-0 pt-3 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                  <div class:list={["bg-white rounded-2xl shadow-2xl border border-gray-100 p-7 grid gap-7", link.mega.featured ? "grid-cols-[repeat(auto,minmax(0,1fr))]" : ""]} style={`width:${170 * link.mega.columns.length + (link.mega.featured ? 240 : 0)}px; grid-template-columns:repeat(${link.mega.columns.length}, minmax(0,1fr))${link.mega.featured ? ' 240px' : ''};`}>
-                    {link.mega.columns.map(col => (
-                      <div>
-                        <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-4 pb-2 border-b border-gray-100">{col.title}</h4>
-                        <ul class="space-y-1">
-                          {col.links.map(item => (
-                            <li>
-                              <a href={item.href} class="group/mi block rounded-lg px-3 py-2 -mx-3 hover:bg-orange-50/70 transition-colors">
-                                <span class="block text-[15px] font-medium text-[var(--color-dark)] group-hover/mi:text-[var(--color-primary)] transition-colors">{item.name}</span>
-                                {item.desc && <span class="block text-[12.5px] text-gray-400 mt-0.5 leading-snug">{item.desc}</span>}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-
-                    {link.mega.featured && (
-                      <div class="rounded-xl bg-[var(--color-dark)] p-5 flex flex-col justify-between text-white overflow-hidden relative">
-                        <div class="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-[var(--color-primary)]/20"></div>
-                        <div class="relative">
-                          <span class="inline-block text-[var(--color-primary)] text-[11px] font-semibold uppercase tracking-wide mb-2">{link.mega.featured.tag}</span>
-                          <h5 class="text-lg font-bold font-[family-name:var(--font-heading)] leading-tight mb-2">{link.mega.featured.title}</h5>
-                          <p class="text-[13px] text-white/70 leading-snug">{link.mega.featured.text}</p>
-                        </div>
-                        <a href={link.mega.featured.href} class="relative mt-5 inline-flex items-center justify-center gap-1.5 bg-[var(--color-primary)] hover:bg-white hover:text-[var(--color-dark)] text-white text-sm font-semibold px-4 py-2.5 rounded-lg transition-colors">
-                          {link.mega.featured.cta}
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </a>
                       </div>
                     )}
                   </div>
@@ -370,30 +322,6 @@ const navLinks = [
               )}
             </div>
           </div>
-        ) : link.mega ? (
-          <div>
-            <button class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
-              {link.name}
-              <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="mobile-dropdown hidden pl-3 space-y-3 mt-1 mb-1">
-              {(link.mega.columns || []).map(col => (
-                <div>
-                  <span class="block px-3 pt-1 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{col.title}</span>
-                  {col.links.map(item => (
-                    <a href={item.href} class="block px-3 py-2 text-sm text-gray-500 hover:text-[var(--color-primary)] rounded-lg hover:bg-gray-50 transition-colors">
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              ))}
-              {link.mega.featured && (
-                <a href={link.mega.featured.href} class="block mx-3 mt-1 text-center bg-[var(--color-primary)] text-white px-4 py-2.5 rounded-lg text-sm font-semibold">
-                  {link.mega.featured.cta}
-                </a>
-              )}
-            </div>
-          </div>
         ) : link.dropdown ? (
           <div>
             <button class="mobile-dropdown-btn w-full flex justify-between items-center px-3 py-3 text-[var(--color-dark)] font-medium rounded-lg hover:bg-gray-50 transition-colors text-sm">
@@ -457,12 +385,13 @@ const navLinks = [
 </div>
 
 <style>
-  /* Touch devices: .open (toggled by tap) mirrors the hover-revealed dropdown state */
+  /* Touch devices: .open (toggled by tap) mirrors the hover-revealed dropdown state.
+     Only cancel the slide-in Y offset: the Shipping panel is centred on its nav
+     item with -translate-x-1/2, so wiping the whole translate would shift it. */
   #main-nav :global(.group.open > div) {
     opacity: 1;
     pointer-events: auto;
-    transform: none;
-    translate: 0;
+    --tw-translate-y: 0;
   }
   #main-nav :global(.group.open > a > svg) {
     rotate: 180deg;
