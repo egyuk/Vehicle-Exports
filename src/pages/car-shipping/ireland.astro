@@ -7,6 +7,7 @@ import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
 import { fromPriceFor, shippingRates } from '../../data/shipping-prices';
+import schedules from '../../data/sailing-schedules.json';
 
 const countryName = 'Ireland';
 
@@ -27,6 +28,46 @@ const crossingNote = shippingRates[countryName]?.note ?? '';
 // Cheapest end of that range, for the meta description.
 const crossingFrom = crossingNote.match(/£[\d,]+/)?.[0] ?? '';
 
+// Ireland is the one route where a single blended transit figure misleads, so
+// the two services are measured separately from the live schedule rather than
+// typed. The ferry crossing arrives the day it leaves; a container goes the
+// long way round through a continental hub and takes a fortnight. The page said
+// "3-7 days" and "7-14 days" for these, neither of which the data supported.
+const today = new Date().toISOString().slice(0, 10);
+const irish = (schedules.sailings as any[]).filter(
+  s => /,\s*Ireland$/.test(s.destination) && s.ets >= today,
+);
+const daysFor = (service: string) =>
+  irish.filter(s => s.service === service)
+    .map(s => Math.round((new Date(s.eta).getTime() - new Date(s.ets).getTime()) / 86400000))
+    .sort((a, b) => a - b);
+const ferryDays = daysFor('roro');
+const boxDays = daysFor('container');
+/** True while every ferry crossing in the schedule lands on its departure date. */
+const ferrySameDay = ferryDays.length > 0 && ferryDays[ferryDays.length - 1] === 0;
+// Container transit on this route is bimodal, so a bare min-to-max would print
+// "0 to 16 days" and read as broken data. A direct Liverpool-Dublin feeder lands
+// the same day; a liner that calls Dublin as one stop on a longer loop takes a
+// fortnight. Split at 2 days and describe both, all derived, so a schedule
+// refresh cannot leave this prose behind the way the old "7-14 days" did.
+const boxFast = boxDays.filter(d => d <= 2);
+const boxSlow = boxDays.filter(d => d > 2);
+const spanOf = (d: number[]) =>
+  d[0] === d[d.length - 1] ? `${d[0]} days` : `${d[0]} to ${d[d.length - 1]} days`;
+const boxRange = boxSlow.length
+  ? boxFast.length
+    ? `same-day on the direct Dublin feeder, or ${spanOf(boxSlow)} on a liner that calls Ireland part-way round a longer loop`
+    : spanOf(boxSlow)
+  : boxDays.length
+    ? 'same-day on the direct Dublin feeder'
+    : 'quoted per booking';
+// Container leaves from different ports than the ferry, so name them rather
+// than letting a reader assume Holyhead and Fishguard.
+const boxPorts = [
+  ...new Set(irish.filter(s => s.service === 'container').map(s => s.loadPort)),
+].sort();
+const boxPortsLabel = boxPorts.join(', ').replace(/, ([^,]*)$/, ' and $1');
+
 // Ireland keeps its destination-side facts (like Australia and Kenya), so the
 // Irish VAT and import duty figures are back in this bar alongside the UK-side
 // ones. Load ports below come from src/data/sailing-schedules.json
@@ -35,7 +76,7 @@ const crossingFrom = crossingNote.match(/£[\d,]+/)?.[0] ?? '';
 // in the body. Duty is 0% or 10% depending on where the car was built; the old
 // "often 0% via Returning Goods Relief" was wrong on both counts.
 const quickFacts = [
-  { label: 'Shipping Time', value: '3-7 days', sub: 'RoRo, Irish Sea crossing' },
+  { label: 'Shipping Time', value: ferrySameDay ? 'Same day' : 'On enquiry', sub: 'RoRo, Irish Sea crossing' },
   { label: 'Delivery Ports', value: 'Dublin, Rosslare', sub: 'From Holyhead and Fishguard' },
   { label: 'Irish VAT', value: '23%', sub: 'Charged on customs value' },
   { label: 'Import Duty', value: '0% or 10%', sub: 'Turns on where the car was built' },
@@ -70,7 +111,7 @@ const faqs = [
   },
   {
     q: 'How long does the crossing to Ireland take?',
-    a: 'The crossing itself is a same-day sailing — every Irish Sea sailing in our schedule leaves a UK port and arrives in Ireland on the same date, a matter of hours rather than days. Allow roughly 3-7 days end to end once collection, UK export clearance and the booked sailing date are taken into account. The sailing schedule on this page shows the actual dates.',
+    a: `By RoRo the crossing is same-day: every Irish Sea sailing in our schedule leaves a UK port and arrives in Ireland on the same date, a matter of hours rather than days, and there are several most days. Add a few days either side for collection and UK export clearance. Container is a different service on a different route: it sails from ${boxPortsLabel} rather than the ferry ports, and the sea leg is ${boxRange}. Allow extra either side for the terminal cut-off before loading and collection after discharge. The sailing schedule on this page shows the actual dates.`,
   },
   {
     q: 'Which UK ports do sailings to Ireland depart from?',
@@ -143,14 +184,14 @@ const faqs = [
           <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 17h1l1-5h14l1 5h1m-4 0a2 2 0 11-4 0m-4 0a2 2 0 11-4 0M5 12V7a2 2 0 012-2h10a2 2 0 012 2v5"/></svg>
         </div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
-        <p class="text-sm text-gray-500 mt-1">Ideal for most vehicles — simple, fast, and cost-effective. Typically 3-7 days.</p>
+        <p class="text-sm text-gray-500 mt-1">Ideal for most vehicles — simple, fast, and cost-effective. The crossing is same-day, with several sailings most days.</p>
       </div>
       <div class="border border-gray-100 rounded-xl p-5">
         <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
           <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7H4a1 1 0 00-1 1v8a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM8 7V5a1 1 0 011-1h6a1 1 0 011 1v2M12 7v10M7 12h10"/></svg>
         </div>
         <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Container Shipping</h4>
-        <p class="text-sm text-gray-500 mt-1">Extra security, or for multiple vehicles and personal items. Typically 7-14 days.</p>
+        <p class="text-sm text-gray-500 mt-1">Extra security, or for multiple vehicles and personal items. Sails from {boxPortsLabel}, with a sea leg of {boxRange}.</p>
       </div>
     </div>
     <p class="text-gray-600 leading-relaxed">

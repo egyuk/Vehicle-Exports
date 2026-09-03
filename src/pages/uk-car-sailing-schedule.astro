@@ -193,12 +193,15 @@ const destinationGroups = (() => {
                 <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{r.loadPort}</td>
                 <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
                   {flipDest(r.destination)}
-                  {/* Flagged only when it is not the RoRo most customers assume. */}
+                  {/* Every row states its service — see SailingSchedule.astro. */}
+                  {r.service === 'roro' && (
+                    <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-sky-700 bg-sky-50 border border-sky-200 rounded px-1.5 py-0.5" title="Roll-on roll-off: the vehicle is driven aboard and secured on deck.">RoRo</span>
+                  )}
                   {r.service === 'container' && (
-                    <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-gray-500 bg-gray-100 border border-gray-200 rounded px-1.5 py-0.5">Container</span>
+                    <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-primary)] bg-red-50 border border-red-200 rounded px-1.5 py-0.5">Container</span>
                   )}
                   {r.service === 'conro' && (
-                    <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-primary)] bg-orange-50 border border-orange-200 rounded px-1.5 py-0.5" title="A ConRo sailing: this ship carries both, so your vehicle can travel RoRo or in a container on the same departure.">RoRo or container</span>
+                    <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5" title="A ConRo sailing: this ship carries both, so your vehicle can travel RoRo or in a container on the same departure.">RoRo or container</span>
                   )}
                   {r.service === 'unknown' && (
                     <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-gray-400 bg-gray-50 border border-gray-200 rounded px-1.5 py-0.5" title="The carrier's schedule did not state whether this is a RoRo or container sailing. Ask us and we will confirm before you book.">Service TBC</span>
@@ -281,7 +284,7 @@ const destinationGroups = (() => {
     ets: string; eta: string; port: string; dest: string; vessel: string;
     notes: string; example?: boolean;
     /** Only present when NOT plain RoRo — see data.json.ts. */
-    service?: 'container' | 'conro' | 'unknown';
+    service?: 'roro' | 'container' | 'conro' | 'unknown';
     transit: number | null; past: boolean; search: string;
   };
 
@@ -309,10 +312,12 @@ const destinationGroups = (() => {
       <td class="px-4 py-3 text-gray-900 whitespace-nowrap">${esc(r.port)}</td>
       <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
         ${esc(r.dest)}
-        ${r.service === 'conro'
-          ? '<span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-primary)] bg-orange-50 border border-orange-200 rounded px-1.5 py-0.5" title="A ConRo sailing: this ship carries both, so your vehicle can travel RoRo or in a container on the same departure.">RoRo or container</span>'
+        ${r.service === 'roro'
+          ? '<span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-sky-700 bg-sky-50 border border-sky-200 rounded px-1.5 py-0.5" title="Roll-on roll-off: the vehicle is driven aboard and secured on deck.">RoRo</span>'
+          : r.service === 'conro'
+          ? '<span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5" title="A ConRo sailing: this ship carries both, so your vehicle can travel RoRo or in a container on the same departure.">RoRo or container</span>'
           : r.service === 'container'
-          ? '<span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-gray-500 bg-gray-100 border border-gray-200 rounded px-1.5 py-0.5">Container</span>'
+          ? '<span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-primary)] bg-red-50 border border-red-200 rounded px-1.5 py-0.5">Container</span>'
           : r.service === 'unknown'
           ? '<span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-gray-400 bg-gray-50 border border-gray-200 rounded px-1.5 py-0.5" title="The carrier\'s schedule did not state whether this is a RoRo or container sailing. Ask us and we will confirm before you book.">Service TBC</span>'
           : ''}
@@ -483,7 +488,7 @@ const destinationGroups = (() => {
         ...s,
         transit: transitDays(s.ets, s.eta),
         past: s.ets < todayISO,
-        search: `${s.vessel} ${s.port} ${s.dest} ${s.carrier} ${s.voyage} ${s.lane} ${s.notes}`.toLowerCase(),
+        search: `${s.vessel} ${s.port} ${s.dest} ${s.carrier} ${s.voyage} ${s.lane} ${s.notes} ${s.service === 'conro' ? 'roro container conro' : s.service}`.toLowerCase(),
       }));
       // A ?country= link to a destination whose sailings have all departed
       // would land on the empty state with those rows one checkbox away, so

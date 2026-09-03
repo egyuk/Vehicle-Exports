@@ -115,17 +115,20 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
                   <td class="px-4 py-3 text-gray-900 whitespace-nowrap">{s.loadPort}</td>
                   <td class="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
                     {flipDest(s.destination)}
-                    {/* Flagged only when it is NOT the RoRo most customers assume.
-                        A container sailing quoted as a RoRo transit sells the
-                        wrong service, and "unknown" means the source did not
-                        say rather than that we forgot to look. */}
+                    {/* Every row states its service. RoRo used to be the silent
+                        default, which was fine when it was nearly all of the
+                        schedule — but container is now 45% of it, so a row with
+                        no badge read as "unlabelled" rather than "RoRo". */}
+                    {s.service === 'roro' && (
+                      <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-sky-700 bg-sky-50 border border-sky-200 rounded px-1.5 py-0.5" title="Roll-on roll-off: the vehicle is driven aboard and secured on deck.">RoRo</span>
+                    )}
                     {s.service === 'container' && (
-                      <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-gray-500 bg-gray-100 border border-gray-200 rounded px-1.5 py-0.5">Container</span>
+                      <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-primary)] bg-red-50 border border-red-200 rounded px-1.5 py-0.5">Container</span>
                     )}
                     {/* ConRo is a selling point, not a caveat: the same sailing
                         takes the car driven on or in a container. */}
                     {s.service === 'conro' && (
-                      <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-primary)] bg-orange-50 border border-orange-200 rounded px-1.5 py-0.5" title="A ConRo sailing: this ship carries both, so your vehicle can travel RoRo or in a container on the same departure.">RoRo or container</span>
+                      <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5" title="A ConRo sailing: this ship carries both, so your vehicle can travel RoRo or in a container on the same departure.">RoRo or container</span>
                     )}
                     {s.service === 'unknown' && (
                       <span class="ml-2 align-middle inline-block text-[10px] font-semibold uppercase tracking-wide text-gray-400 bg-gray-50 border border-gray-200 rounded px-1.5 py-0.5" title="The carrier's schedule did not state whether this is a RoRo or container sailing. Ask us and we will confirm before you book.">Service TBC</span>
