@@ -32,7 +32,58 @@ placeholder links and asset weight.
 
 ---
 
-## 1. Twenty country pages are linked site-wide but do not exist
+## 1. Country pages — BUILT 2026-09-03
+
+**All 86 menu countries now have a page.** The 81 that were missing were
+generated from `_country-template.astro` and `countryPages` in
+`src/data/destinations.ts` now points every menu entry at its own page instead
+of the pre-filtered sailing schedule. Site went 148 -> 229 pages.
+
+Each page is built from data the site already held, so they are not
+near-duplicates: 64 have live sailings (real ports, UK load ports, carriers and
+a transit range), 62 show a price from the published rate table, and every one
+has its own market paragraph. Audited across all 81: one `h1` each, zero broken
+anchors, zero duplicate titles or descriptions, all titles under 60 characters
+and descriptions under 160.
+
+Landlocked countries resolve through `hubPorts`: Uganda now prices and shows
+sailings off **both** Mombasa and Dar es Salaam (George's call), Botswana off
+Walvis Bay and Durban, Zimbabwe off Durban and Beira. Their pages say plainly
+that the rate covers the sea leg and the overland leg is arranged separately.
+
+⚠ **The one thing that still needs a decision — right-hand drive.** While
+profiling the markets, the research found that **31 of the 81 countries
+restrict or ban right-hand-drive imports outright**, meaning a UK car cannot be
+registered there at all:
+
+> Angola, Cameroon, Côte d'Ivoire, Equatorial Guinea, Gambia, Ghana, Guinea,
+> Mauritania, Morocco, Nigeria, Sierra Leone, Madagascar, China, South Korea,
+> Taiwan, Dominican Republic, Puerto Rico, Jordan, Oman, Saudi Arabia, Turkey,
+> Mexico, New Caledonia, Argentina, Brazil, Chile, Colombia, Ecuador, Panama,
+> Peru, Uruguay
+
+Driving side as a general fact is deliberately NOT shown anywhere (George's
+call: export buyers already know which side their market drives on). But these
+31 are import BANS, not preferences, so on George's instruction each of those
+pages now carries a **left-hand-drive sourcing callout** in its `#about`
+section, marked `data-lhd-note`:
+
+- It states in the first sentence that the country registers left-hand-drive
+  only and a UK-registered car cannot go on the road there. No hedging: a
+  customer must not ship a car that cannot be registered.
+- It then turns that into a sourcing lead, because we buy as well as ship, and
+  ends with a link to /contact. A Nigeria or Brazil enquiry becomes a
+  left-hand-drive sourcing job instead of a wasted freight bill.
+- All 31 are individually written, not templated, and cite that country's own
+  verified detail (Ghana the 1 October 2026 Tema enforcement, Oman the Royal
+  Oman Police decision, Turkey the Highway Traffic Regulation article). A
+  reviewer pass caught and fixed a Morocco/Angola near-duplicate and two
+  passages that hedged a legal prohibition into "we cannot promise".
+
+If the copy is ever regenerated, keep those two properties: no hedging on the
+ban, and no boilerplate across the 31.
+
+### Original issue, for context
 
 **~5,300 broken links** — the single biggest issue, because the links sit in the
 main navigation and therefore appear on every page.
@@ -171,6 +222,106 @@ hub plus the Kenya duty calculator.
 - The one destination mention left on a UK-side page is deliberate: an FAQ
   telling the customer that duty, VAT and VRT are theirs and are not in our
   price. Better than silence.
+
+### Schedule data: unattributed rows, and no container lines at all
+
+Found while generating the country pages (2026-09-03).
+
+- **63 of 1,475 sailings carry a blank `carrier`**, from the aggregator sources
+  (`nmt.mjs`, `autoshippers.mjs`). That produced a visibly empty "Shipping
+  Lines" quick fact on Jordan, whose only two sailings are both unattributed.
+  The generator now filters blank carriers and falls back to a "Shipping
+  Options: RoRo & container" fact, so the symptom is fixed, but the data gap is
+  still there.
+- **Only Jordan (2 rows) and Sweden (1 row) rely entirely on unattributed
+  sailings.** Everywhere else named RoRo carriers dominate, so the impact is
+  contained to those two pages.
+- ⚠ **Every named carrier in the schedule is a vehicle carrier or ferry line**
+  — Wallenius Wilhelmsen, Höegh, NYK RoRo, "K" Line, EUKOR, Glovis, Sallaum,
+  Grimaldi, UECC, ACL, Stena, DFDS, Condor, MOL ACE, Geest. **There is no
+  container line in the data at all** (no CMA CGM, Maersk or MSC). George
+  reports Jordan's rows are container schedules, which means a container
+  sailing has reached the file without being labelled as one, and there is no
+  field that distinguishes RoRo from container on a row.
+### Service type — DONE 2026-09-03
+
+Every row now carries `service`: `roro`, `container`, `conro` or `unknown`.
+Sources declare it and the pipeline throws if one omits it; unattributed rows
+are downgraded to `unknown` after the merge. Anything not plain RoRo is badged
+on the country pages and the full schedule. See `scripts/schedules/README.md`.
+
+Current split of the 1,475 rows: **1,376 roro, 36 conro, 63 unknown**.
+
+**ACL is now `conro`**, which is the first real container coverage in the data.
+Their Liverpool to North America service runs G4 ConRo ships that carry
+containers and rolling cargo on the same sailing, so a customer can book either
+way on one departure. It shows on the USA and Canada pages as a "RoRo or
+container" badge, styled as a benefit rather than a warning, because it is a
+genuine choice to offer. This came free: the source was already wired in and
+only needed to declare what it actually is.
+
+### CMA CGM as a container source — INVESTIGATED, NOT VIABLE 2026-09-03
+
+George asked for this to be built. It cannot be, within this pipeline's
+constraints, and a module written anyway would **throw on its first unattended
+run and block the weekly write**. So it was deliberately not written.
+
+Three researchers reached the same answer by different routes, and the verdict
+agent then re-ran the probes itself from plain Node rather than trusting them:
+
+| Request | Result |
+| --- | --- |
+| `GET /ebusiness/schedules` | **403**, DataDome interstitial |
+| `POST /ebusiness/schedules/routing-finder` (exact captured payload, full Chrome headers) | **403** |
+| `GET .../routing-finder/export?...&fileType=CSV` | **403** |
+
+The decisive test: a **freshly solved DataDome cookie lifted from a live browser
+and replayed from Node within seconds, with a complete Chrome header set, still
+403s.** That puts the check on the TLS/JA3 and HTTP/2 handshake, below anything
+Node's fetch can change. It is not a "try harder with headers" problem. Beating
+it needs curl-impersonate, cycletls or a headless browser, all excluded here.
+DataDome's own botname on the block is "suspicious signatures from badly
+reputed IPs", and a cloud runner is exactly that IP class, so the weekly run
+would be scored *harder* than a desk machine.
+
+Two things would sink it even if the block vanished: there is no JSON schedule
+API (the routing finder is a server-rendered ASP.NET form POST returning ~1.2 MB
+of HTML), and CMA CGM's official Point-to-Point Schedules API needs portal
+registration, an issued key and a signed contract, so it fails the
+unauthenticated constraint.
+
+No parser sketch was written on purpose: nobody ever retrieved a schedule
+payload outside a browser, so any "spec" would be fiction, and a plausible
+looking one is worse than none because someone might ship it.
+
+**Ranked alternatives, if container coverage is still wanted:**
+
+1. **Ask CMA CGM for API portal access.** An exporter shipping this volume will
+   have an account manager. Their P2P Schedules API returns exactly the fields
+   this contract needs. Costs a key in the runner's environment; the pipeline
+   stays a plain fetch. Only reliable route to CMA CGM data.
+2. **Widen the existing ACL source.** `sources/acl.mjs` is already wired in and
+   ACL is ConRo, carrying containers as well as RoRo on the North Atlantic.
+   Cheapest real container coverage, no new auth.
+3. **Maersk.** `https://api.maersk.com/schedules/point-to-point` answers plain
+   Node with a clean JSON 401 and has a documented free developer tier, so it is
+   the most promising cheap credentialed option. MSC, ZIM and Ellermanreturn 200 HTML
+   to plain fetch with no bot challenge; Ellerman is UK-focused and worth a look
+   for UK-departure lanes. **All are research leads, not findings** — nobody
+   verified any of them returns parseable sailing rows.
+4. **EDIFACT IFTSAI feed.** Right shape and more stable than any internal API,
+   but SFTP/AS2 push under an EDI agreement. Only worth it if EDI already runs.
+5. **Aggregators: don't.** GoComet gates behind signup, SeaRates 403s behind
+   Cloudflare, Fluent Cargo is a marketing page.
+
+**Worth keeping whichever carrier is chosen:** UK to Aqaba is a **transhipment
+routing via the Mediterranean**, not a direct call. A scraper keyed on a single
+direct vessel would legitimately return zero rows for Jordan, which is probably
+why the lane is thin today.
+
+**Do not use** `cma-cgm.com/api/PortsWithInlands/GetAllPlaces`. It does answer
+plain Node, but their robots.txt disallows `/api/*`, and the pipeline has no
+need for UN/LOCODEs anyway.
 
 ### Open items from this work
 

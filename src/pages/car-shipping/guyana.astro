@@ -1,0 +1,109 @@
+---
+// Car shipping from the UK to Guyana. Generated from
+// _country-template.astro on 2026-09-03 and safe to edit by hand.
+//
+// UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
+// customs and documentation, and getting the car onto the ship. Destination
+// duty, taxes and registration are the importer's responsibility and belong on
+// /import-uk-cars/. Do not add them here.
+//
+// Ports, UK load ports, carriers and transit come from
+// src/data/sailing-schedules.json; prices come from src/data/shipping-rates.ts
+// via <CountryCosts>. Both refresh on their own, so leave them alone.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+
+const countryName = 'Guyana';
+const destinationPorts = ['Georgetown'];
+const popularBrands = ['Toyota', 'Nissan', 'Suzuki', 'Mitsubishi', 'Honda', 'Land Rover', 'Isuzu'];
+const fromPrice = fromPriceFor(countryName);
+
+const quickFacts = [
+  { label: 'Shipping Time', value: '1-8 weeks', sub: 'From Southampton and Portsmouth' },
+  { label: 'Delivery Port', value: 'Georgetown', sub: '' },
+  { label: 'Shipping From', value: '£2,148', sub: 'Approximate, per vehicle' },
+  { label: 'Shipping Lines', value: 'Höegh Autoliners', sub: 'and 1 other line' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
+  { href: '#about', label: 'Shipping to Guyana' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Answers restate facts already on this page — keep the two in step.
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Guyana?`,
+    a: `RoRo shipping starts from around £2,148 per vehicle, and a 20ft container from about £3,001. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Guyana take?`,
+    a: `Current carrier schedules show roughly 1 to 8 weeks port to port, sailing from Southampton and Portsmouth. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+  },
+  {
+    q: `Which UK ports do sailings to Guyana depart from?`,
+    a: `Southampton and Portsmouth, with Höegh Autoliners and Geest Line. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Which ports can my car be shipped to in Guyana?`,
+    a: `Georgetown. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Guyana?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Guyana | From £2,148`}
+  description="Ship a car from the UK to Guyana (Georgetown). From £2,148. 1-8 weeks transit. Costs, ports and live sailing dates."
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to Guyana`}
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Guyana</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">The offshore oil boom has created strong money for double-cab pickups, Land Cruiser and Prado-class 4x4s and Land Rover Defenders for the interior tracks, though the age cap of around eight years on cars means UK stock must be reasonably fresh.</p>
+    <p class="text-gray-600 leading-relaxed">
+      We work directly with the shipping lines serving Guyana, delivering to Georgetown, and handle the whole
+      UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
+      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Southampton and Portsmouth.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

@@ -1,0 +1,122 @@
+---
+// Car shipping from the UK to Uganda. Generated from
+// _country-template.astro on 2026-09-03 and safe to edit by hand.
+//
+// UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
+// customs and documentation, and getting the car onto the ship. Destination
+// duty, taxes and registration are the importer's responsibility and belong on
+// /import-uk-cars/. Do not add them here.
+//
+// Ports, UK load ports, carriers and transit come from
+// src/data/sailing-schedules.json; prices come from src/data/shipping-rates.ts
+// via <CountryCosts>. Both refresh on their own, so leave them alone.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+
+const countryName = 'Uganda';
+const destinationPorts = ['Mombasa', 'Dar es Salaam'];
+const popularBrands = ['Toyota', 'Nissan', 'Mitsubishi', 'Subaru', 'Isuzu', 'Land Rover'];
+const fromPrice = fromPriceFor(countryName);
+
+const quickFacts = [
+  { label: 'Shipping Time', value: '2-5 weeks', sub: 'From Sheerness and Southampton' },
+  { label: 'Delivery Ports', value: 'Mombasa, Dar es Salaam', sub: '' },
+  { label: 'Shipping From', value: '£1,214', sub: 'Approximate, per vehicle' },
+  { label: 'Shipping Line', value: 'MOL ACE', sub: 'RoRo and container' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
+  { href: '#about', label: 'Shipping to Uganda' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Answers restate facts already on this page — keep the two in step.
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Uganda?`,
+    a: `RoRo shipping starts from around £1,214 per vehicle, and a 20ft container from about £1,854. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Uganda take?`,
+    a: `Current carrier schedules show roughly 2 to 5 weeks port to port, sailing from Sheerness and Southampton. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+  },
+  {
+    q: `Which UK ports do sailings to Uganda depart from?`,
+    a: `Sheerness and Southampton, with MOL ACE. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Uganda is landlocked — which port does my car arrive at?`,
+    a: `Vehicles for Uganda are shipped to the nearest suitable port and cleared onward overland. We use Mombasa in Kenya and Dar es Salaam in Tanzania, and the rates and sailing dates on this page are for that sea leg. Which port suits you depends on where in Uganda the car is going and which sailing is next, so we confirm it when the booking is made. The onward leg and destination clearance are arranged by your agent.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Uganda?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Uganda | From £1,214`}
+  description="Ship a car from the UK to Uganda (Mombasa, Dar es Salaam). From £1,214. 2-5 weeks transit. Costs, ports and live sailing dates."
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country="Kenya"
+    id="sailings"
+    standalone={false}
+    heading="Sailings to Mombasa, Kenya"
+    intro="Vehicles for Uganda are landed at Mombasa and cleared onward overland. Dates are carrier estimates and must be reconfirmed before booking."
+  />
+
+  <SailingSchedule
+    country="Tanzania"
+    standalone={false}
+    heading="Sailings to Dar es Salaam, Tanzania"
+    intro="Vehicles for Uganda are landed at Dar es Salaam and cleared onward overland. Dates are carrier estimates and must be reconfirmed before booking."
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Uganda</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Vehicles over 15 years old are prohibited and everything arrives landlocked via Mombasa or Dar es Salaam with an inland haul, so the sweet spot is 8-to-14-year-old diesel 4x4s and people carriers for Kampala's taxi trade, NGOs and the murram roads upcountry.</p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Uganda is landlocked, so vehicles are shipped to the nearest suitable port and cleared onward
+      overland. We route through Mombasa in Kenya and Dar es Salaam in Tanzania, and the rates and sailing dates on this page
+      are for that sea leg. The onward journey and destination clearance are handled by your agent.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      We work directly with the shipping lines serving Uganda, delivering to Mombasa and Dar es Salaam, and handle the whole
+      UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
+      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Sheerness and Southampton.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

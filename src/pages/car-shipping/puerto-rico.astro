@@ -1,0 +1,118 @@
+---
+// Car shipping from the UK to Puerto Rico. Generated from
+// _country-template.astro on 2026-09-03 and safe to edit by hand.
+//
+// UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
+// customs and documentation, and getting the car onto the ship. Destination
+// duty, taxes and registration are the importer's responsibility and belong on
+// /import-uk-cars/. Do not add them here.
+//
+// Ports, UK load ports, carriers and transit come from
+// src/data/sailing-schedules.json; prices come from src/data/shipping-rates.ts
+// via <CountryCosts>. Both refresh on their own, so leave them alone.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+
+const countryName = 'Puerto Rico';
+const destinationPorts = ['San Juan'];
+const popularBrands = ['Toyota', 'Honda', 'Hyundai', 'Kia', 'Ford', 'Chevrolet', 'Jeep'];
+const fromPrice = fromPriceFor(countryName);
+
+const quickFacts = [
+  { label: 'Shipping Time', value: '6-13 weeks', sub: 'From Southampton' },
+  { label: 'Delivery Port', value: 'San Juan', sub: '' },
+  { label: 'Shipping From', value: '£1,416', sub: 'Approximate, per vehicle' },
+  { label: 'Shipping Line', value: 'Höegh Autoliners', sub: 'RoRo and container' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
+  { href: '#about', label: 'Shipping to Puerto Rico' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Answers restate facts already on this page — keep the two in step.
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Puerto Rico?`,
+    a: `RoRo shipping starts from around £1,416 per vehicle, and a 20ft container from about £1,921. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Puerto Rico take?`,
+    a: `Current carrier schedules show roughly 6 to 13 weeks port to port, sailing from Southampton. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+  },
+  {
+    q: `Which UK ports do sailings to Puerto Rico depart from?`,
+    a: `Southampton, with Höegh Autoliners. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Which ports can my car be shipped to in Puerto Rico?`,
+    a: `San Juan. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Puerto Rico?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Puerto Rico | From £1,416`}
+  description="Ship a car from the UK to Puerto Rico (San Juan). From £1,416. 6-13 weeks transit. Costs, ports and live sailing dates."
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to Puerto Rico`}
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Puerto Rico</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Effectively a US mainland market with US-spec left-hand-drive supply and dealer finance, so the only UK cars worth quoting are genuine 25-year-plus classics that qualify for the federal exemption.</p>
+
+    <div data-lhd-note class="border border-gray-200 bg-gray-50 rounded-xl p-5 mb-4">
+      <h3 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">US import rules apply</h3>
+      <p class="text-gray-600 leading-relaxed text-sm">Puerto Rico registers left-hand-drive vehicles only, so a car bought and plated in the UK cannot be put on the road there. The island follows US federal import law, which means a right-hand-drive car under 25 years old cannot meet FMVSS and EPA requirements and will not clear customs or be registered. Sourcing is the answer, so tell us the model, year and budget you have in mind and we will search the UK and the wider European market for a left-hand-drive example and be straight with you about what those federal rules will allow.</p>
+      <a href="/contact" class="inline-flex items-center gap-1.5 text-sm text-[var(--color-primary)] font-semibold hover:underline mt-3">
+        Tell us what you are looking for
+        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+    <p class="text-gray-600 leading-relaxed">
+      We work directly with the shipping lines serving Puerto Rico, delivering to San Juan, and handle the whole
+      UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
+      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Southampton.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

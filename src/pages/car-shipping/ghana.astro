@@ -1,0 +1,118 @@
+---
+// Car shipping from the UK to Ghana. Generated from
+// _country-template.astro on 2026-09-03 and safe to edit by hand.
+//
+// UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
+// customs and documentation, and getting the car onto the ship. Destination
+// duty, taxes and registration are the importer's responsibility and belong on
+// /import-uk-cars/. Do not add them here.
+//
+// Ports, UK load ports, carriers and transit come from
+// src/data/sailing-schedules.json; prices come from src/data/shipping-rates.ts
+// via <CountryCosts>. Both refresh on their own, so leave them alone.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+
+const countryName = 'Ghana';
+const destinationPorts = ['Tema', 'Takoradi'];
+const popularBrands = ['Toyota', 'Nissan', 'Hyundai', 'Kia', 'Mercedes-Benz', 'Ford', 'Land Rover'];
+const fromPrice = fromPriceFor(countryName);
+
+const quickFacts = [
+  { label: 'Shipping Time', value: '2-4 weeks', sub: 'From Tilbury' },
+  { label: 'Delivery Ports', value: 'Tema, Takoradi', sub: '' },
+  { label: 'Shipping From', value: '£1,651', sub: 'Approximate, per vehicle' },
+  { label: 'Shipping Line', value: 'Grimaldi', sub: 'RoRo and container' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
+  { href: '#about', label: 'Shipping to Ghana' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Answers restate facts already on this page — keep the two in step.
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Ghana?`,
+    a: `Rates depend on the vehicle and the sailing, and a 20ft container from about £1,651. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Ghana take?`,
+    a: `Current carrier schedules show roughly 2 to 4 weeks port to port, sailing from Tilbury. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+  },
+  {
+    q: `Which UK ports do sailings to Ghana depart from?`,
+    a: `Tilbury, with Grimaldi. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Which ports can my car be shipped to in Ghana?`,
+    a: `Tema and Takoradi. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Ghana?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Ghana | From £1,651`}
+  description="Ship a car from the UK to Ghana (Tema, Takoradi). From £1,651. 2-4 weeks transit. Costs, ports and live sailing dates."
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to Ghana`}
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Ghana</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Tema is dominated by North American LHD stock and rebuilt salvage, so a UK exporter competes best on clean European LHD saloons and SUVs, with Land Rover and Mercedes moving well among Accra's professional buyers.</p>
+
+    <div data-lhd-note class="border border-gray-200 bg-gray-50 rounded-xl p-5 mb-4">
+      <h3 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">A hard stop at Tema</h3>
+      <p class="text-gray-600 leading-relaxed text-sm">Ghana permits left-hand-drive vehicles only, so a right-hand-drive car bought in the UK cannot be registered or driven there, and there is no exemption to apply for. Ghana moved to driving on the right in 1974, and with Ghana Standards Authority enforcement from 1 October 2026 this is now a hard stop at Tema rather than something to chance. Far better to start from the right side of the road: send us your shortlist, whether that is a Toyota, a Hyundai or a Land Rover, and we will source it in left-hand drive and ship it in for you.</p>
+      <a href="/contact" class="inline-flex items-center gap-1.5 text-sm text-[var(--color-primary)] font-semibold hover:underline mt-3">
+        Tell us what you are looking for
+        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+    <p class="text-gray-600 leading-relaxed">
+      We work directly with the shipping lines serving Ghana, delivering to Tema and Takoradi, and handle the whole
+      UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
+      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Tilbury.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

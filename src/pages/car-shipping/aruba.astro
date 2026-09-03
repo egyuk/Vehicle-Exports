@@ -1,0 +1,109 @@
+---
+// Car shipping from the UK to Aruba. Generated from
+// _country-template.astro on 2026-09-03 and safe to edit by hand.
+//
+// UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
+// customs and documentation, and getting the car onto the ship. Destination
+// duty, taxes and registration are the importer's responsibility and belong on
+// /import-uk-cars/. Do not add them here.
+//
+// Ports, UK load ports, carriers and transit come from
+// src/data/sailing-schedules.json; prices come from src/data/shipping-rates.ts
+// via <CountryCosts>. Both refresh on their own, so leave them alone.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+
+const countryName = 'Aruba';
+const destinationPorts = ['Oranjestad'];
+const popularBrands = ['Toyota', 'Kia', 'Hyundai', 'Suzuki', 'Nissan', 'Chevrolet'];
+const fromPrice = fromPriceFor(countryName);
+
+const quickFacts = [
+  { label: 'Shipping Time', value: '5-10 weeks', sub: 'From Southampton' },
+  { label: 'Delivery Port', value: 'Oranjestad', sub: '' },
+  { label: 'Shipping From', value: 'Call for price', sub: 'Quoted per booking' },
+  { label: 'Shipping Line', value: 'Höegh Autoliners', sub: 'RoRo and container' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
+  { href: '#about', label: 'Shipping to Aruba' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Answers restate facts already on this page — keep the two in step.
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Aruba?`,
+    a: `We quote Aruba per booking rather than from a fixed rate card, because the cost depends on the vehicle, the sailing and the departure port. Call us on 01872 491409 and we will give you an itemised quote covering the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Aruba take?`,
+    a: `Current carrier schedules show roughly 5 to 10 weeks port to port, sailing from Southampton. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+  },
+  {
+    q: `Which UK ports do sailings to Aruba depart from?`,
+    a: `Southampton, with Höegh Autoliners. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Which ports can my car be shipped to in Aruba?`,
+    a: `Oranjestad. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Aruba?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Aruba`}
+  description="Ship a car from the UK to Aruba (Oranjestad). 5-10 weeks transit. Costs, ports and live sailing dates."
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to Aruba`}
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Aruba</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">An American-facing market with strong US left-hand-drive supply and a large rental fleet, so a UK car only really sells to a private buyer chasing a spec or price the local dealers cannot match.</p>
+    <p class="text-gray-600 leading-relaxed">
+      We work directly with the shipping lines serving Aruba, delivering to Oranjestad, and handle the whole
+      UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
+      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Southampton.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>
