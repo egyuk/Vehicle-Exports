@@ -38,6 +38,12 @@ export interface ShippingRates {
   /** Transit line under the container card. Used with curated OR table prices. */
   containerTransit?: string;
   /**
+   * RoRo runs on this route but the published table has no RoRo row for it, so
+   * the costs section shows a RoRo card reading "Call for price" rather than
+   * implying the route is container-only. Set this instead of inventing a rate.
+   */
+  roroOnRequest?: boolean;
+  /**
    * Shown instead of rate cards where they do not fit the route — a short-sea
    * ferry crossing priced as a range, for example. Suppresses the table.
    */
@@ -61,11 +67,22 @@ export const shippingRates: Record<string, ShippingRates> = {
     containerTransit: 'Extra security, or for multiple vehicles and personal items. Typically 5-7 weeks.',
     checked: 'Transit times from the sailing schedule, 2026-09-03. Prices from the published rate table.',
   },
+  // George 2026-09-03: Equatorial Guinea DOES have a RoRo service (Grimaldi
+  // call at Malabo and Bata), but the published table only carries container
+  // rates for it, so the RoRo card asks the customer to call rather than
+  // showing a made-up figure or pretending the route is container-only.
+  'Equatorial Guinea': {
+    roroOnRequest: true,
+    checked: 'RoRo confirmed by George 2026-09-03; container rates from the published table',
+  },
   // Not in the published rate table at all — the short Irish Sea crossing has
   // always been quoted as a range rather than by vehicle height.
   Ireland: {
-    note: 'Crossings are typically £250-£700 depending on vehicle size and the route used. Because the Irish Sea crossing is short and sails frequently, we quote it per booking rather than from a fixed rate card.',
-    checked: 'Range as published on the Ireland page before 2026-09-03',
+    // Repriced 2026-09-03 with the rest of the card: was £250-£700, +35% and
+    // rounded to the nearest £5 because a range reads better in prose than
+    // £338-£945 would.
+    note: 'Crossings are typically £340-£945 depending on vehicle size and the route used. Because the Irish Sea crossing is short and sails frequently, we quote it per booking rather than from a fixed rate card.',
+    checked: 'Repriced 2026-09-03 (+35% on the pre-2026-09-03 published range)',
   },
 };
 
