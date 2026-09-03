@@ -10,7 +10,9 @@ import { fromPriceFor } from '../../data/shipping-prices';
 import { approximateRatesFor } from '../../data/shipping-rates';
 
 const quickFacts = [
-  { label: 'Shipping Time', value: '4-6 weeks', sub: 'RoRo / Container' },
+  // From the live schedule, checked 2026-09-04: RoRo runs 2.9-5.0 weeks and
+  // container 7.0-10.1, so they are quoted separately rather than as one range.
+  { label: 'Shipping Time', value: '3-5 weeks', sub: 'RoRo. Container 7-10 weeks' },
   { label: 'Delivery Port', value: 'Mombasa', sub: '' },
   { label: 'Vehicle Age Limit', value: '8 years', sub: 'For direct import to Kenya' },
   { label: 'Pre-Export Inspection', value: 'Required', sub: 'KEBS-approved agency, pre-shipment' },
@@ -45,7 +47,7 @@ const faqs = [
   },
   {
     q: 'How long does shipping from the UK to Kenya take?',
-    a: 'RoRo sailings to Mombasa typically take 4–6 weeks from departure, and container shipments 5–7 weeks. See the live sailing schedule on this page for upcoming departure and arrival dates.',
+    a: 'RoRo sailings to Mombasa run about 3 to 5 weeks from departure. Container shipments take longer, roughly 7 to 10 weeks, because they route through a transhipment hub rather than sailing direct. See the live sailing schedule on this page for the actual dates of each upcoming departure.',
   },
   {
     q: 'Is there an age limit on cars imported into Kenya?',

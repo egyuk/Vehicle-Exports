@@ -1,6 +1,7 @@
 ---
 // Car shipping from the UK to Zimbabwe. Generated from
-// _country-template.astro on 2026-09-03 and safe to edit by hand.
+// _country-template.astro and safe to edit by hand. Ports, carriers and transit
+// are read from the schedule at BUILD time, so they follow the weekly refresh.
 //
 // UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
 // customs and documentation, and getting the car onto the ship. Destination
@@ -18,29 +19,59 @@ import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
 import { fromPriceFor } from '../../data/shipping-prices';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
 
 const countryName = 'Zimbabwe';
-const destinationPorts = ['Durban'];
 const popularBrands = ['Toyota', 'Nissan', 'Isuzu', 'Mercedes-Benz', 'Mazda', 'Ford', 'Land Rover'];
 const fromPrice = fromPriceFor(countryName);
 
+// Read at BUILD time, never baked in. The weekly schedule refresh moves dates,
+// adds carriers and opens new ports, so anything copied here would drift from
+// the schedule table printed further down this same page — 49 of these pages
+// did exactly that after one refresh before this was wired up.
+const facts = scheduleFactsFor(countryName);
+const destinationPorts = facts.ports.length ? facts.ports : ['Durban', 'Beira'];
+
 const quickFacts = [
-  { label: 'Shipping Time', value: '2-6 weeks', sub: 'From Southampton and 2 other UK ports' },
-  { label: 'Delivery Port', value: 'Durban', sub: '' },
-  { label: 'Shipping From', value: '£988', sub: 'Approximate, per vehicle' },
-  { label: 'Shipping Lines', value: 'Höegh Autoliners', sub: 'and 2 other lines' },
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.join(', ') || 'On enquiry',
+    sub: '',
+  },
+  {
+    label: 'Shipping From',
+    value: fromPrice ?? 'Call for price',
+    sub: fromPrice ? 'Approximate, per vehicle' : 'Quoted per booking',
+  },
+  // One carrier in the value: names like "Wallenius Wilhelmsen" are 20
+  // characters and four facts share a row, so the rest go in the sub.
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
 ];
 
+// The sailing entry only appears when there is a schedule to point at, so the
+// anchor cannot dangle for a country the carriers are not serving this week.
 const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
-  { href: '#sailings', label: 'Sailing schedule' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
   { href: '#about', label: 'Shipping to Zimbabwe' },
   { href: '#why-ship', label: 'Our Other Services' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
   { href: '#faq', label: 'FAQs' },
 ];
 
-// Answers restate facts already on this page — keep the two in step.
+// Answers restate facts already on this page — keep the two in step. The ones
+// that quote ports or transit read `facts`, so they move with the schedule.
 const faqs = [
   {
     q: `How much does it cost to ship a car from the UK to Zimbabwe?`,
@@ -48,11 +79,11 @@ const faqs = [
   },
   {
     q: `How long does shipping from the UK to Zimbabwe take?`,
-    a: `Current carrier schedules show roughly 2 to 6 weeks port to port, sailing from Southampton, Newcastle and Bristol. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+    a: `Current carrier schedules show ${facts.transit} port to port${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
   },
   {
     q: `Which UK ports do sailings to Zimbabwe depart from?`,
-    a: `Southampton, Newcastle and Bristol, with Höegh Autoliners, Sallaum Lines and Wallenius Wilhelmsen. We collect vehicles from any UK address and deliver them to the departure port.`,
+    a: `${listOf(facts.loadPorts)}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
   },
   {
     q: `Zimbabwe is landlocked — which port does my car arrive at?`,
@@ -71,7 +102,7 @@ const faqs = [
 
 <CountryPageLayout
   title={`Car Shipping UK to Zimbabwe | From £988`}
-  description="Ship a car from the UK to Zimbabwe (Durban). From £988. 2-6 weeks transit. Costs, ports and live sailing dates."
+  description={`Ship a car from the UK to Zimbabwe${destinationPorts.length ? ` (${destinationPorts.slice(0, 2).join(', ')})` : ''}. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} transit. ` : ''}Costs, ports and live sailing dates.`.slice(0, 158)}
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
@@ -90,6 +121,13 @@ const faqs = [
     intro="Vehicles for Zimbabwe are landed at Durban and cleared onward overland. Dates are carrier estimates and must be reconfirmed before booking."
   />
 
+  <SailingSchedule
+    country="Mozambique"
+    standalone={false}
+    heading="Sailings to Beira, Mozambique"
+    intro="Vehicles for Zimbabwe are landed at Beira and cleared onward overland. Dates are carrier estimates and must be reconfirmed before booking."
+  />
+
   <div id="about">
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Zimbabwe</h2>
     <p class="text-gray-600 leading-relaxed mb-4">Statutory Instrument 59 of 2026 widened the ban to bar most second-hand vehicles aged ten years or more, so only recent stock qualifies, it lands via Durban or Beira and then Beitbridge, and diesel pickups and 4x4s remain the mainstay because of fuel supply and road conditions.</p>
@@ -99,9 +137,9 @@ const faqs = [
       are for that sea leg. The onward journey and destination clearance are handled by your agent.
     </p>
     <p class="text-gray-600 leading-relaxed">
-      We work directly with the shipping lines serving Zimbabwe, delivering to Durban, and handle the whole
+      We work directly with the shipping lines serving Zimbabwe{destinationPorts.length ? `, delivering to ${listOf(destinationPorts)}` : ''}, and handle the whole
       UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
-      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Southampton, Newcastle and Bristol.
+      UK customs clearance and export documentation, and loading onto the ship.{facts.loadPorts.length ? ` Sailings leave from ${listOf(facts.loadPorts)}.` : ''}
     </p>
   </div>
 

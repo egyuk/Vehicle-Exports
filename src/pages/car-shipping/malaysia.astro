@@ -1,6 +1,7 @@
 ---
 // Car shipping from the UK to Malaysia. Generated from
-// _country-template.astro on 2026-09-03 and safe to edit by hand.
+// _country-template.astro and safe to edit by hand. Ports, carriers and transit
+// are read from the schedule at BUILD time, so they follow the weekly refresh.
 //
 // UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
 // customs and documentation, and getting the car onto the ship. Destination
@@ -18,29 +19,59 @@ import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
 import { fromPriceFor } from '../../data/shipping-prices';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
 
 const countryName = 'Malaysia';
-const destinationPorts = ['Port Kelang'];
 const popularBrands = ['Perodua', 'Proton', 'Toyota', 'Honda', 'Mercedes-Benz', 'BMW', 'Land Rover'];
 const fromPrice = fromPriceFor(countryName);
 
+// Read at BUILD time, never baked in. The weekly schedule refresh moves dates,
+// adds carriers and opens new ports, so anything copied here would drift from
+// the schedule table printed further down this same page — 49 of these pages
+// did exactly that after one refresh before this was wired up.
+const facts = scheduleFactsFor(countryName);
+const destinationPorts = facts.ports.length ? facts.ports : ['Port Klang'];
+
 const quickFacts = [
-  { label: 'Shipping Time', value: '4-5 weeks', sub: 'From Southampton' },
-  { label: 'Delivery Port', value: 'Port Kelang', sub: '' },
-  { label: 'Shipping From', value: '£1,219', sub: 'Approximate, per vehicle' },
-  { label: 'Shipping Line', value: 'EUKOR', sub: 'RoRo and container' },
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.join(', ') || 'On enquiry',
+    sub: '',
+  },
+  {
+    label: 'Shipping From',
+    value: fromPrice ?? 'Call for price',
+    sub: fromPrice ? 'Approximate, per vehicle' : 'Quoted per booking',
+  },
+  // One carrier in the value: names like "Wallenius Wilhelmsen" are 20
+  // characters and four facts share a row, so the rest go in the sub.
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
 ];
 
+// The sailing entry only appears when there is a schedule to point at, so the
+// anchor cannot dangle for a country the carriers are not serving this week.
 const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
-  { href: '#sailings', label: 'Sailing schedule' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
   { href: '#about', label: 'Shipping to Malaysia' },
   { href: '#why-ship', label: 'Our Other Services' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
   { href: '#faq', label: 'FAQs' },
 ];
 
-// Answers restate facts already on this page — keep the two in step.
+// Answers restate facts already on this page — keep the two in step. The ones
+// that quote ports or transit read `facts`, so they move with the schedule.
 const faqs = [
   {
     q: `How much does it cost to ship a car from the UK to Malaysia?`,
@@ -48,15 +79,15 @@ const faqs = [
   },
   {
     q: `How long does shipping from the UK to Malaysia take?`,
-    a: `Current carrier schedules show roughly 4 to 5 weeks port to port, sailing from Southampton. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+    a: `Current carrier schedules show ${facts.transit} port to port${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
   },
   {
     q: `Which UK ports do sailings to Malaysia depart from?`,
-    a: `Southampton, with EUKOR. We collect vehicles from any UK address and deliver them to the departure port.`,
+    a: `${listOf(facts.loadPorts)}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
   },
   {
     q: `Which ports can my car be shipped to in Malaysia?`,
-    a: `Port Kelang. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
+    a: `${listOf(destinationPorts)}. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
   },
   {
     q: `Can I pack personal items in the car?`,
@@ -71,7 +102,7 @@ const faqs = [
 
 <CountryPageLayout
   title={`Car Shipping UK to Malaysia | From £1,219`}
-  description="Ship a car from the UK to Malaysia (Port Kelang). From £1,219. 4-5 weeks transit. Costs, ports and live sailing dates."
+  description={`Ship a car from the UK to Malaysia${destinationPorts.length ? ` (${destinationPorts.slice(0, 2).join(', ')})` : ''}. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} transit. ` : ''}Costs, ports and live sailing dates.`.slice(0, 158)}
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
@@ -93,9 +124,9 @@ const faqs = [
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Malaysia</h2>
     <p class="text-gray-600 leading-relaxed mb-4">The gatekeeper is the Approved Permit system plus excise duty that protects Proton and Perodua, so imports concentrate on what locals cannot buy new - European performance cars, Range Rovers, and classics over 25 years old that qualify for softer treatment.</p>
     <p class="text-gray-600 leading-relaxed">
-      We work directly with the shipping lines serving Malaysia, delivering to Port Kelang, and handle the whole
+      We work directly with the shipping lines serving Malaysia{destinationPorts.length ? `, delivering to ${listOf(destinationPorts)}` : ''}, and handle the whole
       UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
-      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Southampton.
+      UK customs clearance and export documentation, and loading onto the ship.{facts.loadPorts.length ? ` Sailings leave from ${listOf(facts.loadPorts)}.` : ''}
     </p>
   </div>
 

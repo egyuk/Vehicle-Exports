@@ -1,6 +1,7 @@
 ---
 // Car shipping from the UK to Guernsey. Generated from
-// _country-template.astro on 2026-09-03 and safe to edit by hand.
+// _country-template.astro and safe to edit by hand. Ports, carriers and transit
+// are read from the schedule at BUILD time, so they follow the weekly refresh.
 //
 // UK-SIDE SCOPE: this page covers what we do — sourcing, tax-free supply, UK
 // customs and documentation, and getting the car onto the ship. Destination
@@ -18,29 +19,59 @@ import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
 import { fromPriceFor } from '../../data/shipping-prices';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
 
 const countryName = 'Guernsey';
-const destinationPorts = ['St Peter Port'];
 const popularBrands = ['Volkswagen', 'BMW', 'Mercedes-Benz', 'Land Rover', 'Mini', 'Toyota', 'Ford'];
 const fromPrice = fromPriceFor(countryName);
 
+// Read at BUILD time, never baked in. The weekly schedule refresh moves dates,
+// adds carriers and opens new ports, so anything copied here would drift from
+// the schedule table printed further down this same page — 49 of these pages
+// did exactly that after one refresh before this was wired up.
+const facts = scheduleFactsFor(countryName);
+const destinationPorts = facts.ports.length ? facts.ports : ['St Peter Port'];
+
 const quickFacts = [
-  { label: 'Shipping Time', value: '1-2 weeks', sub: 'From Portsmouth and Poole' },
-  { label: 'Delivery Port', value: 'St Peter Port', sub: '' },
-  { label: 'Shipping From', value: 'Call for price', sub: 'Quoted per booking' },
-  { label: 'Shipping Line', value: 'Condor Ferries', sub: 'RoRo and container' },
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.join(', ') || 'On enquiry',
+    sub: '',
+  },
+  {
+    label: 'Shipping From',
+    value: fromPrice ?? 'Call for price',
+    sub: fromPrice ? 'Approximate, per vehicle' : 'Quoted per booking',
+  },
+  // One carrier in the value: names like "Wallenius Wilhelmsen" are 20
+  // characters and four facts share a row, so the rest go in the sub.
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
 ];
 
+// The sailing entry only appears when there is a schedule to point at, so the
+// anchor cannot dangle for a country the carriers are not serving this week.
 const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
-  { href: '#sailings', label: 'Sailing schedule' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
   { href: '#about', label: 'Shipping to Guernsey' },
   { href: '#why-ship', label: 'Our Other Services' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
   { href: '#faq', label: 'FAQs' },
 ];
 
-// Answers restate facts already on this page — keep the two in step.
+// Answers restate facts already on this page — keep the two in step. The ones
+// that quote ports or transit read `facts`, so they move with the schedule.
 const faqs = [
   {
     q: `How much does it cost to ship a car from the UK to Guernsey?`,
@@ -48,15 +79,15 @@ const faqs = [
   },
   {
     q: `How long does shipping from the UK to Guernsey take?`,
-    a: `Current carrier schedules show roughly 1 to 2 weeks port to port, sailing from Portsmouth and Poole. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
+    a: `Current carrier schedules show ${facts.transit} port to port${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}. Transit varies with the routing and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual dates for each upcoming sailing.`,
   },
   {
     q: `Which UK ports do sailings to Guernsey depart from?`,
-    a: `Portsmouth and Poole, with Condor Ferries. We collect vehicles from any UK address and deliver them to the departure port.`,
+    a: `${listOf(facts.loadPorts)}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
   },
   {
     q: `Which ports can my car be shipped to in Guernsey?`,
-    a: `St Peter Port. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
+    a: `${listOf(destinationPorts)}. Which one your vehicle sails to depends on the service and the date, and we confirm it when the booking is made.`,
   },
   {
     q: `Can I pack personal items in the car?`,
@@ -71,7 +102,7 @@ const faqs = [
 
 <CountryPageLayout
   title={`Car Shipping UK to Guernsey`}
-  description="Ship a car from the UK to Guernsey (St Peter Port). 1-2 weeks transit. Costs, ports and live sailing dates."
+  description={`Ship a car from the UK to Guernsey${destinationPorts.length ? ` (${destinationPorts.slice(0, 2).join(', ')})` : ''}. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} transit. ` : ''}Costs, ports and live sailing dates.`.slice(0, 158)}
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
@@ -93,9 +124,9 @@ const faqs = [
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Guernsey</h2>
     <p class="text-gray-600 leading-relaxed mb-4">No VAT on the island makes a UK car land cheaply, but first-registration duty is scaled on CO2, so low-emission hybrids and EVs are the sweet spot — and with a 35 mph island-wide limit and narrow lanes, buyers want compact premium cars rather than high-mileage motorway saloons.</p>
     <p class="text-gray-600 leading-relaxed">
-      We work directly with the shipping lines serving Guernsey, delivering to St Peter Port, and handle the whole
+      We work directly with the shipping lines serving Guernsey{destinationPorts.length ? `, delivering to ${listOf(destinationPorts)}` : ''}, and handle the whole
       UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where it applies, collection,
-      UK customs clearance and export documentation, and loading onto the ship. Sailings leave from Portsmouth and Poole.
+      UK customs clearance and export documentation, and loading onto the ship.{facts.loadPorts.length ? ` Sailings leave from ${listOf(facts.loadPorts)}.` : ''}
     </p>
   </div>
 
