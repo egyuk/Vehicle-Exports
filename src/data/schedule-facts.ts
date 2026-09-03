@@ -141,9 +141,22 @@ export function scheduleFactsFor(country: string): ScheduleFacts {
     return { count: 0, transit: null, ports: [], portsByTraffic: [], loadPorts: [], carriers: [] };
   }
   const base = summarise(rows);
-  return legs
-    ? { ...base, ports: legs.map(l => l.port), portsByTraffic: legs.map(l => l.port), via: legs }
-    : base;
+  if (!legs) return base;
+  // A hub-served country shows its hub ports, not every port its hub countries
+  // reach - so ports/portsByTraffic are replaced rather than taken from
+  // summarise(), which counted Cape Town and Port Elizabeth alongside Durban.
+  // portsByTraffic still has to earn its name here, so order the legs by how
+  // many of these sailings actually call at each.
+  const legTraffic = (port: string) =>
+    rows.filter(r => r.destination.split(',')[0].trim() === port).length;
+  return {
+    ...base,
+    ports: legs.map(l => l.port),
+    portsByTraffic: [...legs]
+      .sort((a, b) => legTraffic(b.port) - legTraffic(a.port))
+      .map(l => l.port),
+    via: legs,
+  };
 }
 
 export interface ServiceFacts {
