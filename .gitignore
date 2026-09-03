@@ -27,3 +27,10 @@ pnpm-debug.log*
 
 # schedule download cache
 scripts/schedules/.cache/
+
+# Local preview copies of the country page template. The template itself
+# (_country-template.astro) is underscore-prefixed so Astro never routes it,
+# but a copy made to view it in a browser WOULD be built and indexed. Ignoring
+# the name means you can keep one locally and it can never reach production.
+# See the preview recipe at the top of _country-template.astro.
+src/pages/**/preview.astro

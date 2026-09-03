@@ -1,0 +1,204 @@
+---
+// "Cost of Shipping a Car from the UK to <Country>" — the costs section shared
+// by every country page. Rates come from src/data/shipping-prices.ts keyed on
+// the country name, so a price change is a one-line edit in one file rather
+// than a hunt through 20 pages.
+//
+// Four shapes, picked automatically, in priority order:
+//   1. Curated all-in rate cards   (shippingRates[country].roroSmall)
+//   2. A prose note                (shippingRates[country].note, e.g. Irish Sea)
+//   3. Approximate published rates (the /shipping-rates table, clearly labelled)
+//   4. "Call for price"            (nothing known)
+//
+// Case 3 exists because the published rate table in src/data/shipping-rates.ts
+// covers ~103 countries, far more than we have curated rates for. It is NOT
+// the same product as a curated rate — see the warning at the top of that file
+// (Australia is £771 there and £1,250 curated) — so it is always shown as
+// "approximate, call for latest rates", exactly as the rate-table page labels
+// it, and never as an all-in figure. When it is showing, the inclusions list
+// is headed "what a full quote covers" rather than "what is included above",
+// so an approximate freight figure is never passed off as covering UK customs,
+// handling and documentation.
+//
+// The included/excluded lists are deliberately NOT configurable — they are the
+// same commercial terms on every route, and the last excluded item ("All
+// destination country's import fees") is what keeps these pages UK-side.
+import { shippingRates } from '../data/shipping-prices';
+import { approximateRatesFor } from '../data/shipping-rates';
+
+interface Props {
+  countryName: string;
+  destinationPorts?: string[];
+  /** Anchor id, so a page's table of contents can link here. */
+  id?: string;
+}
+
+const { countryName, destinationPorts = [], id = 'costs' } = Astro.props;
+const rates = shippingRates[countryName];
+const ports = destinationPorts.length ? ` (${destinationPorts.join(', ')})` : '';
+const hasCards = Boolean(rates?.roroSmall || rates?.container20);
+// Only consulted when there is no curated rate and no prose note.
+const approx = !hasCards && !rates?.note ? approximateRatesFor(countryName) : undefined;
+const hasApprox = Boolean(approx && (approx.roro || approx.c20));
+
+const included = [
+  'Loading and lashing vehicle into ship',
+  'UK customs export and clearance',
+  'UK port handling charges',
+  'DVLA documentation and export certification',
+  'Export documentation (e.g Bill of Lading)',
+  'Posting of the Export Documents from UK by UPS/DHL',
+  'Shipping of the vehicle from the UK to Destination Port',
+];
+
+const excluded = [
+  'Pre-Export Inspection (if required)',
+  'Marine Insurance (container only)',
+  'Collection and/or delivery of the vehicle',
+  "All destination country's import fees",
+];
+---
+
+<div id={id}>
+  <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Cost of Shipping a Car from the UK to {countryName}{ports}?</h2>
+  <p class="text-gray-600 leading-relaxed mb-4">
+    The total cost of shipping depends on the vehicle make, model and most importantly size. We work directly
+    with all shipping lines in the UK to arrange regular and reliable vehicle exports from the UK to {countryName}{ports}.
+  </p>
+
+  {hasCards && (
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      {(rates?.roroSmall || rates?.roroLarge) && (
+        <div class="border border-gray-100 rounded-xl p-5">
+          <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
+          <p class="text-sm text-gray-500 mt-1 mb-4">{rates?.roroTransit ?? 'Ideal for most vehicles — simple, fast, and cost-effective.'}</p>
+          <ul class="space-y-2 pt-3 border-t border-gray-100">
+            {rates?.roroSmall && (
+              <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span>Small vehicles (up to 1.6m height)</span>
+                <span class="font-semibold text-gray-900 shrink-0">{rates.roroSmall}</span>
+              </li>
+            )}
+            {rates?.roroLarge && (
+              <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span>Large vehicles (above 1.68m height)</span>
+                <span class="font-semibold text-gray-900 shrink-0">{rates.roroLarge}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+      {(rates?.container20 || rates?.container40) && (
+        <div class="border border-gray-100 rounded-xl p-5">
+          <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Private Container Shipping</h4>
+          <p class="text-sm text-gray-500 mt-1 mb-4">{rates?.containerTransit ?? 'Extra security, or for multiple vehicles and personal items.'}</p>
+          <ul class="space-y-2 pt-3 border-t border-gray-100">
+            {rates?.container20 && (
+              <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span>20ft Private Container (fitting one car)</span>
+                <span class="font-semibold text-gray-900 shrink-0">{rates.container20}</span>
+              </li>
+            )}
+            {rates?.container40 && (
+              <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span>40ft Container (electric)</span>
+                <span class="font-semibold text-gray-900 shrink-0">{rates.container40}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
+  )}
+
+  {!hasCards && rates?.note && (
+    <p class="text-gray-600 leading-relaxed mb-6">{rates.note}</p>
+  )}
+
+  {hasApprox && (
+    <>
+      <div class="grid sm:grid-cols-2 gap-4 mb-4">
+        {approx?.roro && (
+          <div class="border border-gray-100 rounded-xl p-5">
+            <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
+            <p class="text-sm text-gray-500 mt-1 mb-4">{rates?.roroTransit ?? 'The cheapest way to move a single vehicle, and the option most customers choose.'}</p>
+            <ul class="space-y-2 pt-3 border-t border-gray-100">
+              <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span>From, per vehicle</span>
+                <span class="font-semibold text-gray-900 shrink-0">{approx.roro}</span>
+              </li>
+            </ul>
+          </div>
+        )}
+        {approx?.c20 && (
+          <div class="border border-gray-100 rounded-xl p-5">
+            <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Container Shipping</h4>
+            <p class="text-sm text-gray-500 mt-1 mb-4">{rates?.containerTransit ?? 'Extra security, or for multiple vehicles and personal items.'}</p>
+            <ul class="space-y-2 pt-3 border-t border-gray-100">
+              <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                <span>20ft container, from</span>
+                <span class="font-semibold text-gray-900 shrink-0">{approx.c20}</span>
+              </li>
+              {approx.c40 && (
+                <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
+                  <span>40ft container, from</span>
+                  <span class="font-semibold text-gray-900 shrink-0">{approx.c40}</span>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+      <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4 mb-6">
+        <strong class="text-gray-900">Approximate — call for the latest rates.</strong> These are indicative
+        shipping rates from our published rate table{approx?.ports?.length ? ` for ${approx.ports.slice(0, 4).join(', ')}` : ''}.
+        They move with the market and with the vehicle, and a full export quote covers the UK-side work listed
+        below as well, so treat them as a guide rather than a final price.
+        <a href="/car-shipping/shipping-rates" class="text-[var(--color-primary)] font-semibold hover:underline">See the full rate table</a>
+        or <a href="/contact" class="text-[var(--color-primary)] font-semibold hover:underline">ask us for an itemised quote</a>.
+      </p>
+    </>
+  )}
+
+  {!hasCards && !rates?.note && !hasApprox && (
+    <div class="border border-gray-100 rounded-xl p-5 mb-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
+      <div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Call for price</h4>
+        <p class="text-sm text-gray-500 mt-1">
+          RoRo and container rates to {countryName} are quoted per booking, because they depend on the vehicle,
+          the sailing and the departure port. Everything in the list below is included in the price we quote.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 mt-4 sm:mt-0 shrink-0">
+        <a href="tel:+441872491409" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all whitespace-nowrap">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          01872 491409
+        </a>
+        <a href="/contact" class="text-sm text-[var(--color-primary)] font-semibold hover:underline whitespace-nowrap">Request a quote</a>
+      </div>
+    </div>
+  )}
+
+  <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">{hasApprox ? 'What a full export quote covers' : `What is included in our price${hasCards ? ' above' : ''}?`}</h3>
+  <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+    {included.map(item => (
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-600">{item}</span>
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3 mt-6">{hasApprox ? 'Not covered' : `Our price${hasCards ? ' above' : ''} excludes`}</h3>
+  <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+    {excluded.map(item => (
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <span class="text-gray-600">{item}</span>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Page-specific footnote, e.g. a link to a country's duty calculator. -->
+  <slot />
+</div>

@@ -1,0 +1,194 @@
+---
+// ============================================================================
+// COUNTRY PAGE TEMPLATE — copy this file to create /car-shipping/<country>
+// ============================================================================
+//
+// The leading underscore keeps Astro from building this as a route, so it can
+// never be indexed, never lands in the sitemap, and needs no noindex tag or
+// launch-checklist entry. Copy it to a real filename to start a country:
+//
+//   cp src/pages/car-shipping/_country-template.astro src/pages/car-shipping/ghana.astro
+//
+// ----------------------------------------------------------------------------
+// HOW TO PREVIEW THIS TEMPLATE IN A BROWSER
+// ----------------------------------------------------------------------------
+// The underscore that keeps it out of the build also keeps it off the dev
+// server, so there is no URL for this file as it stands. To look at it:
+//
+//   cp src/pages/car-shipping/_country-template.astro src/pages/car-shipping/preview.astro
+//   npm run dev            # then open http://localhost:4321/car-shipping/preview
+//   rm src/pages/car-shipping/preview.astro
+//
+// Delete the copy when you are done — a stray preview.astro WOULD be built and
+// indexed. Note it renders with the placeholder text below ("REPLACE ME", the
+// "Call for price" costs block, and so on), which is the point: it shows the
+// furniture you get for free, not finished copy. For a finished page built on
+// exactly these components, look at /car-shipping/ireland instead.
+//
+// ----------------------------------------------------------------------------
+// SCOPE: THIS PAGE STOPS AT THE UK QUAYSIDE
+// ----------------------------------------------------------------------------
+// We are a UK exporter. These pages cover what WE do: sourcing the vehicle,
+// UK tax-free/VAT-qualifying supply, UK customs and documentation, getting the
+// car to the port and onto the ship. What happens after it lands — destination
+// import duty, local taxes, inspection, registration — is the client's
+// responsibility and belongs on /import-uk-cars/, not here.
+//
+// So do NOT add duty/tax/registration/arrival sections to a new page.
+// (Australia and Kenya still carry theirs from before this rule; they are
+// grandfathered, not the pattern to copy.)
+//
+// ----------------------------------------------------------------------------
+// WHAT TO CHANGE — five things, in order
+// ----------------------------------------------------------------------------
+// 1. `countryName` and `destinationPorts` below.
+// 2. Rates. You may not need to do anything: the costs section falls back to
+//    the published rate table in src/data/shipping-rates.ts (~103 countries),
+//    shown as "approximate, call for latest rates". If the country is not in
+//    that table either, it shows "Call for price". Both are safe. Add a
+//    curated ALL-IN rate to src/data/shipping-prices.ts only when you have one
+//    signed off — that takes priority and drops the "approximate" caveat.
+//    Never invent a figure to fill the table.
+// 3. `title` / `description`. Keep title under 60 chars and description under
+//    160, or the site audit flags them.
+// 4. The FAQs: keep them UK-side and make sure every answer matches something
+//    actually on the page.
+// 5. `popularBrands`, if you know what sells into that market. Leave the array
+//    empty to hide the sidebar block entirely.
+//
+// Everything else — the hero, quick facts, sidebar, sailing schedule, booking
+// terms, services, sourcing block, VAT section, FAQ accordion and structured
+// data — is shared and needs no edits.
+//
+// ----------------------------------------------------------------------------
+// DIFFERENTIATION: don't ship twenty identical pages
+// ----------------------------------------------------------------------------
+// A UK-side page is thin by design, and near-duplicate pages get treated as
+// such by search engines. Make each one specific using facts you already have
+// for free in src/data/sailing-schedules.json — the real ports, the real UK
+// departure ports, the actual transit range and the carriers on the route.
+// To read them for a country, from the repo root:
+//
+//   node -e "const s=require('./src/data/sailing-schedules.json').sailings;const c='Ghana';const f=s.filter(r=>r.destination.endsWith(c)&&r.ets>='2026-09-03');const d=f.map(r=>(new Date(r.eta)-new Date(r.ets))/864e5).sort((a,b)=>a-b);console.log({sailings:f.length,ports:[...new Set(f.map(r=>r.destination.split(',')[0]))],loadPorts:[...new Set(f.map(r=>r.loadPort))],carriers:[...new Set(f.map(r=>r.carrier))],weeks:d.length?[(d[0]/7).toFixed(1),(d[d.length-1]/7).toFixed(1)]:null})"
+//
+// Put the transit range in `quickFacts` and the FAQ, and never quote a number
+// the schedule does not support. (The Australia page once claimed 3 weeks when
+// its own schedule showed 5 as the fastest.)
+// ============================================================================
+
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import schedules from '../../data/sailing-schedules.json';
+
+const countryName = 'REPLACE ME';
+const destinationPorts: string[] = []; // e.g. ['Tema', 'Takoradi']
+const popularBrands: string[] = []; // empty hides the sidebar block
+
+// Pulled from src/data/shipping-prices.ts — feeds the hero chip and the
+// Service structured data. Undefined until the country has rates, which
+// simply hides the chip.
+const fromPrice = fromPriceFor(countryName);
+
+// Transit range and ports should come from the sailing schedule (see the note
+// above), not from guesswork.
+const quickFacts = [
+  { label: 'Shipping Time', value: 'X-Y weeks', sub: 'From <UK departure ports>' },
+  { label: 'Delivery Ports', value: destinationPorts.join(', ') || 'On enquiry', sub: '' },
+  { label: 'RoRo From', value: fromPrice ?? 'Call for price', sub: 'Containers also available' },
+  { label: 'Shipping Lines', value: '<carriers>', sub: 'Sailing every <frequency>' },
+];
+
+// <SailingSchedule> renders NOTHING when a country has no upcoming sailings,
+// so a hardcoded "#sailings" entry would dangle for any country the carriers
+// do not currently serve. Mirror the component's own filter (match on the
+// country after the last comma, keep only future departures) and add the
+// entry only when there is a section for it to point at. Do not replace this
+// with a hardcoded entry — the schedule is rebuilt weekly and a country can
+// drop out of it between builds.
+const today = new Date().toISOString().slice(0, 10);
+const hasSailings = schedules.sailings.some(s => {
+  const parts = s.destination.split(',').map(p => p.trim());
+  const dest = parts.length > 1 ? parts[parts.length - 1] : s.destination;
+  return dest.toLowerCase() === countryName.toLowerCase() && s.ets >= today;
+});
+
+// Only list anchors that exist on the page — the site audit checks these.
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  ...(hasSailings ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+// Keep answers UK-side, and keep them in step with the page body. Anything
+// about destination duty or registration should point at /import-uk-cars/
+// rather than be answered here.
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to ${countryName}?`,
+    a: 'REPLACE: quote the rates from src/data/shipping-prices.ts, and say what the price covers (UK-side costs including customs clearance, port handling and export documentation).',
+  },
+  {
+    q: `How long does shipping from the UK to ${countryName} take?`,
+    a: 'REPLACE: use the transit range from the sailing schedule, and point at the live schedule on this page for actual dates.',
+  },
+  {
+    q: `Which UK ports do sailings to ${countryName} depart from?`,
+    a: 'REPLACE: list the load ports from the schedule data. We collect vehicles from any UK address and deliver them to the departure port.',
+  },
+  {
+    q: `Which ports can my car be shipped to in ${countryName}?`,
+    a: 'REPLACE: list the destination ports from the schedule data.',
+  },
+  {
+    q: 'Can I pack personal items in the car?',
+    a: 'Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.',
+  },
+  {
+    q: 'Who handles import duty and registration when the car arrives?',
+    a: `That side is the importer's responsibility, and rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port, and our import guides have more detail.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to ${countryName}`}
+  description={`Ship a car from the UK to ${countryName}. REPLACE: rates, transit time, ports and live sailing dates. Keep under 160 characters.`}
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <!-- Driven entirely by countryName: rows come from the weekly refresh of
+       src/data/sailing-schedules.json, so this needs no per-page maintenance.
+       A country with no sailings yet renders nothing rather than an empty
+       table, so it is safe to leave in place. -->
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to ${countryName}`}
+  />
+
+  <CountryBookingTerms />
+
+  <!-- Pass `inspection` to replace the fourth card where a route needs
+       specific pre-shipment work arranged in the UK. -->
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

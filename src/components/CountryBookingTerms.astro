@@ -1,0 +1,45 @@
+---
+// "Documentation Required for Booking" + "Payment Terms / Modes".
+// Identical on every country page — these are our own commercial terms, not
+// anything country-specific, so there are no props beyond the anchor id.
+// Change a payment term here and every country page follows.
+interface Props {
+  /** Anchor id, if a page's table of contents needs to link here. */
+  id?: string;
+}
+
+const { id = 'documentation-booking' } = Astro.props;
+
+const documents = [
+  'Car Registration Document (V5 or Logbook) and Vehicle Invoice (or value).',
+  'ID (one government-issued photo ID and one utility bill showing address).',
+];
+
+const paymentTerms = [
+  'Full payment prior to sailing of vessel.',
+  'Bank transfer preferred. Card payments (max £5,000) will attract processing fees.',
+  'LOC, Cheques, Money Orders, and Cash are strictly not accepted.',
+];
+---
+
+<div id={id}>
+  <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Documentation Required for Booking</h3>
+  <ul class="space-y-1.5">
+    {documents.map(item => (
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">{item}</span>
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-5">Payment Terms / Modes</h3>
+  <ul class="space-y-1.5">
+    {paymentTerms.map(item => (
+      <li class="flex items-start gap-2.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
+        <span class="text-gray-600">{item}</span>
+      </li>
+    ))}
+  </ul>
+</div>
