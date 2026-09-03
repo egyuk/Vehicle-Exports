@@ -34,3 +34,6 @@ scripts/schedules/.cache/
 # the name means you can keep one locally and it can never reach production.
 # See the preview recipe at the top of _country-template.astro.
 src/pages/**/preview.astro
+
+# Scratch files from schedule-source investigation
+.msc-probe.json
