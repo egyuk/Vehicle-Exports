@@ -118,8 +118,12 @@ const countryPages: Record<string, string> = {
   Zimbabwe: '/car-shipping/zimbabwe',
 };
 
-// Where the schedule data names a country differently from the menu.
-const scheduleNames: Record<string, string> = {
+// Where the schedule data names a country differently from the menu. Consulted
+// by every lookup that filters sailings by country - the country pages' schedule
+// tables and the derived transit facts as well as the link hrefs below. Without
+// it the Trinidad and Tobago page found none of its 11 upcoming sailings, because
+// the carriers file them under "Port of Spain, Trinidad".
+export const scheduleNames: Record<string, string> = {
   'Trinidad and Tobago': 'Trinidad',
 };
 

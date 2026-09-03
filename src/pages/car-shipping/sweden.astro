@@ -93,7 +93,7 @@ const faqs = [
 ---
 
 <CountryPageLayout
-  title={`Car Shipping UK to Sweden | From £1,314`}
+  title={`Car Shipping UK to Sweden${fromPrice ? ` | From ${fromPrice}` : ''}`}
   description={`Ship a car from the UK to Sweden${destinationPorts.length ? ` (${destinationPorts.slice(0, 2).join(', ')})` : ''}. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} transit. ` : ''}Costs, ports and live sailing dates.`.slice(0, 158)}
   countryName={countryName}
   quickFacts={quickFacts}
@@ -104,6 +104,17 @@ const faqs = [
   faqs={faqs}
 >
   <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <!-- These four pages were generated without this block because the country
+       had no sailings at the time. It renders nothing while that is still
+       true (hideWhenEmpty), and fills in by itself the week a carrier
+       publishes one, so it is safe to leave in place either way. -->
+  <SailingSchedule
+    country={countryName}
+    id="sailings"
+    standalone={false}
+    heading={`Sailing Schedule to Sweden`}
+  />
 
 
   <div id="about">

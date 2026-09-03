@@ -101,7 +101,7 @@ const faqs = [
 ---
 
 <CountryPageLayout
-  title={`Car Shipping UK to Togo | From £1,786`}
+  title={`Car Shipping UK to Togo${fromPrice ? ` | From ${fromPrice}` : ''}`}
   description={`Ship a car from the UK to Togo${destinationPorts.length ? ` (${destinationPorts.slice(0, 2).join(', ')})` : ''}. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} transit. ` : ''}Costs, ports and live sailing dates.`.slice(0, 158)}
   countryName={countryName}
   quickFacts={quickFacts}

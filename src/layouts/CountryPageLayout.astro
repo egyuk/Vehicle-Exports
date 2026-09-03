@@ -172,9 +172,14 @@ const faqSchema = faqs.length
   <!-- Main Content -->
   <section class="py-16 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-3 gap-12">
+      <!-- Sidebar splits off at xl, not lg. Between 1024 and 1279 a third of
+           the row went to the sidebar and left the content column at ~612px,
+           which is narrower than the sailing table's natural width - so the
+           table scrolled sideways exactly on the laptop widths most people
+           read this on. Below xl the sidebar stacks underneath instead. -->
+      <div class="grid xl:grid-cols-3 gap-12">
         <!-- Content (page-specific sections) -->
-        <div class="lg:col-span-2 min-w-0 space-y-14">
+        <div class="xl:col-span-2 min-w-0 space-y-14">
           <slot />
         </div>
 

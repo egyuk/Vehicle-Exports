@@ -8,9 +8,17 @@ import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
 import { fromPriceFor } from '../../data/shipping-prices';
 import { approximateRatesFor } from '../../data/shipping-rates';
+import { scheduleFactsFor, factsByServiceFor, listOf } from '../../data/schedule-facts';
 
-// Ports and transit times here are derived from the live sailing schedule
-// data (src/data/sailing-schedules.json).
+// Ports, carriers and transit times here are read from the live sailing
+// schedule (src/data/sailing-schedules.json) at build time, never typed in, so
+// they cannot contradict the schedule table further down this same page. They
+// used to be typed in: "6-8 weeks" was the typical RoRo band when it was
+// written and still is, but the page had no way of noticing if it stopped being.
+//
+// RoRo leads because the headline price on this page is a RoRo price. The two
+// services differ enough on this route to be worth stating separately: RoRo
+// sails from three UK ports in about 6-8 weeks, container from four in 7-10.
 //
 // Australian import facts below were researched from primary government
 // sources (infrastructure.gov.au, abf.gov.au, ato.gov.au, agriculture.gov.au)
@@ -18,9 +26,48 @@ import { approximateRatesFor } from '../../data/shipping-rates';
 // the fuel-efficient definition — are 2026-27 and are indexed every 1 July, so
 // recheck them each July. Deliberately no small application/inspection fees on
 // the page: they move often and add nothing to the buying decision.
+const popularBrands: string[] = [];
+const countryName = 'Australia';
+
+const facts = scheduleFactsFor(countryName);
+const byService = factsByServiceFor(countryName);
+const roro = byService.roro;
+const box = byService.container;
+
+// Busiest first, so the three named in the quick fact are the three most cars
+// actually sail to. The literal is a floor for the week a refresh returns
+// nothing, not a claim: the page reads the schedule whenever there is one.
+const destinationPorts = facts.portsByTraffic.length
+  ? facts.portsByTraffic
+  : ['Melbourne', 'Fremantle', 'Brisbane', 'Port Kembla'];
+
+// The bare port names are not much use to someone choosing one. Port Kembla is
+// glossed only by its city: the schedule lists Sydney separately, so calling
+// Port Kembla "the port for Sydney" alongside it reads as a contradiction.
+const portAka: Record<string, string> = {
+  Fremantle: 'Fremantle (Perth)',
+  'Port Kembla': 'Port Kembla (Wollongong)',
+};
+const named = (ports: string[]) => ports.map(x => portAka[x] ?? x);
+const orList = (a: string[]) =>
+  a.length > 1 ? `${a.slice(0, -1).join(', ')} or ${a[a.length - 1]}` : a[0] ?? '';
+
+// Headline the middle half rather than the full span: one unusually long
+// routing should not set the number a customer plans around. The full span goes
+// in the FAQ, which has the room to explain it.
+const roroHeadline = roro.typical ?? facts.transit ?? 'On enquiry';
+
 const quickFacts = [
-  { label: 'Shipping Time', value: '6-8 weeks', sub: 'From Southampton, Newcastle or Bristol' },
-  { label: 'Delivery Ports', value: 'Brisbane, Fremantle, Melbourne', sub: 'Also Port Kembla (Sydney)' },
+  {
+    label: 'Shipping Time',
+    value: roroHeadline,
+    sub: box.typical ? `RoRo. Container ${box.typical}` : 'RoRo, port to port',
+  },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.slice(0, 3).join(', '),
+    sub: destinationPorts.length > 3 ? `Also ${listOf(destinationPorts.slice(3))}` : '',
+  },
   { label: 'Import Approval', value: 'Required', sub: 'Granted before the car ships' },
   { label: 'Duty & GST', value: '5% + 10%', sub: 'Duty often nil on UK-built cars' },
 ];
@@ -38,9 +85,7 @@ const tocLinks = [
   { href: '#faq', label: 'FAQs' },
 ];
 
-const popularBrands: string[] = [];
-const destinationPorts = ['Brisbane', 'Fremantle', 'Melbourne', 'Port Kembla'];
-const countryName = 'Australia';
+
 const fromPrice = fromPriceFor(countryName);
 // Indicative published rates, used in the FAQ so it cannot drift from the
 // costs table. Both read the same source.
@@ -54,15 +99,15 @@ const faqs = [
   },
   {
     q: 'How long does shipping from the UK to Australia take?',
-    a: 'Most RoRo sailings take 6 to 8 weeks port to port. The quickest run about 5 weeks and the longest routings around 9 to 10 weeks, depending on the destination port and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual departure and arrival dates for each upcoming sailing.',
+    a: `Most RoRo sailings take ${roroHeadline} port to port, and the full spread across every sailing we have listed is ${roro.transit}, depending on the destination port and how many ports the vessel calls at on the way. Container is slower on this route at ${box.typical}${box.transhipShare > 0.5 ? ', because most boxes tranship through a continental hub rather than running direct' : ''}. The live sailing schedule on this page shows the actual departure and arrival dates for each upcoming sailing.`,
   },
   {
     q: 'Which UK ports do sailings to Australia depart from?',
-    a: 'Current carrier schedules show departures from Southampton, Newcastle and Bristol. We collect vehicles from any UK address and deliver them to the departure port.',
+    a: `The two services sail from different ports. RoRo leaves ${listOf(roro.loadPorts)}${roro.carriers.length ? `, with ${listOf(roro.carriers)}` : ''}; container leaves ${listOf(box.loadPorts)}${box.carriers.length ? `, with ${listOf(box.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
   },
   {
     q: 'Which Australian ports can my car be shipped to?',
-    a: 'Vehicles are delivered to Brisbane, Fremantle (Perth), Melbourne and Port Kembla (Sydney area), depending on the sailing.',
+    a: `Vehicles are delivered to ${listOf(named(destinationPorts))}, depending on the sailing.`,
   },
   {
     q: 'Can I pack personal items in the car?',
@@ -329,7 +374,7 @@ const faqs = [
 
   <div id="arrival">
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Arrival in Australia: What Happens Next</h2>
-    <p class="text-gray-600 leading-relaxed mb-4">Once the vessel berths at Brisbane, Fremantle, Melbourne or Port Kembla:</p>
+    <p class="text-gray-600 leading-relaxed mb-4">Once the vessel berths at {orList(destinationPorts)}:</p>
     <ol class="space-y-3 mb-4">
       <li class="flex items-start gap-3">
         <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>

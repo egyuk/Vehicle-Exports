@@ -12,7 +12,7 @@
 // weekly run rewrites, so these follow along on the next build with no edit.
 
 import schedules from './sailing-schedules.json';
-import { hubPorts } from './destinations';
+import { hubPorts, scheduleNames } from './destinations';
 
 export interface ScheduleFacts {
   /** Upcoming sailings found for this country (or its hub ports). */
@@ -21,6 +21,14 @@ export interface ScheduleFacts {
   transit: string | null;
   /** Discharge ports actually served, deduplicated (see dedupePorts). */
   ports: string[];
+  /**
+   * The same ports, busiest first. `ports` comes out of the deduper in length
+   * order, which is an artefact of how it drops wrapping names rather than
+   * anything meaningful — fine as a set, arbitrary as a headline. Where a page
+   * names only its first few ports, use this so the ones most sailings actually
+   * call at come first.
+   */
+  portsByTraffic: string[];
   /** UK ports these sailings depart from. */
   loadPorts: string[];
   /** Carriers on the route. Blank carrier values are dropped, not shown. */
@@ -52,22 +60,52 @@ const dedupePorts = (ports: string[]): string[] => {
   return out;
 };
 
-const rowsFor = (country: string) =>
-  (schedules.sailings as any[]).filter(
-    s => countryOf(s.destination).toLowerCase() === country.toLowerCase() && s.ets >= todayISO(),
-  );
+/** The menu name plus whatever the carriers file the country under. */
+const wantedNames = (country: string) =>
+  new Set([country, scheduleNames[country] ?? country].map(n => n.toLowerCase()));
 
-const summarise = (rows: any[]): Omit<ScheduleFacts, 'via'> => {
-  const days = rows
+const rowsFor = (country: string) => {
+  const wanted = wantedNames(country);
+  return (schedules.sailings as any[]).filter(
+    s => wanted.has(countryOf(s.destination).toLowerCase()) && s.ets >= todayISO(),
+  );
+};
+
+/** Sea-leg days, ascending. Zero and negative spans are carrier data errors. */
+const daysOf = (rows: any[]): number[] =>
+  rows
     .map(r => (new Date(r.eta).getTime() - new Date(r.ets).getTime()) / 86400000)
     .filter(n => Number.isFinite(n) && n > 0)
     .sort((a, b) => a - b);
-  const lo = days.length ? Math.max(1, Math.floor(days[0] / 7)) : 0;
-  const hi = days.length ? Math.max(lo + 1, Math.ceil(days[days.length - 1] / 7)) : 0;
+
+/**
+ * "5-10 weeks" from a sorted day list. Shared by the whole-route figure and the
+ * per-service ones so a page cannot quote two bands built to different rules.
+ */
+const weekBand = (days: number[]): string | null => {
+  if (!days.length) return null;
+  const lo = Math.max(1, Math.floor(days[0] / 7));
+  return `${lo}-${Math.max(lo + 1, Math.ceil(days[days.length - 1] / 7))} weeks`;
+};
+
+const summarise = (rows: any[]): Omit<ScheduleFacts, 'via'> => {
+  const ports = dedupePorts(rows.map(r => r.destination.split(',')[0].trim()));
+  const traffic = new Map<string, number>();
+  for (const r of rows) {
+    const raw = r.destination.split(',')[0].trim();
+    // Count against the deduped name this row's port collapsed into, so the
+    // three spellings of Xingang do not split its total three ways.
+    const key = ports.find(p => {
+      const n = (x: string) => x.toLowerCase().replace(/[^a-z0-9]/g, '');
+      return n(raw).includes(n(p)) || n(p).includes(n(raw));
+    });
+    if (key) traffic.set(key, (traffic.get(key) ?? 0) + 1);
+  }
   return {
     count: rows.length,
-    transit: days.length ? `${lo}-${hi} weeks` : null,
-    ports: dedupePorts(rows.map(r => r.destination.split(',')[0].trim())),
+    transit: weekBand(daysOf(rows)),
+    ports,
+    portsByTraffic: [...ports].sort((a, b) => (traffic.get(b) ?? 0) - (traffic.get(a) ?? 0)),
     loadPorts: [...new Set(rows.map(r => r.loadPort).filter(Boolean))],
     // Blank carrier strings are common in the aggregator sources and rendered
     // an empty "Shipping Lines" fact before they were filtered here.
@@ -75,14 +113,10 @@ const summarise = (rows: any[]): Omit<ScheduleFacts, 'via'> => {
   };
 };
 
-/**
- * Live schedule facts for a country. A landlocked country resolves through the
- * hub ports in destinations.ts — Uganda reads Mombasa and Dar es Salaam — and
- * carries `via` so the page can say the transit covers the sea leg only.
- */
-export function scheduleFactsFor(country: string): ScheduleFacts {
+/** A country's own sailings, or the hub-port ones it is served through. */
+const resolveRows = (country: string): { rows: any[]; legs?: { country: string; port: string }[] } => {
   const direct = rowsFor(country);
-  if (direct.length) return summarise(direct);
+  if (direct.length) return { rows: direct };
 
   const hubs = hubPorts[country];
   if (hubs?.length) {
@@ -91,11 +125,79 @@ export function scheduleFactsFor(country: string): ScheduleFacts {
       return { country: h.slice(0, i).trim(), port: h.slice(i + 1).trim() };
     });
     const rows = legs.flatMap(l => rowsFor(l.country));
-    if (rows.length) {
-      return { ...summarise(rows), ports: legs.map(l => l.port), via: legs };
-    }
+    if (rows.length) return { rows, legs };
   }
-  return { count: 0, transit: null, ports: [], loadPorts: [], carriers: [] };
+  return { rows: [] };
+};
+
+/**
+ * Live schedule facts for a country. A landlocked country resolves through the
+ * hub ports in destinations.ts — Uganda reads Mombasa and Dar es Salaam — and
+ * carries `via` so the page can say the transit covers the sea leg only.
+ */
+export function scheduleFactsFor(country: string): ScheduleFacts {
+  const { rows, legs } = resolveRows(country);
+  if (!rows.length) {
+    return { count: 0, transit: null, ports: [], portsByTraffic: [], loadPorts: [], carriers: [] };
+  }
+  const base = summarise(rows);
+  return legs
+    ? { ...base, ports: legs.map(l => l.port), portsByTraffic: legs.map(l => l.port), via: legs }
+    : base;
+}
+
+export interface ServiceFacts {
+  count: number;
+  /** Full span, min to max: "5-10 weeks". Null when nothing of this service sails. */
+  transit: string | null;
+  /**
+   * The middle half of the sailings, so one unusual routing cannot set the
+   * headline. Australia's RoRo runs 5-10 weeks end to end but 6-8 covers the
+   * bulk of it, and 6-8 is the number a customer plans around.
+   */
+  typical: string | null;
+  loadPorts: string[];
+  carriers: string[];
+  /**
+   * Share of this service's sailings the carrier flagged as transhipped, 0 to 1.
+   * It is why container runs slower than RoRo on the long hauls, and deriving it
+   * keeps that explanation from becoming another hand-typed claim that goes
+   * stale. Only the container sources annotate feeder legs, so a 0 here means
+   * "not stated" as much as "direct" — treat it as evidence for a claim, never
+   * against one.
+   */
+  transhipShare: number;
+}
+
+/**
+ * Transit and ports split by service. On a long haul the two diverge enough
+ * that one combined band describes neither: to Australia, RoRo runs 5-10 weeks
+ * out of Southampton, Newcastle and Bristol while a container takes 4-11 out of
+ * four different ports. Rows whose service the carrier never stated fall into
+ * neither bucket, so these counts need not add up to scheduleFactsFor().count.
+ */
+export function factsByServiceFor(country: string): { roro: ServiceFacts; container: ServiceFacts } {
+  const { rows } = resolveRows(country);
+  const one = (service: string): ServiceFacts => {
+    const mine = rows.filter(r => r.service === service);
+    const days = daysOf(mine);
+    // Interquartile slice. Guarded because a 1-3 row route would otherwise
+    // slice to nothing and report a typical band of null against a real transit.
+    const mid = days.length >= 4
+      ? days.slice(Math.floor(days.length * 0.25), Math.ceil(days.length * 0.75))
+      : days;
+    return {
+      count: mine.length,
+      transit: weekBand(days),
+      typical: weekBand(mid),
+      loadPorts: [...new Set(mine.map(r => r.loadPort).filter(Boolean))],
+      carriers: [...new Set(mine.map(r => (r.carrier || '').trim()).filter(Boolean))],
+      transhipShare: mine.length
+        ? mine.filter(r => /transhipment/i.test(r.notes || '')).length / mine.length
+        : 0,
+    };
+  };
+  return { roro: one('roro'), container: one('container') };
 }
 
 /** "Southampton and Newcastle", "Southampton and 2 other UK ports". */

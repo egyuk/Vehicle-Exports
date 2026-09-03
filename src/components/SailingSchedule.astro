@@ -6,6 +6,7 @@
 //   <SailingSchedule country="Kenya" />
 //   <SailingSchedule country="Ghana" heading="Sailings to Ghana" limit={8} />
 import schedules from '../data/sailing-schedules.json';
+import { scheduleNames } from '../data/destinations';
 
 interface Props {
   /** Matches the country after the comma in a destination, e.g. "Mombasa, Kenya". */
@@ -48,16 +49,16 @@ const today = new Date().toISOString().slice(0, 10);
 const fmtDate = (d: string) =>
   d ? new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
 
-const transitDays = (ets: string, eta: string) =>
-  ets && eta ? Math.round((new Date(eta).getTime() - new Date(ets).getTime()) / 86400000) : null;
-
 // Match on the country portion so "Mombasa, Kenya" is found but a vessel or
-// port that merely contains the word is not.
+// port that merely contains the word is not. scheduleNames covers the cases
+// where the carriers file a country under a shorter name than the menu uses.
+const wanted = new Set(
+  [country, scheduleNames[country] ?? country].map(n => n.toLowerCase()),
+);
 const matches = (destination: string) => {
   const parts = destination.split(',').map(p => p.trim());
-  return parts.length > 1
-    ? parts[parts.length - 1].toLowerCase() === country.toLowerCase()
-    : destination.toLowerCase() === country.toLowerCase();
+  const c = parts.length > 1 ? parts[parts.length - 1] : destination;
+  return wanted.has(c.toLowerCase());
 };
 
 const upcoming = sailings
@@ -71,7 +72,7 @@ const flipDest = (d: string) => {
   return i === -1 ? d : `${d.slice(i + 1).trim()}, ${d.slice(0, i).trim()}`;
 };
 
-const rows = upcoming.slice(0, limit).map(s => ({ ...s, transit: transitDays(s.ets, s.eta) }));
+const rows = upcoming.slice(0, limit);
 const ports = [...new Set(upcoming.map(s => s.loadPort))];
 const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
 ---
@@ -94,17 +95,18 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
     {rows.length > 0 ? (
       <>
         <div class="border border-gray-200 rounded-xl overflow-x-auto">
-          <!-- No Voyage column here: on a country page's narrower content column
-               it pushed the table into sideways scrolling. The full schedule at
-               /uk-car-sailing-schedule still carries it. -->
-          <table class="w-full text-sm min-w-[620px]">
+          <!-- No Voyage or Transit column here: on a country page's narrower
+               content column they pushed the table into sideways scrolling.
+               Transit is departure to arrival, and both of those dates are
+               still in the row, so nothing is lost by dropping it. The full
+               schedule at /uk-car-sailing-schedule carries both. -->
+          <table class="w-full text-sm min-w-[560px]">
             <thead>
               <tr class="bg-gray-50 text-left border-b border-gray-200">
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Date</span><span class="hidden sm:inline">Departure Date</span></th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">UK Port</th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Destination</span><span class="hidden sm:inline">Destination / Port</span></th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Arrival Date</th>
-                <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Transit</span><span class="hidden sm:inline">Transit Time</span></th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Vessel</span><span class="hidden sm:inline">Vessel / Ship</span></th>
               </tr>
             </thead>
@@ -136,7 +138,6 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
                     {s.notes && <span class="block text-[11px] font-normal text-gray-400 whitespace-normal max-w-[240px]">{s.notes}</span>}
                   </td>
                   <td class="px-4 py-3 text-gray-600 whitespace-nowrap">{fmtDate(s.eta)}</td>
-                  <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{s.transit !== null ? `${s.transit} days` : '—'}</td>
                   <td class="px-4 py-3 text-gray-700 whitespace-nowrap">{s.vessel}</td>
                 </tr>
               ))}

@@ -19,11 +19,18 @@ import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
 import { fromPriceFor } from '../../data/shipping-prices';
+import { approximateRatesFor } from '../../data/shipping-rates';
 import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
 
 const countryName = 'South Africa';
 const popularBrands = ['Toyota', 'Volkswagen', 'Ford', 'Isuzu', 'Nissan', 'BMW', 'Land Rover'];
 const fromPrice = fromPriceFor(countryName);
+// Indicative published rates, read at build time so the FAQ cannot contradict
+// the cost table on this same page. Botswana and Zimbabwe used to: both quoted
+// Durban's RoRo price in the title and FAQ while their own tables priced
+// delivery inland, because the generator baked the figures in when the page
+// was written.
+const approx = approximateRatesFor(countryName);
 
 // Read at BUILD time, never baked in. The weekly schedule refresh moves dates,
 // adds carriers and opens new ports, so anything copied here would drift from
@@ -75,7 +82,7 @@ const tocLinks = [
 const faqs = [
   {
     q: `How much does it cost to ship a car from the UK to South Africa?`,
-    a: `RoRo shipping starts from around £988 per vehicle, and a 20ft container from about £1,651. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
+    a: `${approx?.roro ? `RoRo shipping starts from around ${approx.roro} per vehicle${approx?.c20 ? `, and a 20ft container from about ${approx.c20}` : ''}` : `A 20ft container starts from around ${approx?.c20} per vehicle`}. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
   },
   {
     q: `How long does shipping from the UK to South Africa take?`,
@@ -101,7 +108,7 @@ const faqs = [
 ---
 
 <CountryPageLayout
-  title={`Car Shipping UK to South Africa | From £988`}
+  title={`Car Shipping UK to South Africa${fromPrice ? ` | From ${fromPrice}` : ''}`}
   description={`Ship a car from the UK to South Africa${destinationPorts.length ? ` (${destinationPorts.slice(0, 2).join(', ')})` : ''}. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} transit. ` : ''}Costs, ports and live sailing dates.`.slice(0, 158)}
   countryName={countryName}
   quickFacts={quickFacts}
