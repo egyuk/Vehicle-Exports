@@ -1,6 +1,13 @@
 ---
 import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
 import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import { approximateRatesFor } from '../../data/shipping-rates';
 
 const quickFacts = [
   { label: 'Shipping Time', value: '4-6 weeks', sub: 'RoRo / Container' },
@@ -22,11 +29,19 @@ const tocLinks = [
   { href: '#faq', label: 'FAQs' },
 ];
 
+const popularBrands = ['Toyota', 'Nissan', 'Mitsubishi', 'Subaru', 'Mazda', 'Honda'];
+const destinationPorts = ['Mombasa'];
+const countryName = 'Kenya';
+// Rates come from the published table in src/data/shipping-rates.ts, so the
+// title, description, FAQ and costs table all read one source and cannot drift.
+const fromPrice = fromPriceFor(countryName);
+const approx = approximateRatesFor(countryName);
+
 // Answers restate facts already published on this page — keep the two in step.
 const faqs = [
   {
     q: 'How much does it cost to ship a car from the UK to Kenya?',
-    a: 'RoRo shipping to Mombasa starts at £1,250 for a small vehicle (up to 1.6m height) and £1,395 for larger vehicles. Private container shipping starts at £1,950 for a 20ft container, or £3,575 for a 40ft container that can take multiple vehicles. Prices cover UK-side costs including customs clearance, port handling and export documentation.',
+    a: `RoRo shipping to Mombasa starts from around ${approx?.roro}, with a 20ft private container from about ${approx?.c20} and a 40ft container from about ${approx?.c40}. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
   },
   {
     q: 'How long does shipping from the UK to Kenya take?',
@@ -50,118 +65,27 @@ const faqs = [
   },
 ];
 
-const popularBrands = ['Toyota', 'Nissan', 'Mitsubishi', 'Subaru', 'Mazda', 'Honda'];
-const destinationPorts = ['Mombasa'];
-const countryName = 'Kenya';
 ---
 
 <CountryPageLayout
-  title="Car Shipping UK to Kenya | From £1,250 RoRo to Mombasa"
-  description="Ship a car from the UK to Mombasa, Kenya. RoRo from £1,250, containers from £1,950, 4-6 weeks transit. Costs, KRA duty, age limits and live sailing dates."
+  title={`Car Shipping UK to Kenya | From ${fromPrice} RoRo to Mombasa`}
+  description={`Ship a car from the UK to Mombasa, Kenya. RoRo from ${fromPrice}, containers from ${approx?.c20}, 4-6 weeks transit. Costs, KRA duty, age limits and live sailing dates.`}
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
   popularBrands={popularBrands}
   destinationPorts={destinationPorts}
-  fromPrice="£1,250"
+  fromPrice={fromPrice}
   faqs={faqs}
   finalCtaText="If you'd like to talk through any part of shipping your car to Kenya, our team is happy to help."
 >
-  <div id="costs">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Cost of Shipping a Car from the UK to {countryName} ({destinationPorts.join(', ')})?</h2>
-    <p class="text-gray-600 leading-relaxed mb-4">
-      The total cost of shipping depends on the vehicle make, model and most importantly size. We work directly
-      with all shipping lines in the UK to arrange regular and reliable vehicle exports from the UK to {countryName} ({destinationPorts.join(', ')}).
-    </p>
-    <div class="grid sm:grid-cols-2 gap-4 mb-6">
-      <div class="border border-gray-100 rounded-xl p-5">
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
-        <p class="text-sm text-gray-500 mt-1 mb-4">The most common and cost-effective option for a single vehicle. Typically 4-6 weeks.</p>
-        <ul class="space-y-2 pt-3 border-t border-gray-100">
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>Small vehicles (up to 1.6m height)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£1,250</span>
-          </li>
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>Large vehicles (above 1.68m height)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£1,395</span>
-          </li>
-        </ul>
-      </div>
-      <div class="border border-gray-100 rounded-xl p-5">
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Private Container Shipping</h4>
-        <p class="text-sm text-gray-500 mt-1 mb-4">Extra security, or for multiple vehicles and personal items. Typically 5-7 weeks.</p>
-        <ul class="space-y-2 pt-3 border-t border-gray-100">
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>20ft Private Container (fitting one car)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£1,950</span>
-          </li>
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>40ft Container (electric)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£3,575</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">What is included in our price above?</h3>
-    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Loading and lashing vehicle into ship</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">UK customs export and clearance</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">UK port handling charges</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">DVLA documentation and export certification</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Export documentation (e.g Bill of Lading)</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Posting of the Export Documents from UK by UPS/DHL</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Shipping of the vehicle from the UK to Destination Port</span>
-      </li>
-    </ul>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3 mt-6">Our price above excludes</h3>
-    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">Pre-Export Inspection (if required)</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">Marine Insurance (container only)</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">Collection and/or delivery of the vehicle</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">All destination country's import fees</span>
-      </li>
-    </ul>
-
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts}>
     <p class="text-gray-600 leading-relaxed mt-6">
       We provide a clear, itemised export quote before you commit to anything — and our
       <a href="/import-uk-cars/kenya" class="text-[var(--color-primary)] font-semibold hover:underline">Kenya Import Duty Calculator</a>
       lets you estimate KRA taxes for a specific vehicle before you buy.
     </p>
-  </div>
+  </CountryCosts>
 
   <SailingSchedule
     country={countryName}
@@ -171,80 +95,19 @@ const countryName = 'Kenya';
     intro="Upcoming vehicle sailings from UK ports to Mombasa. Dates are the carriers' own estimates and must be reconfirmed before a booking is committed."
   />
 
-  <div id="documentation-booking">
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Documentation Required for Booking</h3>
-    <ul class="space-y-1.5">
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">Car Registration Document (V5 or Logbook) and Vehicle Invoice (or value).</span>
-      </li>
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">ID (one government-issued photo ID and one utility bill showing address).</span>
-      </li>
-    </ul>
+  <CountryBookingTerms />
 
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-5">Payment Terms / Modes</h3>
-    <ul class="space-y-1.5">
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">Full payment prior to sailing of vessel.</span>
-      </li>
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">Bank transfer preferred. Card payments (max £5,000) will attract processing fees.</span>
-      </li>
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">LOC, Cheques, Money Orders, and Cash are strictly not accepted.</span>
-      </li>
-    </ul>
-  </div>
+  <CountryServices
+    inspection={{
+      title: 'Government Pre-Shipping Inspection',
+      text: 'Kenya requires a pre-export roadworthiness inspection by a KEBS-approved agency. We arrange the inspection before the sailing so the vehicle clears customs in Mombasa without delays.',
+    }}
+  />
 
-  <div id="why-ship">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Our Other Services</h2>
-    <div class="grid sm:grid-cols-2 gap-6">
-      <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Car Sourcing / Buying on your behalf</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">We source any new or used vehicle from our network of UK dealers, auctions and private sellers — or buy a specific car you've found on your behalf, protecting you from the pitfalls of paying an unknown seller from overseas.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Tax-Free & VAT-Free Vehicle Supply</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">We specialise in VAT-qualifying and brand-new tax-free vehicles, so eligible export buyers can have the 20% UK VAT deducted or reclaimed — often the single biggest saving on an exported car.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Pre-Purchase Inspections</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">Every vehicle we export goes through a rigorous multi-point inspection before shipping, and we can arrange an independent pre-purchase inspection of any car we source so you know its condition before you commit.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Government Pre-Shipping Inspection</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">Kenya requires a pre-export roadworthiness inspection by a KEBS-approved agency. We arrange the inspection before the sailing so the vehicle clears customs in Mombasa without delays.</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="why-ship-repeat">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Car Sourcing and Buying on your behalf</h2>
-    <p class="text-gray-600 leading-relaxed">
-      Kenya is one of our most established export destinations. UK Vehicle Exporters specialises in sourcing and
-      exporting vehicles from the UK, with trusted shipping partners and support at every stage — from vehicle
-      selection through to KRA clearance and registration in Kenya.
-    </p>
-    <div class="grid sm:grid-cols-3 gap-4 mt-6">
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Buy from our stock</h4>
-        <p class="text-xs text-gray-500 mt-1">Choose from our export-ready UK vehicles.</p>
-      </div>
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Sourced to order</h4>
-        <p class="text-xs text-gray-500 mt-1">Tell us what you need, we'll find it in the UK market.</p>
-      </div>
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">You find it, we export it</h4>
-        <p class="text-xs text-gray-500 mt-1">Spotted a car elsewhere? We can buy and export it for you.</p>
-      </div>
-    </div>
-  </div>
+  <CountrySourcing
+    countryName={countryName}
+    intro="Kenya is one of our most established export destinations. UK Vehicle Exporters specialises in sourcing and exporting vehicles from the UK, with trusted shipping partners and support at every stage — from vehicle selection through to KRA clearance and registration in Kenya."
+  />
 
   <div id="shipping">
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Kenya</h2>
@@ -307,36 +170,7 @@ const countryName = 'Kenya';
     </p>
   </div>
 
-  <div id="vat-qualifying">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Tax-Free Vehicle Supply & VAT Reclaims</h2>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">UK Preferential Origin (Tax-Free Vehicle Supply)</h3>
-    <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies.
-    </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">VAT-free Supply of VAT-Qualifying (VATQ) Cars</h3>
-    <p class="text-gray-600 leading-relaxed">
-      A VAT-qualifying car is one where VAT was charged when it was first purchased by a business and has not
-      been reclaimed. For export buyers, this can allow the 20% UK VAT to be reclaimed, helping to reduce the
-      overall cost of the vehicle before it's even shipped to Kenya.
-    </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">HMRC's Personal Export Scheme (PES)</h3>
-    <p class="text-gray-600 leading-relaxed">
-      The Personal Export Scheme lets eligible buyers purchase a car in the UK free of VAT, provided the
-      vehicle is exported within HMRC's time limits. It can suit anyone relocating to Kenya who wants to
-      use the car in the UK briefly before it ships — we confirm eligibility and handle the paperwork.
-    </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Diplomatic and Military Personnel (UK Only) Tax-Free Exports</h3>
-    <p class="text-gray-600 leading-relaxed">
-      Diplomats and eligible military personnel posted overseas can buy UK vehicles tax-free for export.
-      We manage the eligibility checks and documentation as part of the purchase and shipping process.
-    </p>
-  </div>
+  <CountryTaxFree countryName={countryName} />
 
   <div id="registration">
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Inspection & Registration</h2>

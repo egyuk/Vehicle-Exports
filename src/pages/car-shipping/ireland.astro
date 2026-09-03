@@ -1,383 +1,339 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
 import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
 
+const countryName = 'Ireland';
+
+// Dublin and Rosslare only: those are the Irish ports in src/data/destinations.ts
+// and the only ones the sailing schedule carries. The old page also claimed
+// Cork, which neither data file supports.
+const destinationPorts = ['Dublin', 'Rosslare'];
+
+// Ireland has no roroSmall rate (the Irish Sea is quoted as a range in
+// src/data/shipping-prices.ts), so this is undefined and the hero chip
+// correctly does not render.
+const fromPrice = fromPriceFor(countryName);
+
+// Ireland keeps its destination-side facts (like Australia and Kenya), so the
+// Irish VAT and import duty figures are back in this bar alongside the UK-side
+// ones. Load ports below come from src/data/sailing-schedules.json
+// (Holyhead-Dublin and Fishguard-Rosslare, Stena Line).
+// Both figures fact-checked 2026-09-03 — see the note above the Irish sections
+// in the body. Duty is 0% or 10% depending on where the car was built; the old
+// "often 0% via Returning Goods Relief" was wrong on both counts.
 const quickFacts = [
   { label: 'Shipping Time', value: '3-7 days', sub: 'RoRo, Irish Sea crossing' },
-  { label: 'Delivery Ports', value: 'Dublin, Rosslare, Cork', sub: '' },
+  { label: 'Delivery Ports', value: 'Dublin, Rosslare', sub: 'From Holyhead and Fishguard' },
   { label: 'Irish VAT', value: '23%', sub: 'Charged on customs value' },
-  { label: 'Import Duty', value: 'Often 0%', sub: 'Via Returning Goods Relief' },
+  { label: 'Import Duty', value: '0% or 10%', sub: 'Turns on where the car was built' },
 ];
 
+// Only anchors that exist on the page — the site audit checks these.
 const tocLinks = [
-  { href: '#why-ship', label: 'Why ship with UK Vehicle Exporters' },
+  { href: '#why-ireland', label: 'Why ship with UK Vehicle Exporters' },
   { href: '#costs', label: 'Costs & pricing' },
+  { href: '#sailings', label: 'Sailing schedule' },
+  { href: '#why-ship', label: 'Our Other Services' },
   { href: '#shipping', label: 'Shipping across the Irish Sea' },
-  { href: '#import-duty', label: 'Avoiding import duty' },
-  { href: '#vat-qualifying', label: 'VAT-qualifying vehicles' },
+  { href: '#import-duty', label: 'Import duty: 0% or 10%' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
   { href: '#irish-vat', label: 'Irish VAT explained' },
   { href: '#vrt', label: 'Vehicle Registration Tax' },
   { href: '#ncts', label: 'NCTS & registration' },
   { href: '#arrival', label: 'Arrival in Ireland' },
+  { href: '#faq', label: 'FAQs' },
 ];
 
 const popularBrands = ['Land Rover', 'MINI', 'BMW', 'Mercedes-Benz', 'Audi', 'Porsche', 'Toyota'];
+
+// UK-side answers only. Ports, carrier and crossing length are taken from
+// src/data/sailing-schedules.json; the rate range is the `note` on Ireland in
+// src/data/shipping-prices.ts. Anything about Irish duty, VAT or VRT points at
+// /import-uk-cars/ rather than being answered here.
+const faqs = [
+  {
+    q: 'How much does it cost to ship a car from the UK to Ireland?',
+    a: 'Crossings are typically £250-£700 depending on vehicle size and the route used. Because the Irish Sea crossing is short and sails frequently, we quote it per booking rather than from a fixed rate card. The price covers the UK-side work: loading and lashing the vehicle into the ship, UK customs export and clearance, UK port handling charges, DVLA documentation and export certification, the export paperwork including the Bill of Lading, and the sailing itself.',
+  },
+  {
+    q: 'How long does the crossing to Ireland take?',
+    a: 'The crossing itself is a same-day sailing — every Irish Sea sailing in our schedule leaves a UK port and arrives in Ireland on the same date, a matter of hours rather than days. Allow roughly 3-7 days end to end once collection, UK export clearance and the booked sailing date are taken into account. The sailing schedule on this page shows the actual dates.',
+  },
+  {
+    q: 'Which UK ports do sailings to Ireland depart from?',
+    a: 'Holyhead and Fishguard, on Stena Line services: Holyhead sails to Dublin and Fishguard sails to Rosslare, so the departure port follows the Irish port you choose. We can arrange collection from any UK address and delivery to the departure port, which is quoted separately from the crossing.',
+  },
+  {
+    q: 'Which Irish ports can my car be shipped to?',
+    a: 'Dublin and Rosslare. Those are the two Irish ports on our current schedule, with several sailings a day between them.',
+  },
+  {
+    q: 'Can I pack personal items in the car?',
+    a: 'Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.',
+  },
+  {
+    q: 'Are Irish import duty, VAT and VRT included in your price?',
+    a: "No. Our price covers everything up to and including the sailing from the UK, and all destination country import fees are excluded. Irish customs duty, VAT and Vehicle Registration Tax are the importer's responsibility and are settled after the car lands, along with the NCTS inspection and Irish registration. We can point you to a customs agent at the arrival port.",
+  },
+];
 ---
 
-<Layout
-  title="Car Shipping to Ireland | UK Vehicle Export - UK Vehicle Exporters"
-  description="UK Vehicle Exporters ships quality VAT-qualifying vehicles from the UK to Ireland. Learn about costs, shipping options, import duty relief, Irish VAT, VRT and NCTS registration."
+<CountryPageLayout
+  title="Car Shipping UK to Ireland | Dublin & Rosslare RoRo"
+  description="Ship a car from the UK to Dublin or Rosslare from £250. Costs, sailing dates, import duty relief, Irish VAT, VRT and NCTS registration explained."
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
 >
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-16 lg:py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">
-        <a href="/" class="hover:text-[var(--color-primary)] transition-colors">Home</a>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <a href="/car-shipping" class="hover:text-[var(--color-primary)] transition-colors">UK Car Shipping</a>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span class="text-white">Ireland</span>
-      </nav>
-      <span class="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20 mb-4">
-        UK to Ireland Export Specialists
-      </span>
-      <h1 class="text-3xl lg:text-5xl font-bold text-white font-[family-name:var(--font-heading)] max-w-3xl">Car Shipping to Ireland</h1>
-      <p class="text-gray-400 mt-4 max-w-2xl text-lg">
-        UK Vehicle Exporters sources and exports quality VAT-qualifying vehicles from the UK to Ireland. We handle vehicle
-        selection, shipping, VAT and duty relief, and Irish registration support, so you can buy with confidence.
-      </p>
-      <div class="flex flex-wrap gap-4 mt-8">
-        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
-          Get a Shipping Quote
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-        <a href="/shipping-cars" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
-          Browse Export-Ready Cars
-        </a>
-      </div>
-    </div>
-  </section>
+  <div id="why-ireland">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Why Ship Your Car from the UK to Ireland with UK Vehicle Exporters</h2>
+    <p class="text-gray-600 leading-relaxed">
+      Buying and exporting a car to Ireland doesn't need to be stressful. UK Vehicle Exporters specialises in sourcing
+      and exporting VAT-qualifying vehicles from the UK, with trusted shipping partners covering the Irish
+      Sea route and support at every stage, from vehicle selection through to Irish registration.
+    </p>
+  </div>
 
-  <!-- Key Facts -->
-  <section class="relative -mt-8 z-10">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {quickFacts.map((fact) => (
-            <div class="text-center">
-              <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">{fact.label}</div>
-              <div class="text-lg font-bold text-gray-900 mt-1 font-[family-name:var(--font-heading)]">{fact.value}</div>
-              {fact.sub && <div class="text-xs text-gray-400 mt-0.5">{fact.sub}</div>}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
 
-  <!-- Main Content -->
-  <section class="py-16 lg:py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-3 gap-12">
-        <!-- Content -->
-        <div class="lg:col-span-2 min-w-0 space-y-14">
-
-          <div id="why-ship">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Why Ship Your Car from the UK to Ireland with UK Vehicle Exporters</h2>
-            <p class="text-gray-600 leading-relaxed">
-              Buying and exporting a car to Ireland doesn't need to be stressful. UK Vehicle Exporters specialises in sourcing
-              and exporting VAT-qualifying vehicles from the UK, with trusted shipping partners covering the Irish
-              Sea route and support at every stage, from vehicle selection through to Irish registration.
-            </p>
-            <div class="grid sm:grid-cols-3 gap-4 mt-6">
-              <div class="p-4 bg-gray-50 rounded-xl">
-                <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Buy from our stock</h4>
-                <p class="text-xs text-gray-500 mt-1">Choose from our export-ready UK vehicles.</p>
-              </div>
-              <div class="p-4 bg-gray-50 rounded-xl">
-                <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Sourced to order</h4>
-                <p class="text-xs text-gray-500 mt-1">Tell us what you need, we'll find it in the UK market.</p>
-              </div>
-              <div class="p-4 bg-gray-50 rounded-xl">
-                <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">You find it, we export it</h4>
-                <p class="text-xs text-gray-500 mt-1">Spotted a car elsewhere? We can buy and export it for you.</p>
-              </div>
-            </div>
-          </div>
-
-          <div id="costs">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">What Does It Cost to Import a Car to Ireland?</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              The total cost depends on the vehicle and shipping method, but there are no hidden surprises when
-              UK Vehicle Exporters handles it for you. Typical cost considerations include:
-            </p>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span class="text-gray-600"><strong class="text-gray-900">Vehicle price</strong> — VAT-qualifying cars can reduce cost by avoiding UK VAT</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span class="text-gray-600"><strong class="text-gray-900">Shipping</strong> — usually £250-£700 depending on vehicle size and crossing</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span class="text-gray-600"><strong class="text-gray-900">Import duty</strong> — normally 10%, but often reduced or removed entirely</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span class="text-gray-600"><strong class="text-gray-900">Irish VAT</strong> — 23%, applied on the customs value of the vehicle</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span class="text-gray-600"><strong class="text-gray-900">VRT & NCTS fees</strong> — based on the vehicle's Irish market valuation</span>
-              </li>
-            </ul>
-            <p class="text-gray-600 leading-relaxed mt-4">
-              We provide a clear, itemised export quote before you commit to anything — just speak to our team.
-            </p>
-          </div>
-
-          <div id="shipping">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping Across the Irish Sea</h2>
-            <p class="text-gray-600 leading-relaxed mb-6">
-              We work with trusted shipping partners to arrange regular, reliable vehicle deliveries from the UK
-              to Ireland.
-            </p>
-            <div class="grid sm:grid-cols-2 gap-4 mb-6">
-              <div class="border border-gray-100 rounded-xl p-5">
-                <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
-                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 17h1l1-5h14l1 5h1m-4 0a2 2 0 11-4 0m-4 0a2 2 0 11-4 0M5 12V7a2 2 0 012-2h10a2 2 0 012 2v5"/></svg>
-                </div>
-                <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
-                <p class="text-sm text-gray-500 mt-1">Ideal for most vehicles — simple, fast, and cost-effective. Typically 3-7 days.</p>
-              </div>
-              <div class="border border-gray-100 rounded-xl p-5">
-                <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
-                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7H4a1 1 0 00-1 1v8a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM8 7V5a1 1 0 011-1h6a1 1 0 011 1v2M12 7v10M7 12h10"/></svg>
-                </div>
-                <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Container Shipping</h4>
-                <p class="text-sm text-gray-500 mt-1">Extra security, or for multiple vehicles and personal items. Typically 7-14 days.</p>
-              </div>
-            </div>
-            <p class="text-gray-600 leading-relaxed">
-              <strong class="text-gray-900">Delivery ports:</strong> Dublin, Rosslare, Cork. We handle every detail
-              with our shipping partners — just choose your vehicle and leave the rest to us.
-            </p>
-          </div>
-
-          <div id="import-duty">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Avoiding the 10% Import Duty</h2>
-            <p class="text-gray-600 leading-relaxed mb-6">
-              Many vehicles exported from the UK to Ireland do not pay the standard 10% import duty, provided the
-              rules are applied correctly. This is where experience really matters.
-            </p>
-
-            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Returning Goods Relief (RGR)</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              RGR allows certain vehicles being imported into Ireland from the UK to avoid the standard 10% import
-              duty, provided they originally came from the EU and are effectively "returning" to it. In practice,
-              this means:
-            </p>
-            <ol class="space-y-3 mb-4">
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
-                <span class="text-gray-600"><strong class="text-gray-900">The car was originally manufactured in the EU</strong> — built in a country such as Germany, Spain, Italy, or France.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
-                <span class="text-gray-600"><strong class="text-gray-900">It left the EU less than 3 years ago</strong> — the key timing rule. If more than three years have passed, RGR normally won't apply.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
-                <span class="text-gray-600"><strong class="text-gray-900">It hasn't been modified outside the EU</strong> — normal wear and servicing are fine, but significant modifications could affect eligibility.</span>
-              </li>
-            </ol>
-            <p class="text-gray-600 leading-relaxed mb-6">If eligible, import duty is reduced to 0%.</p>
-
-            <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">UK Preferential Origin</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Some UK-built vehicles may qualify for reduced or zero import duty even when entering the EU from the
-              UK — typically prestige, 4x4, and performance models such as Land Rovers and MINIs, manufactured in
-              the UK with at least 65% UK-origin components. During your quote, we'll confirm whether the vehicle
-              you're interested in qualifies.
-            </p>
-          </div>
-
-          <div id="vat-qualifying">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">VAT-Qualifying Vehicles & VAT Reclaim</h2>
-            <p class="text-gray-600 leading-relaxed">
-              In addition to potential import duty savings through RGR, some buyers also benefit from purchasing a
-              VAT-qualifying vehicle — an area UK Vehicle Exporters specialises in. A VAT-qualifying car is one where VAT was
-              charged when it was first purchased by a business and has not been reclaimed. For export buyers,
-              this can allow the 20% UK VAT to be reclaimed, helping to reduce the overall cost of the vehicle.
-            </p>
-          </div>
-
-          <div id="irish-vat">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Understanding Irish VAT</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">Irish VAT is charged at <strong class="text-gray-900">23%</strong>, payable on the customs value of the vehicle, which includes:</p>
-            <ul class="space-y-2 mb-4">
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The car's purchase price</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Shipping and transport costs</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Import duty (if applicable)</li>
-            </ul>
-            <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
-              <strong class="text-gray-900">Note:</strong> VAT is calculated after any applicable import duty is
-              added, so it compounds with the total cost.
-            </p>
-          </div>
-
-          <div id="vrt">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Vehicle Registration Tax (VRT)</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">VRT is calculated in Ireland based on:</p>
-            <ul class="space-y-2 mb-4">
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The vehicle's Irish market value (OMSP)</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>CO2 emissions</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>NOx emissions</li>
-            </ul>
-            <p class="text-gray-600 leading-relaxed">
-              Lower-emission cars mean lower VRT, and electric vehicles can receive up to <strong class="text-gray-900">€5,000</strong> in VRT relief.
-              We'll help you estimate VRT before the car leaves the UK, so there are no surprises on arrival.
-            </p>
-          </div>
-
-          <div id="ncts">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">NCTS Inspection & Registration</h2>
-            <p class="text-gray-600 leading-relaxed mb-6">
-              The National Car Testing Service (NCTS) inspects imported vehicles to verify their details, calculate
-              VRT, and issue an Irish registration number. This inspection is mandatory for all imported vehicles.
-            </p>
-            <ol class="space-y-3">
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
-                <span class="text-gray-600"><strong class="text-gray-900">Book inspection</strong> — within 30 days of arrival</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
-                <span class="text-gray-600"><strong class="text-gray-900">Prepare documents</strong> — logbook, proof of purchase, customs clearance, and ID</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
-                <span class="text-gray-600"><strong class="text-gray-900">Vehicle inspection</strong> — checks emissions, odometer, and condition</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span>
-                <span class="text-gray-600"><strong class="text-gray-900">Pay VRT</strong> — calculated during the inspection</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span>
-                <span class="text-gray-600"><strong class="text-gray-900">Receive registration</strong> — fit Irish plates after registration</span>
-              </li>
-            </ol>
-            <p class="text-gray-600 leading-relaxed mt-6">
-              You're responsible for booking the NCTS inspection, but our team is on hand to answer any questions
-              you have at this stage.
-            </p>
-          </div>
-
-          <div id="arrival">
-            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Arrival in Ireland: What Happens Next</h2>
-            <p class="text-gray-600 leading-relaxed mb-4">Once your vehicle arrives in Ireland:</p>
-            <ul class="space-y-2">
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Customs clearance is handled by your agent</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Any taxes are settled correctly</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>NCTS inspection is completed</li>
-              <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Irish plates, tax, and insurance are arranged</li>
-            </ul>
-            <p class="text-gray-600 leading-relaxed mt-4">
-              At every stage, we're on hand to guide you — even after the car has left the UK.
-            </p>
-          </div>
-
-        </div>
-
-        <!-- Sidebar -->
-        <div class="space-y-6">
-          <!-- On this page -->
-          <div class="bg-gray-50 rounded-2xl p-6">
-            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">On This Page</h3>
-            <ul class="space-y-2.5">
-              {tocLinks.map((link) => (
-                <li>
-                  <a href={link.href} class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors">
-                    <svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Popular Brands -->
-          <div class="bg-gray-50 rounded-2xl p-6">
-            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Popular Brands for Ireland</h3>
-            <div class="flex flex-wrap gap-2">
-              {popularBrands.map((brand) => (
-                <span class="bg-white border border-gray-200 text-sm text-gray-700 px-3 py-1.5 rounded-full whitespace-nowrap">{brand}</span>
-              ))}
-            </div>
-          </div>
-
-          <!-- Destination Ports -->
-          <div class="bg-gray-50 rounded-2xl p-6">
-            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Destination Ports</h3>
-            <ul class="space-y-2">
-              {['Dublin', 'Rosslare', 'Cork'].map((port) => (
-                <li class="flex items-center gap-2 text-sm text-gray-600">
-                  <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  {port}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Related Reading -->
-          <div class="bg-gray-50 rounded-2xl p-6">
-            <h3 class="font-semibold text-gray-900 mb-4 font-[family-name:var(--font-heading)]">Related Reading</h3>
-            <ul class="space-y-2">
-              <li><a href="/car-export-news/complete-guide-exporting-vehicles-from-uk" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Complete UK export guide</a></li>
-              <li><a href="/car-export-news/understanding-vehicle-shipping-costs" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Understanding shipping costs</a></li>
-              <li><a href="/faq" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>Export FAQs</a></li>
-              <li><a href="/car-shipping/europe" class="flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--color-primary)] transition-colors"><svg class="w-3.5 h-3.5 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>More European destinations</a></li>
-            </ul>
-          </div>
-
-          <!-- CTA -->
-          <div class="bg-[var(--color-primary)] rounded-2xl p-6 text-center">
-            <h3 class="font-semibold text-white text-lg mb-2 font-[family-name:var(--font-heading)]">Ready to Export to Ireland?</h3>
-            <p class="text-white/80 text-sm mb-4">Get a personalised, itemised quote for your vehicle export.</p>
-            <a href="/contact" class="inline-block bg-white text-[var(--color-primary)] px-6 py-2.5 rounded-full font-semibold text-sm hover:shadow-lg transition-all">
-              Get Quote
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Rows come from the weekly refresh of src/data/sailing-schedules.json, so
+       this needs no per-page maintenance. -->
   <SailingSchedule
-    country="Ireland"
+    country={countryName}
     id="sailings"
-    background="gray"
-    heading="Sailing Schedule to Ireland"
+    standalone={false}
+    heading={`Sailing Schedule to ${countryName}`}
   />
 
-  <!-- Final CTA -->
-  <section class="py-12 bg-[var(--color-dark)]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-heading)] mb-3">Talk It Through with an Export Specialist</h2>
-      <p class="text-gray-400 max-w-xl mx-auto mb-6">
-        If you'd like to talk through any part of shipping your car to Ireland, our team is happy to help.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="/contact" class="inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
-          Contact Our Export Team
-        </a>
-        <a href="tel:+441872491409" class="inline-flex items-center gap-2 border-2 border-white/20 hover:border-[var(--color-primary)] text-white px-6 py-3 rounded-xl font-semibold transition-all">
-          Call 01872 491409
-        </a>
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing
+    countryName={countryName}
+    intro="There are three ways to buy a car through us for export to Ireland, whether or not you have already found the vehicle you want."
+  />
+
+  <div id="shipping">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping Across the Irish Sea</h2>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      We work with trusted shipping partners to arrange regular, reliable vehicle deliveries from the UK
+      to Ireland.
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="border border-gray-100 rounded-xl p-5">
+        <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 17h1l1-5h14l1 5h1m-4 0a2 2 0 11-4 0m-4 0a2 2 0 11-4 0M5 12V7a2 2 0 012-2h10a2 2 0 012 2v5"/></svg>
+        </div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
+        <p class="text-sm text-gray-500 mt-1">Ideal for most vehicles — simple, fast, and cost-effective. Typically 3-7 days.</p>
+      </div>
+      <div class="border border-gray-100 rounded-xl p-5">
+        <div class="w-10 h-10 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7H4a1 1 0 00-1 1v8a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM8 7V5a1 1 0 011-1h6a1 1 0 011 1v2M12 7v10M7 12h10"/></svg>
+        </div>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Container Shipping</h4>
+        <p class="text-sm text-gray-500 mt-1">Extra security, or for multiple vehicles and personal items. Typically 7-14 days.</p>
       </div>
     </div>
-  </section>
-</Layout>
+    <p class="text-gray-600 leading-relaxed">
+      <strong class="text-gray-900">Delivery ports:</strong> Dublin and Rosslare. We handle every detail
+      with our shipping partners — just choose your vehicle and leave the rest to us.
+    </p>
+  </div>
+
+  <!-- ==========================================================================
+       IRISH DESTINATION SECTIONS
+       Like Australia and Kenya, Ireland keeps its destination-side content:
+       import duty and Returning Goods Relief, Irish VAT, VRT, the NCTS
+       inspection and arrival. (Briefly moved out on 2026-09-03 when country
+       pages were cut back to UK-side scope, then restored on George's call —
+       these three pages are the grandfathered exceptions, not the pattern for
+       new country pages, which stop at the UK quayside.)
+
+       FACT-CHECKED 2026-09-03 against EU TARIC, revenue.ie and ncts.ie, two
+       independent checkers per claim. Seven of eight original claims were
+       wrong and were rewritten; only the 23% VAT rate survived unchanged.
+       What was corrected, so nobody "restores" the old wording:
+         - Duty is 0% OR 10%, decided by where the car was BUILT. The old page
+           presented a flat 10% with reliefs against it.
+         - Returned Goods Relief does NOT depend on EU manufacture (Revenue is
+           explicit). It needs prior export FROM the EU, unaltered, returning
+           within 3 years OF THAT EXPORT — so it rarely helps on ordinary UK
+           stock now that the pre-Brexit window has closed.
+         - UK preferential origin has no "65% UK content" test and no
+           prestige/4x4/performance test. Both were invented.
+         - VRT is a CO2 charge (a % of Revenue's valuation) PLUS a NOx levy;
+           30-year-old vehicles pay a flat rate instead.
+         - EV relief is capped by the VRT actually due, tapers above a €40,000
+           valuation, and is legislated only to 31 December 2026.
+         - There are TWO deadlines: book within 7 days, register within 30.
+           The old page gave only "book within 30 days", which is wrong and
+           would have cost customers extra VRT.
+       Deliberately no CO2 band percentages, NOx tiers or euro minimums on the
+       page: they move at Budget time and would rot. Ranges and rules only.
+       ========================================================================== -->
+  <div id="import-duty">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Import Duty: 0% or 10%</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Since Brexit, Great Britain sits outside the EU customs union, so a car moving from Britain to Ireland
+      needs a customs declaration. The duty is either <strong class="text-gray-900">nothing or 10%</strong> of
+      the customs value, and which one you pay comes down to a single question:
+      <strong class="text-gray-900">where the car was built</strong>, not where you bought it.
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="border border-gray-100 rounded-xl p-5">
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">0% — UK-built cars</h4>
+        <p class="text-sm text-gray-500 mt-1">Under the EU-UK Trade and Cooperation Agreement, a car that qualifies as UK-originating enters Ireland duty free. There is no vehicle-class test — it applies to any car that meets the rules of origin, not just prestige or performance models.</p>
+      </div>
+      <div class="border border-gray-100 rounded-xl p-5">
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">10% — everything else</h4>
+        <p class="text-sm text-gray-500 mt-1">A car built in Germany, Japan, Korea or anywhere else and simply sold in Britain is not UK-originating. It pays the standard third-country rate of 10%, however long it sat on a UK forecourt.</p>
+      </div>
+    </div>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      The catch is documentary. The 0% rate is not automatic: it has to be claimed at declaration, supported by a
+      <strong class="text-gray-900">statement on origin</strong> from the seller, or by importer's knowledge. A UK
+      logbook is not proof of origin. Private sellers and many used-car dealers cannot issue a valid statement,
+      which is why a good number of second-hand imports end up paying the 10% even when the car was built in
+      Britain. We establish this before you commit, because it is a tenth of the car's value.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Returned Goods Relief — rarely available now</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Returned Goods Relief is a separate route to 0% duty, and it is widely misunderstood. It has
+      <strong class="text-gray-900">nothing to do with where the car was manufactured</strong>. It applies to a
+      vehicle that was previously exported <em>from</em> the EU and is now coming back, unaltered, within
+      <strong class="text-gray-900">three years of the date it left</strong>. The relief must be claimed on the
+      declaration and evidenced, and import VAT is still payable unless the person re-importing is the same
+      person who exported it.
+    </p>
+    <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
+      <strong class="text-gray-900">Why it seldom helps in 2026:</strong> the three-year clock runs from the date
+      the car left the EU. Cars that moved to Britain before Brexit stopped qualifying at the end of 2023, so the
+      relief now only reaches a car exported from the EU to Britain within roughly the last three years. It is
+      worth checking on the right car, but it is no longer a general route around the 10% on ordinary UK
+      used-car stock, whatever you may read elsewhere.
+    </p>
+  </div>
+
+  <CountryTaxFree countryName={countryName} />
+
+  <div id="irish-vat">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Understanding Irish VAT</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Irish VAT is charged at <strong class="text-gray-900">23%</strong>, payable on the customs value of the vehicle, which includes:</p>
+    <ul class="space-y-2 mb-4">
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The car's purchase price</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Shipping and transport costs</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Import duty (if applicable)</li>
+    </ul>
+    <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
+      <strong class="text-gray-900">Note:</strong> VAT is calculated after any applicable import duty is
+      added, so it compounds with the total cost.
+    </p>
+  </div>
+
+  <div id="vrt">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Vehicle Registration Tax (VRT)</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      VRT is usually the biggest single charge, and for an ordinary car it is two things added together, both
+      based on Revenue's own valuation of the car in Ireland, the
+      <strong class="text-gray-900">open market selling price</strong>. Your purchase price in Britain does not
+      set it.
+    </p>
+    <ul class="space-y-2 mb-4">
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900">A CO2 charge</strong> — a percentage of that valuation set by the car's emissions band, running from 7% at the cleanest end to 41% for the highest emitters, with a minimum charge in each band.</span></li>
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900">A NOx levy on top</strong> — charged per mg/km on a rising scale. If you cannot evidence the car's NOx figure, Revenue applies the maximum, which is far more expensive on a diesel than on a petrol car. Bring the documentation.</span></li>
+    </ul>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Two cases are charged quite differently and are worth knowing about. A vehicle
+      <strong class="text-gray-900">over 30 years old</strong> at registration is a flat, modest amount rather
+      than a percentage of value, which is why classics are so much cheaper to bring in than people expect.
+      Vans and commercials are charged on their own lower scale.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      <strong class="text-gray-900">Electric cars</strong> get VRT relief of up to €5,000, but read that
+      carefully. It is a reduction in VRT, not a payment, and it cannot exceed the VRT actually due — since
+      electric cars sit in the lowest CO2 band, the relief in practice is usually a few thousand euro rather than
+      the full five. Full relief applies up to a €40,000 valuation, tapers between €40,000 and €50,000, and
+      disappears above that. Hybrids and plug-in hybrids do not qualify.
+    </p>
+    <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
+      <strong class="text-gray-900">Deadline worth planning around:</strong> the electric vehicle relief is
+      currently legislated only for cars registered before 31 December 2026, and it is the
+      <em>registration</em> date that counts, not when you buy or ship. Bands, levies and reliefs are set at
+      Budget time, so we confirm the current figures and estimate your VRT before the car leaves the UK rather
+      than quoting last year's numbers.
+    </p>
+  </div>
+
+  <div id="ncts">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">NCTS Inspection & Registration</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Every imported vehicle has to be registered in Ireland, and that happens at an NCTS centre, which handles
+      registration on Revenue's behalf. There are
+      <strong class="text-gray-900">two separate deadlines, and both run from the day the car arrives</strong>:
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="border border-gray-100 rounded-xl p-5">
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">7 days to book</h4>
+        <p class="text-sm text-gray-500 mt-1">You must book the appointment within a week of the vehicle entering the State. This is the one people miss.</p>
+      </div>
+      <div class="border border-gray-100 rounded-xl p-5">
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">30 days to register</h4>
+        <p class="text-sm text-gray-500 mt-1">Registration itself must be completed within 30 days. Miss it and additional VRT is charged on top.</p>
+      </div>
+    </div>
+    <ol class="space-y-3">
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Clear customs first</strong> — for a car from Great Britain the import declaration must be lodged and any duty and VAT paid before the appointment. You need the customs declaration reference with you.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Book within 7 days</strong> of the car arriving in the State</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Bring the documents</strong> — the UK logbook, proof of purchase, the customs paperwork, evidence of the CO2 and NOx figures, and photo ID</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Inspection</strong> — the centre confirms the car matches its documentation and sends the details to Revenue, which calculates the VRT</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Pay and register</strong> — VRT is collected and your registration number issued, to be fitted in the prescribed format within three days</span>
+      </li>
+    </ol>
+    <p class="text-gray-600 leading-relaxed mt-6">
+      Booking the appointment is your responsibility, but our team is on hand to answer any questions at this
+      stage, and driving the car before it is registered risks it being detained, so it is worth getting the
+      timing right.
+    </p>
+  </div>
+
+  <div id="arrival">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Arrival in Ireland: What Happens Next</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Once your vehicle arrives in Ireland, in this order:</p>
+    <ul class="space-y-2">
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The customs import declaration is lodged, and duty and VAT are settled</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The NCTS appointment is booked, within 7 days of arrival</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The inspection is completed and VRT paid, within 30 days of arrival</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Irish plates, motor tax and insurance are arranged</li>
+    </ul>
+    <p class="text-gray-600 leading-relaxed mt-4">
+      At every stage, we're on hand to guide you — even after the car has left the UK.
+    </p>
+  </div>
+</CountryPageLayout>

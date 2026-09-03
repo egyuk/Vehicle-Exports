@@ -1,40 +1,60 @@
 ---
 import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
 import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import { approximateRatesFor } from '../../data/shipping-rates';
 
-// TODO: several body paragraphs below are still placeholders — import duty /
-// GST rates, registration and inspection rules need verified Australia facts.
 // Ports and transit times here are derived from the live sailing schedule
-// data (src/data/sailing-schedules.json); prices match the cards below.
+// data (src/data/sailing-schedules.json).
+//
+// Australian import facts below were researched from primary government
+// sources (infrastructure.gov.au, abf.gov.au, ato.gov.au, agriculture.gov.au)
+// on 2026-09-03. Figures that carry a financial year — the LCT thresholds and
+// the fuel-efficient definition — are 2026-27 and are indexed every 1 July, so
+// recheck them each July. Deliberately no small application/inspection fees on
+// the page: they move often and add nothing to the buying decision.
 const quickFacts = [
-  { label: 'Shipping Time', value: '3-9 weeks', sub: 'Most RoRo sailings 5-8 weeks' },
-  { label: 'Delivery Ports', value: 'Brisbane, Fremantle, Melbourne', sub: 'Also Port Kembla' },
-  { label: 'RoRo From', value: '£1,250', sub: 'Containers from £1,950' },
-  { label: 'UK Departure Ports', value: 'Southampton, Newcastle, Bristol', sub: '' },
+  { label: 'Shipping Time', value: '6-8 weeks', sub: 'From Southampton, Newcastle or Bristol' },
+  { label: 'Delivery Ports', value: 'Brisbane, Fremantle, Melbourne', sub: 'Also Port Kembla (Sydney)' },
+  { label: 'Import Approval', value: 'Required', sub: 'Granted before the car ships' },
+  { label: 'Duty & GST', value: '5% + 10%', sub: 'Duty often nil on UK-built cars' },
 ];
 
 const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
   { href: '#sailings', label: 'Sailing schedule' },
   { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#import-approval', label: 'Import approval & eligibility' },
+  { href: '#taxes', label: 'Duty, GST & luxury car tax' },
+  { href: '#biosecurity', label: 'Biosecurity & asbestos' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#registration', label: 'Registering the car in Australia' },
+  { href: '#arrival', label: 'Arrival in Australia' },
   { href: '#faq', label: 'FAQs' },
 ];
 
 const popularBrands: string[] = [];
 const destinationPorts = ['Brisbane', 'Fremantle', 'Melbourne', 'Port Kembla'];
 const countryName = 'Australia';
+const fromPrice = fromPriceFor(countryName);
+// Indicative published rates, used in the FAQ so it cannot drift from the
+// costs table. Both read the same source.
+const approx = approximateRatesFor(countryName);
 
-// Answers restate the prices on this page and the live schedule data only —
-// duty/GST/registration questions wait until those facts are verified.
+// Answers restate facts already published on this page — keep the two in step.
 const faqs = [
   {
     q: 'How much does it cost to ship a car from the UK to Australia?',
-    a: 'RoRo shipping starts at £1,250 for a small vehicle (up to 1.6m height) and £1,395 for larger vehicles. A private 20ft container is £1,950, or £3,575 for a 40ft container. Prices cover UK-side costs including customs clearance, port handling and export documentation.',
+    a: `RoRo shipping to Australia starts from around ${approx?.roro}, with a 20ft private container from about ${approx?.c20} and a 40ft container from about ${approx?.c40}. Those are indicative rates from our published rate table and move with the market, so call us for the latest. A full export quote also covers the UK-side work: customs clearance, port handling, DVLA paperwork and export documentation.`,
   },
   {
     q: 'How long does shipping from the UK to Australia take?',
-    a: 'Most RoRo sailings take 5 to 8 weeks port to port, with the fastest routes around 3 weeks depending on the destination port. The live sailing schedule on this page shows upcoming departure and arrival dates for each route.',
+    a: 'Most RoRo sailings take 6 to 8 weeks port to port. The quickest run about 5 weeks and the longest routings around 9 to 10 weeks, depending on the destination port and how many ports the vessel calls at on the way. The live sailing schedule on this page shows the actual departure and arrival dates for each upcoming sailing.',
   },
   {
     q: 'Which UK ports do sailings to Australia depart from?',
@@ -48,13 +68,45 @@ const faqs = [
     q: 'Can I pack personal items in the car?',
     a: 'Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.',
   },
+  {
+    q: 'Do I need an import approval before shipping a car to Australia?',
+    a: 'Yes. It is an offence under the Road Vehicle Standards Act 2018 to import a road vehicle into Australia without approval, and the approval has to be in place before the vehicle is imported, so it needs to be applied for well before the car sails. Applications are made through the Department of Infrastructure’s ROVER portal, and the department says assessment may take up to 60 business days on top of the identity checks needed to open an account. If a car arrives without an approval, the Australian Border Force will not release it from customs control and the storage costs fall on the importer.',
+  },
+  {
+    q: 'Can anyone import a used car into Australia, or only migrants?',
+    a: 'Not just anyone. Most private imports use one of three routes: the personal effects pathway, for migrants and returning Australians who owned and used the car overseas for at least 12 months before moving; the older vehicles pathway, open to anyone for a car built 25 or more years ago; or the Specialist and Enthusiast Vehicle Scheme, where a listed make and model is imported through a Registered Automotive Workshop. A recent car bought purely to import will usually not qualify, so check eligibility before you buy.',
+  },
+  {
+    q: 'How much duty and GST will I pay on a car imported into Australia?',
+    a: 'Customs duty on most used passenger cars is 5% of the customs value, and GST is 10% of the customs value plus that duty plus the freight and marine insurance. Cars that qualify as UK-originating under the Australia-UK Free Trade Agreement enter free of duty, and cars 30 years old or more are also duty free, though GST still applies.',
+  },
+  {
+    q: 'What is luxury car tax and will it apply to my car?',
+    a: 'Luxury car tax is charged on the landed, GST-inclusive value of the car above a threshold. For 2026-27 that threshold is A$80,809 for most cars and A$91,661 for fuel-efficient cars using 3.5 litres per 100km or less, which in practice means electric and plug-in hybrid models. The headline rate is 33%, but it is applied to the excess after the GST element is stripped out, so the actual cost is nearer 30% of the amount above the threshold. It applies to used cars as well as new, so an older prestige car can still attract it.',
+  },
+  {
+    q: 'Does my car need to be cleaned before it is shipped to Australia?',
+    a: 'Yes, and this is the single most common cause of delay. Australian biosecurity requires the vehicle to arrive free of soil, plant matter, seeds and insects, inside and out. Used vehicles are inspected on arrival, and anything found contaminated is cleaned, fumigated, re-exported or destroyed at the importer’s cost. We steam clean every vehicle, including the engine bay, boot and spare-wheel well, before it sails.',
+  },
+  {
+    q: 'Is asbestos a problem when importing a car into Australia?',
+    a: 'It can be. Asbestos is prohibited in Australia with no exemption for a vehicle’s age, value or classic status. The parts the Border Force treats as at risk are brake linings, blocks and disc pads, clutch linings, gaskets and seals, acoustic padding, and heat-resistant sealing compounds. A signed declaration that a car is asbestos-free carries no weight on its own, whoever it comes from, so on an older vehicle it is worth resolving before shipping rather than having the car held and sampled on the wharf.',
+  },
+  {
+    q: 'Will my car need brown marmorated stink bug treatment?',
+    a: 'It depends on where the car was built, not just where it sails from. Seasonal measures apply to vehicles shipped between 1 September and 30 April. The UK is not a target risk country, so a UK-built car shipped from a UK port needs no mandatory treatment, though it can still be picked for a random inspection. However the measures also catch vehicles manufactured in a target risk country, so a German, Italian, French, Spanish, Japanese or American built car still needs treatment even though it leaves from Southampton. That covers a lot of what we ship, so we check the country of manufacture and price the treatment in when you book.',
+  },
+  {
+    q: 'Does my UK car need converting to left-hand drive?',
+    a: 'No, the opposite. Australia drives on the left, so a UK car is already right-hand drive and needs no steering conversion. It is left-hand-drive imports that face restrictions.',
+  },
 ];
 ---
 
 <CountryPageLayout
-  title="Car Shipping UK to Australia | From £1,250 RoRo"
-  description="Ship a car from the UK to Australia. RoRo from £1,250, private containers available. Costs, import duty, GST, registration and live sailing dates."
-  fromPrice="£1,250"
+  title={`Car Shipping UK to Australia | From ${fromPrice} RoRo`}
+  description={`Ship a car from the UK to Australia. RoRo from ${fromPrice}, private containers available. Costs, import duty, GST, registration and live sailing dates.`}
+  fromPrice={fromPrice}
   faqs={faqs}
   countryName={countryName}
   quickFacts={quickFacts}
@@ -63,95 +115,7 @@ const faqs = [
   destinationPorts={destinationPorts}
   finalCtaText="If you'd like to talk through any part of shipping your car to Australia, our team is happy to help."
 >
-  <div id="costs">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Cost of Shipping a Car from the UK to {countryName} ({destinationPorts.join(', ')})?</h2>
-    <p class="text-gray-600 leading-relaxed mb-4">
-      The total cost of shipping depends on the vehicle make, model and most importantly size. We work directly
-      with all shipping lines in the UK to arrange regular and reliable vehicle exports from the UK to {countryName} ({destinationPorts.join(', ')}).
-    </p>
-    <div class="grid sm:grid-cols-2 gap-4 mb-6">
-      <div class="border border-gray-100 rounded-xl p-5">
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
-        <p class="text-sm text-gray-500 mt-1 mb-4">Ideal for most vehicles — simple, fast, and cost-effective. Most sailings 5-8 weeks.</p>
-        <ul class="space-y-2 pt-3 border-t border-gray-100">
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>Small vehicles (up to 1.6m height)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£1,250</span>
-          </li>
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>Large vehicles (above 1.68m height)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£1,395</span>
-          </li>
-        </ul>
-      </div>
-      <div class="border border-gray-100 rounded-xl p-5">
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Private Container Shipping</h4>
-        <p class="text-sm text-gray-500 mt-1 mb-4">Extra security, or for multiple vehicles and personal items. Transit varies by routing — see the sailing schedule.</p>
-        <ul class="space-y-2 pt-3 border-t border-gray-100">
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>20ft Private Container (fitting one car)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£1,950</span>
-          </li>
-          <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-            <span>40ft Container (electric)</span>
-            <span class="font-semibold text-gray-900 shrink-0">£3,575</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">What is included in our price above?</h3>
-    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Loading and lashing vehicle into ship</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">UK customs export and clearance</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">UK port handling charges</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">DVLA documentation and export certification</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Export documentation (e.g Bill of Lading)</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Posting of the Export Documents from UK by UPS/DHL</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-600">Shipping of the vehicle from the UK to Destination Port</span>
-      </li>
-    </ul>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3 mt-6">Our price above excludes</h3>
-    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">Pre-Export Inspection (if required)</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">Marine Insurance (container only)</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">Collection and/or delivery of the vehicle</span>
-      </li>
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-gray-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span class="text-gray-600">All destination country's import fees</span>
-      </li>
-    </ul>
-  </div>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
 
   <!-- Sailing schedule. Driven by countryName, so a copy of this template only
        needs countryName changing - the rows follow automatically from
@@ -165,109 +129,232 @@ const faqs = [
     heading={`Sailing Schedule to ${countryName}`}
   />
 
-  <div id="documentation-booking">
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Documentation Required for Booking</h3>
-    <ul class="space-y-1.5">
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">Car Registration Document (V5 or Logbook) and Vehicle Invoice (or value).</span>
+  <CountryBookingTerms />
+
+  <CountryServices
+    inspection={{
+      title: 'Biosecurity Preparation',
+      text: 'Australia inspects every used vehicle on arrival and charges the importer for any cleaning it needs. We steam clean each car inside and out before it sails, engine bay and spare-wheel well included, and can arrange asbestos testing on older vehicles so nothing is held on the wharf.',
+    }}
+  />
+
+  <CountrySourcing countryName={countryName} />
+
+  <div id="import-approval">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Import Approval & Eligibility</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Australia is one of the strictest destinations we ship to, and the paperwork comes first. Under the
+      <strong class="text-gray-900">Road Vehicle Standards Act 2018</strong> it is an offence to import a road
+      vehicle without approval, and the approval has to be in place <strong class="text-gray-900">before the car
+      is imported</strong> — which in practice means applying well before it sails. Applications go through
+      ROVER, the Department of Infrastructure's online portal. Allow a couple of months: a new ROVER account
+      needs 100 points of identity verification, which the department says can take a fortnight on its own, and
+      it may then take up to 60 business days to assess the application itself.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      An approval also enters the vehicle on the <strong class="text-gray-900">Register of Approved Vehicles
+      (RAV)</strong>, which is what a state or territory authority looks for when you go to register the car.
+      Most private imports from the UK use one of three routes:
+    </p>
+    <ol class="space-y-3 mb-6">
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Personal effects</strong> — for migrants and returning Australians. You must have become the owner while living outside Australia, have owned and actually used the car for at least 12 months immediately before you first arrive in Australia to live indefinitely, apply within 6 months of arriving, and not have been granted this concession in the previous 5 years. Service records, insurance and registration are what prove continuous use, so a car bought and left garaged will not qualify.</span>
       </li>
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">ID (one government-issued photo ID and one utility bill showing address).</span>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Older vehicles</strong> — open to anyone, for a car whose build date (or the date of the last significant modification) is at least 25 years before the date you apply. This is the usual route for classic and collector cars, and most vehicles this old do not need to be on the Specialist and Enthusiast Vehicles Register at all.</span>
       </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Specialist and Enthusiast Vehicles (SEVS)</strong> — the usual route for a newer car that is not already on the RAV. The model normally needs to be covered by an entry on the SEVs Register both when you apply and when the decision is made. A Registered Automotive Workshop then modifies the car to an approved Model Report, and an authorised vehicle verifier checks the work and enters it on the RAV. Other routes exist for vehicles that are not on the register, including racing, exhibition and film use, but those do not put the car on the RAV and so do not lead to ordinary registration.</span>
+      </li>
+    </ol>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Being right-hand drive, a UK car needs <strong class="text-gray-900">no steering conversion</strong> — the
+      restrictions Australian states impose apply to left-hand-drive imports, not to cars from the UK. That is one
+      of the reasons UK cars travel to Australia so well.
+    </p>
+    <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
+      <strong class="text-gray-900">Important:</strong> an import approval is not a guarantee of registration.
+      The Commonwealth controls what may be imported; each state and territory sets its own registration rules on
+      top. We check eligibility against the route you intend to use before you commit to buying a vehicle.
+    </p>
+  </div>
+
+  <div id="taxes">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Duty, GST & Luxury Car Tax</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Australian import charges are assessed by the Australian Border Force once the vehicle is in transit and an
+      Import Declaration has been lodged. They stack in a set order, each one calculated on the total so far:
+    </p>
+    <ul class="space-y-2 mb-4">
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900">Customs duty</strong> — 5% of the customs value on most used passenger cars. Cars that qualify as UK-originating under the Australia-UK Free Trade Agreement are free of duty, as are cars 30 years old or more, and a few small-engined categories are already nil.</span></li>
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900">GST</strong> — 10%, charged not on the car alone but on the customs value, plus the duty, plus what you paid to ship and insure it to the extent that is not already inside the customs value. Freight therefore increases the GST bill as well as the shipping bill.</span></li>
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900">Luxury car tax</strong> — charged on the landed, GST-inclusive value above a threshold. For 2026-27 that threshold is A$80,809, or A$91,661 for a fuel-efficient car. The headline rate is 33%, but it applies to the excess with the GST stripped out, so the real cost is about 30p in the pound above the threshold, not 33p.</span></li>
     </ul>
 
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-5">Payment Terms / Modes</h3>
-    <ul class="space-y-1.5">
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">Full payment prior to sailing of vessel.</span>
-      </li>
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">Bank transfer preferred. Card payments (max £5,000) will attract processing fees.</span>
-      </li>
-      <li class="flex items-start gap-2.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-black mt-2 shrink-0"></span>
-        <span class="text-gray-600">LOC, Cheques, Money Orders, and Cash are strictly not accepted.</span>
-      </li>
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">The UK-Australia Free Trade Agreement</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      The agreement has been in force since 31 May 2023 and removed Australian tariffs on UK-originating
+      vehicles. The saving is real but conditional: the car must actually <em>originate</em> in the UK under the
+      agreement's rules of origin, and at the time of import you must hold either a declaration of origin, or a
+      copy of one, or other documentation showing the car is UK-originating, unless Australia has waived that
+      requirement. A UK-built Land Rover, MINI, Jaguar, Bentley or Aston Martin is the strong case. A German or
+      Japanese car simply bought in the UK is not UK-originating and pays the 5%. Worth knowing too that the
+      tariff schedule itself does not show a UK rate against used cars — the free rate comes from the agreement's
+      residual rule — so do not be alarmed if a broker's first quote assumes 5%. We confirm the position before
+      quoting rather than assuming the exemption either way.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Two things that catch buyers out</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      <strong class="text-gray-900">Luxury car tax applies to used cars too.</strong> There is a widely repeated
+      claim that cars over two years old are exempt. That exemption covers a later <em>sale</em> within Australia,
+      not the importation. Bring in a three-year-old Range Rover worth more than the threshold and luxury car tax
+      is payable at the border. The tax office's own worked example charges it on a 1977 Mustang. The exemptions
+      that do exist are not about age: they cover things like quoting an ABN, cars on which the tax has already
+      been paid, and re-importing a car that was previously exported from Australia — worth raising if you are a
+      returning Australian bringing back a car you originally bought there.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      <strong class="text-gray-900">The price you paid may not be the taxable value.</strong> For a privately
+      imported used car the Border Force generally cannot use your purchase invoice, because the car has been
+      driven or has depreciated since. Instead it values the vehicle on an independent appraisal of what it would
+      fetch landed on the Australian wharf — obtained at the importer's cost. Keep the purchase invoice, the V5C,
+      the service history and the bill of lading, as they all support the valuation.
+    </p>
+    <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
+      <strong class="text-gray-900">Note:</strong> duty, GST and luxury car tax are Australian charges, payable on
+      arrival, and sit outside our shipping price. The Border Force issues a payment advice once the declaration
+      is processed, so you do not have to calculate them yourself. Rates and thresholds here were checked against
+      Australian government sources in September 2026; the thresholds are re-indexed every July.
+    </p>
+  </div>
+
+  <div id="biosecurity">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Biosecurity & Asbestos</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Australia's biosecurity rules are the strictest of any market we ship to, and a dirty car is the most common
+      reason a shipment is delayed. It is the importer's responsibility to make sure the vehicle arrives free of
+      soil, mud, seeds, plant material, animal material and live insects. Used vehicles are given a full internal
+      and external inspection on arrival, and inspectors look in the places dirt actually hides:
+    </p>
+    <ul class="space-y-2 mb-4">
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The boot and the spare-wheel well</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>The engine bay and the washer bottle</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Under the seats and mats, consoles and storage compartments</li>
+      <li class="flex items-center gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Vents, and window and door seals</li>
     </ul>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      If contamination is found, the vehicle is cleaned or fumigated, and in bad cases re-exported or destroyed —
+      always at the importer's expense. We steam clean every Australia-bound vehicle inside and out before it
+      sails, and the keys travel with the car so officers can open the compartments and bonnet without forcing
+      anything.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Brown marmorated stink bug season</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Australia runs seasonal stink bug measures on vehicles shipped between
+      <strong class="text-gray-900">1 September and 30 April</strong>, set by the shipped-on-board date on the
+      bill of lading. This is the detail most often got wrong, and it is worth reading twice, because the rule
+      follows <strong class="text-gray-900">where the car was built, not only where it sails from</strong>.
+    </p>
+    <ul class="space-y-2 mb-4">
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>The <strong class="text-gray-900">UK itself is not a target risk country</strong>. It is listed as an emerging risk country, so a UK-built car shipped from a UK port needs no mandatory treatment on that basis, though it can still be picked for a random inspection on arrival.</span></li>
+      <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-gray-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"/></svg><span>But the measures catch goods <strong class="text-gray-900">manufactured in</strong> a target risk country as well as those shipped from one, and motor vehicles are treated as high risk goods. A German, Italian, French, Spanish, Czech, Japanese or American built car <strong class="text-gray-900">still needs mandatory treatment</strong> even though it is leaving from Southampton.</span></li>
+    </ul>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      In practice that covers a large share of what we export — BMW, Mercedes-Benz, Audi, Volkswagen, Porsche,
+      Fiat, Alfa Romeo, Peugeot, Toyota and Lexus among them. It is not a problem, just a cost and a few days to
+      plan for, and it is far cheaper booked before sailing than discovered on arrival. We check the country of
+      manufacture against the current target list when we quote, so a September-to-April booking is priced with
+      the treatment already in it.
+    </p>
+
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Asbestos</h3>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Asbestos is prohibited in Australia and there is <strong class="text-gray-900">no exemption for age, value
+      or classic status</strong>. On the Border Force's own list of goods that might contain it, the vehicle
+      parts at risk are brake linings, blocks and disc pads, clutch linings, gaskets and seals, acoustic padding,
+      lagging and jointing materials, and heat-resistant sealing compounds. A signed declaration that a car is
+      asbestos-free carries no weight on its own, whether it comes from the owner, the manufacturer or a
+      supplier: the Border Force wants supporting documentary evidence, and where there is doubt, sampling by a
+      competent person. On an older vehicle, sorting this out before it ships is far cheaper than having the car
+      held, sampled and tested on the wharf.
+    </p>
   </div>
 
-  <div id="why-ship">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Our Other Services</h2>
-    <div class="grid sm:grid-cols-2 gap-6">
+  <CountryTaxFree countryName={countryName} />
+
+  <div id="registration">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Registering the Car in Australia</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Registration is handled by the state or territory, not by the Commonwealth. Once the car is on the Register
+      of Approved Vehicles it becomes <em>available</em> for registration, and the state then applies its own
+      rules on top. In broad terms every state wants the same four things: the import approval and RAV entry, a
+      safety or roadworthy inspection, proof of identity and entitlement, and compulsory third party insurance
+      before the car is driven.
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      Before any of that, there is a UK step that is easy to forget. Tell the DVLA the car is leaving permanently
+      by completing the <strong class="text-gray-900">permanent export section of the V5C</strong> and sending it
+      to DVLA, Swansea, SA99 1BD. Keep the rest of the log book — you will need it in Australia as proof of
+      entitlement. We handle this as part of the export paperwork.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-6 mb-6">
       <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Car Sourcing / Buying on your behalf</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">We source any new or used vehicle from our network of UK dealers, auctions and private sellers — or buy a specific car you've found on your behalf, protecting you from the pitfalls of paying an unknown seller from overseas.</p>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">New South Wales</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">Once the car clears customs it goes to an Authorised Unregistered Vehicle Inspection Scheme station, where the examiner checks it against minimum safety standards and completes the personal import plate order that came with your approval. A separate identity inspection applies to vehicles under ten years old in the Sydney, Wollongong, Gosford and Newcastle areas. Registration is then completed at a Service NSW centre.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Tax-Free & VAT-Free Vehicle Supply</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">We specialise in VAT-qualifying and brand-new tax-free vehicles, so eligible export buyers can have the 20% UK VAT deducted or reclaimed — often the single biggest saving on an exported car.</p>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Victoria</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">VicRoads wants a current roadworthy certificate, the VIN stamped on the vehicle and recorded on the RAV, and for anything built after 1968 a modification approval plate and VASS certificate even if the car is completely standard. Imports under 30 years old must be right-hand drive, which a UK car already is. Applications are by appointment at a customer service centre.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Pre-Purchase Inspections</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">Every vehicle we export goes through a rigorous multi-point inspection before shipping, and we can arrange an independent pre-purchase inspection of any car we source so you know its condition before you commit.</p>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Queensland</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">You need a Queensland safety certificate from an approved inspection station, evidence of your identity and garage address, and a compulsory third party insurance certificate. The insurance has to be in place before the car is legally driven to the inspection or the service centre, so arrange it before collection. Expect to present the vehicle for a pre-registration inspection so its identity and compliance with the Australian Design Rules can be confirmed.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Government Pre-Shipping Inspection</h4>
-        <p class="text-gray-600 leading-relaxed text-sm">Where the destination country requires a pre-export roadworthiness inspection, we arrange it with the approved inspection agency before the sailing so the vehicle clears customs without delays on arrival.</p>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Western Australia</h4>
+        <p class="text-gray-600 leading-relaxed text-sm">Only vehicles listed on the RAV are considered for licensing. A car brought in under the personal effects route cannot use an ordinary authorised inspection station and must be inspected by the state transport department itself. The licence application is lodged in person at a service centre or regional agent, with the import approval documents, a valid certificate of inspection, one primary and one secondary form of identification, proof of ownership and a completed form VL17.</p>
       </div>
     </div>
+    <p class="text-gray-600 leading-relaxed">
+      We will tell you which state's rules apply to your delivery port and what to line up before the vehicle
+      lands, so the car is not sitting on a wharf while paperwork catches up.
+    </p>
   </div>
 
-  <div id="why-ship-repeat">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Car Sourcing and Buying on your behalf</h2>
-    <p class="text-gray-600 leading-relaxed">
-      Buying and exporting a car to Australia doesn't need to be stressful. UK Vehicle Exporters specialises in
-      sourcing and exporting vehicles from the UK, with trusted shipping partners and support at every
-      stage, from vehicle selection through to Australian compliance and registration.
+  <div id="arrival">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Arrival in Australia: What Happens Next</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Once the vessel berths at Brisbane, Fremantle, Melbourne or Port Kembla:</p>
+    <ol class="space-y-3 mb-4">
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+        <span class="text-gray-600"><strong class="text-gray-900">The Import Declaration is lodged</strong> with the Australian Border Force. A licensed customs broker is not legally compulsory, but the Border Force encourages first-time importers to use one, and we can introduce you to a broker at your arrival port.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Biosecurity inspect the vehicle</strong> at the port for cleanliness, with the inspection charged to the importer.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+        <span class="text-gray-600"><strong class="text-gray-900">Duty, GST and any luxury car tax are paid.</strong> The Border Force will not release a vehicle from customs control until it holds a valid import approval for it and the charges are settled.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span>
+        <span class="text-gray-600"><strong class="text-gray-900">The car is released and registered</strong> — inspection, plates and insurance through the state authority, as above.</span>
+      </li>
+    </ol>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      Budget for the Australian-side costs that sit outside our shipping price: the customs broker, wharf and
+      port charges, the import processing charge, the biosecurity inspection and any cleaning it triggers,
+      delivery from the port, and then state registration and insurance.
     </p>
-    <div class="grid sm:grid-cols-3 gap-4 mt-6">
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Buy from our stock</h4>
-        <p class="text-xs text-gray-500 mt-1">Choose from our export-ready UK vehicles.</p>
-      </div>
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">Sourced to order</h4>
-        <p class="text-xs text-gray-500 mt-1">Tell us what you need, we'll find it in the UK market.</p>
-      </div>
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">You find it, we export it</h4>
-        <p class="text-xs text-gray-500 mt-1">Spotted a car elsewhere? We can buy and export it for you.</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="vat-qualifying">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Tax-Free Vehicle Supply & VAT Reclaims</h2>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">UK Preferential Origin (Tax-Free Vehicle Supply)</h3>
     <p class="text-gray-600 leading-relaxed">
-      Some UK-built vehicles may qualify for reduced or zero import duty — typically prestige, 4x4, and
-      performance models manufactured in the UK with sufficient UK-origin content. During your quote,
-      we'll confirm whether the vehicle you're interested in qualifies.
-    </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">VAT-free Supply of VAT-Qualifying (VATQ) Cars</h3>
-    <p class="text-gray-600 leading-relaxed">
-      A VAT-qualifying car is one where VAT was charged when it was first purchased by a business and has not
-      been reclaimed. For export buyers, this can allow the 20% UK VAT to be reclaimed, helping to reduce the
-      overall cost of the vehicle before it's even shipped to Australia.
-    </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">HMRC's Personal Export Scheme (PES)</h3>
-    <p class="text-gray-600 leading-relaxed">
-      The Personal Export Scheme lets eligible buyers purchase a car in the UK free of VAT, provided the
-      vehicle is exported within HMRC's time limits. It can suit anyone relocating to Australia who wants to
-      use the car in the UK briefly before it ships — we confirm eligibility and handle the paperwork.
-    </p>
-
-    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2 mt-6">Diplomatic and Military Personnel (UK Only) Tax-Free Exports</h3>
-    <p class="text-gray-600 leading-relaxed">
-      Diplomats and eligible military personnel posted overseas can buy UK vehicles tax-free for export.
-      We manage the eligibility checks and documentation as part of the purchase and shipping process.
+      At every stage, we're on hand to guide you — even after the car has left the UK.
     </p>
   </div>
 
