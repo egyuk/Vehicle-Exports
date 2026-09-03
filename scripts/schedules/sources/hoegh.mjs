@@ -53,6 +53,7 @@ const vesselCase = s => s.toLowerCase().replace(/(^|[\s-])\S/g, c => c.toUpperCa
 const cleanPort = p => p.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
 
 export const name = 'Höegh Autoliners';
+export const service = 'roro';
 export const url = 'https://www.hoeghautoliners.com/sailing-schedule';
 
 // A UK car connecting onto the Eastern Caribbean feeder has to be discharged

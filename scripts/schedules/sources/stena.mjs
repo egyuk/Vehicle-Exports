@@ -25,6 +25,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 export const name = 'Stena Line';
+export const service = 'roro';
 export const url = 'https://www.stenaline.co.uk/routes/holyhead-dublin/timetable';
 
 export async function collect({ log = () => {} } = {}) {

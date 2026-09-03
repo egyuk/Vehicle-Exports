@@ -27,6 +27,7 @@ const COL = { vessel: 0, voyage: 1, tilburyEts: 2, antwerpEta: 3, transhipVoy: 4
 const FIRST_DEST_COL = 7;
 
 export const name = 'Grimaldi South America';
+export const service = 'roro';
 export const url = 'https://www.grimaldi.co.uk/sailing-schedule/';
 
 export async function collect({ log = () => {} } = {}) {

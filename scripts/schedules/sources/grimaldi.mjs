@@ -27,6 +27,7 @@ const LOADERS = /^(Amsterdam|Hamburg|Tilbury|Antwerp|LeHavre|Le Havre|Leixoes)$/
 const isDate = t => /^\d{1,2}\/\d{1,2}$/.test(t);
 
 export const name = 'Grimaldi';
+export const service = 'roro';
 export const url = PAGE;
 
 /** The schedule PDF is linked from the agency page; find it rather than hardcode. */

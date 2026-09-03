@@ -23,6 +23,10 @@ const mdyToISO = d => {
 };
 
 export const name = 'ACL';
+// ConRo: the G4 ships carry containers and rolling cargo on the same sailing,
+// so a customer can book either way on this lane. Currently the only container
+// option anywhere in the schedule.
+export const service = 'conro';
 export const url = 'https://www.aclcargo.com/schedules/';
 
 export async function collect({ log = () => {} } = {}) {

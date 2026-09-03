@@ -16,6 +16,7 @@ const KNOWN = /\b(SOUTHAMPTON|BREMERHAVEN|ZEEBRUGGE|BALTIMORE|BRUNSWICK|CHARLEST
 const isDate = t => /^\d{1,2}-[A-Z][a-z]{2}$/.test(t);
 
 export const name = '"K" Line';
+export const service = 'roro';
 export const url = 'https://www.klineglobalroro.com/schedules/';
 
 export async function collect({ year = new Date().getFullYear(), log = () => {} } = {}) {

@@ -26,6 +26,7 @@ const CUTOFF_DAYS = 4; // UK closing runs exactly four days before sailing
 const isDate = t => /^\d{2}-[A-Za-z]{3}$/.test(t);
 
 export const name = 'Geest Line';
+export const service = 'roro';
 export const url = PAGE;
 
 // Known-current quarter PDFs. The site's schedule page also links older

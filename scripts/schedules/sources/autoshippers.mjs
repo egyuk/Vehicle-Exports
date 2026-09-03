@@ -60,6 +60,7 @@ function parseTable(html) {
 }
 
 export const name = 'Autoshippers';
+export const service = 'roro';
 export const url = BASE;
 
 export async function collect({ log = () => {} } = {}) {

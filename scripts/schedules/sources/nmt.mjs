@@ -63,6 +63,7 @@ const NORTH_EUROPE = /^(Antwerp|Zeebrugge|Hamburg|Bremerhaven|Amsterdam|Flushing
 const WAYPOINT = /^Panama Canal$/i;
 
 export const name = 'NMT Shipping';
+export const service = 'roro';
 export const url = 'https://nmtshipping.com/schedules';
 
 export async function collect({ log = () => {} } = {}) {

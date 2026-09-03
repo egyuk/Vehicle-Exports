@@ -75,6 +75,7 @@ function parsePort(text) {
 }
 
 export const name = 'MOL ACE';
+export const service = 'roro';
 export const url = 'https://www.molace.com/VslVoy/VslVoySchedule/Index';
 
 export async function collect({ log = () => {} } = {}) {

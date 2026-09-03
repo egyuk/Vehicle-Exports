@@ -84,6 +84,7 @@ async function findRoutes(log) {
 }
 
 export const name = 'Sallaum Lines';
+export const service = 'roro';
 export const url = INDEX;
 
 export async function collect({ log = () => {} } = {}) {

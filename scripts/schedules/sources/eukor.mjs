@@ -57,6 +57,7 @@ function splitPort(text) {
 }
 
 export const name = 'EUKOR';
+export const service = 'roro';
 export const url = 'https://www.eukor.com/schedule-search';
 
 export async function collect({ log = () => {} } = {}) {

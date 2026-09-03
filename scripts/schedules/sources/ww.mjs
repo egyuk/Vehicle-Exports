@@ -29,6 +29,7 @@ const COUNTRY_NAME = {
 };
 
 export const name = 'Wallenius Wilhelmsen';
+export const service = 'roro';
 export const url = 'https://www.walleniuswilhelmsen.com/schedules';
 
 export async function collect({ log = () => {} } = {}) {

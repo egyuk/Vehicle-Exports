@@ -71,6 +71,7 @@ function parseRotation(html) {
 }
 
 export const name = 'NYK RoRo';
+export const service = 'roro';
 export const url = PAGE;
 
 export async function collect({ log = () => {} } = {}) {

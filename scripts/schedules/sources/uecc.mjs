@@ -26,6 +26,7 @@ const VOYAGE_CODE = /^[A-Z]{2,4}\s*\d{4,6}$/i;
 const DAY = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$/i;
 
 export const name = 'UECC';
+export const service = 'roro';
 export const url = PAGE;
 
 export async function collect({ log = () => {} } = {}) {

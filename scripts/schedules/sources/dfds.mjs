@@ -27,6 +27,7 @@ const ROUTES = [
 const HORIZON_DAYS = 120;
 
 export const name = 'DFDS';
+export const service = 'roro';
 export const url = 'https://www.dfds.com/en-gb/freight-ferries-and-logistics/routes-and-schedules';
 
 export async function collect({ log = () => {} } = {}) {

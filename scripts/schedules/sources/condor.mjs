@@ -32,6 +32,7 @@ const VESSEL_NAME = { VOY: 'Condor Voyager', ISL: 'Condor Islander' };
 const HORIZON_DAYS = 120;
 
 export const name = 'Condor Ferries';
+export const service = 'roro';
 export const url = 'https://www.condorferries.co.uk/ferry-routes-ports/plan-your-journey/timetables';
 
 export async function collect({ log = () => {} } = {}) {

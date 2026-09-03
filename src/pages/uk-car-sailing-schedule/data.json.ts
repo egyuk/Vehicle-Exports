@@ -25,6 +25,9 @@ export function GET() {
       voyage: s.voyage || '',
       lane: s.lane || '',
       notes: s.notes || '',
+      // Only sent when it is NOT plain RoRo, which keeps the payload small and
+      // means the client only ever renders a badge for the exceptions.
+      ...(s.service && s.service !== 'roro' ? { service: s.service } : {}),
       ...(s.example ? { example: true } : {}),
     }))
     .sort((a, b) => String(a.ets).localeCompare(String(b.ets)));
