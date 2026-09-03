@@ -9,7 +9,29 @@
 // nothing after a layout change, quietly deleting a whole lane from the table.
 import { daysBetween } from './lib/util.mjs';
 
-const MAX_TRANSIT_DAYS = 120;
+// Exported because sources filter on it too: msc.mjs drops over-long routings
+// at the source so they cannot fail the run here, and a second copy of the
+// number in that file would silently drift out of step with this gate.
+export const MAX_TRANSIT_DAYS = 120;
+
+/**
+ * How the vehicle travels. Closed set: see the `service` check below.
+ *
+ * 'conro' means the vessel carries both and the customer can book either way.
+ * ACL's Liverpool to North America service is the one currently in the data:
+ * their G4 ships are ConRo, so a car can go as RoRo or in a container on the
+ * same sailing. Worth distinguishing rather than folding into 'roro', because
+ * it is the only container option in the schedule today and it is a genuine
+ * choice to offer a customer.
+ *
+ * 'unknown' is deliberate and is not a soft default. The aggregator sources
+ * (NMT, Autoshippers) republish other operators' sailings without naming the
+ * operator or the service, and some of those turned out to be container
+ * services rather than RoRo. Saying "unknown" costs a line of UI; guessing
+ * "roro" would quote a customer a transit for a service they are not buying.
+ * A source must still declare its value explicitly.
+ */
+export const SERVICES = new Set(['roro', 'container', 'conro', 'unknown']);
 
 /** Per-source floor: fewer rows than this means the parser has broken. */
 export const MIN_ROWS = {
@@ -32,7 +54,20 @@ export const MIN_ROWS = {
   'ACL': 10,
   'Hyundai Glovis': 10,
   'UECC': 10,
+  // Shortsea feeder: the Tilbury-Rotterdam backbone alone is ~12 and rolls
+  // weekly, so 15 trips if that disappears without firing on the quarterly
+  // trough when the Iberian and Polish tables thin out.
+  'Ellerman City Liners': 15,
   'Autoshippers': 20,
+  // Observed 1,220 on 2026-09-03 (4 UK load ports x 99 destinations, after the
+  // source's own volume cap: every direct sailing plus the next three
+  // transhipments per load port and destination). The floor is deliberately
+  // about a third of that: MSC's window is eight weeks forward and thins
+  // seasonally, and because the source is optional a partly-blocked run should
+  // still be allowed to publish what it reached. Below 400 means a mostly
+  // blocked sweep or a parser that stopped seeing transhipments, both of which
+  // would quietly halve the lanes on offer.
+  'MSC': 400,
 };
 
 export function validateSource(sourceName, sailings) {
@@ -63,8 +98,13 @@ export function validateAll(sailings, { year = new Date().getFullYear() } = {}) 
   for (const s of kept) {
     const where = `${s.ets} ${s.vessel} -> ${s.destination}`;
 
-    for (const field of ['loadPort', 'destination', 'vessel', 'ets', 'lane']) {
+    for (const field of ['loadPort', 'destination', 'vessel', 'ets', 'lane', 'service']) {
       if (!s[field]) errors.push(`missing ${field}: ${where}`);
+    }
+    // A container sailing quoted as a RoRo transit sells the wrong service, so
+    // the value is closed rather than free text.
+    if (s.service && !SERVICES.has(s.service)) {
+      errors.push(`unknown service "${s.service}" (expected ${[...SERVICES].join(' or ')}): ${where}`);
     }
     if (s.ets && !/^\d{4}-\d{2}-\d{2}$/.test(s.ets)) errors.push(`bad ets format: ${where}`);
     if (s.eta && !/^\d{4}-\d{2}-\d{2}$/.test(s.eta)) errors.push(`bad eta format: ${where}`);

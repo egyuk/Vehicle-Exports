@@ -11,8 +11,13 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 /**
  * Download a source, caching it so a re-run during the same session does not
  * hammer the carriers. Pass { maxAgeMinutes: 0 } to always refetch.
+ *
+ * `timeoutMs` is opt-in and off by default, so no existing caller changes
+ * behaviour. Node's fetch has no useful default: undici only gives up after
+ * 300s of silence, and update.mjs collects sources serially, so one carrier
+ * with a stalled socket holds up every carrier behind it.
  */
-export async function fetchCached(url, { maxAgeMinutes = 60, binary = true } = {}) {
+export async function fetchCached(url, { maxAgeMinutes = 60, binary = true, timeoutMs = 0 } = {}) {
   mkdirSync(CACHE, { recursive: true });
   const file = join(CACHE, url.replace(/[^a-z0-9]+/gi, '_').slice(-120));
 
@@ -21,7 +26,11 @@ export async function fetchCached(url, { maxAgeMinutes = 60, binary = true } = {
     if (ageMin < maxAgeMinutes) return binary ? readFileSync(file) : readFileSync(file, 'utf8');
   }
 
-  const res = await fetch(url, { headers: { 'User-Agent': UA }, redirect: 'follow' });
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA },
+    redirect: 'follow',
+    signal: timeoutMs > 0 ? AbortSignal.timeout(timeoutMs) : undefined,
+  });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`);
   const buf = Buffer.from(await res.arrayBuffer());
   writeFileSync(file, buf);
@@ -171,7 +180,7 @@ const LANE_BY_COUNTRY = {
   Indonesia: 'Europe to Far East',
   UAE: 'Europe to Middle East', 'Saudi Arabia': 'Europe to Middle East', Jordan: 'Europe to Middle East',
   Turkey: 'Europe to Middle East', Oman: 'Europe to Middle East',
-  'Sri Lanka': 'Europe to Far East',
+  'Sri Lanka': 'Europe to Far East', Bangladesh: 'Europe to Far East',
   USA: 'Europe to North America', Canada: 'Europe to North America', Mexico: 'Europe to North America',
   Brazil: 'Europe to South America', Argentina: 'Europe to South America', Uruguay: 'Europe to South America',
   Peru: 'Europe to South America', Ecuador: 'Europe to South America', Colombia: 'Europe to South America',

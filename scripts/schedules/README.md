@@ -34,6 +34,7 @@ union; the source modules only interpret rows.
 | UECC | PDF | A day-by-day calendar, not a port table: read each vessel's rotation *down* its column. "II"/"ll" mean still at sea, and dd-mm dates need the year rolled from the issue date |
 | Stena Line | AEM JSON, per day | The freight extranet's timetable search 404s publicly; the same ro-pax departures are on the passenger route pages as `_jcr_content.timetable.<CODE>.<date>.json`. Codes are unguessable (HHDB, FIRO) - watch the page's own requests |
 | EUKOR | jQuery-era `.do` POST | One POST takes every UK port against every foreign port at once (~330 codes from the page's own `var code/var des` script pairs). Rows with an empty vessel cell continue the sailing above; one port (`Port Klang (Pelabuhan Klang),`) has no country at all |
+| MSC | JSON API behind Akamai | POST-only, one port pair per request, so the crawl is load ports x destinations (396). Omit `x-requested-with: XMLHttpRequest` and it answers **200 with a body of `""`** rather than an error. No country in the route payload - join `PortOfDischargeId` against the port dictionary. The route-level `VesselName` is the UK **feeder**, not the ship that arrives: take the last leg with a named vessel, and keep the feeder in `notes`. `optional = true` because Akamai fingerprints the client and has blocked this one before |
 
 Two lessons worth keeping:
 
@@ -55,6 +56,34 @@ escapes to whitespace before mapping silently eats characters.
 A third, learned the hard way: apply a page `cm` transform **only** if it is at
 the very start of the content stream. Content streams also place images with
 `cm`, and matching one of those scales every coordinate by a few hundred.
+
+## Service type: RoRo vs container
+
+Every row carries `service`: `roro`, `container`, `conro` or `unknown`. Each
+source module declares its own with `export const service = ...`, and
+`update.mjs` **throws if a source omits it** rather than defaulting, because
+quoting a container transit as a RoRo one sells the customer the wrong service.
+
+`conro` means the vessel carries both and the customer can choose. ACL's
+Liverpool to North America service is the one in the data: their G4 ships take
+containers and rolling cargo on the same sailing, so a car can go either way on
+the same departure. It is badged on the site as a benefit rather than a caveat,
+and it is currently **the only container option anywhere in the schedule**.
+
+`unknown` is not a soft default, it is an honest answer. The aggregator sources
+republish other operators' sailings, and after the merge any row still without a
+named carrier is downgraded from `roro` to `unknown` — if nobody could attribute
+it to an operator, it cannot be vouched for as RoRo either. That downgrade runs
+**after** the merge loop, because the loop back-fills a blank carrier from a
+later duplicate, so attribution is not final until every source is in.
+
+This came from a real fault: Jordan's only two sailings were unattributed and
+turned out to be container services, while the page presented their transit as
+if it were RoRo. The site now badges anything that is not plain RoRo, on both
+the country pages and the full schedule.
+
+All 18 existing sources are RoRo or ro-pax operators. There is currently **no
+container line in the data at all** — see the CMA CGM note in SITE-BACKLOG.md.
 
 ## Data quality rules
 

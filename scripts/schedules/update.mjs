@@ -30,9 +30,19 @@ import * as mol from './sources/mol.mjs';
 import * as acl from './sources/acl.mjs';
 import * as glovis from './sources/glovis.mjs';
 import * as uecc from './sources/uecc.mjs';
+import * as msc from './sources/msc.mjs';
+import * as ellerman from './sources/ellerman.mjs';
 
 // Most trustworthy first - order decides which duplicate survives.
-const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, dfds, condor, stena, geest, autoshippers];
+// Ellerman last but one: a niche shortsea feeder, and the only pure-container
+// source, so anything a deep-sea carrier also describes should win over it.
+//
+// MSC sits between the RoRo carriers and Ellerman. It is the carrier's own
+// data, but almost every row is a transhipment ETA rather than a single ship's
+// schedule, so a RoRo carrier's direct sailing should win a duplicate; and
+// being after nmt lets the merge back-fill carrier:'MSC' onto NMT's
+// unattributed MSC-vessel rows instead of publishing both.
+const SOURCES = [nmt, kline, ww, nyk, grimaldi, grimaldiSam, sallaum, hoegh, eukor, mol, acl, glovis, uecc, dfds, condor, stena, msc, ellerman, geest, autoshippers];
 
 const DATA = join(ROOT, '..', '..', 'src', 'data', 'sailing-schedules.json');
 
@@ -44,8 +54,16 @@ const log = (...a) => console.log(...a);
 
 // Autoshippers spells one K Line vessel "Donnington"; the carrier says "Donington".
 const canonicalVessel = v => v.replace(/\bDonnington\b/gi, 'Donington');
+// Load port is part of the identity of a sailing, not incidental to it: the
+// same ocean vessel legitimately serves one destination from several UK ports.
+// It was missing here while `nearKey` below already carried it, so the two keys
+// disagreed about what "the same sailing" means. That went unnoticed until MSC
+// arrived: because MSC publishes the DELIVERING ocean vessel rather than the UK
+// feeder, several UK departures share one vessel, destination and date, and 106
+// real sailings were being dropped as exact duplicates of each other.
 const dedupeKey = s =>
   `${canonicalVessel(s.vessel).toLowerCase().replace(/[^a-z0-9]/g, '')}` +
+  `|${s.loadPort.toLowerCase()}` +
   `|${s.destination.split(',')[0].trim().toLowerCase()}|${s.ets}`;
 
 
@@ -57,24 +75,52 @@ async function main() {
 
   const collected = [];
   const failures = [];
+  // Optional sources warn instead of blocking. The hard-fail rule exists so a
+  // broken parser cannot silently delete an established lane, and that is still
+  // right for the eighteen carriers whose data the site depends on. But a
+  // source sitting behind bot management (MSC and ZIM are both behind Akamai)
+  // may pass from a desk machine and be scored differently from a datacentre
+  // ASN, and it must not be able to take the whole weekly refresh down with it
+  // on a bad day. Mark such a source `export const optional = true`.
+  const degraded = [];
 
   for (const source of SOURCES) {
     log(`${source.name}:`);
     try {
-      const sailings = await source.collect({ log, year });
+      // `fresh` was parsed and then never passed on, so --fresh only bypassed
+      // the caches util.mjs owns. A source with its own cache (msc.mjs POSTs)
+      // needs to be told.
+      const sailings = await source.collect({ log, year, fresh });
       const errs = validateSource(source.name, sailings);
       if (errs.length) {
-        errs.forEach(e => log(`  FAIL ${e}`));
-        failures.push(...errs);
+        errs.forEach(e => log(`  ${source.optional ? 'SKIP' : 'FAIL'} ${e}`));
+        (source.optional ? degraded : failures).push(...errs);
         continue;
       }
       // Tag the origin so the near-duplicate pass can tell "two sources
       // describing one sailing" from "one source listing a daily service".
-      collected.push(...sailings.map(s => ({ ...s, _source: source.name })));
+      //
+      // `service` says how the vehicle travels: 'roro' (driven aboard a vehicle
+      // carrier or ro-pax ferry) or 'container'. Every source declares it, and
+      // a row may override per sailing where a carrier runs both. It is stamped
+      // here rather than repeated in eighteen modules, but it is NOT defaulted:
+      // a source that forgets it fails the run, because quoting a container
+      // transit as a RoRo one misleads a customer about the service they buy.
+      if (!source.service) throw new Error(`${source.name}: no service type declared (expected 'roro' or 'container')`);
+      collected.push(...sailings.map(s => ({ service: source.service, ...s, _source: source.name })));
     } catch (e) {
-      log(`  FAIL ${e.message}`);
-      failures.push(`${source.name}: ${e.message}`);
+      log(`  ${source.optional ? 'SKIP' : 'FAIL'} ${e.message}`);
+      (source.optional ? degraded : failures).push(`${source.name}: ${e.message}`);
     }
+    log('');
+  }
+
+  // Loud, but not fatal. Worth seeing in the run log: an optional source that
+  // is down every week is not really optional, it is broken and should be
+  // fixed or dropped.
+  if (degraded.length) {
+    log('Optional sources unavailable this run (continuing without them):');
+    degraded.forEach(d => log(`  - ${d}`));
     log('');
   }
 
@@ -122,6 +168,23 @@ async function main() {
     near.set(nk, [...(near.get(nk) || []), { ets: s.ets, source: _source, row }]);
     merged.push(row);
   }
+
+  // Runs AFTER the merge, not inside it: the loop above back-fills a blank
+  // carrier from a later duplicate, so a row's attribution is not final until
+  // every source has been through.
+  //
+  // Same principle as the carrier rule. A row nobody could attribute to an
+  // operator cannot be vouched for as RoRo either. The aggregators are RoRo
+  // forwarders, so their source-level 'roro' holds for the rows a carrier
+  // confirms, but the unattributed leftovers are exactly the ones that turned
+  // out to include container services (Jordan's Aqaba sailings). Downgrade
+  // rather than guess: quoting a container transit as RoRo sells the wrong
+  // service.
+  let downgraded = 0;
+  for (const row of merged) {
+    if (!row.carrier && row.service === 'roro') { row.service = 'unknown'; downgraded++; }
+  }
+  if (downgraded) log(`${downgraded} unattributed sailings marked service "unknown"\n`);
 
   const { errors, warnings, kept } = validateAll(merged, { year });
   warnings.forEach(w => log(`WARN ${w}`));
