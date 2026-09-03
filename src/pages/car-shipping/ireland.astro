@@ -6,7 +6,7 @@ import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
 import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
-import { fromPriceFor } from '../../data/shipping-prices';
+import { fromPriceFor, shippingRates } from '../../data/shipping-prices';
 
 const countryName = 'Ireland';
 
@@ -19,6 +19,13 @@ const destinationPorts = ['Dublin', 'Rosslare'];
 // src/data/shipping-prices.ts), so this is undefined and the hero chip
 // correctly does not render.
 const fromPrice = fromPriceFor(countryName);
+// The crossing range lives in src/data/shipping-prices.ts and is rendered by
+// <CountryCosts>. Read it here too rather than retyping it, so the FAQ and the
+// costs section can never disagree — they did after the 2026-09-03 repricing,
+// when the range moved and this page's FAQ kept quoting the old one.
+const crossingNote = shippingRates[countryName]?.note ?? '';
+// Cheapest end of that range, for the meta description.
+const crossingFrom = crossingNote.match(/£[\d,]+/)?.[0] ?? '';
 
 // Ireland keeps its destination-side facts (like Australia and Kenya), so the
 // Irish VAT and import duty figures are back in this bar alongside the UK-side
@@ -59,7 +66,7 @@ const popularBrands = ['Land Rover', 'MINI', 'BMW', 'Mercedes-Benz', 'Audi', 'Po
 const faqs = [
   {
     q: 'How much does it cost to ship a car from the UK to Ireland?',
-    a: 'Crossings are typically £250-£700 depending on vehicle size and the route used. Because the Irish Sea crossing is short and sails frequently, we quote it per booking rather than from a fixed rate card. The price covers the UK-side work: loading and lashing the vehicle into the ship, UK customs export and clearance, UK port handling charges, DVLA documentation and export certification, the export paperwork including the Bill of Lading, and the sailing itself.',
+    a: `${crossingNote} The price covers the UK-side work: loading and lashing the vehicle into the ship, UK customs export and clearance, UK port handling charges, DVLA documentation and export certification, the export paperwork including the Bill of Lading, and the sailing itself.`,
   },
   {
     q: 'How long does the crossing to Ireland take?',
@@ -86,7 +93,7 @@ const faqs = [
 
 <CountryPageLayout
   title="Car Shipping UK to Ireland | Dublin & Rosslare RoRo"
-  description="Ship a car from the UK to Dublin or Rosslare from £250. Costs, sailing dates, import duty relief, Irish VAT, VRT and NCTS registration explained."
+  description={`Ship a car from the UK to Dublin or Rosslare from ${crossingFrom}. Costs, sailing dates, import duty relief, Irish VAT, VRT and NCTS registration explained.`}
   countryName={countryName}
   quickFacts={quickFacts}
   tocLinks={tocLinks}
@@ -188,7 +195,7 @@ const faqs = [
     <p class="text-gray-600 leading-relaxed mb-4">
       Since Brexit, Great Britain sits outside the EU customs union, so a car moving from Britain to Ireland
       needs a customs declaration. The duty is either <strong class="text-gray-900">nothing or 10%</strong> of
-      the customs value, and which one you pay comes down to a single question:
+      the customs value, and which one you pay comes down to a single question:{' '}
       <strong class="text-gray-900">where the car was built</strong>, not where you bought it.
     </p>
     <div class="grid sm:grid-cols-2 gap-4 mb-6">
@@ -202,7 +209,7 @@ const faqs = [
       </div>
     </div>
     <p class="text-gray-600 leading-relaxed mb-6">
-      The catch is documentary. The 0% rate is not automatic: it has to be claimed at declaration, supported by a
+      The catch is documentary. The 0% rate is not automatic: it has to be claimed at declaration, supported by a{' '}
       <strong class="text-gray-900">statement on origin</strong> from the seller, or by importer's knowledge. A UK
       logbook is not proof of origin. Private sellers and many used-car dealers cannot issue a valid statement,
       which is why a good number of second-hand imports end up paying the 10% even when the car was built in
@@ -211,9 +218,9 @@ const faqs = [
 
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">Returned Goods Relief — rarely available now</h3>
     <p class="text-gray-600 leading-relaxed mb-4">
-      Returned Goods Relief is a separate route to 0% duty, and it is widely misunderstood. It has
+      Returned Goods Relief is a separate route to 0% duty, and it is widely misunderstood. It has{' '}
       <strong class="text-gray-900">nothing to do with where the car was manufactured</strong>. It applies to a
-      vehicle that was previously exported <em>from</em> the EU and is now coming back, unaltered, within
+      vehicle that was previously exported <em>from</em> the EU and is now coming back, unaltered, within{' '}
       <strong class="text-gray-900">three years of the date it left</strong>. The relief must be claimed on the
       declaration and evidenced, and import VAT is still payable unless the person re-importing is the same
       person who exported it.
@@ -247,7 +254,7 @@ const faqs = [
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Vehicle Registration Tax (VRT)</h2>
     <p class="text-gray-600 leading-relaxed mb-4">
       VRT is usually the biggest single charge, and for an ordinary car it is two things added together, both
-      based on Revenue's own valuation of the car in Ireland, the
+      based on Revenue's own valuation of the car in Ireland, the{' '}
       <strong class="text-gray-900">open market selling price</strong>. Your purchase price in Britain does not
       set it.
     </p>
@@ -256,7 +263,7 @@ const faqs = [
       <li class="flex items-start gap-2 text-gray-600"><svg class="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span><strong class="text-gray-900">A NOx levy on top</strong> — charged per mg/km on a rising scale. If you cannot evidence the car's NOx figure, Revenue applies the maximum, which is far more expensive on a diesel than on a petrol car. Bring the documentation.</span></li>
     </ul>
     <p class="text-gray-600 leading-relaxed mb-4">
-      Two cases are charged quite differently and are worth knowing about. A vehicle
+      Two cases are charged quite differently and are worth knowing about. A vehicle{' '}
       <strong class="text-gray-900">over 30 years old</strong> at registration is a flat, modest amount rather
       than a percentage of value, which is why classics are so much cheaper to bring in than people expect.
       Vans and commercials are charged on their own lower scale.
@@ -270,7 +277,7 @@ const faqs = [
     </p>
     <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4">
       <strong class="text-gray-900">Deadline worth planning around:</strong> the electric vehicle relief is
-      currently legislated only for cars registered before 31 December 2026, and it is the
+      currently legislated only for cars registered before 31 December 2026, and it is the{' '}
       <em>registration</em> date that counts, not when you buy or ship. Bands, levies and reliefs are set at
       Budget time, so we confirm the current figures and estimate your VRT before the car leaves the UK rather
       than quoting last year's numbers.
@@ -281,7 +288,7 @@ const faqs = [
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">NCTS Inspection & Registration</h2>
     <p class="text-gray-600 leading-relaxed mb-4">
       Every imported vehicle has to be registered in Ireland, and that happens at an NCTS centre, which handles
-      registration on Revenue's behalf. There are
+      registration on Revenue's behalf. There are{' '}
       <strong class="text-gray-900">two separate deadlines, and both run from the day the car arrives</strong>:
     </p>
     <div class="grid sm:grid-cols-2 gap-4 mb-6">

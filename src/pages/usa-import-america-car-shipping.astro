@@ -1,25 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// Auto-computes the upcoming quarter label (e.g. "October–December 2026") from the build date,
-// so this heading stays current without manual edits on future rebuilds.
-// NOTE: this only updates the *label* — the vessel names/transit times below are static
-// content and still need a human (or a real carrier data feed) to refresh them each quarter.
-function getUpcomingQuarterLabel(date = new Date()) {
-  const quarterMonths = [
-    ['January', 'March'],
-    ['April', 'June'],
-    ['July', 'September'],
-    ['October', 'December'],
-  ];
-  const currentQuarter = Math.floor(date.getMonth() / 3);
-  const nextQuarter = (currentQuarter + 1) % 4;
-  const nextYear = currentQuarter === 3 ? date.getFullYear() + 1 : date.getFullYear();
-  const [start, end] = quarterMonths[nextQuarter];
-  return `${start}–${end} ${nextYear}`;
-}
-const sailingScheduleLabel = getUpcomingQuarterLabel();
-
+// The "real carrier data feed" the old quarter-label note asked for. This page
+// used to carry a "<quarter> Sailing Schedule to USA" heading with no vessels
+// under it, above the rates table, and a line telling the reader to get in
+// touch for the actual dates. The pipeline has had 172 upcoming USA sailings in
+// it all along (ACL, Wallenius Wilhelmsen, "K" Line, NYK, Höegh, Glovis and
+// Sallaum, into 13 US ports), so the schedule is now rendered from that data
+// and refreshes itself weekly. The quarter-label helper is gone with it.
+import SailingSchedule from '../components/SailingSchedule.astro';
 const shippingCosts = [
   { destination: 'Baltimore', saloon: '£1,176', suv: '£1,376' },
   { destination: 'Brunswick', saloon: '£1,176', suv: '£1,376' },
@@ -93,6 +81,20 @@ const shippingCosts = [
     </div>
   </section>
 
+  <!-- Live sailings. Driven entirely by countryName, so it refreshes with the
+       weekly schedule run and needs no maintenance here. ACL's Liverpool
+       service is ConRo, so those rows carry a "RoRo or container" badge —
+       the only lane in the data where a customer can choose either on the
+       same sailing, which is worth showing on the page that sells both. -->
+  <SailingSchedule
+    country="USA"
+    id="sailings"
+    limit={8}
+    background="white"
+    heading="Sailing Schedule to the USA"
+    intro="Upcoming vehicle sailings from UK ports to the United States. Dates are the carriers' own estimates and must be reconfirmed before a booking is committed."
+  />
+
   <!-- Shipping Costs -->
   <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,9 +102,11 @@ const shippingCosts = [
       <p class="text-gray-600 leading-relaxed mb-6">
         Please see below for indicative vehicle shipping costs from the UK to most ports in the US. Our rates are current at the time of writing but may vary depending on the exact destination and vehicle dimensions. Please check with us prior to booking. Rates are port to port shipping only, and exclude duties and taxes, car collection costs, and redelivery (if required) at the destination.
       </p>
-      <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">{sailingScheduleLabel} Sailing Schedule to USA</h3>
+      <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Indicative Shipping Rates by Port</h3>
       <p class="text-gray-600 leading-relaxed mb-6">
-        We operate regular weekly RoRo and container sailings to the USA throughout {sailingScheduleLabel}. Contact us for the latest vessel schedule, transit times and availability for your destination port.
+        Rates below are per vehicle, port to port. For actual departure and arrival dates, see the{' '}
+        <a href="#sailings" class="text-[var(--color-primary)] font-semibold hover:underline">live sailing schedule</a>{' '}
+        further up this page.
       </p>
       <div class="overflow-x-auto rounded-xl border border-gray-100 bg-white">
         <table class="w-full text-sm">

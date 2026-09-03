@@ -118,14 +118,16 @@ const excluded = [
   {hasApprox && (
     <>
       <div class="grid sm:grid-cols-2 gap-4 mb-4">
-        {approx?.roro && (
+        {(approx?.roro || rates?.roroOnRequest) && (
           <div class="border border-gray-100 rounded-xl p-5">
             <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
             <p class="text-sm text-gray-500 mt-1 mb-4">{rates?.roroTransit ?? 'The cheapest way to move a single vehicle, and the option most customers choose.'}</p>
             <ul class="space-y-2 pt-3 border-t border-gray-100">
               <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-                <span>From, per vehicle</span>
-                <span class="font-semibold text-gray-900 shrink-0">{approx.roro}</span>
+                <span>{approx?.roro ? 'From, per vehicle' : 'Rate on request'}</span>
+                {approx?.roro
+                  ? <span class="font-semibold text-gray-900 shrink-0">{approx.roro}</span>
+                  : <a href="tel:+441872491409" class="font-semibold text-[var(--color-primary)] shrink-0 hover:underline">01872 491409</a>}
               </li>
             </ul>
           </div>
@@ -151,10 +153,12 @@ const excluded = [
       </div>
       <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4 mb-6">
         <strong class="text-gray-900">Approximate — call for the latest rates.</strong> These are indicative
-        shipping rates from our published rate table{approx?.ports?.length ? ` for ${approx.ports.slice(0, 4).join(', ')}` : ''}.
+        shipping rates from our published rate table{approx?.via?.length
+          ? `. ${countryName} is landlocked, so they cover the sea leg to the nearest suitable port — ${approx.via.join(' or ')} — with the onward journey arranged separately`
+          : approx?.ports?.length ? ` for ${approx.ports.slice(0, 4).join(', ')}` : ''}.
         They move with the market and with the vehicle, and a full export quote covers the UK-side work listed
-        below as well, so treat them as a guide rather than a final price.
-        <a href="/car-shipping/shipping-rates" class="text-[var(--color-primary)] font-semibold hover:underline">See the full rate table</a>
+        below as well, so treat them as a guide rather than a final price.{' '}
+        <a href="/car-shipping/shipping-rates" class="text-[var(--color-primary)] font-semibold hover:underline">See the full rate table</a>{' '}
         or <a href="/contact" class="text-[var(--color-primary)] font-semibold hover:underline">ask us for an itemised quote</a>.
       </p>
     </>
