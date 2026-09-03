@@ -3,10 +3,31 @@
 //  - src/pages/shipping/index.astro   (hub page)
 //  - src/components/Header.astro               ("Vehicle Shipping" dropdown)
 //  - src/pages/car-shipping/index.astro        (Shipping Services pill links)
-// Every figure here must already appear elsewhere on the site — RoRo and
-// container rates and the £1/mile collection rate come from the vehicle
-// shipping service page and the homepage cards. Services without published
-// rates deliberately quote no prices.
+// Every figure here must already appear elsewhere on the site. Services without
+// published rates deliberately quote no prices.
+//
+// The RoRo and container "from" prices are COMPUTED from the published rate
+// table below, not typed. They used to be hardcoded as £1,250 / £1,950 /
+// £3,575, which George confirmed on 2026-09-03 were placeholders that had never
+// been real rates. Because this file feeds the Header dropdown, those wrong
+// figures appeared on every page of the site. Deriving them means a repricing
+// moves them automatically and they cannot drift from the rate card again.
+
+import { roroPrices, containerPrices } from './shipping-rates';
+
+const asNumber = (p: string) => Number(p.replace(/[^0-9.]/g, ''));
+const gbp = (n: number) => `£${n.toLocaleString('en-GB')}`;
+
+/**
+ * The cheapest published rate of each kind, which is what "from" means. These
+ * are the genuine floor of the table, so they name real lanes: the cheapest
+ * RoRo and 40ft are Hong Kong, the cheapest 20ft is Laem Chabang. Longer routes
+ * cost considerably more, which is why every page carrying these also links to
+ * the full rate table rather than implying one price fits every destination.
+ */
+const cheapestRoro = gbp(Math.min(...roroPrices.map(r => asNumber(r.price))));
+const cheapest20ft = gbp(Math.min(...containerPrices.map(r => asNumber(r.c20))));
+const cheapest40ft = gbp(Math.min(...containerPrices.map(r => asNumber(r.c40))));
 
 export interface ShippingServiceStep {
   title: string;
@@ -103,13 +124,13 @@ export const shippingServices: ShippingService[] = [
   {
     slug: 'container-shipping',
     name: 'Container Shipping',
-    shortDesc: 'Private 20ft containers from £1,950 and 40ft from £3,575.',
+    shortDesc: `Private 20ft containers from ${cheapest20ft} and 40ft from ${cheapest40ft}.`,
     metaDescription:
-      'Private container car shipping from the UK: 20ft containers from £1,950, 40ft from £3,575. Loading, lashing and export clearance included.',
+      `Private container car shipping from the UK: 20ft containers from ${cheapest20ft}, 40ft from ${cheapest40ft}. Loading, lashing and export clearance included.`,
     intro:
-      'Container shipping gives your vehicle its own sealed, sole-use container from the UK to the destination port. Private 20ft containers start from £1,950 and 40ft containers from £3,575 — a 40ft takes two cars, which halves the per-vehicle cost.',
+      `Container shipping gives your vehicle its own sealed, sole-use container from the UK to the destination port. Private 20ft containers start from ${cheapest20ft} and 40ft containers from ${cheapest40ft}, depending on the destination — a 40ft takes two cars, which halves the per-vehicle cost.`,
     points: [
-      'Private 20ft containers from £1,950 and 40ft containers from £3,575',
+      `Private 20ft containers from ${cheapest20ft} and 40ft containers from ${cheapest40ft}`,
       'Professional loading and lashing at the container terminal',
       'A 40ft container ships two vehicles — split the cost with a second car',
       'UK-side costs included: customs clearance, port handling and export documentation',
@@ -175,13 +196,17 @@ export const shippingServices: ShippingService[] = [
   {
     slug: 'roro-shipping',
     name: 'RoRo Shipping',
-    shortDesc: 'Roll-on roll-off shipping from £1,250 with frequent worldwide sailings.',
+    // No size band quoted: the published rate table carries ONE rate per port,
+    // so the old "and £1,395 for larger vehicles" had nothing behind it. Height
+    // and length do affect the price, so the page says so without inventing a
+    // second figure.
+    shortDesc: `Roll-on roll-off shipping from ${cheapestRoro} with frequent worldwide sailings.`,
     metaDescription:
-      'RoRo car shipping from the UK from £1,250 (vehicles up to 1.6m high) and £1,395 for larger vehicles. Frequent sailings worldwide.',
+      `RoRo car shipping from the UK from ${cheapestRoro} per vehicle, depending on destination and vehicle size. Frequent sailings worldwide.`,
     intro:
-      'Roll-on roll-off is the simplest and cheapest way to ship a running vehicle: it is driven aboard the vessel, secured on deck and driven off at the destination port. RoRo starts from £1,250 for vehicles up to 1.6m high and £1,395 for larger vehicles.',
+      `Roll-on roll-off is the simplest and cheapest way to ship a running vehicle: it is driven aboard the vessel, secured on deck and driven off at the destination port. Rates start from ${cheapestRoro} and depend on the destination and the size of the vehicle, so a tall or long vehicle costs more than a saloon on the same sailing.`,
     points: [
-      'From £1,250 (vehicles up to 1.6m height) and £1,395 for larger vehicles',
+      `From ${cheapestRoro} per vehicle, by destination and vehicle size`,
       'Frequent sailings from UK ports to destinations worldwide',
       'Live sailing schedules for hundreds of departures',
       'UK-side costs included: customs clearance, port handling and export documentation',
