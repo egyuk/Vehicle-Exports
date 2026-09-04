@@ -29,31 +29,33 @@ Re-run the audit any time against a fresh `npx astro build` — the checks are
 broken links, missing/duplicate SEO fields, `h1` counts, image alt/sizing,
 placeholder links and asset weight.
 
-### carexporters.co.uk — an open question, not a checklist item
+### carexporters.co.uk — SETTLED 2026-09-04, no redirects
 
-Recorded 2026-09-04, deliberately **not** added to the checklist above, because
-the equivalent item for the other domain was removed on request and this is
-George's call rather than a technical one.
+**George: no redirects are needed.** Asked and answered, so nothing here is
+outstanding and this section is kept for the record rather than as a task. The
+consequence is worth writing down once: the old site stays live and
+unredirected, so it and the new one compete for the same terms, and whatever
+those 75 pages rank for today stays with them. That is a commercial call and it
+has been made.
 
 carexporters.co.uk is ours — NMT addresses its weekly schedule alerts to
 sales@carexporters.co.uk. It had been filed under competitors in
 `research/competitor-links.txt`, which is now corrected. That file holds its
 full 75-page URL inventory, and two things follow from it.
 
-**A redirect map already exists in all but name.** Of the 47 country URLs on
-the old site, 36 have a page on the new one:
-
-- 30 map exactly: `/shipping/car-shipping-to-<country>.html` ->
-  `/car-shipping/<country>`
-- 6 need an alias: `antigua-and-barbuda` -> `antigua`, `hong-kong` ->
-  `hong-kong-shipping`, `saint-kitts-and-nevis` -> `st-kitts`, `saint-lucia` ->
-  `st-lucia`, `saint-vincent-and-the-grenadines` -> `st-vincent`, `malta` ->
-  `europe/malta`
+**What the comparison found.** It is what produced the eleven pages below, so
+it is worth keeping even though no redirect is being built. Of the 47 country
+URLs on the old site, 36 already had a page here — 30 matching
+`/shipping/car-shipping-to-<country>.html` -> `/car-shipping/<country>` exactly,
+and 6 differing only in spelling (`antigua-and-barbuda` -> `antigua`,
+`hong-kong` -> `hong-kong-shipping`, the three saints -> `st-*`, `malta` ->
+`europe/malta`). The other eleven had nothing.
 
 **The 11 destinations the old site covered and this one did not — BUILT
 2026-09-04.** Bermuda, Brunei, Eswatini, Fiji, Macau, Malawi, Maldives,
-Pakistan, Seychelles, St Helena and Zambia now have pages, so the redirect map
-covers 47 of 47 country URLs.
+Pakistan, Seychelles, St Helena and Zambia now have pages. Every destination the
+old site covers is covered here — which was worth doing on its own, and is now
+the only reason it was: no redirect is being built.
 
 None of the eleven takes a direct UK sailing, so each resolves through a
 `hubPorts` entry and every derived fact — transit band, UK load ports, carriers,
@@ -100,9 +102,10 @@ the outlier, not the 40ft; following it would put the 20ft nearer £5,500. Same
 class of thing as the Equatorial Guinea £12,523, which was a typo. **Not**
 changed — a price is George's to correct, and it is live on the new page.
 
-⚠ **Eswatini is at `/car-shipping/eswatini`,** the current name. The old URL is
-`car-shipping-to-swaziland.html`, so the redirect map needs that alias, and the
-rate card still files it under Swaziland (handled by a `rateTableAliases` entry).
+**Eswatini is at `/car-shipping/eswatini`,** the current name. The rate card
+still files it under Swaziland, which a `rateTableAliases` entry handles. The
+old site's `car-shipping-to-swaziland.html` is not redirected anywhere, in line
+with the decision above.
 
 Left live and unredirected at launch, the old site competes with the new one for
 the same terms: same business, same destinations, same services.
