@@ -133,7 +133,7 @@ const serviceSchema = {
        tax-free-car-exports carries one; every other service renders nothing
        here. -->
   {service.guide && (
-    <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+    <section class="pt-3 pb-16 lg:pb-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">{service.guide.heading}</h2>
         {service.guide.lead && <p class="text-gray-600 leading-relaxed mb-8">{service.guide.lead}</p>}
@@ -176,7 +176,7 @@ const serviceSchema = {
               {section.examples && (
                 <div class="grid sm:grid-cols-3 gap-4 mt-6">
                   {section.examples.map((ex, i) => (
-                    <div class="bg-white border border-gray-100 rounded-xl p-4">
+                    <div class="bg-gray-50 border border-gray-100 rounded-xl p-4">
                       <span class="text-xs font-semibold text-[var(--color-primary)] uppercase tracking-wider">Example {i + 1}</span>
                       <p class="text-sm text-gray-600 leading-relaxed mt-2">{ex}</p>
                     </div>
