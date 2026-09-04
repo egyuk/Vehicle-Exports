@@ -56,6 +56,18 @@ and registration at the far end are set by that country's government and are the
 we can introduce you to a clearing agent at the arrival port.
 
 
+## Extras we can arrange before it sails
+
+These sit outside the shipping price and are quoted separately, but they happen while the car is with us in
+the UK rather than being someone else's problem at the other end.
+
+* **Storage in our secure compound** while you finalise the paperwork or wait for a sailing
+* **Paintwork reconditioning**, where the car would arrive better for it
+* **Pre-export inspection**, including EAA, where the destination country requires one
+
+Ask when you get your quote and we will price them in.
+
+
 ## Sourcing the vehicle as well
 
 If you have not bought the car yet, we can find it. We buy from UK main dealers, auction houses and private
