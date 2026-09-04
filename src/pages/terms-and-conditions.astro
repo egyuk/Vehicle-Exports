@@ -1,0 +1,219 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+
+// These terms deliberately restate what the rest of the site already tells a
+// customer, rather than importing generic boilerplate that would contradict it:
+//  - the included / excluded lists mirror CountryCosts.astro, which renders the
+//    same two lists on all 84 country pages
+//  - the scope rule ("we stop at the UK quayside") is the one set out in
+//    SITE-BACKLOG.md § 1 and applied across the country pages
+//  - the sailing schedule and rate-table wording matches the disclaimers on
+//    /uk-car-sailing-schedule and /car-shipping/shipping-rates
+// If any of those change, change them here too, or the terms start telling a
+// customer something different from the page that sold them the job.
+---
+
+<LegalPage
+  title="UK Vehicle Exporters Terms and Conditions"
+  description="The terms on which UK Vehicle Exporters Ltd sources, buys, ships and exports vehicles from the UK, and on which you may use this website."
+  heading="UK Vehicle Exporters Terms and Conditions"
+  crumb="Terms and Conditions"
+  updated="4 September 2026"
+>
+  <div class="note">
+    <p>
+      These terms cover two things: your use of this website, and the terms on which we source, buy, ship and
+      export vehicles. Section 2 onwards applies once you ask us to do work for you.
+    </p>
+  </div>
+
+  <h2>1. Who we are, and using this website</h2>
+  <p>
+    This website is operated by <strong>UK Vehicle Exporters Ltd</strong>, registered in England and Wales under
+    company number 10399100, registered office Penstraze Business Park, Chacewater, Penstraze, Truro, England,
+    TR4 8PN. You can reach us at <a href="mailto:sales@vehicleexports.co.uk">sales@vehicleexports.co.uk</a> or{' '}
+    <a href="tel:+441872491409">+44 (0)1872 491409</a>.
+  </p>
+  <p>
+    The content of this site is provided for general information. We take care to keep it accurate, but:
+  </p>
+  <ul>
+    <li>
+      <strong>Sailing dates are indicative.</strong> The schedule is compiled from carriers' own published
+      timetables and refreshed weekly. Dates move. Nothing on the schedule page is a booking, and a sailing must
+      be reconfirmed with us before you rely on it.
+    </li>
+    <li>
+      <strong>Published rates are approximate.</strong> Where a page shows a figure from our rate table it is
+      labelled as approximate. It is a guide to the freight cost on that route, not a quotation, and it does not
+      include the UK-side work listed in section 4.
+    </li>
+    <li>
+      <strong>Vehicle listings are subject to availability.</strong> A vehicle shown on the site may be sold or
+      withdrawn, and specification details are given in good faith from the information available to us.
+    </li>
+  </ul>
+  <p>
+    The text, images, layout and data on this site belong to us or our licensors. You may view and print pages
+    for your own use. You may not republish, sell or systematically extract any part of the site — including the
+    sailing schedule — without our written permission.
+  </p>
+
+  <h2>2. Quotations and how a contract is formed</h2>
+  <p>
+    An enquiry through this site, by telephone, email or WhatsApp is not a booking. We will give you a written
+    quotation covering the specific vehicle, route and service. A quotation is valid for <strong>14 days</strong>
+    unless it says otherwise, and remains subject to space being available on the sailing.
+  </p>
+  <p>
+    A contract comes into effect when you accept our quotation in writing and we confirm the booking. At that
+    point these terms and the quotation together form the agreement between us. Anything discussed but not
+    written into the quotation is not part of it.
+  </p>
+
+  <h2>3. Prices and payment</h2>
+  <ul>
+    <li>Prices are quoted in pounds sterling unless we agree otherwise in writing.</li>
+    <li>
+      Payment is required in cleared funds before the vehicle is loaded, unless the quotation sets out different
+      terms. We do not release a vehicle or the export documents against an unpaid invoice.
+    </li>
+    <li>
+      Where a vehicle qualifies for VAT-free supply or a VAT refund on export, that treatment depends on the
+      conditions HMRC sets, including evidence that the vehicle left the UK within the required period. If those
+      conditions are not met, the VAT becomes payable and you are responsible for it.
+    </li>
+    <li>
+      Freight rates, bunker surcharges and port charges are set by carriers and terminals, not by us. If they
+      change between quotation and loading, we will tell you before we proceed and you may cancel under
+      section 8 if you do not accept the revised figure.
+    </li>
+    <li>Bank charges on international transfers are yours.</li>
+  </ul>
+
+  <h2>4. What our price includes</h2>
+  <p>Unless the quotation says otherwise, the price we quote covers:</p>
+  <ul>
+    <li>Loading and lashing the vehicle into the ship</li>
+    <li>UK customs export and clearance</li>
+    <li>UK port handling charges</li>
+    <li>DVLA documentation and export certification</li>
+    <li>Export documentation, including the Bill of Lading</li>
+    <li>Posting the original export documents from the UK by UPS or DHL</li>
+    <li>Shipping the vehicle from the UK to the destination port</li>
+  </ul>
+
+  <h2>5. What it does not include</h2>
+  <ul>
+    <li>Pre-export inspection, where the destination country requires one</li>
+    <li>Marine insurance, which we can arrange on container shipments</li>
+    <li>Collection of the vehicle in the UK, or delivery at the far end</li>
+    <li>
+      <strong>All import fees in the destination country</strong> — customs duty, VAT or its local equivalent,
+      registration tax, port storage, demurrage and agent's fees
+    </li>
+  </ul>
+  <p>
+    This is the most important line in these terms, so it is worth stating plainly: <strong>our service ends at
+    the UK quayside and the sea leg we have booked.</strong> What a vehicle costs to clear and register at the
+    other end is set by that country's government, changes without notice, and is the importer's
+    responsibility. Any figure we mention about destination duty is general background, not advice, and must be
+    checked with a clearing agent in that country before you commit.
+  </p>
+
+  <h2>6. Your responsibilities</h2>
+  <ul>
+    <li>
+      Give us accurate information about the vehicle and the consignee. Customs entries are made from what you
+      tell us, and a correction after filing can be expensive.
+    </li>
+    <li>
+      Make sure the vehicle is yours to export, with no outstanding finance, and that it is not stolen, subject
+      to a claim, or on an insurance write-off register you have not told us about.
+    </li>
+    <li>
+      Present the vehicle in roadworthy, driveable condition for a RoRo sailing, with no more than a quarter
+      tank of fuel and no warning lights that would stop it being driven aboard.
+    </li>
+    <li>
+      <strong>Do not leave personal effects in a vehicle shipped RoRo.</strong> Carriers require it to be empty.
+      Anything left inside travels at your own risk and may be removed, and it can put the whole shipment in
+      breach of the carrier's terms. If you want to ship possessions, use a container.
+    </li>
+    <li>
+      Check what your destination country allows before you buy. Age limits, emissions standards and
+      left-hand-drive rules vary and are your responsibility.
+    </li>
+    <li>Provide the identity and address documents we need for customs and anti-money-laundering checks.</li>
+  </ul>
+
+  <h2>7. Transit, delays and risk</h2>
+  <p>
+    Once a vehicle is delivered into the carrier's custody, it travels under that carrier's own terms and the
+    Bill of Lading. Sailing dates and arrival dates are estimates given by the carrier. Weather, port
+    congestion, customs inspection, blank sailings and vessel rotation changes all move them, and none of that
+    is within our control.
+  </p>
+  <p>
+    We will keep you informed and do what we reasonably can to limit the effect of a delay, but we are not
+    liable for loss caused by a sailing running late, being cancelled, or a vessel omitting a port. Where a
+    vehicle is lost or damaged in transit, the claim lies against the carrier or the marine insurer under their
+    terms, and we will help you bring it.
+  </p>
+
+  <h2>8. Cancellation</h2>
+  <p>
+    You may cancel before the vehicle is loaded, but you remain responsible for costs we have already incurred
+    on your behalf — a purchase completed at your instruction, transport already carried out, a booking fee the
+    carrier will not refund, storage, or customs work already filed. We will set those out and refund the
+    balance.
+  </p>
+  <p>
+    If you are a consumer contracting at a distance, you have a statutory right to cancel within 14 days of the
+    contract being made. Where you have asked us to begin work during that period, you may be charged for what
+    has been done up to the point you cancel. This does not affect your other legal rights.
+  </p>
+  <p>
+    We may cancel if payment is not made when due, if the information you gave us proves materially wrong, or if
+    exporting the vehicle would breach sanctions, export controls or any other law.
+  </p>
+
+  <h2>9. Our liability</h2>
+  <p>
+    Nothing in these terms limits our liability for death or personal injury caused by our negligence, for fraud
+    or fraudulent misrepresentation, or for anything else that cannot lawfully be limited. For a consumer,
+    nothing here affects your rights under the Consumer Rights Act 2015.
+  </p>
+  <p>
+    Subject to that, and except where you are a consumer, our total liability arising out of a shipment is
+    limited to the amount you paid us for it, and we are not liable for loss of profit, loss of use, loss of a
+    resale, or other indirect or consequential loss.
+  </p>
+
+  <h2>10. Complaints</h2>
+  <p>
+    If something goes wrong, contact us at{' '}
+    <a href="mailto:sales@vehicleexports.co.uk">sales@vehicleexports.co.uk</a> or{' '}
+    <a href="tel:+441872491409">+44 (0)1872 491409</a> and give us the chance to put it right. We will
+    acknowledge a complaint within 5 working days and give you a considered answer within 20.
+  </p>
+
+  <h2>11. General</h2>
+  <ul>
+    <li>
+      We handle your personal data as described in our <a href="/privacy-notice">Privacy Notice</a>, and what
+      the site stores on your device is set out in our <a href="/cookie-policy">Cookie Policy</a>.
+    </li>
+    <li>
+      We may update these terms. The version that applies to your shipment is the one in force when your booking
+      was confirmed, and the date at the top of this page shows when it last changed.
+    </li>
+    <li>
+      If any part of these terms is found to be unenforceable, the rest continues to apply.
+    </li>
+    <li>
+      These terms are governed by the law of England and Wales, and the courts of England and Wales have
+      jurisdiction. If you live elsewhere in the UK, you may bring proceedings in your own courts.
+    </li>
+  </ul>
+</LegalPage>

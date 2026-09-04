@@ -1,0 +1,126 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+
+// Deliberately describes what this site actually loads rather than the usual
+// boilerplate: audited against the built output on 2026-09-04. The site sets no
+// cookies of its own and runs no analytics, so saying it does would be worse
+// than saying nothing. Third-party content is Google Fonts (every page), an
+// Unsplash image host (41 pages) and one Google Maps embed (/contact).
+//
+// ⚠ The Maps embed is the only element that can set a cookie, and it does so
+// as the page loads, without consent. Under PECR reg. 6 that needs prior
+// consent, since a map is not "strictly necessary". Two ways to fix it: a
+// consent banner, or make the map click-to-load. Click-to-load is simpler and
+// removes the issue entirely — until one of them is done, this page has to
+// describe the embed honestly, which is what it does below.
+---
+
+<LegalPage
+  title="UK Vehicle Exporters Cookie Policy"
+  description="What this website stores on your device and which third-party services it loads. We use no analytics, advertising or tracking cookies."
+  heading="UK Vehicle Exporters Cookie Policy"
+  crumb="Cookie Policy"
+  updated="4 September 2026"
+>
+  <div class="note">
+    <p>
+      <strong>The short version:</strong> this website sets no cookies of its own, and we do not use analytics,
+      advertising or tracking cookies of any kind. Two pieces of third-party content — a map on our contact page
+      and the fonts the site is typeset in — are loaded from Google, and the map can set cookies in your
+      browser. The detail is below.
+    </p>
+  </div>
+
+  <h2>What cookies are</h2>
+  <p>
+    A cookie is a small text file that a website asks your browser to store, so that something can be remembered
+    between page loads. Similar technologies — local storage, session storage and tracking pixels — do much the
+    same job. UK law (the Privacy and Electronic Communications Regulations) allows a site to store information
+    on your device without asking only where it is strictly necessary to deliver a service you asked for.
+    Anything else needs your consent first.
+  </p>
+
+  <h2>Cookies we set</h2>
+  <p>
+    <strong>None.</strong> This site is a set of static pages. It has no login for visitors, no shopping basket
+    and no session to remember, so there is nothing it needs to store on your device. We run no Google
+    Analytics, no advertising pixels and no visitor-tracking software.
+  </p>
+
+  <h2>Third-party content that loads on this site</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Service</th><th>Where</th><th>What it means for you</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Fonts</td>
+          <td>Every page</td>
+          <td>
+            The site's typefaces are served by Google. Loading them sends your IP address and browser details to
+            Google. Google states that it does not set cookies for the Fonts service.
+          </td>
+        </tr>
+        <tr>
+          <td>Unsplash</td>
+          <td>Photographs on many pages</td>
+          <td>
+            Some images are served from Unsplash's image host, which receives your IP address and browser
+            details when the image loads.
+          </td>
+        </tr>
+        <tr>
+          <td>Google Maps</td>
+          <td>Our <a href="/contact">contact page</a> only</td>
+          <td>
+            The embedded map showing our Truro office is provided by Google and <strong>can set cookies in your
+            browser as it loads</strong>. If you would rather it did not, do not open the contact page, or block
+            third-party cookies for google.com in your browser settings. No other page loads a map.
+          </td>
+        </tr>
+        <tr>
+          <td>Vercel</td>
+          <td>Every page</td>
+          <td>
+            Our hosting provider serves the site and keeps standard server logs, including your IP address. It
+            does not set cookies for visitors to this site.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Links to our Facebook, Instagram, YouTube, X, LinkedIn and WhatsApp pages are ordinary links, not embedded
+    widgets. Nothing is loaded from those companies unless you click through, at which point their own policies
+    apply.
+  </p>
+
+  <h2>Staff area</h2>
+  <p>
+    The content management system at <strong>/admin</strong> uses browser storage to keep our staff signed in.
+    It is not part of the public site and nothing there applies to visitors.
+  </p>
+
+  <h2>Controlling cookies</h2>
+  <p>
+    Because we set none, there is no consent banner to change your mind on. If you want to control what
+    third-party content can store, every major browser lets you block or delete cookies — look for Privacy or
+    Site Settings in Chrome, Firefox, Safari or Edge. Blocking third-party cookies will not stop this site
+    working; at most the contact page map may not display.
+  </p>
+  <p>
+    If we later add anything that does set cookies — analytics, for example — we will ask for your consent
+    before it loads, and update this page first.
+  </p>
+
+  <h2>More information</h2>
+  <p>
+    How we handle personal data more generally is set out in our{' '}
+    <a href="/privacy-notice">Privacy Notice</a>. The Information Commissioner's Office publishes plain-English
+    guidance on cookies at{' '}
+    <a href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">ico.org.uk</a>.
+    Any question about this policy can go to{' '}
+    <a href="mailto:sales@vehicleexports.co.uk">sales@vehicleexports.co.uk</a>.
+  </p>
+</LegalPage>
