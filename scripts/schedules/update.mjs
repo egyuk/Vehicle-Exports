@@ -169,9 +169,70 @@ async function main() {
     merged.push(row);
   }
 
-  // Runs AFTER the merge, not inside it: the loop above back-fills a blank
-  // carrier from a later duplicate, so a row's attribution is not final until
-  // every source has been through.
+  // The near-duplicate back-fill above only fires when two sources describe the
+  // SAME sailing, because that is the only time one row is discarded next to
+  // another. It therefore cannot see the commonest case: a ship whose voyage is
+  // attributed on one leg and blank on the next. Morning Champion EP622 is
+  // EUKOR into Huangpu and blank into Wallhamn - different destinations, so the
+  // two rows never collide and the blank survives the merge.
+  //
+  // This pass fills those from rows already in the file, in confidence order.
+  // It must set `service` wherever it sets `carrier`: the blank rows come from
+  // the RoRo aggregators and still carry their source's 'roro', which the
+  // downgrade below would have caught. Attributing the row without correcting
+  // the service would leave that unchecked claim standing, and ACL is ConRo
+  // while MSC is container - exactly the mislabelling the downgrade exists to
+  // prevent.
+  const vesselKey = r => canonicalVessel(r.vessel).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const voyageKey = r => `${vesselKey(r)}|${String(r.voyage || '').trim().toLowerCase()}`;
+  const byVoyage = new Map();
+  const byVessel = new Map();
+  for (const r of merged) {
+    if (!r.carrier) continue;
+    for (const [map, key] of [[byVessel, vesselKey(r)], [byVoyage, voyageKey(r)]]) {
+      if (!map.has(key)) map.set(key, { carriers: new Set(), services: new Set() });
+      map.get(key).carriers.add(r.carrier);
+      map.get(key).services.add(r.service);
+    }
+  }
+  // A key is only usable if every attributed row under it agrees, so a vessel
+  // that changed operator mid-file resolves to nothing rather than to a guess.
+  const agreed = (map, key) => {
+    const e = map.get(key);
+    return e && e.carriers.size === 1 ? e : null;
+  };
+
+  let byVoyageFills = 0, byVesselFills = 0, serviceUnsure = 0;
+  for (const row of merged) {
+    if (row.carrier) continue;
+    // 1. Provably the same voyage of the same ship: take both fields from it.
+    const voyage = String(row.voyage || '').trim() ? agreed(byVoyage, voyageKey(row)) : null;
+    if (voyage) {
+      row.carrier = [...voyage.carriers][0];
+      row.service = [...voyage.services][0];
+      byVoyageFills++;
+      continue;
+    }
+    // 2. A vessel that only ever appears under one operator in the whole file.
+    // Weaker, so the service only follows when it is equally unambiguous: ACL's
+    // Atlantic class runs as both 'roro' and 'conro', and picking either would
+    // be inventing a fact the data does not carry.
+    const vessel = agreed(byVessel, vesselKey(row));
+    if (!vessel) continue;
+    row.carrier = [...vessel.carriers][0];
+    if (vessel.services.size === 1) row.service = [...vessel.services][0];
+    else { row.service = 'unknown'; serviceUnsure++; }
+    byVesselFills++;
+  }
+  if (byVoyageFills || byVesselFills) {
+    log(`${byVoyageFills + byVesselFills} blank carriers filled from the file ` +
+      `(${byVoyageFills} by vessel+voyage, ${byVesselFills} by vessel)` +
+      `${serviceUnsure ? `, ${serviceUnsure} left service "unknown"` : ''}\n`);
+  }
+
+  // Runs AFTER the merge and the two back-fills above, not inside them: both
+  // fill a blank carrier from another row, so a row's attribution is not final
+  // until every source has been through.
   //
   // Same principle as the carrier rule. A row nobody could attribute to an
   // operator cannot be vouched for as RoRo either. The aggregators are RoRo
