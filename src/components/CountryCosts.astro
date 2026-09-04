@@ -25,6 +25,7 @@
 // destination country's import fees") is what keeps these pages UK-side.
 import { shippingRates } from '../data/shipping-prices';
 import { approximateRatesFor } from '../data/shipping-rates';
+import { factsByServiceFor } from './../data/schedule-facts';
 
 interface Props {
   countryName: string;
@@ -40,6 +41,16 @@ const hasCards = Boolean(rates?.roroSmall || rates?.container20);
 // Only consulted when there is no curated rate and no prose note.
 const approx = !hasCards && !rates?.note ? approximateRatesFor(countryName) : undefined;
 const hasApprox = Boolean(approx && (approx.roro || approx.c20));
+
+// The published table carries a container rate for far more countries than it
+// carries a RoRo one, so a route we sail RoRo to could show a container card
+// and nothing else - reading as though RoRo were not on offer at all. It is
+// usually the cheaper option and the one most customers take. Where the
+// schedule proves we sail it, the card appears and the price is quoted per
+// booking rather than omitted. `roroOnRequest` predates this and still forces
+// the card on a route the schedule has yet to show.
+const roroSailings = factsByServiceFor(countryName).roro.count;
+const roroOnRequest = !approx?.roro && (rates?.roroOnRequest || roroSailings > 0);
 
 const included = [
   'Loading and lashing vehicle into ship',
@@ -118,16 +129,16 @@ const excluded = [
   {hasApprox && (
     <>
       <div class="grid sm:grid-cols-2 gap-4 mb-4">
-        {(approx?.roro || rates?.roroOnRequest) && (
+        {(approx?.roro || roroOnRequest) && (
           <div class="border border-gray-100 rounded-xl p-5">
             <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Roll-on / Roll-off (RoRo)</h4>
             <p class="text-sm text-gray-500 mt-1 mb-4">{rates?.roroTransit ?? 'The cheapest way to move a single vehicle, and the option most customers choose.'}</p>
             <ul class="space-y-2 pt-3 border-t border-gray-100">
               <li class="flex items-center justify-between gap-3 text-sm text-gray-600">
-                <span>{approx?.roro ? 'From, per vehicle' : 'Rate on request'}</span>
+                <span>{approx?.roro ? 'From, per vehicle' : 'Per vehicle'}</span>
                 {approx?.roro
                   ? <span class="font-semibold text-gray-900 shrink-0">{approx.roro}</span>
-                  : <a href="tel:+441872491409" class="font-semibold text-[var(--color-primary)] shrink-0 hover:underline">01872 491409</a>}
+                  : <a href="/contact" class="font-semibold text-[var(--color-primary)] shrink-0 hover:underline">Contact us for price</a>}
               </li>
             </ul>
           </div>
@@ -158,6 +169,10 @@ const excluded = [
           : approx?.ports?.length ? ` for ${approx.ports.slice(0, 4).join(', ')}` : ''}.
         They move with the market and with the vehicle, and a full export quote covers the UK-side work listed
         below as well, so treat them as a guide rather than a final price.{' '}
+        {roroOnRequest && (
+          <>The table does not publish a RoRo rate for {countryName}, so that one is quoted per booking — we do
+          sail it, and the schedule below shows the departures.{' '}</>
+        )}
         <a href="/car-shipping/shipping-rates" class="text-[var(--color-primary)] font-semibold hover:underline">See the full rate table</a>{' '}
         or <a href="/contact" class="text-[var(--color-primary)] font-semibold hover:underline">ask us for an itemised quote</a>.
       </p>
