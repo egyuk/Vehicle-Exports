@@ -1,6 +1,6 @@
 ---
 // "Car Sourcing and Buying on your behalf" — the three-route block (buy from
-// stock / sourced to order / you find it, we export it).
+// stock / sourced to order / buy on your behalf).
 //
 // The three cards are fixed; only the lead paragraph mentions the country, so
 // it is generated from `countryName` and can be overridden via `intro` where a
@@ -20,9 +20,21 @@ const lead =
   `Buying and exporting a car to ${countryName} doesn't need to be stressful. UK Vehicle Exporters specialises in sourcing and exporting vehicles from the UK, with trusted shipping partners and support at every stage, from choosing the vehicle through to loading it onto the ship.`;
 
 const routes = [
-  { title: 'Buy from our stock', text: 'Choose from our export-ready UK vehicles.' },
-  { title: 'Sourced to order', text: "Tell us what you need, we'll find it in the UK market." },
-  { title: 'You find it, we export it', text: 'Spotted a car elsewhere? We can buy and export it for you.' },
+  {
+    title: 'Browse Export Cars',
+    text: 'Choose from our export-ready UK vehicles.',
+    href: '/shipping-cars',
+  },
+  {
+    title: 'Car Sourcing & Supply',
+    text: "Tell us what you need, we'll find it in the UK market.",
+    href: '/services/car-sourcing',
+  },
+  {
+    title: 'Buy car on your behalf',
+    text: 'Spotted a car elsewhere? We can buy and export it for you.',
+    href: '/services/buy-on-your-behalf',
+  },
 ];
 ---
 
@@ -30,11 +42,20 @@ const routes = [
   <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Car Sourcing and Buying on your behalf</h2>
   <p class="text-gray-600 leading-relaxed">{lead}</p>
   <div class="grid sm:grid-cols-3 gap-4 mt-6">
-    {routes.map(route => (
-      <div class="p-4 bg-gray-50 rounded-xl">
-        <h4 class="font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]">{route.title}</h4>
-        <p class="text-xs text-gray-500 mt-1">{route.text}</p>
-      </div>
-    ))}
+    {routes.map(route => {
+      // All three now have a page of their own. `href` stays optional so a
+      // route added later without one degrades to a plain card instead of a
+      // dead link.
+      const Card = route.href ? 'a' : 'div';
+      return (
+        <Card
+          href={route.href}
+          class:list={['block p-4 bg-gray-50 rounded-xl', route.href && 'hover:bg-gray-100 transition-colors group']}
+        >
+          <h4 class:list={['font-semibold text-gray-900 text-sm font-[family-name:var(--font-heading)]', route.href && 'group-hover:text-[var(--color-primary)]']}>{route.title}</h4>
+          <p class="text-xs text-gray-500 mt-1">{route.text}</p>
+        </Card>
+      );
+    })}
   </div>
 </div>

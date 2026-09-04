@@ -30,9 +30,9 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    slug: 'vehicle-sourcing',
-    name: 'UK Vehicle Supply & Sourcing',
-    navName: 'Vehicle Sourcing',
+    slug: 'car-sourcing',
+    name: 'UK Car Sourcing & Supply',
+    navName: 'Car Sourcing',
     shortDesc: 'Any new or used vehicle from our UK dealer, auction and trade network.',
     metaDescription:
       'We source any new or used vehicle from UK dealers, auctions and private sellers, inspect it and export it to your country.',
@@ -81,9 +81,9 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: 'car-purchase-brokerage',
-    name: 'Car Purchase Brokerage Service',
-    navName: 'Purchase Brokerage',
+    slug: 'buy-on-your-behalf',
+    name: 'Buy a Car on Your Behalf',
+    navName: 'Buy on Your Behalf',
     shortDesc: 'We buy any car on your behalf from any UK dealership or seller.',
     metaDescription:
       'Found a car in the UK? We verify it, negotiate and buy it on your behalf, then export it — protecting you from fraudulent sellers.',
