@@ -584,37 +584,39 @@ generator, and they describe **what this business and this site actually do**:
    no request to google.com at all, and the iframe appears only after the click.
    It was the only cookie-setting element on the site, so the cookie policy now
    says "none" without qualification.
-2. **These are drafts, not advice.** They are accurate to what the site does
-   and follow ICO guidance, but no solicitor has seen them. The VAT, customs
-   and liability wording in the terms in particular should be checked by
-   someone who knows the business's insurance and carrier contracts.
+2. **Legal review is arranged.** George has a solicitor who will look the pages
+   over (confirmed 2026-09-04), so they stand as they are. They were written to
+   be accurate to what the site actually does and to follow ICO guidance; the
+   VAT, customs and liability wording in the terms is the part worth their
+   attention.
 
 Also add the ICO data protection register entry number to the privacy notice
 once confirmed — there is a TODO on it in `LegalPage.astro`.
 
-## 6. ⚠ /car-shipping/car-export-to-asia is a competitor's copy
+## 6. /car-shipping/car-export-to-asia was a competitor's copy — FIXED 2026-09-04
 
-Found 2026-09-04 while auditing which external hosts the built site references.
-The body of `src/content/countries/car-export-to-asia.md` is pasted from MHH
-International — one of the three competitors in `research/competitor-links.txt`
-— and was never rewritten. Three separate problems in one file:
+The body of `src/content/countries/car-export-to-asia.md` had been pasted from
+MHH International — one of the three competitors in
+`research/competitor-links.txt` — and never rewritten. It carried two live
+dofollow links to mhhinternational.com, was about Zimbabwe rather than Asia, and
+claimed "over 17 years of car export experience and over 7,000 cars exported",
+which is MHH's figure.
 
-1. **Two live links to mhhinternational.com** in the page body, as ordinary
-   dofollow anchors ("complete guide to importing" and "Outstanding Import
-   Service"). The site links a competitor from its own destination page.
-2. **It is about Zimbabwe, on the Asia page.** The copy names Zimbabwe twice and
-   routes through Durban, Walvis Bay, Maputo and Dar es Salaam. Asia appears
-   only as Singapore and Hong Kong.
-3. **Claims that are not ours.** "over 17 years of car export experience and
-   over 7,000 cars exported" is MHH's figure, presented as this business's.
+George gave the real ones: **trading since 1999, more than 5,000 cars exported.**
+The page is rewritten around them and around what the schedule actually shows —
+several hundred upcoming sailings to twelve Asian countries out of Southampton,
+London Gateway, Felixstowe and Liverpool, six to seven weeks, container-led with
+RoRo alongside. The service list is rebuilt from this site's own included and
+excluded lists rather than carried over from MHH's, so nothing on it is a claim
+the rest of the site does not already make. The two outbound links are replaced
+by internal ones to /process, the rate table and the two sourcing services.
 
-Deliberately not rewritten: these are marketing paragraphs carrying factual
-claims about the company, and both the real figures and what the page should say
-about Asia are George's to give. The links cannot be stripped on their own
-without leaving sentences pointing at nothing — the passage needs replacing.
+No page in the built site references a competitor domain any more.
 
-Contained to this one file: no other content file or page references any
-competitor domain.
+⚠ **Still hotlinked:** the page's `heroImage` is a LinkedIn article cover served
+from `media.licdn.com`. It is someone else's image on someone else's CDN, so it
+can break or change without notice. Left alone because replacing it needs a
+picture the business owns.
 
 ## 7. Newsletter forms do nothing
 

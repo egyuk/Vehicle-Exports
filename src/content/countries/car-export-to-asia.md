@@ -4,7 +4,7 @@ slug: car-export-to-asia
 description: "Export cars from the UK to Asia by RoRo and container, with routes to Hong Kong, Singapore and the wider region, and help sourcing the right vehicle."
 heroImage: https://media.licdn.com/dms/image/v2/D5612AQE5Dxw8SuAawA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1737427220867?e=2147483647&v=beta&t=EMbBx1QPLmKKYiAZnM4sbam3MDgrJONI0WVd4-9FLUk
 region: Asia
-shippingTime: 28 days
+shippingTime: 6-7 weeks
 popularBrands:
   - Mercedes
 popularModels:
@@ -12,37 +12,55 @@ popularModels:
 ports:
   - Hong Kong
   - Singapore
+  - Shanghai
+  - Port Kelang
+  - Colombo
+  - Laem Chabang
 keyFacts:
   - title: Shipping
-    value: 6 weeks
+    value: 6-7 weeks
   - title: VAT-Free Supply
     value: Yes
 ---
 
 
-## Stress-free car importing
+## Stress-free car exporting to Asia
 
-We have thought of everything, so you don’t have to. With over 17 years of car export experience and over 7,000 cars exported, we know what it takes to get your car safely to Zimbabwe.
+We have been exporting vehicles from the UK since 1999, and more than 5,000 cars have left the country
+through us in that time. We know what the paperwork takes and where the delays happen.
 
-We include everything in your service: buying, pre-export checks, transport insurance, shipping, UK transport, UK VAT reclaim and safe payments. See our [complete guide to importing](https://mhhinternational.com/blog/complete-guide-to-buying-and-importing-a-new-or-used-car-to-zimbabwe/) for details.
+Asia is one of our best-served regions. Our current schedule carries several hundred upcoming sailings to
+twelve Asian countries, leaving from Southampton, London Gateway, Felixstowe and Liverpool, with a sea leg
+that typically runs six to seven weeks. Both options are available on the route: container services carry
+most of the volume, and pure vehicle carriers run RoRo alongside them.
 
-Our clear pricing policy gives you the confidence that you have no hidden extra costs while your car is shipping.
+Everything up to and including the sailing is ours to handle — sourcing the vehicle, VAT-free or
+VAT-qualifying supply where it applies, collection from anywhere in the UK, customs clearance and the export
+paperwork. Our [export process](/process) sets out how a booking runs, and the
+[published rate table](/car-shipping/shipping-rates) shows indicative prices by port.
 
 
+## What the price covers
 
-## Your prestige car import service for ex-UK cars.
+* Loading and lashing the vehicle into the ship
+* UK customs export and clearance
+* UK port handling charges
+* DVLA documentation and export certification
+* Export documentation, including the Bill of Lading
+* Posting the original export documents from the UK by UPS or DHL
+* Shipping the vehicle from the UK to the destination port
 
-Our [Outstanding Import Service](https://mhhinternational.com/blog/complete-guide-to-buying-and-importing-a-new-or-used-car-to-zimbabwe/) includes everything you need to import your car to Zimbabwe.
+Not included: pre-export inspection where the destination requires one, marine insurance on container
+shipments, collection or onward delivery, and all import fees in the destination country. Duty, local taxes
+and registration at the far end are set by that country's government and are the importer's responsibility —
+we can introduce you to a clearing agent at the arrival port.
 
-* Our cars are shipped and insured service to Durban, Walvis Bay, Maputo or Dar es Salaam.
-* Bespoke sourcing of your vehicle, purchase, inspection and collection.
-* Storage of your car in our safe compound.
-* Paintwork reconditioning. (if required)
-* Mileage checks & reports.
-* EAA Pre-export inspections.
-* Transport to the departure port.
-* Fully comprehensive insurance in the UK.
-* Roll-on roll-off and container shipping
-* High level of marine insurance throughout shipping.
-* Safe Payments accepts payment in USD and GBP.
-* DHL of original documents and loose items
+
+## Sourcing the vehicle as well
+
+If you have not bought the car yet, we can find it. We buy from UK main dealers, auction houses and private
+sellers, inspect it and move it straight into the export process — see
+[car sourcing and supply](/services/car-sourcing). If you have already found one yourself, we can
+[buy it on your behalf](/services/buy-on-your-behalf) so you are not paying an unknown seller directly.
+
+Tell us the vehicle and the destination port and we will quote the whole job.
