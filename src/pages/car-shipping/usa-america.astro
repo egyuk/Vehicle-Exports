@@ -121,7 +121,11 @@ const faqs = [
   faqs={faqs}
 >
   <CountryCosts countryName={countryName}>
-    <div slot="rates">
+    <!-- mb-8 because the heading that follows in CountryCosts carries no top
+         margin: on every other country page the element above it supplies the
+         gap, and without this the table butts straight into "What is included".
+         mb-6 = 24px, the same gap every other country page has there. -->
+    <div slot="rates" class="mb-6">
     <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3 mt-8">Indicative Shipping Rates by Port</h3>
     <p class="text-gray-600 leading-relaxed mb-6">
       Rates below are per vehicle, port to port, and are current at the time of writing. They vary with the
