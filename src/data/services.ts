@@ -31,12 +31,6 @@ export interface ServiceGuideSection {
   blocks: ServiceGuideBlock[];
   /** Numbered example cards, e.g. the tests for whether a car counts as new. */
   examples?: string[];
-  /**
-   * Small illustration, floated beside the prose. Width and height are the
-   * file's own: both of these are 150px wide on the old site and there is no
-   * larger original, so they are placed at natural size rather than scaled up.
-   */
-  image?: { src: string; alt: string; width: number; height: number };
 }
 
 /**
@@ -136,12 +130,6 @@ export const services: Service[] = [
       sections: [
         {
           heading: 'What Is VAT, and Can I Export a Car from the UK Free of VAT?',
-          image: {
-            src: '/assets/images/services/vat-tax-free-exports.jpg',
-            alt: 'Tax free cars exports, VAT reclaiming, VAT-qualifying vehicles',
-            width: 150,
-            height: 126,
-          },
           blocks: [
             {
               text: [
@@ -178,12 +166,6 @@ export const services: Service[] = [
         },
         {
           heading: 'Tax-Free Supply from Any UK Dealer',
-          image: {
-            src: '/assets/images/services/land-rover-jaguar-showroom.jpg',
-            alt: 'Land Rover and Jaguar dealership showroom',
-            width: 150,
-            height: 84,
-          },
           blocks: [
             {
               text: [
