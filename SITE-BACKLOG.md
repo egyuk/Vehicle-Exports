@@ -1,7 +1,8 @@
 # Site backlog
 
-Open issues from a full-site audit, in priority order. Counts come from auditing
-the built `dist/` output on 2026-08-22 (148 pages).
+Open issues from a full-site audit, in priority order. The original counts came
+from the built `dist/` output on 2026-08-22 (148 pages). Anything re-measured
+since carries its own date; the site is now 227 pages.
 
 ## Deployment — read this first
 
@@ -22,9 +23,7 @@ attributes the content to the final domain while staging elsewhere.
    ships `Disallow: /` and will not be indexed at all.
 2. Point vehicleexports.co.uk at this deployment (it currently serves the old
    WordPress site).
-3. Redirect (301) carexporters.com to vehicleexports.co.uk — it currently serves
-   an older build of this same codebase and would otherwise compete with it.
-4. Rebuild and confirm `dist/robots.txt` reads `Allow: /` with the sitemap line.
+3. Rebuild and confirm `dist/robots.txt` reads `Allow: /` with the sitemap line.
 
 Re-run the audit any time against a fresh `npx astro build` — the checks are
 broken links, missing/duplicate SEO fields, `h1` counts, image alt/sizing,
@@ -223,26 +222,53 @@ hub plus the Kenya duty calculator.
   telling the customer that duty, VAT and VRT are theirs and are not in our
   price. Better than silence.
 
-### Schedule data: unattributed rows, and no container lines at all
+### Schedule data: unattributed rows — RE-MEASURED 2026-09-04
 
-Found while generating the country pages (2026-09-03).
+Found while generating the country pages (2026-09-03). Two of the three
+original findings no longer hold; the counts below are from the 2026-09-04
+build.
 
-- **63 of 1,475 sailings carry a blank `carrier`**, from the aggregator sources
-  (`nmt.mjs`, `autoshippers.mjs`). That produced a visibly empty "Shipping
-  Lines" quick fact on Jordan, whose only two sailings are both unattributed.
-  The generator now filters blank carriers and falls back to a "Shipping
-  Options: RoRo & container" fact, so the symptom is fixed, but the data gap is
-  still there.
-- **Only Jordan (2 rows) and Sweden (1 row) rely entirely on unattributed
-  sailings.** Everywhere else named RoRo carriers dominate, so the impact is
-  contained to those two pages.
-- ⚠ **Every named carrier in the schedule is a vehicle carrier or ferry line**
-  — Wallenius Wilhelmsen, Höegh, NYK RoRo, "K" Line, EUKOR, Glovis, Sallaum,
-  Grimaldi, UECC, ACL, Stena, DFDS, Condor, MOL ACE, Geest. **There is no
-  container line in the data at all** (no CMA CGM, Maersk or MSC). George
-  reports Jordan's rows are container schedules, which means a container
-  sailing has reached the file without being labelled as one, and there is no
-  field that distinguishes RoRo from container on a row.
+- **Blank carriers: 79 of 2,759 before the back-fill below, 23 of 2,732
+  after** (refreshed 2026-09-04). They come from the aggregator sources
+  (`nmt.mjs`, `autoshippers.mjs`) and clustered on Europe→North America and
+  Europe→Far East. The generator filters blank carriers and falls back to a
+  "Shipping Options: RoRo & container" fact, so nothing renders empty.
+- **No country now depends entirely on unattributed sailings.** Jordan and
+  Sweden, the two named originally, both have named carriers again.
+- ✔ **"No container line in the data at all" is fixed** (`35d9e46`). MSC is
+  now the single largest source in the file, and every row carries a
+  `service`. The 18 carriers are no longer all vehicle carriers and ferry
+  lines.
+- **Not a bug, for the record:** `/uk-car-sailing-schedule/data.json` emits
+  destinations as `Country, Port`, the reverse of `sailing-schedules.json`.
+  That is deliberate and documented at `data.json.ts:11` — `flipDest()` builds
+  the option values for the page's destination `<select>`. Audit that endpoint
+  as if the last comma-segment were the country and you will invent problems
+  that are not there. The country pages read the source file, in `Port,
+  Country` order, which is what `scheduleCountry` matches.
+- **Blank carriers back-filled from the file itself — DONE 2026-09-04.** The
+  near-duplicate back-fill in the merge only fires when two sources describe
+  the same sailing, so it could not see the commonest case: a ship attributed
+  on one leg and blank on the next. `Morning Champion` voyage `EP622` is
+  `EUKOR` into Huangpu and blank into Wallhamn — different destinations, so
+  the rows never collide. `update.mjs` now runs a second pass before the
+  service downgrade, in confidence order. Verified against a live `--dry-run`:
+
+  | Rule | Rows |
+  | --- | --- |
+  | Exact `vessel` + `voyage` already carrying a carrier | 22 |
+  | `vessel` that only ever appears under one carrier | 34 |
+  | Left blank, and downgraded to `unknown` as before | 28 (23 survive validation) |
+
+  A key is only usable if every attributed row under it agrees on the carrier,
+  so a vessel that changed operator mid-file resolves to nothing rather than to
+  a guess. The pass sets `service` wherever it sets `carrier`, because the
+  blank rows arrive from the RoRo aggregators still carrying their source's
+  `roro` and attributing them would leave that unchecked claim standing —
+  ACL is ConRo and MSC is container. Where the vessel runs as both (ACL's
+  Atlantic class is `roro` and `conro`) the carrier is filled and the service
+  set to `unknown`: 13 rows.
+
 ### Service type — DONE 2026-09-03
 
 Every row now carries `service`: `roro`, `container`, `conro` or `unknown`.
@@ -250,7 +276,9 @@ Sources declare it and the pipeline throws if one omits it; unattributed rows
 are downgraded to `unknown` after the merge. Anything not plain RoRo is badged
 on the country pages and the full schedule. See `scripts/schedules/README.md`.
 
-Current split of the 1,475 rows: **1,376 roro, 36 conro, 63 unknown**.
+Current split of the 2,732 rows (refreshed 2026-09-04): **1,415 roro,
+1,252 container, 29 conro, 36 unknown**. The 36 unknown are the 23 rows still
+lacking a carrier plus the 13 ACL rows whose vessel runs as both RoRo and ConRo.
 
 **ACL is now `conro`**, which is the first real container coverage in the data.
 Their Liverpool to North America service runs G4 ConRo ships that carry
@@ -261,6 +289,11 @@ genuine choice to offer. This came free: the source was already wired in and
 only needed to declare what it actually is.
 
 ### CMA CGM as a container source — INVESTIGATED, NOT VIABLE 2026-09-03
+
+> **Superseded 2026-09-04:** container coverage was solved without CMA CGM.
+> Alternative 3 below paid off — MSC and Ellerman City Liners were added in
+> `35d9e46` and now supply 1,248 container sailings between them. Everything
+> below stands as the record of why CMA CGM itself is not worth retrying.
 
 George asked for this to be built. It cannot be, within this pipeline's
 constraints, and a module written anyway would **throw on its first unattended
@@ -305,7 +338,7 @@ looking one is worse than none because someone might ship it.
    Cheapest real container coverage, no new auth.
 3. **Maersk.** `https://api.maersk.com/schedules/point-to-point` answers plain
    Node with a clean JSON 401 and has a documented free developer tier, so it is
-   the most promising cheap credentialed option. MSC, ZIM and Ellermanreturn 200 HTML
+   the most promising cheap credentialed option. MSC, ZIM and Ellerman return 200 HTML
    to plain fetch with no bot challenge; Ellerman is UK-focused and worth a look
    for UK-departure lanes. **All are research leads, not findings** — nobody
    verified any of them returns parseable sailing rows.
@@ -334,30 +367,27 @@ need for UN/LOCODEs anyway.
   £250-£700 range. Titles, meta descriptions, hero chips, FAQs and the costs
   table on each page all read the one source now, so they cannot drift.
 
-- ⚠ **The same placeholders are still live in `src/data/shippingServices.ts`.**
-  That file feeds `/shipping/<service>`, `/shipping`, `/car-shipping` **and the
-  Header mega menu, so the figures appear on every page of the site**. It still
-  says RoRo "from £1,250" (and £1,395), containers "from £1,950" and 40ft
-  "from £3,575" — the exact numbers just confirmed to be placeholders. The
-  table's real minima are very different:
+- **The same placeholders in `src/data/shippingServices.ts` — FIXED 2026-09-04
+  (`dac1969`).** That file feeds `/shipping/<service>`, `/shipping`,
+  `/car-shipping` and the Header mega menu, so its figures appeared on every
+  page of the site. The hardcoded £1,250 / £1,395 / £1,950 / £3,575 are gone:
+  the three "from" prices are computed from the rate table's minima, so a
+  repricing moves them and they cannot drift from the rate card again.
 
-  | Service | Currently advertised | Cheapest in the rate table |
+  `f3320e2` then raised every published rate by 35%, so the minima quoted in
+  the original version of this entry (£437 / £623 / £1,029) are themselves out
+  of date. As of 2026-09-04:
+
+  | Service | From | Cheapest lane |
   | --- | --- | --- |
-  | RoRo | from £1,250 | **£437** (Hong Kong) |
-  | 20ft container | from £1,950 | **£623** (Laem Chabang, Thailand) |
-  | 40ft container | from £3,575 | **£1,029** (Hong Kong) |
+  | RoRo | £590 | Hong Kong |
+  | 20ft container | £841 | Laem Chabang, Thailand |
+  | 40ft container | £1,389 | Hong Kong |
 
-  Deliberately **not** changed without asking: these are headline marketing
-  prices across the whole site, and dropping "from £1,250" to "from £437" is a
-  commercial decision, not a code one. Either wire them to the table minima the
-  way the country pages now are, or replace them with real signed-off figures —
-  but leaving known-placeholder prices in the nav is the worst of the three.
-
-- **Data quality in the rate table:** Equatorial Guinea (Malabo and Bata) is
-  listed at **£12,523** for a 20ft container against **£1,679** for a 40ft.
-  Every other 20ft rate sits between £623 and £3,023, so this looks like a typo
-  for ~£1,252. It does not affect the minima or any current page, but it would
-  look absurd on an Equatorial Guinea page and should be corrected at source.
+- **Data quality in the rate table — FIXED 2026-09-04.** Equatorial Guinea
+  (Malabo and Bata) was listed at £12,523 for a 20ft container against £1,679
+  for a 40ft, about ten times every other 20ft rate. Both ports now read
+  £1,690 / £2,267.
 
 ### Rate tables are now shared data — DONE 2026-09-03
 
@@ -379,12 +409,13 @@ This means a new country page usually gets real indicative prices with no work,
 because the table covers far more countries than we have curated rates for.
 `approximateRatesFor()` handles the table's own spellings (`Grand Caymen`,
 `Ethiopa`, `Hati`) via an alias map so lookups do not silently miss.
-- **Ireland transit claims are unsupported by the schedule.** The page keeps
+- **Ireland transit claims — FIXED 2026-09-04 (`a525eba`).** The page had
   "3-7 days" in its facts bar and "Typically 7-14 days" on its container card,
-  but all 126 Ireland sailings in the data are same-day crossings (Holyhead→
-  Dublin, Fishguard→Rosslare, Stena Line only). The FAQ now reconciles this by
-  calling the crossing same-day and framing 3-7 days as end-to-end; the two
-  card/facts figures still want a decision.
+  neither supported by the data. Both are now derived at build time from the
+  133 Ireland sailings: RoRo is stated as the same-day crossing it is, and
+  container as same-day on the direct Dublin feeder or 6-16 days on a liner
+  calling Ireland mid-loop, out of Felixstowe and Liverpool rather than the
+  ferry ports.
 - **Ireland "Cork" removed.** The page claimed delivery to Dublin, Rosslare and
   Cork; neither `destinations.ts` nor the schedule has Cork. Now Dublin and
   Rosslare throughout. If we do deliver to Cork, the data files need it, not
@@ -392,8 +423,8 @@ because the table covers far more countries than we have curated rates for.
 
 ## 2. Canonical domain — FIXED 2026-08-22
 
-Was declaring `carexporters.com` in `astro.config.mjs`, with `robots.txt` naming
-a third domain (`autodeal-lyart.vercel.app`). Now `vehicleexports.co.uk`
+Was declaring the wrong domain in `astro.config.mjs`, with `robots.txt` naming
+yet another one (`autodeal-lyart.vercel.app`). Now `vehicleexports.co.uk`
 throughout: config `site`, all canonical tags, sitemap `<loc>`s, `og:url`, and
 the hardcoded fallback in `src/layouts/Layout.astro` (that fallback only applies
 if `Astro.site` is unset, but it named the old preview URL).
@@ -412,15 +443,56 @@ commit SHAs changed). Deploys went 136 MB -> 37 MB, .git 151 MB -> 51 MB. A
 backup copy lives at C:/Users/georg/Desktop/vehicleexports-backup/video.mp4 —
 the only remaining copy, since history no longer holds it.
 
-## 5. 533 placeholder `#` links across 132 pages
+## 5. 235 placeholder `#` links across 230 pages
 
-- `src/components/Footer.astro` — Privacy Notice, Terms and Conditions, Cookie
-  Policy in the bottom row (3 × every page = the bulk of the count)
+**Down from 913 on 2026-09-04**, when the three footer legal links were given
+real pages (see below). Those were 3 x every page, so they were most of the
+count. What is left:
+
+- `src/components/Footer.astro` — the TikTok icon (1 x every page = almost all
+  of what remains; the account either exists and should be linked, or does not
+  and the icon should go)
 - `src/components/CTASection.astro` — two app-store buttons
 - `src/components/CompareCars.astro` — one
 
-The footer legal links matter most: the site currently has **no working legal
-pages linked anywhere**.
+### Legal pages — DONE 2026-09-04
+
+The site had no working legal pages linked anywhere. It now has three, wired
+into the footer bottom row and sharing `src/components/LegalPage.astro`:
+`/privacy-notice`, `/terms-and-conditions`, `/cookie-policy`.
+
+They are drafted against the source material rather than assembled from a
+generator, and they describe **what this business and this site actually do**:
+
+- Company details are from the Companies House record for 10399100, not from
+  the marketing copy. ⚠ Note the registered office is **Penstraze Business
+  Park**, while `Footer.astro` says "Penstraze Business Centre". One of them is
+  wrong and the footer is the more likely candidate.
+- The privacy notice follows the UK GDPR Article 13 checklist, and its
+  international-transfer section is written around the real case: shipping a
+  car to Kenya means sending the consignee's details to a country with no UK
+  adequacy decision.
+- The terms restate the site's own commitments rather than boilerplate — the
+  included/excluded lists mirror `CountryCosts.astro`, and the "we stop at the
+  UK quayside" scope rule from § 1 is section 5.
+- The cookie policy was written from an audit of the built output, not assumed.
+
+**Two things to settle before launch:**
+
+1. ⚠ **The Google Maps embed on `/contact` sets cookies as the page loads,
+   with no consent.** Under PECR reg. 6 a map is not "strictly necessary", so
+   it needs prior consent. Either add a consent banner or make the map
+   click-to-load; click-to-load is simpler and removes the problem rather than
+   managing it. It is the only cookie-setting element on the whole site — there
+   is no analytics, no advertising and no first-party cookie — so fixing it
+   would let the cookie policy say "none" without qualification.
+2. **These are drafts, not advice.** They are accurate to what the site does
+   and follow ICO guidance, but no solicitor has seen them. The VAT, customs
+   and liability wording in the terms in particular should be checked by
+   someone who knows the business's insurance and carrier contracts.
+
+Also add the ICO data protection register entry number to the privacy notice
+once confirmed — there is a TODO on it in `LegalPage.astro`.
 
 ## 6. Newsletter forms do nothing
 
@@ -443,13 +515,33 @@ no other vehicle markdown contains one. Audit after: 0 pages with multiple h1s.
 
 ## 8. Smaller SEO and performance items
 
-- 36 titles over 60 characters, 11 descriptions over 160 — will truncate in results.
-- 3 duplicate descriptions: four pages fall back to the Layout default
-  (`/about`, `/contact`, `/car-shipping/destinations` — since merged into
-  `/car-shipping`, +1); `europe` and
-  `hong-kong-shipping` share one; the two Hilux listings share one.
-- ~307 images with no `width`/`height` (layout shift), ~136 with no `loading`.
-- Homepage HTML is ~280 KB, roughly double the next heaviest page.
+- **Title and description lengths — FIXED 2026-09-04.** Was 36 titles over 60
+  characters and 11 descriptions over 160 at the August audit; the country-page
+  work had already brought that down to 16 and 9. Both are now **zero**, across all 227 pages.
+  Static page titles were shortened, the blog suffix went from
+  `- UK Vehicle Exporters Export News` (35 characters) to `| UK Vehicle
+  Exporters` (23), and the `blog` and `vehicles` collections gained optional
+  `seoTitle` / `seoDescription` so a post keeps its editorial headline and
+  standfirst on the page while the meta tags stay inside the limits. Model
+  pages drop " for Export" only when the full title would overrun, so the model
+  name always survives. Re-run the audit against `dist/` to confirm.
+- **Duplicate descriptions — FIXED 2026-09-04.** `/about`, `/contact` and the
+  homepage were all falling back to the Layout default; each now has its own,
+  and nothing uses the default. `hong-kong-shipping` was copy-pasted from
+  `europe` and was advertising "European destinations" — it now describes Hong
+  Kong. `car-export-to-asia` was separately carrying 259 characters of unrelated
+  car-sourcing blurb as its description, and has been rewritten.
+  The third pair was a duplicate *page*, not a duplicate description:
+  `2021-toyota-hilux-2.md` was the same truck as `2021-toyota-hilux.md` — same
+  year, price, mileage, colour and body copy, a CMS re-save with a worse title
+  ("Toyota Hilux 2") and no `slug`. George confirmed one truck, so it was
+  deleted. Nothing linked to it; it was also the only vehicle whose `model` was
+  plain "Hilux", so the empty `/shipping-cars/toyota/hilux/` model page went
+  with it. Site is 227 pages.
+- 292 of 2,188 images have no `width`/`height` (layout shift), 132 no
+  `loading`. Alt text is fully covered — 0 missing. Re-counted 2026-09-04.
+- Homepage HTML is 316 KB, well clear of the next heaviest
+  (`/car-shipping/shipping-rates`, 194 KB).
 - `src/components/Footer.astro` lists "UK Cars for Export or Shipping" twice in
   `vehicleExportingLinks` (lines 13 and 19).
 - Nav dropdown panels overflow the viewport edge (~580 px wide, extending past
@@ -467,7 +559,8 @@ are redirect stubs plus the Decap CMS `/admin` page, and the `£TBC` prices on
 The pipeline itself is documented in `scripts/schedules/README.md`.
 
 - **`noindex`?** `/uk-car-sailing-schedule` now holds real commercial data
-  (493 sailings). If it is an internal working list rather than public
+  (2,732 sailings as of 2026-09-04). If it is an internal working list rather
+  than public
   marketing, it should not be indexed. `src/layouts/Layout.astro` has no
   `noindex` prop yet.
 - **Not in the main nav** — reachable only from the footer's bottom row.
