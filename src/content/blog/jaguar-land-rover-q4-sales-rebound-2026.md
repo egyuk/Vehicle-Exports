@@ -2,6 +2,8 @@
 title: Jaguar Land Rover Wholesales Jump 61% as Production Recovers From Cyberattack
 slug: jaguar-land-rover-q4-sales-rebound-2026
 description: JLR's Q4 FY2026 wholesale volumes rose 61.1% quarter-on-quarter to 95,300 units as production normalised following last year's cyber incident, though full-year figures remained down.
+seoTitle: "JLR Wholesales Jump 61% in Q4"
+seoDescription: "JLR's Q4 FY2026 wholesale volumes rose 61.1% to 95,300 units as production normalised after last year's cyber incident, though the full year stayed down."
 date: 2026-04-08
 author: UK Vehicle Exporters Team
 category: Industry News

@@ -14,6 +14,7 @@ doors: 5
 driveType: "AWD"
 engineSize: "6.75L V12 Twin-Turbo"
 description: "The ultimate luxury SUV in exclusive Black Badge specification. 6.75L twin-turbo V12 producing 592bhp. Bespoke interior with Starlight Headliner and every conceivable luxury option."
+seoDescription: "The ultimate luxury SUV in exclusive Black Badge specification. 6.75L twin-turbo V12 producing 592bhp, with Starlight Headliner and bespoke interior."
 features:
   - "Starlight Headliner"
   - "Bespoke Audio System"

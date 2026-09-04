@@ -1,10 +1,7 @@
 ---
 title: Car Export to Asia
 slug: car-export-to-asia
-description: >-
-  Car sourcing specialists
-
-  Our team are experts in sourcing new and used cars from the UK, Japan or Australia. They help you find your ideal car and will advise you on specifications, condition, and negotiate pricing so you can buy your ideal car at best value.
+description: "Export cars from the UK to Asia by RoRo and container, with routes to Hong Kong, Singapore and the wider region, and help sourcing the right vehicle."
 heroImage: https://media.licdn.com/dms/image/v2/D5612AQE5Dxw8SuAawA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1737427220867?e=2147483647&v=beta&t=EMbBx1QPLmKKYiAZnM4sbam3MDgrJONI0WVd4-9FLUk
 region: Asia
 shippingTime: 28 days

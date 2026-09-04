@@ -1,7 +1,7 @@
 ---
 title: Hong Kong Car Shipping
 slug: hong-kong-shipping
-description: "Premium UK vehicles exported to European destinations. Fast shipping, EU compliance support, and competitive pricing."
+description: "Ship a car from the UK to Hong Kong by RoRo or container, with sailing dates from UK ports and guidance on Hong Kong import and first registration."
 heroImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80"
 region: "Asia"
 scheduleCountry: "Hong Kong"

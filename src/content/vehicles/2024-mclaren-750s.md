@@ -14,6 +14,7 @@ doors: 2
 driveType: "RWD"
 engineSize: "4.0L V8 Twin-Turbo"
 description: "Brand new McLaren 750S in stunning Papaya Orange. 740bhp twin-turbo V8, carbon fibre construction, and track-ready aerodynamics. Export-ready with full documentation."
+seoDescription: "Brand new McLaren 750S in Papaya Orange. 740bhp twin-turbo V8, carbon fibre construction and track-ready aerodynamics, export-ready with documents."
 features:
   - "Carbon Fibre Monocage"
   - "Active Rear Aero"

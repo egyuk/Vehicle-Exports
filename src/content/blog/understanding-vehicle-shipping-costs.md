@@ -2,6 +2,7 @@
 title: "Understanding Vehicle Shipping Costs: What You'll Actually Pay"
 slug: "understanding-vehicle-shipping-costs"
 description: "A transparent breakdown of vehicle shipping costs from the UK, including freight, insurance, duties, and hidden fees to watch for."
+seoTitle: "What Vehicle Shipping Really Costs"
 date: 2026-04-15
 author: "UK Vehicle Exporters Team"
 category: "Tips & Advice"

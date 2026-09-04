@@ -21,7 +21,7 @@ function slugify(str: string) {
 
 const { vehicle } = Astro.props;
 const { Content } = await render(vehicle);
-const { title, make, model, year, price, mileage, fuel, transmission, bodyType, color, description, images, condition, doors, driveType, engineSize, features } = vehicle.data;
+const { title, make, model, year, price, mileage, fuel, transmission, bodyType, color, description, seoDescription, images, condition, doors, driveType, engineSize, features } = vehicle.data;
 const slug = vehicle.id;
 
 const makeSlug = slugify(make);
@@ -50,7 +50,7 @@ const specs = [
 const hasImages = images && images.length > 0;
 ---
 
-<Layout title={`${title} - UK Vehicle Exporters`} description={description}>
+<Layout title={`${title} | UK Vehicle Exporters`} description={seoDescription ?? description}>
   <!-- Banner with Breadcrumb -->
   <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

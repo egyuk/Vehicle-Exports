@@ -14,6 +14,7 @@ doors: 2
 driveType: "RWD"
 engineSize: "4.0L Flat-6"
 description: "The ultimate track-focused 911. Naturally aspirated 4.0L flat-six producing 518bhp at 9,000rpm. DRS rear wing, race-derived suspension, and full Weissach package."
+seoDescription: "The ultimate track-focused 911. Naturally aspirated 4.0L flat-six making 518bhp at 9,000rpm, with DRS rear wing and the full Weissach package."
 features:
   - "DRS Active Rear Wing"
   - "Weissach Package"

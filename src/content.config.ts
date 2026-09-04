@@ -44,6 +44,8 @@ const vehicles = defineCollection({
     engineSize: z.string().optional(),
     features: z.array(z.string()).optional(),
     description: z.string(),
+    // Shorter stand-in for the meta description; the page shows description.
+    seoDescription: z.string().optional(),
     images: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
   }),
@@ -55,6 +57,11 @@ const blog = defineCollection({
     title: z.string(),
     slug: z.string(),
     description: z.string(),
+    // Shorter stand-ins for the <title> and meta description when the
+    // editorial ones would truncate in a search result (~60 and ~160
+    // characters). The page itself always shows title/description.
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
     date: z.coerce.date(),
     author: z.string().default('UK Vehicle Exporters Team'),
     category: z.string(),

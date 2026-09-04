@@ -31,9 +31,16 @@ export async function getStaticPaths() {
 }
 
 const { makeName, modelName, vehicles } = Astro.props;
+
+// A search result shows roughly 60 characters, and the long model names run
+// past that once the brand is on the end -- losing the part that identifies the
+// car. Drop "for Export" rather than the model.
+const brand = " | UK Vehicle Exporters";
+const withPurpose = `${makeName} ${modelName} for Export${brand}`;
+const pageTitle = withPurpose.length <= 60 ? withPurpose : `${makeName} ${modelName}${brand}`;
 ---
 
-<Layout title={`${makeName} ${modelName} for Export - UK Vehicle Exporters`} description={`Browse our ${makeName} ${modelName} vehicles available for international export from the UK.`}>
+<Layout title={pageTitle} description={`Browse our ${makeName} ${modelName} vehicles available for international export from the UK.`}>
   <section class="bg-gradient-to-br from-[var(--color-dark)] to-gray-900 py-12 lg:py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <nav class="breadcrumb flex items-center gap-2 text-sm text-gray-400 mb-4">

@@ -2,6 +2,7 @@
 title: "The Complete Guide to Exporting Vehicles from the UK"
 slug: "complete-guide-exporting-vehicles-from-uk"
 description: "Everything you need to know about exporting a vehicle from the United Kingdom — from choosing the right car to shipping it to your destination."
+seoTitle: "A Guide to Exporting Cars from the UK"
 date: 2026-04-28
 author: "UK Vehicle Exporters Team"
 category: "Export Guide"

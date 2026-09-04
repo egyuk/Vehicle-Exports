@@ -2,6 +2,8 @@
 title: Morocco’s Car Exports Rise 17.4% to $10.06 Billion in First Half of 2026
 slug: morocco-export-news
 description: Rabat – Morocco’s automotive industry remained the country’s top export sector in the first half of 2026, with exports reaching MAD 93.655 billion ($10.06 billion), up 17.4% from MAD 79.807 billion during the same period last year.
+seoTitle: "Morocco Car Exports Up 17.4% in H1"
+seoDescription: "Morocco's car exports reached $10.06 billion in the first half of 2026, up 17.4% year on year, keeping automotive its top export sector."
 date: 2026-08-04T18:06
 author: UK Vehicle Exporters Team
 category: Industry News

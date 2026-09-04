@@ -2,6 +2,7 @@
 title: "Top 5 Vehicles for Export to Africa in 2026"
 slug: "top-5-vehicles-export-africa-2026"
 description: "Discover the most popular UK vehicles being exported to Africa this year — from the legendary Toyota Hilux to the versatile Land Rover Defender."
+seoTitle: "Top 5 Export Vehicles for Africa 2026"
 date: 2026-05-05
 author: "UK Vehicle Exporters Team"
 category: "Vehicle Reviews"

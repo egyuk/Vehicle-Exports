@@ -2,6 +2,7 @@
 title: How to Check a UK Vehicle's History Before Buying
 slug: how-to-check-uk-vehicle-history-before-buying
 description: Learn how to verify a UK vehicle's MOT history, mileage, ownership record, and outstanding finance before making a purchase.
+seoTitle: "How to Check a UK Vehicle's History"
 date: 2026-05-10
 author: UK Vehicle Exporters Team
 category: Tips & Advice

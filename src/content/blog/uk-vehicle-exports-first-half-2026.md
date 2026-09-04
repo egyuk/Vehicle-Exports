@@ -2,6 +2,8 @@
 title: UK Car Exports Hold Up Despite 7.5% Production Slide in First Half of 2026
 slug: uk-vehicle-exports-first-half-2026
 description: UK vehicle production fell 7.5% to 385,979 units in the first half of 2026, but exports proved more resilient than the domestic market, according to SMMT figures.
+seoTitle: "UK Car Exports Hold Up in H1 2026"
+seoDescription: "UK vehicle production fell 7.5% to 385,979 units in the first half of 2026, but exports held up better than the domestic market, the SMMT reports."
 date: 2026-07-18
 author: UK Vehicle Exporters Team
 category: Industry News
