@@ -1,10 +1,16 @@
 ---
-// "Our Other Services" — the four service cards on every country page.
+// "Our Other Services" — the service cards on every country page.
 //
-// The first three are the same everywhere. The fourth describes whatever
+// Most are the same everywhere. The `inspection` one describes whatever
 // pre-shipment work a given route needs, which is the one thing that genuinely
 // varies (Australia wants biosecurity cleaning, Kenya wants a KEBS
 // inspection), so it is overridable via the `inspection` prop.
+//
+// Compound storage and paintwork reconditioning were added 2026-09-04. George
+// confirmed we offer both, and they appeared nowhere on the site — "paintwork"
+// returned no hits at all outside one regional page. They are chargeable extras
+// rather than part of the shipping price, which is why each says so: the
+// excluded list on this same page states that the quote does not cover them.
 //
 // Note this stays UK-side on purpose: everything here is work we do before the
 // vehicle sails. What happens after it lands belongs on /import-uk-cars/.
@@ -41,6 +47,14 @@ const cards: InspectionCard[] = [
     text: 'Every vehicle we export goes through a rigorous multi-point inspection before shipping, and we can arrange an independent pre-purchase inspection of any car we source so you know its condition before you commit.',
   },
   fourth,
+  {
+    title: 'Secure Compound Storage',
+    text: 'Vehicles wait with us in a secure compound between purchase and sailing, so there is no rush to move a car the day you buy it and nothing accumulating in storage charges at the port. Quoted separately from the shipping price.',
+  },
+  {
+    title: 'Paintwork Reconditioning',
+    text: 'Where a car would arrive the better for it, we can recondition the paintwork before it ships — worth doing while the vehicle is with us rather than paying to sort it out after it lands. Quoted separately from the shipping price.',
+  },
 ];
 ---
 
