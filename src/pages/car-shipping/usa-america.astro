@@ -1,0 +1,199 @@
+---
+// Car shipping from the UK to the USA. Moved here 2026-09-04 from the
+// standalone /usa-import-america-car-shipping, so the USA sits on the same
+// template as the other 96 countries and the Countries menu points at a page
+// that looks like its neighbours.
+//
+// Everything from the old page came with it: the hero wording, the intro, the
+// RoRo and container sections, the live schedule and the per-port rate table.
+// The table is page-specific — no other country publishes a saloon/SUV split by
+// port — so it renders in <CountryCosts>'s slot, under that component's own
+// included/excluded lists rather than instead of them.
+//
+// UK-SIDE SCOPE: sourcing, tax-free supply, UK customs and documentation, and
+// getting the car onto the ship. Destination duty, taxes and registration are
+// the importer's responsibility and belong on /import-uk-cars/.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
+
+const countryName = 'USA';
+const popularBrands = ['Land Rover', 'Jaguar', 'Aston Martin', 'Bentley', 'Porsche', 'Mini'];
+// Undefined by design: shippingRates.USA carries a `note`, because a single
+// "from" figure cannot describe a table that prices ten ports two ways.
+const fromPrice = fromPriceFor(countryName);
+const facts = scheduleFactsFor(countryName);
+
+// Carried over verbatim from the old page. Port to port, per vehicle.
+const shippingCosts = [
+  { destination: 'Baltimore', saloon: '£1,176', suv: '£1,376' },
+  { destination: 'Brunswick', saloon: '£1,176', suv: '£1,376' },
+  { destination: 'Charleston', saloon: '£1,176', suv: '£1,431' },
+  { destination: 'Galveston', saloon: '£1,360', suv: '£1,431' },
+  { destination: 'New York', saloon: '£1,288', suv: '£1,700' },
+  { destination: 'Norfolk', saloon: '£1,288', suv: '£1,700' },
+  { destination: 'Jacksonville', saloon: '£1,080', suv: '£1,398' },
+  { destination: 'Port Hueneme', saloon: '£1,547', suv: '£1,677' },
+  { destination: 'San Diego', saloon: '£1,547', suv: '£1,677' },
+  { destination: 'Tacoma', saloon: '£1,468', suv: '£1,876' },
+];
+
+const destinationPorts = facts.ports.length ? facts.ports : shippingCosts.map(r => r.destination);
+
+const quickFacts = [
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: 'Delivery Ports',
+    value: destinationPorts.slice(0, 3).join(', '),
+    sub: destinationPorts.length > 3 ? `and ${destinationPorts.length - 3} other US ports` : '',
+  },
+  { label: 'Shipping From', value: '£1,080', sub: 'Per vehicle, port to port' },
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
+  { href: '#about', label: 'Shipping to the USA' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+const faqs = [
+  {
+    q: 'How much does it cost to ship a car from the UK to the USA?',
+    a: 'Rates run from £1,080 for a standard saloon to Jacksonville up to £1,876 for an SUV to Tacoma, port to port and per vehicle — the full table by port is on this page. Those figures are current at the time of writing and vary with the exact destination and the vehicle dimensions, so check with us before booking. They exclude duties and taxes, collection in the UK and onward delivery in the States.',
+  },
+  {
+    q: 'How long does shipping from the UK to the USA take?',
+    a: `Current carrier schedules show ${facts.transit} port to port${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}. The East Coast runs are the quick ones; West Coast sailings take considerably longer. The live sailing schedule on this page shows the actual dates.`,
+  },
+  {
+    q: 'Which UK ports do sailings to the USA depart from?',
+    a: `${listOf(facts.loadPorts)}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. RoRo sails direct from Liverpool and Southampton; our weekly container service runs from Bristol, Felixstowe, Grangemouth, Liverpool and London Gateway. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: 'Which US ports can my car be shipped to?',
+    a: 'RoRo serves Freeport, Baltimore, New York, Norfolk, Brunswick, Miami, Charleston, Galveston, Jacksonville, Port Hueneme and Tacoma. Container shipping reaches those and more. Which one suits depends on where the car is going and which sailing is next, so we confirm it at booking.',
+  },
+  {
+    q: 'Can I pack personal items in the car?',
+    a: 'Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.',
+  },
+  {
+    q: 'Who handles import duty and registration when the car arrives in the USA?',
+    a: "That side is the importer's responsibility and the rules vary by state. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can put you in touch with one of our network of agents throughout the USA, who handle customs clearance and delivery to all US states.",
+  },
+];
+---
+
+<CountryPageLayout
+  title="Car Shipping from the UK to the USA | UK Vehicle Exporters"
+  description="UK Vehicle Exporters provides weekly car shipping by Container and RoRo from the UK to the USA, direct from all main UK ports."
+  countryName={countryName}
+  badgeText="USA Shipping Importing Cars to America"
+  heading="Car Import, Export and Shipping to America (USA)"
+  intro="Exporting your vehicle from the UK to the United States of America"
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  finalCtaHeading="Ready to Ship Your Car to the USA?"
+  finalCtaText="Get in touch for an up-to-date quote on shipping your vehicle from the UK to any US port."
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName}>
+    <div slot="rates">
+    <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3 mt-8">Indicative Shipping Rates by Port</h3>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      Rates below are per vehicle, port to port, and are current at the time of writing. They vary with the
+      exact destination and the vehicle's dimensions, so please check with us before booking. They exclude
+      duties and taxes, collection of the car in the UK, and redelivery at the destination if you need it. For
+      actual departure and arrival dates, see the{' '}
+      <a href="#sailings" class="text-[var(--color-primary)] font-semibold hover:underline">live sailing schedule</a>{' '}
+      further down this page.
+    </p>
+    <div class="overflow-x-auto rounded-xl border border-gray-100 bg-white">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-50 text-left">
+            <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Destination</th>
+            <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Standard Saloon Car</th>
+            <th class="px-4 py-3 font-semibold text-gray-900 font-[family-name:var(--font-heading)]">SUV / 4×4</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shippingCosts.map((row, i) => (
+            <tr class:list={["border-t border-gray-100", i % 2 === 1 && "bg-gray-50/50"]}>
+              <td class="px-4 py-3 text-gray-900 font-medium">{row.destination}</td>
+              <td class="px-4 py-3 text-[var(--color-primary)] font-semibold">{row.saloon}</td>
+              <td class="px-4 py-3 text-[var(--color-primary)] font-semibold">{row.suv}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </CountryCosts>
+
+  <SailingSchedule
+    country="USA"
+    id="sailings"
+    standalone={false}
+    limit={8}
+    heading="Sailing Schedule to the USA"
+    intro="Upcoming vehicle sailings from UK ports to the United States. Dates are the carriers' own estimates and must be reconfirmed before a booking is committed."
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to the USA</h2>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      UK Vehicle Exporters provides weekly car shipping by container and RoRo from the UK to the USA, and offers
+      our professional shipping services direct from all main UK ports to and from the USA. We can handle the
+      whole process for you and put you in touch with one of our network of agents throughout the USA, who offer
+      customs clearance and delivery services to all US states.
+    </p>
+
+    <h3 class="text-xl font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">RoRo Vehicle Shipping to USA</h3>
+    <p class="text-gray-600 leading-relaxed mb-6">
+      We offer Roll on Roll off services for cars, SUVs, autos, motorhomes, trucks, vans and buses. All sailings
+      are direct from the UK ports of Liverpool or Southampton to all RoRo ports in the United States, which
+      include Freeport, Baltimore, New York, Norfolk, Brunswick, Miami, Charleston, Galveston, Jacksonville,
+      Port Hueneme and Tacoma.
+    </p>
+
+    <h3 class="text-xl font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">Container Car Export to America</h3>
+    <p class="text-gray-600 leading-relaxed">
+      We also provide containerised vehicle shipping to the United States of America, for vehicles to be secured
+      and shipped inside their own dedicated 20ft or 40ft shipping containers. We operate a weekly container
+      shipping schedule with departures from the main UK ports of Bristol, Felixstowe, Grangemouth, Liverpool
+      and London Gateway.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

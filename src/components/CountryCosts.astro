@@ -198,6 +198,13 @@ const excluded = [
     </div>
   )}
 
+  <!-- Rates a page prices itself, above the inclusions rather than after them:
+       the reader wants the number before the terms attached to it. Only the USA
+       uses this, because it is the one route quoted per port AND per vehicle
+       type. The unnamed slot at the foot stays a footnote (Kenya's duty
+       calculator), which is a different job and belongs after the lists. -->
+  <slot name="rates" />
+
   <h3 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-3">{hasApprox ? 'What a full export quote covers' : `What is included in our price${hasCards ? ' above' : ''}?`}</h3>
   <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3">
     {included.map(item => (

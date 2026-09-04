@@ -114,7 +114,7 @@ const countryPages: Record<string, string> = {
   Turkey: '/car-shipping/turkey',
   Uganda: '/car-shipping/uganda',
   Uruguay: '/car-shipping/uruguay',
-  USA: '/usa-import-america-car-shipping',
+  USA: '/car-shipping/usa-america',
   Zimbabwe: '/car-shipping/zimbabwe',
 
   // Added 2026-09-04 from the old carexporters.co.uk inventory: destinations

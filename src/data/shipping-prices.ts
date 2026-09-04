@@ -53,6 +53,16 @@ export interface ShippingRates {
 }
 
 export const shippingRates: Record<string, ShippingRates> = {
+  // The USA is quoted per port AND per vehicle type - ten ports, saloon and
+  // SUV - which no rate card shape on this site can hold. The note suppresses
+  // the cards so the page can render that table itself, and fromPriceFor()
+  // returns undefined so no single "from" figure is claimed in the hero.
+  // ⚠ Those page rates and the published rate table disagree: Baltimore is
+  // £1,176 saloon here and £795 in shipping-rates.ts, both described as port
+  // to port. Flagged in SITE-BACKLOG.md; not reconciled without George.
+  USA: {
+    note: 'Shipping to the USA is priced by arrival port and by vehicle type. The full table of indicative port-to-port rates is below.',
+  },
   // Prices come from the published table (RoRo £771, 20ft £1,143, 40ft £1,979).
   // Only the transit copy is ours.
   Australia: {
