@@ -50,11 +50,59 @@ the old site, 36 have a page on the new one:
   `st-lucia`, `saint-vincent-and-the-grenadines` -> `st-vincent`, `malta` ->
   `europe/malta`
 
-**11 destinations the old site covers have no page here at all:** Bermuda,
-Brunei, Fiji, Macau, Malawi, Maldives, Pakistan, Saint Helena, Seychelles,
-Swaziland and Zambia. That is a content gap as much as a redirect one — those
-pages presumably rank for something today, and a 301 to a generic page is worth
-much less than a 301 to the country.
+**The 11 destinations the old site covered and this one did not — BUILT
+2026-09-04.** Bermuda, Brunei, Eswatini, Fiji, Macau, Malawi, Maldives,
+Pakistan, Seychelles, St Helena and Zambia now have pages, so the redirect map
+covers 47 of 47 country URLs.
+
+None of the eleven takes a direct UK sailing, so each resolves through a
+`hubPorts` entry and every derived fact — transit band, UK load ports, carriers,
+indicative rate — comes from the hub at build time rather than being written in:
+
+| Page | Reached through | Transit | From |
+| --- | --- | --- | --- |
+| Bermuda | Baltimore / New York | 1-8 wks | £795 |
+| Brunei | Singapore | 3-10 wks | £1,381 |
+| Eswatini | Durban | 2-6 wks | £2,596 |
+| Fiji | Auckland | 2-12 wks | £851 |
+| Macau | Hong Kong | 5-9 wks | £1,179 |
+| Malawi | Beira / Dar es Salaam | 2-11 wks | £1,214 |
+| Maldives | Colombo | 3-9 wks | £1,921 |
+| Pakistan | Colombo | 3-9 wks | £1,246 |
+| Seychelles | Port Louis / Mombasa | 2-11 wks | £1,214 |
+| St Helena | Cape Town | 2-6 wks | £1,130 |
+| Zambia | Dar es Salaam / Durban | 2-11 wks | £7,119 |
+
+**Kept out of the Countries mega menu on purpose.** The menu renders on every
+page of the site and its country list is already the largest single block of
+internal links here; eleven more entries would have added roughly 5,000 internal
+links across the site for eleven long-tail destinations. They are in
+`moreDestinations` instead, which renders once on `/car-shipping` under "More
+Destinations". The menu stayed at 85 countries and no page outside
+`/car-shipping` gained a link. Promote one into `continentNames` if it starts
+earning real enquiries.
+
+Two bugs surfaced while building these, both fixed in the same change:
+
+- `approximateRatesFor()` priced off the cheapest port in the hub **country**
+  rather than the hub **port**. St Helena said "via Cape Town" while quoting
+  Durban's £988. It now prefers the named hub port, which also corrected
+  Botswana, Uganda and Zimbabwe.
+- The rate table had Tanzania's RoRo port as **"Der Es Salaam"** while the
+  container row two hundred lines later said "Dar". Only the container spelling
+  matched anything, so the RoRo rate was unreachable.
+
+⚠ **Zambia's £7,119 for a 20ft looks wrong.** It is the highest 20ft rate in
+the whole table — Zimbabwe, a comparable inland run from Durban, is £3,676. Its
+40ft is only 24% above its 20ft, where every other landlocked entry sits 50-96%
+above (Botswana +60%, Zimbabwe +96%, Eswatini +50%). That pattern makes the 20ft
+the outlier, not the 40ft; following it would put the 20ft nearer £5,500. Same
+class of thing as the Equatorial Guinea £12,523, which was a typo. **Not**
+changed — a price is George's to correct, and it is live on the new page.
+
+⚠ **Eswatini is at `/car-shipping/eswatini`,** the current name. The old URL is
+`car-shipping-to-swaziland.html`, so the redirect map needs that alias, and the
+rate card still files it under Swaziland (handled by a `rateTableAliases` entry).
 
 Left live and unredirected at launch, the old site competes with the new one for
 the same terms: same business, same destinations, same services.
