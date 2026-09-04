@@ -6823,6 +6823,18 @@
       "notes": "departure not published, arrival date used"
     },
     {
+      "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Jakarta/T.Priok, Indonesia",
+      "vessel": "Eco Star",
+      "voyage": "S0623-ECS",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-04",
+      "eta": "2026-10-09",
+      "lane": "Europe to Far East",
+      "notes": ""
+    },
+    {
       "service": "container",
       "loadPort": "Felixstowe",
       "destination": "Lagos, Nigeria",
@@ -7101,18 +7113,6 @@
     {
       "service": "roro",
       "loadPort": "Portsmouth",
-      "destination": "St Helier, Jersey",
-      "vessel": "Stena Vinga",
-      "voyage": "4680936",
-      "carrier": "DFDS",
-      "ets": "2026-09-04",
-      "eta": "2026-09-04",
-      "lane": "UK to Channel Islands",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Portsmouth",
       "destination": "St Peter Port, Guernsey",
       "vessel": "Condor Islander",
       "voyage": "",
@@ -7157,6 +7157,18 @@
       "eta": "2026-09-28",
       "lane": "Europe to Africa",
       "notes": "Feeder MSC Rapallo from Felixstowe, transhipment via Antwerp"
+    },
+    {
+      "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Tianjin-Xingang, China",
+      "vessel": "Eco Star",
+      "voyage": "S0623-ECS",
+      "carrier": "Wallenius Wilhelmsen",
+      "ets": "2026-09-04",
+      "eta": "2026-10-22",
+      "lane": "Europe to Far East",
+      "notes": ""
     },
     {
       "service": "roro",
@@ -7637,18 +7649,6 @@
       "eta": "2026-10-29",
       "lane": "Europe to Far East",
       "notes": "Feeder MSC Joy from Liverpool, transhipment via Antwerp, Singapore"
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
-      "destination": "Jakarta/T.Priok, Indonesia",
-      "vessel": "Eco Star",
-      "voyage": "S0623-ECS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-05",
-      "eta": "2026-10-09",
-      "lane": "Europe to Far East",
-      "notes": ""
     },
     {
       "service": "container",
@@ -8309,18 +8309,6 @@
       "eta": "2026-09-21",
       "lane": "Europe to Africa",
       "notes": "Feeder MSC Joy from Liverpool, transhipment via Le Havre"
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
-      "destination": "Tianjin-Xingang, China",
-      "vessel": "Eco Star",
-      "voyage": "S0623-ECS",
-      "carrier": "Wallenius Wilhelmsen",
-      "ets": "2026-09-05",
-      "eta": "2026-10-23",
-      "lane": "Europe to Far East",
-      "notes": ""
     },
     {
       "service": "container",
@@ -25496,6 +25484,42 @@
     },
     {
       "service": "roro",
+      "loadPort": "Bristol",
+      "destination": "Auckland, New Zealand",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-03",
+      "eta": "2026-11-25",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "service": "roro",
+      "loadPort": "Bristol",
+      "destination": "Baltimore, USA",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-03",
+      "eta": "2026-10-24",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "service": "roro",
+      "loadPort": "Bristol",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-03",
+      "eta": "2026-12-06",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "service": "roro",
       "loadPort": "Tilbury",
       "destination": "Casablanca, Morocco",
       "vessel": "Grande Sierra Leone",
@@ -25580,6 +25604,18 @@
     },
     {
       "service": "roro",
+      "loadPort": "Bristol",
+      "destination": "Jacksonville, USA",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-03",
+      "eta": "2026-10-26",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "service": "roro",
       "loadPort": "Tilbury",
       "destination": "Lagos, Nigeria",
       "vessel": "Grande Sierra Leone",
@@ -25613,6 +25649,18 @@
       "eta": "2026-10-31",
       "lane": "Europe to Africa",
       "notes": "via Antwerp"
+    },
+    {
+      "service": "roro",
+      "loadPort": "Bristol",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-03",
+      "eta": "2026-11-30",
+      "lane": "Europe to Oceania",
+      "notes": ""
     },
     {
       "service": "container",
@@ -25649,6 +25697,18 @@
       "eta": "2026-11-03",
       "lane": "Europe to Africa",
       "notes": "via Antwerp"
+    },
+    {
+      "service": "roro",
+      "loadPort": "Bristol",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-03",
+      "eta": "2026-12-03",
+      "lane": "Europe to Oceania",
+      "notes": ""
     },
     {
       "service": "container",
@@ -26192,18 +26252,6 @@
     },
     {
       "service": "roro",
-      "loadPort": "Bristol",
-      "destination": "Auckland, New Zealand",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-05",
-      "eta": "2026-11-25",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "service": "roro",
       "loadPort": "Liverpool",
       "destination": "Baltimore, USA",
       "vessel": "Atlantic Sun",
@@ -26213,30 +26261,6 @@
       "eta": "2026-10-17",
       "lane": "Europe to North America",
       "notes": "departure not published, arrival date used"
-    },
-    {
-      "service": "roro",
-      "loadPort": "Bristol",
-      "destination": "Baltimore, USA",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-05",
-      "eta": "2026-10-26",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Bristol",
-      "destination": "Brisbane, Australia",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-05",
-      "eta": "2026-12-06",
-      "lane": "Europe to Oceania",
-      "notes": ""
     },
     {
       "service": "roro",
@@ -26348,30 +26372,6 @@
     },
     {
       "service": "roro",
-      "loadPort": "Bristol",
-      "destination": "Jacksonville, USA",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-05",
-      "eta": "2026-10-28",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Bristol",
-      "destination": "Melbourne, Australia",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-05",
-      "eta": "2026-11-30",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "service": "roro",
       "loadPort": "Southampton",
       "destination": "Melbourne, Australia",
       "vessel": "Traviata",
@@ -26416,18 +26416,6 @@
       "ets": "2026-10-05",
       "eta": "2026-10-19",
       "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Bristol",
-      "destination": "Port Kembla, Australia",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-05",
-      "eta": "2026-12-03",
-      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -27740,6 +27728,42 @@
     },
     {
       "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Auckland, New Zealand",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-10",
+      "eta": "2026-11-25",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Baltimore, USA",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-10",
+      "eta": "2026-10-24",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Brisbane, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-10",
+      "eta": "2026-12-06",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
+      "service": "roro",
       "loadPort": "Tilbury",
       "destination": "Cotonou, Benin",
       "vessel": "Grande Luanda",
@@ -27825,6 +27849,18 @@
     {
       "service": "roro",
       "loadPort": "Southampton",
+      "destination": "Jacksonville, USA",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-10",
+      "eta": "2026-10-26",
+      "lane": "Europe to North America",
+      "notes": ""
+    },
+    {
+      "service": "roro",
+      "loadPort": "Southampton",
       "destination": "Keelung, Taiwan",
       "vessel": "Tombarra",
       "voyage": "EP626",
@@ -27883,6 +27919,18 @@
       "notes": ""
     },
     {
+      "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Melbourne, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-10",
+      "eta": "2026-11-30",
+      "lane": "Europe to Oceania",
+      "notes": ""
+    },
+    {
       "service": "container",
       "loadPort": "London Gateway",
       "destination": "Montevideo, Uruguay",
@@ -27904,6 +27952,18 @@
       "ets": "2026-10-10",
       "eta": "2026-11-24",
       "lane": "Europe to South America",
+      "notes": ""
+    },
+    {
+      "service": "roro",
+      "loadPort": "Southampton",
+      "destination": "Port Kembla, Australia",
+      "vessel": "Höegh Copenhagen",
+      "voyage": "101",
+      "carrier": "Höegh Autoliners",
+      "ets": "2026-10-10",
+      "eta": "2026-12-03",
+      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
@@ -28869,42 +28929,6 @@
     {
       "service": "roro",
       "loadPort": "Southampton",
-      "destination": "Auckland, New Zealand",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-15",
-      "eta": "2026-11-25",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
-      "destination": "Baltimore, USA",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-15",
-      "eta": "2026-10-26",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
-      "destination": "Brisbane, Australia",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-15",
-      "eta": "2026-12-06",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
       "destination": "Brunswick, USA",
       "vessel": "Manon",
       "voyage": "EC610-MAN",
@@ -29023,18 +29047,6 @@
       "notes": ""
     },
     {
-      "service": "roro",
-      "loadPort": "Southampton",
-      "destination": "Jacksonville, USA",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-15",
-      "eta": "2026-10-28",
-      "lane": "Europe to North America",
-      "notes": ""
-    },
-    {
       "service": "container",
       "loadPort": "London Gateway",
       "destination": "Luanda, Angola",
@@ -29061,18 +29073,6 @@
     {
       "service": "roro",
       "loadPort": "Southampton",
-      "destination": "Melbourne, Australia",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-15",
-      "eta": "2026-11-30",
-      "lane": "Europe to Oceania",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
       "destination": "New York, USA",
       "vessel": "Manon",
       "voyage": "EC610-MAN",
@@ -29092,18 +29092,6 @@
       "ets": "2026-10-15",
       "eta": "2026-11-10",
       "lane": "Europe to Africa",
-      "notes": ""
-    },
-    {
-      "service": "roro",
-      "loadPort": "Southampton",
-      "destination": "Port Kembla, Australia",
-      "vessel": "Höegh Copenhagen",
-      "voyage": "101",
-      "carrier": "Höegh Autoliners",
-      "ets": "2026-10-15",
-      "eta": "2026-12-03",
-      "lane": "Europe to Oceania",
       "notes": ""
     },
     {
