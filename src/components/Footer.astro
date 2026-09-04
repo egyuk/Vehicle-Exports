@@ -19,14 +19,23 @@ const vehicleExportingLinks = [
   { name: 'UK Cars for Export or Shipping', href: '/shipping-cars' },
 ];
 
+// The five makes that dominate UK used-vehicle export demand, rather than the
+// UK's own best-sellers - the two lists barely overlap. The domestic chart is
+// led by superminis (Fiesta, Corsa, Golf); the export chart is led by durable
+// right-hand-drive 4x4s and pickups, because the markets we ship to drive on
+// the left and buy for terrain and parts availability. Land Rover and the
+// Toyota Hilux / Land Cruiser head every export list; Ford Ranger, Nissan
+// Patrol and the Mercedes G-Class follow.
+//
+// These point at make pages, not model pages: a model page is one trim of one
+// vehicle and disappears when it sells, which is not something to link from
+// every page of the site.
 const popularCars = [
-  { name: 'KIA', href: '/shipping-cars/kia' },
-  { name: 'Ford', href: '/shipping-cars/ford' },
-  { name: 'Toyota', href: '/shipping-cars/toyota' },
-  { name: 'Land Rover', href: '/shipping-cars/land-rover' },
-  { name: 'Mercedes Benz', href: '/shipping-cars/mercedes-benz' },
-  { name: 'BMW', href: '/shipping-cars/bmw' },
-  { name: 'Nissan', href: '/shipping-cars/nissan' },
+  { name: 'Land Rover Export from UK', href: '/shipping-cars/land-rover' },
+  { name: 'Toyota Export from UK', href: '/shipping-cars/toyota' },
+  { name: 'Ford Export from UK', href: '/shipping-cars/ford' },
+  { name: 'Nissan Export from UK', href: '/shipping-cars/nissan' },
+  { name: 'Mercedes-Benz Export from UK', href: '/shipping-cars/mercedes-benz' },
 ];
 
 const otherLinks = [
@@ -80,9 +89,9 @@ const companyNumber = '10399100';
         </ul>
       </div>
 
-      <!-- Popular Used Car -->
+      <!-- Popular Exported Cars -->
       <div>
-        <h3 class="text-[var(--color-dark)] font-semibold text-lg mb-5 font-[family-name:var(--font-heading)]">Popular Used Car</h3>
+        <h3 class="text-[var(--color-dark)] font-semibold text-lg mb-5 font-[family-name:var(--font-heading)]">Popular Exported Cars</h3>
         <ul class="space-y-3">
           {popularCars.map(link => (
             <li>
