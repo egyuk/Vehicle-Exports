@@ -11,6 +11,41 @@ export interface ServiceStep {
   text: string;
 }
 
+/**
+ * A block of guide prose. `title` renders as an h3; leave it off for the lead
+ * paragraphs that sit directly under the section heading. `bullets` render
+ * between `text` and `after`, which is the shape the VAT guide needs over and
+ * over: a sentence, the conditions, then what follows from them.
+ */
+export interface ServiceGuideBlock {
+  title?: string;
+  text?: string[];
+  bullets?: string[];
+  after?: string[];
+  /** Small italic caveat under the block. */
+  note?: string;
+}
+
+export interface ServiceGuideSection {
+  heading: string;
+  blocks: ServiceGuideBlock[];
+  /** Numbered example cards, e.g. the tests for whether a car counts as new. */
+  examples?: string[];
+}
+
+/**
+ * Long-form reference material for a service, rendered under "What You Get".
+ * Only tax-free-car-exports has one: the VAT rules are the thing buyers
+ * actually need explained, and they were on a page of their own until
+ * 2026-09-04.
+ */
+export interface ServiceGuide {
+  heading: string;
+  lead?: string;
+  introBullets?: string[];
+  sections: ServiceGuideSection[];
+}
+
 export interface Service {
   slug: string;
   name: string;
@@ -26,6 +61,8 @@ export interface Service {
   steps: ServiceStep[];
   /** Extra in-context links shown as "Useful links". */
   links: { name: string; href: string }[];
+  /** Optional long-form reference section under the service copy. */
+  guide?: ServiceGuide;
 }
 
 export const services: Service[] = [
@@ -79,6 +116,139 @@ export const services: Service[] = [
     links: [
       { name: 'Guide: reclaiming VAT on exported vehicles', href: '/how-to-reclaim-vat-on-vehicles-exported-from-eu-uk' },
     ],
+    // Moved here 2026-09-04 from /how-to-reclaim-vat-on-vehicles-exported-from-eu-uk,
+    // whole and unedited apart from UK spelling. It belongs on the service it
+    // explains rather than on a page of its own: someone reading about tax-free
+    // supply is exactly the person who needs the rules.
+    guide: {
+      heading: 'VAT on Cars Bought and Moved Across Borders',
+      lead:
+        'The rules below cover VAT when a car is bought, exported or imported between countries. They are general guidance rather than tax advice, and the detail is set by the tax authority in each country — but knowing which case you fall into is usually enough to see whether a saving is available.',
+      introBullets: [
+        'When you buy a new car from a dealer in your own EU country you pay VAT on it. If you use this car for your private purposes, this VAT will not be refunded (unless you sell it when it is still new to a customer in another EU country – see below for what qualifies as a New vehicle).',
+        'When you buy an old car from a car dealer, VAT may be or may be not be separately mentioned on the invoice. This depends on how the dealer opts to calculate VAT on this car. For explanation on VAT payment on used cars, see below. These are referred to as VAT-Qualifying cars.',
+        'When you buy a car from another individual in your own EU country, you do not pay VAT.',
+      ],
+      sections: [
+        {
+          heading: "When Is a Car 'New'?",
+          blocks: [
+            {
+              text: [
+                'A car is new for VAT purposes if it has been in use for no more than 6 months, or it has been driven for no more than 6,000 kilometres when you buy it.',
+              ],
+            },
+          ],
+          examples: [
+            'A car that is two years old but has travelled only 4,000 kilometres is new for VAT purposes.',
+            'A four-month old car has been driven for 15,000 kilometres. It is new for VAT purposes.',
+            'A ten-month old car that has been driven for 6,500 kilometres is not new.',
+          ],
+        },
+        {
+          heading: 'VAT When Buying a Car Abroad',
+          blocks: [
+            {
+              text: [
+                'If you are a private person and you have bought a car abroad with the intention of bringing it back and using it in your home EU country, you may have to pay VAT when you do bring the car back.',
+              ],
+            },
+            {
+              title: 'VAT Is Due When You Bring in a New Car',
+              text: ['If you bring back to your country on a permanent basis a new car that:'],
+              bullets: [
+                'You have bought in an EU country other than your own',
+                'With the intention of taking it back to your own EU country',
+              ],
+              after: [
+                'You pay VAT on the value of the car in your own EU country at your own country\'s rate, BUT you should not have been charged VAT when you bought the car (if charged, it must be refunded).',
+              ],
+            },
+            {
+              title: 'What Is the Amount on Which VAT Is Payable?',
+              text: [
+                'VAT will be due on the total of the price you paid for the car plus any accessories and of associated costs, such as delivery charges.',
+              ],
+            },
+            {
+              title: 'What If I Paid VAT When I Bought the Car?',
+              text: [
+                'If you bought the car from a dealer or other business and you made it clear that your intention was to have the car taken back to your own country and kept there permanently, and satisfied any other necessary conditions, you should not have had to pay VAT (the sale should have been exempt). Some sellers may require paying VAT upon purchase and refund that amount when they get satisfactory evidence that the car was transported to and registered in another EU country. If despite this, you were incorrectly charged VAT, you must take this up with your supplier or the tax authorities of that country. You must still pay your home EU country’s VAT regardless.',
+              ],
+            },
+            {
+              title: 'How Do I Notify the Tax Authorities and When Do I Pay the VAT?',
+              text: [
+                'Your country sets the rules for notifying and paying the VAT on new cars brought in from other EU countries. You should consult your country\'s tax authorities.',
+              ],
+            },
+            {
+              title: 'What If I Bought the Car While Living in the Other EU Country and Am Now Returning to Live in My Home EU Country?',
+              text: [
+                'If you bought the car for your personal use while you were living abroad, you will have paid VAT in that country at the time of purchase. When you bring the car back with you on your return to your home EU country, you will have to pay VAT on this car at the rate applicable in that EU country. You will however be entitled to the refund of VAT paid for the car upon purchase in the first EU country. The refunded VAT amount will be proportionate to the period that it was used in that EU country. Consult relevant tax authorities for the exact details.',
+              ],
+            },
+          ],
+        },
+        {
+          heading: 'Bringing in an Old Car from Another EU Country',
+          blocks: [
+            {
+              title: "What Is an 'Old' Car?",
+              text: [
+                'An ‘old’ car is any car that had first been put into use more than six months previously, and had travelled more than 6,000 kilometres when you bought it.',
+              ],
+              note: 'This means that the car can still be considered new even if you bought it second hand.',
+            },
+            {
+              title: 'What Happens When I Bring an Old Car Back from Another EU Country?',
+              text: [
+                'When you bring your old car back to your EU country, you will not have to pay VAT on it. You will, however, have to re-register the car in your home country and could be obliged to pay any associated registration or road taxes. Consult your own country\'s tax authorities to find out the rules in detail.',
+              ],
+            },
+            {
+              title: 'I Am Coming to Live in the EU',
+              text: ['If:'],
+              bullets: [
+                'You are transferring your residence from a country outside the EU to a country inside the EU, and',
+                'The car is being imported as a personal possession',
+              ],
+              after: [
+                'you should normally not have to pay duty or VAT. Consult your new country\'s VAT authorities to find out the rules in detail. You will, however, have to re-register the car in your new country and pay any associated registration or road taxes.',
+              ],
+            },
+            {
+              title: 'Selling a Used Car',
+              text: [
+                'If you sell your car as a private person, you do not have to calculate VAT on this sale. However, if your car is considered new car and you sell it to a customer in another EU country, the customer will be obliged to pay VAT on this car in his own EU country. In such a case you will be entitled to a refund of VAT you have paid when purchasing this car. The amount of refundable VAT will normally be calculated by your tax authorities and will be proportional to the time that you used the car in your EU country. Consult your own country\'s tax authorities to find out the rules in detail.',
+              ],
+            },
+          ],
+        },
+        {
+          heading: 'Bringing in a Car from Outside the EU',
+          blocks: [
+            {
+              title: 'Will I Have to Pay VAT?',
+              text: [
+                'When you bring a car into an EU country from outside the EU, the tax treatment depends on whether:',
+              ],
+              bullets: [
+                'You normally live in the EU and bought the car abroad, or',
+                'You are coming to live in the EU and the car is being imported as one of your personal possessions',
+              ],
+              note: 'For this purpose, it does not matter if the car is a new car or not.',
+            },
+            {
+              title: 'I Normally Live in the EU',
+              text: [
+                'If you are already living in an EU country, and you wish to import a car you bought outside the EU, it is treated just like any other imported goods. You will have to pay customs duty and import VAT, unless any reliefs apply. Consult your country\'s customs and VAT authorities for how to make the customs declaration and pay the tax or whether you qualify for any relief. You will also have to register the car and pay any associated registration or road taxes.',
+              ],
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     slug: 'buy-on-your-behalf',

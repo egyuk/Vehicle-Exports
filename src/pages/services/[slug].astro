@@ -127,6 +127,69 @@ const serviceSchema = {
     </div>
   </section>
 
+  <!-- Long-form guide, where the service has one. Sits between the service
+       copy and the related-services grid so a reader who wants the detail
+       finds it after the summary rather than instead of it. Only
+       tax-free-car-exports carries one; every other service renders nothing
+       here. -->
+  {service.guide && (
+    <section class="pt-3 pb-16 lg:pb-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">{service.guide.heading}</h2>
+        {service.guide.lead && <p class="text-gray-600 leading-relaxed mb-8">{service.guide.lead}</p>}
+
+        {service.guide.introBullets && (
+          <ul class="space-y-4 mb-12">
+            {service.guide.introBullets.map(item => (
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="text-gray-600 leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div class="space-y-12">
+          {service.guide.sections.map(section => (
+            <div>
+              <h3 class="text-xl lg:text-2xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">{section.heading}</h3>
+              <div class="space-y-6">
+                {section.blocks.map(block => (
+                  <div>
+                    {block.title && <h4 class="text-lg font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">{block.title}</h4>}
+                    {block.text?.map(p => <p class="text-gray-600 leading-relaxed mb-3">{p}</p>)}
+                    {block.bullets && (
+                      <ul class="space-y-2 mb-3">
+                        {block.bullets.map(b => (
+                          <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-600 leading-relaxed">{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {block.after?.map(p => <p class="text-gray-600 leading-relaxed mb-3">{p}</p>)}
+                    {block.note && <p class="text-gray-500 text-sm italic leading-relaxed">{block.note}</p>}
+                  </div>
+                ))}
+              </div>
+              {section.examples && (
+                <div class="grid sm:grid-cols-3 gap-4 mt-6">
+                  {section.examples.map((ex, i) => (
+                    <div class="bg-white border border-gray-100 rounded-xl p-4">
+                      <span class="text-xs font-semibold text-[var(--color-primary)] uppercase tracking-wider">Example {i + 1}</span>
+                      <p class="text-sm text-gray-600 leading-relaxed mt-2">{ex}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Related services -->
   <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
