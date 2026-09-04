@@ -152,6 +152,16 @@ const serviceSchema = {
         <div class="space-y-12">
           {service.guide.sections.map(section => (
             <div>
+              {section.image && (
+                <img
+                  src={section.image.src}
+                  alt={section.image.alt}
+                  width={section.image.width}
+                  height={section.image.height}
+                  loading="lazy"
+                  class="float-right ml-6 mb-4 rounded-xl border border-gray-100"
+                />
+              )}
               <h3 class="text-xl lg:text-2xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">{section.heading}</h3>
               <div class="space-y-6">
                 {section.blocks.map(block => (

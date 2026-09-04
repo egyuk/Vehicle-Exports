@@ -31,6 +31,12 @@ export interface ServiceGuideSection {
   blocks: ServiceGuideBlock[];
   /** Numbered example cards, e.g. the tests for whether a car counts as new. */
   examples?: string[];
+  /**
+   * Small illustration, floated beside the prose. Width and height are the
+   * file's own: both of these are 150px wide on the old site and there is no
+   * larger original, so they are placed at natural size rather than scaled up.
+   */
+  image?: { src: string; alt: string; width: number; height: number };
 }
 
 /**
@@ -113,23 +119,80 @@ export const services: Service[] = [
       { title: 'Buy the right car', text: 'We supply or source a VATQ or tax-free vehicle rather than one where the saving is impossible.' },
       { title: 'Export and save', text: 'The vehicle is exported within HMRC’s time limits and the VAT is deducted or reclaimed.' },
     ],
-    links: [
-      { name: 'Guide: reclaiming VAT on exported vehicles', href: '/how-to-reclaim-vat-on-vehicles-exported-from-eu-uk' },
-    ],
+    links: [],
     // Moved here 2026-09-04 from /how-to-reclaim-vat-on-vehicles-exported-from-eu-uk,
     // whole and unedited apart from UK spelling. It belongs on the service it
     // explains rather than on a page of its own: someone reading about tax-free
     // supply is exactly the person who needs the rules.
     guide: {
-      heading: 'VAT on Cars Bought and Moved Across Borders',
+      heading: 'VAT, Tax-Free Supply and Reclaiming on Exported Cars',
       lead:
-        'The rules below cover VAT when a car is bought, exported or imported between countries. They are general guidance rather than tax advice, and the detail is set by the tax authority in each country — but knowing which case you fall into is usually enough to see whether a saving is available.',
+        'How the 20% saving works, which cars qualify for it, and what happens to VAT when a car crosses a border. This is general guidance rather than tax advice — the detail is set by the tax authority in each country — but knowing which case you fall into is usually enough to see whether a saving is available.',
       introBullets: [
         'When you buy a new car from a dealer in your own EU country you pay VAT on it. If you use this car for your private purposes, this VAT will not be refunded (unless you sell it when it is still new to a customer in another EU country – see below for what qualifies as a New vehicle).',
         'When you buy an old car from a car dealer, VAT may be or may be not be separately mentioned on the invoice. This depends on how the dealer opts to calculate VAT on this car. For explanation on VAT payment on used cars, see below. These are referred to as VAT-Qualifying cars.',
         'When you buy a car from another individual in your own EU country, you do not pay VAT.',
       ],
       sections: [
+        {
+          heading: 'What Is VAT, and Can I Export a Car from the UK Free of VAT?',
+          image: {
+            src: '/assets/images/services/vat-tax-free-exports.jpg',
+            alt: 'Tax free cars exports, VAT reclaiming, VAT-qualifying vehicles',
+            width: 150,
+            height: 126,
+          },
+          blocks: [
+            {
+              text: [
+                'Buying directly from us, international clients can save 20% on the purchase price of a brand new or used VAT-qualifying vehicle when it is exported from the UK to their destination country.',
+                'VAT — Value Added Tax — is a general consumption tax assessed on the value added to goods and services, and it applies to more or less everything bought and sold for use or consumption in the UK. HMRC collects it at a standard rate of 20%. Exports are normally outside that, which is where the saving comes from.',
+              ],
+              note: 'Once you have paid VAT to a dealer it is gone and cannot be reclaimed, so talk to us before you buy rather than after.',
+            },
+            {
+              title: 'VAT on New Cars',
+              text: [
+                'A brand new vehicle bought in the UK carries the full 20% VAT, added to the invoice. We can supply a brand new vehicle from any UK dealer VAT-free, and that expense simply comes off the purchase.',
+              ],
+            },
+            {
+              title: 'VAT on Used Cars',
+              text: [
+                'Most used cars carry no VAT of their own, because it was already paid on the first sale or when the car was imported into the UK. The exception is the one below, and it is the one worth looking for.',
+              ],
+            },
+            {
+              title: 'What Is a VAT-Qualifying Car?',
+              text: [
+                'A VAT-qualifying car is a used car on which the VAT was originally reclaimed by the buyer — typically ex-lease, ex-fleet or an ex-demonstrator. Because the VAT is still sitting in the price, it can be taken out again when the car is exported. A used car that is not VAT-qualifying cannot give you that saving, however good the deal looks.',
+              ],
+            },
+            {
+              title: 'Reclaiming VAT',
+              text: [
+                'An individual or business registered for VAT in the UK, buying purely for business use or for export, can usually reclaim the VAT on the purchase price. We confirm which route applies to you while we are quoting, before you commit to a vehicle.',
+              ],
+            },
+          ],
+        },
+        {
+          heading: 'Tax-Free Supply from Any UK Dealer',
+          image: {
+            src: '/assets/images/services/land-rover-jaguar-showroom.jpg',
+            alt: 'Land Rover and Jaguar dealership showroom',
+            width: 150,
+            height: 84,
+          },
+          blocks: [
+            {
+              text: [
+                'We supply brand new cars, and used VAT-qualifying cars, without the 20% VAT, and export them directly to clients overseas. The vehicle can come from any UK franchised dealer — we are not limited to our own stock.',
+                'The saving is only available if the car is bought correctly in the first place, which is why the order of events matters: talk to us, then buy.',
+              ],
+            },
+          ],
+        },
         {
           heading: "When Is a Car 'New'?",
           blocks: [
