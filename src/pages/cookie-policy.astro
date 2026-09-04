@@ -7,12 +7,13 @@ import LegalPage from '../components/LegalPage.astro';
 // than saying nothing. Third-party content is Google Fonts (every page), an
 // Unsplash image host (41 pages) and one Google Maps embed (/contact).
 //
-// ⚠ The Maps embed is the only element that can set a cookie, and it does so
-// as the page loads, without consent. Under PECR reg. 6 that needs prior
-// consent, since a map is not "strictly necessary". Two ways to fix it: a
-// consent banner, or make the map click-to-load. Click-to-load is simpler and
-// removes the issue entirely — until one of them is done, this page has to
-// describe the embed honestly, which is what it does below.
+// The Maps embed was the only element that set a cookie, and it did so as the
+// page loaded, without consent - which PECR reg. 6 does not allow for
+// something that is not "strictly necessary". Fixed 2026-09-04 by making it
+// click-to-load, so nothing is requested from Google until the visitor presses
+// the button. That is why this page can now say "none" without qualification.
+// If the map ever goes back to loading on its own, this page is wrong and the
+// site needs a consent banner.
 ---
 
 <LegalPage
@@ -25,9 +26,8 @@ import LegalPage from '../components/LegalPage.astro';
   <div class="note">
     <p>
       <strong>The short version:</strong> this website sets no cookies of its own, and we do not use analytics,
-      advertising or tracking cookies of any kind. Two pieces of third-party content — a map on our contact page
-      and the fonts the site is typeset in — are loaded from Google, and the map can set cookies in your
-      browser. The detail is below.
+      advertising or tracking cookies of any kind. Nothing that could set one loads unless you ask for it — the
+      map on our contact page waits until you press a button. The detail is below.
     </p>
   </div>
 
@@ -74,9 +74,10 @@ import LegalPage from '../components/LegalPage.astro';
           <td>Google Maps</td>
           <td>Our <a href="/contact">contact page</a> only</td>
           <td>
-            The embedded map showing our Truro office is provided by Google and <strong>can set cookies in your
-            browser as it loads</strong>. If you would rather it did not, do not open the contact page, or block
-            third-party cookies for google.com in your browser settings. No other page loads a map.
+            The map showing our Truro office is provided by Google, and loading it would let Google set its own
+            cookies. So <strong>it does not load until you press "Load map"</strong>. Until you do, nothing is
+            requested from Google and no cookie is set. There is a plain link to Google Maps beside the button if
+            you would rather not load it at all. No other page carries a map.
           </td>
         </tr>
         <tr>
@@ -107,7 +108,7 @@ import LegalPage from '../components/LegalPage.astro';
     Because we set none, there is no consent banner to change your mind on. If you want to control what
     third-party content can store, every major browser lets you block or delete cookies — look for Privacy or
     Site Settings in Chrome, Firefox, Safari or Edge. Blocking third-party cookies will not stop this site
-    working; at most the contact page map may not display.
+    working; at most the contact page map will not display after you have chosen to load it.
   </p>
   <p>
     If we later add anything that does set cookies — analytics, for example — we will ask for your consent

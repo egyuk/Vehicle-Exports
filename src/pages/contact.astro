@@ -86,15 +86,38 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Map / Info -->
         <div class="flex flex-col gap-6 h-full">
-          <!-- Google Map -->
-          <div class="bg-gray-100 rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[300px]">
-            <iframe
-              src="https://www.google.com/maps?q=Penstraze+Business+Park,+Penstraze,+Truro,+Cornwall,+TR4+8PN&output=embed"
-              class="w-full h-full border-0"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="UK Vehicle Exporters office location"
-            ></iframe>
+          <!-- Google Map, click to load.
+               The embed sets Google cookies the moment it loads, and a map is not
+               "strictly necessary" under PECR reg. 6, so loading it unasked needs
+               consent this site does not collect. Nothing is requested from Google
+               until the visitor presses the button, which is why the whole site can
+               still say it sets no cookies. Do not swap this back for a bare iframe
+               without adding a consent banner first. -->
+          <div
+            id="map-holder"
+            class="relative bg-gray-100 rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-auto lg:h-[300px]"
+            data-map-src="https://www.google.com/maps?q=Penstraze+Business+Park,+Penstraze,+Truro,+Cornwall,+TR4+8PN&output=embed"
+          >
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <svg class="w-8 h-8 text-[var(--color-primary)] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <p class="text-sm font-semibold text-gray-900 font-[family-name:var(--font-heading)]">Penstraze Business Park, Truro</p>
+              <p class="text-xs text-gray-500 mt-1 max-w-xs">The map is provided by Google and sets cookies, so we load it only when you ask.</p>
+              <button
+                type="button"
+                id="map-load"
+                class="mt-4 inline-flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all"
+              >
+                Load map
+              </button>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Penstraze+Business+Park,+Penstraze,+Truro,+Cornwall,+TR4+8PN"
+                target="_blank"
+                rel="noopener"
+                class="mt-3 text-xs text-[var(--color-primary)] font-semibold hover:underline"
+              >
+                Or open it in Google Maps
+              </a>
+            </div>
           </div>
 
           <!-- WhatsApp / Quick Contact -->
@@ -152,4 +175,21 @@ import Layout from '../layouts/Layout.astro';
     const subjectInput = document.getElementById('subject-input') as HTMLInputElement;
     if (subjectInput) subjectInput.value = `Enquiry about ${vehicle}`;
   }
+
+  // Build the Google embed only once the visitor asks for it - see the comment
+  // on #map-holder. The src lives in a data attribute rather than the iframe so
+  // the browser has nothing to preload or prefetch before the click.
+  const holder = document.getElementById('map-holder');
+  const loadBtn = document.getElementById('map-load');
+  loadBtn?.addEventListener('click', () => {
+    const src = holder?.dataset.mapSrc;
+    if (!holder || !src) return;
+    const frame = document.createElement('iframe');
+    frame.src = src;
+    frame.className = 'w-full h-full border-0';
+    frame.loading = 'lazy';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    frame.title = 'UK Vehicle Exporters office location';
+    holder.replaceChildren(frame);
+  });
 </script>

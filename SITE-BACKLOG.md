@@ -575,13 +575,15 @@ generator, and they describe **what this business and this site actually do**:
 
 **Two things to settle before launch:**
 
-1. ⚠ **The Google Maps embed on `/contact` sets cookies as the page loads,
-   with no consent.** Under PECR reg. 6 a map is not "strictly necessary", so
-   it needs prior consent. Either add a consent banner or make the map
-   click-to-load; click-to-load is simpler and removes the problem rather than
-   managing it. It is the only cookie-setting element on the whole site — there
-   is no analytics, no advertising and no first-party cookie — so fixing it
-   would let the cookie policy say "none" without qualification.
+1. **The Google Maps embed on `/contact` — FIXED 2026-09-04.** It set Google
+   cookies as the page loaded, with no consent, which PECR reg. 6 does not allow
+   for something that is not "strictly necessary". It is now click-to-load: the
+   embed URL sits in a data attribute and the iframe is only built when the
+   visitor presses "Load map", with a plain link to Google Maps beside it for
+   anyone who would rather not. Verified in the browser — loading /contact makes
+   no request to google.com at all, and the iframe appears only after the click.
+   It was the only cookie-setting element on the site, so the cookie policy now
+   says "none" without qualification.
 2. **These are drafts, not advice.** They are accurate to what the site does
    and follow ICO guidance, but no solicitor has seen them. The VAT, customs
    and liability wording in the terms in particular should be checked by
