@@ -109,13 +109,11 @@ Two bugs surfaced while building these, both fixed in the same change:
   container row two hundred lines later said "Dar". Only the container spelling
   matched anything, so the RoRo rate was unreachable.
 
-⚠ **Zambia's £7,119 for a 20ft looks wrong.** It is the highest 20ft rate in
-the whole table — Zimbabwe, a comparable inland run from Durban, is £3,676. Its
-40ft is only 24% above its 20ft, where every other landlocked entry sits 50-96%
-above (Botswana +60%, Zimbabwe +96%, Eswatini +50%). That pattern makes the 20ft
-the outlier, not the 40ft; following it would put the 20ft nearer £5,500. Same
-class of thing as the Equatorial Guinea £12,523, which was a typo. **Not**
-changed — a price is George's to correct, and it is live on the new page.
+**Zambia's rates — CORRECTED 2026-09-04.** £7,119 for a 20ft was the highest in
+the whole table, against £3,676 for Zimbabwe on a comparable inland run from
+Durban. George: both figures were £3,000 too high. Lusaka and the Kazungula
+border now read **£4,119 / £5,814**, a 1.41 ratio that sits between Eswatini
+(1.50) and Botswana (1.60) instead of the 1.24 that made the 20ft look wrong.
 
 **Eswatini is at `/car-shipping/eswatini`,** the current name. The rate card
 still files it under Swaziland, which a `rateTableAliases` entry handles. The
