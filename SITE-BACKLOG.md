@@ -592,7 +592,31 @@ generator, and they describe **what this business and this site actually do**:
 Also add the ICO data protection register entry number to the privacy notice
 once confirmed — there is a TODO on it in `LegalPage.astro`.
 
-## 6. Newsletter forms do nothing
+## 6. ⚠ /car-shipping/car-export-to-asia is a competitor's copy
+
+Found 2026-09-04 while auditing which external hosts the built site references.
+The body of `src/content/countries/car-export-to-asia.md` is pasted from MHH
+International — one of the three competitors in `research/competitor-links.txt`
+— and was never rewritten. Three separate problems in one file:
+
+1. **Two live links to mhhinternational.com** in the page body, as ordinary
+   dofollow anchors ("complete guide to importing" and "Outstanding Import
+   Service"). The site links a competitor from its own destination page.
+2. **It is about Zimbabwe, on the Asia page.** The copy names Zimbabwe twice and
+   routes through Durban, Walvis Bay, Maputo and Dar es Salaam. Asia appears
+   only as Singapore and Hong Kong.
+3. **Claims that are not ours.** "over 17 years of car export experience and
+   over 7,000 cars exported" is MHH's figure, presented as this business's.
+
+Deliberately not rewritten: these are marketing paragraphs carrying factual
+claims about the company, and both the real figures and what the page should say
+about Asia are George's to give. The links cannot be stripped on their own
+without leaving sentences pointing at nothing — the passage needs replacing.
+
+Contained to this one file: no other content file or page references any
+competitor domain.
+
+## 7. Newsletter forms do nothing
 
 - `src/components/Footer.astro` (footer signup)
 - `src/pages/car-export-news.astro` (blog sidebar)
@@ -602,7 +626,7 @@ handler, and no `name` on the input. Submitting discards the address silently
 and shows no feedback. Needs a real endpoint (hosted form service or the ESP's
 own embed — this is a static build, so an API route would need an adapter).
 
-## 7. Duplicate `<h1>` on every vehicle detail page — FIXED 2026-08-28
+## 8. Duplicate `<h1>` on every vehicle detail page — FIXED 2026-08-28
 
 Was: `src/pages/shipping-cars/[make]/[model]/[vehicleSlug].astro` rendered the
 vehicle title twice (mobile title block + desktop price card), and the McLaren
@@ -611,7 +635,7 @@ The desktop price-card title is now a `p` (identical classes, so it renders the
 same); the mobile block keeps the sole `h1`. The MC20 heading was removed —
 no other vehicle markdown contains one. Audit after: 0 pages with multiple h1s.
 
-## 8. Smaller SEO and performance items
+## 9. Smaller SEO and performance items
 
 - **Title and description lengths — FIXED 2026-09-04.** Was 36 titles over 60
   characters and 11 descriptions over 160 at the August audit; the country-page
