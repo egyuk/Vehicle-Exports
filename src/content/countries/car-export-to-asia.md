@@ -2,7 +2,7 @@
 title: Car Export to Asia
 slug: car-export-to-asia
 description: "Export cars from the UK to Asia by RoRo and container, with routes to Hong Kong, Singapore and the wider region, and help sourcing the right vehicle."
-heroImage: https://media.licdn.com/dms/image/v2/D5612AQE5Dxw8SuAawA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1737427220867?e=2147483647&v=beta&t=EMbBx1QPLmKKYiAZnM4sbam3MDgrJONI0WVd4-9FLUk
+heroImage: /assets/images/car-shipping/container-shipping.jpeg
 region: Asia
 shippingTime: 6-7 weeks
 popularBrands:
