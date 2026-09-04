@@ -1,0 +1,132 @@
+---
+// Car shipping from the UK to Bermuda. Generated from
+// _country-template.astro on 2026-09-04 and safe to edit by hand.
+//
+// Bermuda takes no direct UK sailing, so every derived fact on this page
+// resolves through the hubPorts entry in destinations.ts (Baltimore and New York in USA).
+// Ports, load ports, carriers and transit come from the schedule at BUILD time
+// and prices from the rate table, so both follow their own refresh.
+//
+// UK-SIDE SCOPE: sourcing, tax-free supply, UK customs and documentation, and
+// getting the car onto the ship. Destination duty, taxes and registration are
+// the importer's responsibility and belong on /import-uk-cars/.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import { approximateRatesFor } from '../../data/shipping-rates';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
+
+const countryName = 'Bermuda';
+const popularBrands = [];
+const fromPrice = fromPriceFor(countryName);
+const approx = approximateRatesFor(countryName);
+const facts = scheduleFactsFor(countryName);
+const destinationPorts = facts.ports.length ? facts.ports : ['Baltimore'];
+
+const quickFacts = [
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.join(', ') || 'On enquiry',
+    sub: 'Via the US East Coast',
+  },
+  {
+    label: 'Shipping From',
+    value: fromPrice ?? 'Call for price',
+    sub: fromPrice ? 'Approximate, per vehicle' : 'Quoted per booking',
+  },
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
+  { href: '#about', label: 'Shipping to Bermuda' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Bermuda?`,
+    a: `${approx?.roro ? `RoRo shipping starts from around ${approx.roro} per vehicle${approx?.c20 ? `, and a 20ft container from about ${approx.c20}` : ''}` : approx?.c20 ? `A 20ft container starts from around ${approx.c20} per vehicle` : 'Rates for this route are quoted per booking rather than from a rate card'}. ${approx ? 'Those are indicative rates from our published rate table and move with the market, so call us for the latest. ' : ''}A full export quote covers the UK-side work as well: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Bermuda take?`,
+    a: `${facts.transit ? `Current carrier schedules show ${facts.transit} to the US East Coast${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}` : 'Transit depends on the routing and is confirmed at booking'}. Allow extra for the onward leg to Bermuda and for collection and UK export clearance either side. The live sailing schedule on this page shows the actual dates.`,
+  },
+  {
+    q: `Which UK ports do sailings for Bermuda depart from?`,
+    a: `${facts.loadPorts.length ? listOf(facts.loadPorts) : 'The departure port follows the sailing we book'}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Bermuda has no direct UK sailing — how does my car get there?`,
+    a: `No vessel on our schedule calls at Hamilton direct from the UK. Vehicles are shipped to the US East Coast, where the island is fed by a short regular feeder run, and the rates and sailing dates on this page are for that Atlantic leg. The onward sailing and clearance into Bermuda are arranged by your agent, and we confirm the routing when the booking is made.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Bermuda?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Bermuda${fromPrice ? ` | From ${fromPrice}` : ''}`}
+  description={`Ship a car from the UK to Bermuda via the US East Coast. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} sea leg. ` : ''}Costs, routing and live sailing dates.`.slice(0, 158)}
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country="USA"
+    id="sailings"
+    standalone={false}
+    heading="Sailings to USA"
+    intro="Vehicles for Bermuda travel on these sailings as far as USA, then onward. Dates are carrier estimates and must be reconfirmed before booking."
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Bermuda</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">A mid-Atlantic island served through the US East Coast rather than direct from the UK: the deep-sea leg runs to Baltimore or New York, where the short feeder to Hamilton picks it up. It is one of the quickest Atlantic crossings we book, which is why the transit band on this page is measured in days rather than weeks.</p>
+    <p class="text-gray-600 leading-relaxed">
+      We handle the whole UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where
+      it applies, collection from any UK address, UK customs clearance and export documentation, and
+      loading onto the ship.{facts.loadPorts.length ? ` Sailings leave from ${listOf(facts.loadPorts)}.` : ''} The onward leg beyond the US East Coast and
+      clearance into Bermuda are arranged by your agent.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

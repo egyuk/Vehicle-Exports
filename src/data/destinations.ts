@@ -116,6 +116,26 @@ const countryPages: Record<string, string> = {
   Uruguay: '/car-shipping/uruguay',
   USA: '/usa-import-america-car-shipping',
   Zimbabwe: '/car-shipping/zimbabwe',
+
+  // Added 2026-09-04 from the old carexporters.co.uk inventory: destinations
+  // it covers that this site did not. All eleven are reached through a hub
+  // port rather than a direct UK sailing, so each has a hubPorts entry below.
+  // Deliberately NOT in continentNames: that feeds the Countries mega menu,
+  // which is on all 231 pages, and eleven more entries there would add ~5,000
+  // internal links across the site for eleven long-tail destinations. They are
+  // listed once on /car-shipping instead — see moreDestinations at the foot of
+  // this file.
+  Bermuda: '/car-shipping/bermuda',
+  Brunei: '/car-shipping/brunei',
+  Eswatini: '/car-shipping/eswatini',
+  Fiji: '/car-shipping/fiji',
+  Macau: '/car-shipping/macau',
+  Malawi: '/car-shipping/malawi',
+  Maldives: '/car-shipping/maldives',
+  Pakistan: '/car-shipping/pakistan',
+  Seychelles: '/car-shipping/seychelles',
+  'St Helena': '/car-shipping/st-helena',
+  Zambia: '/car-shipping/zambia',
 };
 
 // Where the schedule data names a country differently from the menu. Consulted
@@ -134,6 +154,22 @@ export const hubPorts: Record<string, string[]> = {
   Botswana: ['Namibia, Walvis Bay', 'South Africa, Durban'],
   Uganda: ['Kenya, Mombasa', 'Tanzania, Dar es Salaam'],
   Zimbabwe: ['South Africa, Durban', 'Mozambique, Beira'],
+
+  // Not all landlocked. Islands and small markets that no vessel calls at
+  // direct from the UK route through a larger port the same way, so they
+  // resolve here too: it is what gives them a transit band, load ports,
+  // carriers and an indicative rate instead of an empty page.
+  Bermuda: ['USA, Baltimore', 'USA, New York'],
+  Brunei: ['Singapore, Singapore'],
+  Eswatini: ['South Africa, Durban'],
+  Fiji: ['New Zealand, Auckland'],
+  Macau: ['Hong Kong, Hong Kong'],
+  Malawi: ['Mozambique, Beira', 'Tanzania, Dar es Salaam'],
+  Maldives: ['Sri Lanka, Colombo'],
+  Pakistan: ['Sri Lanka, Colombo'],
+  Seychelles: ['Mauritius, Port Louis', 'Kenya, Mombasa'],
+  'St Helena': ['South Africa, Cape Town'],
+  Zambia: ['Tanzania, Dar es Salaam', 'South Africa, Durban'],
 };
 const via = (name: string) => 'via ' + hubPorts[name].map(h => h.split(', ')[1]).join(' or ');
 
@@ -141,6 +177,17 @@ const via = (name: string) => 'via ' + hubPorts[name].map(h => h.split(', ')[1])
 // left out. The landlocked countries show the hub port they are reached via
 // (Zimbabwe's entry keeps the old site's delivery points).
 const countryPorts: Record<string, string[]> = {
+  Bermuda: ['Hamilton'],
+  Brunei: ['Muara'],
+  Eswatini: ['Matsapa', 'Manzini'],
+  Fiji: ['Suva', 'Lautoka'],
+  Macau: ['Macau'],
+  Malawi: ['Blantyre', 'Lilongwe'],
+  Maldives: ['Malé'],
+  Pakistan: ['Karachi'],
+  Seychelles: ['Victoria'],
+  'St Helena': ['Jamestown'],
+  Zambia: ['Lusaka', 'Kazungula'],
   Angola: ['Luanda'],
   Antigua: ["St John's"],
   Argentina: ['Zárate'],
@@ -269,6 +316,26 @@ const hrefFor = (name: string) =>
 
 export const continentCountries: Record<string, CountryLink[]> = Object.fromEntries(
   Object.entries(continentNames).map(([continent, names]) => [
+    continent,
+    names.map(name => ({ name, href: hrefFor(name), ports: countryPorts[name] ?? [] })),
+  ]),
+);
+
+// Destinations that have a page but are kept out of the mega menu, because the
+// menu renders on every page of the site and its country list is already the
+// largest single block of internal links here. These eleven are long-tail: no
+// direct UK sailing, most with no published rate of their own. One link each
+// from /car-shipping, plus the sitemap, is the right weight for them - promote
+// one into continentNames above if it starts earning real enquiries.
+const moreDestinationNames: Record<string, string[]> = {
+  'East & Southern Africa': ['Eswatini', 'Malawi', 'Seychelles', 'St Helena', 'Zambia'],
+  Asia: ['Brunei', 'Macau', 'Maldives', 'Pakistan'],
+  Caribbean: ['Bermuda'],
+  Oceania: ['Fiji'],
+};
+
+export const moreDestinations: Record<string, CountryLink[]> = Object.fromEntries(
+  Object.entries(moreDestinationNames).map(([continent, names]) => [
     continent,
     names.map(name => ({ name, href: hrefFor(name), ports: countryPorts[name] ?? [] })),
   ]),

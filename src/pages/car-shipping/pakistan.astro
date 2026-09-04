@@ -1,0 +1,132 @@
+---
+// Car shipping from the UK to Pakistan. Generated from
+// _country-template.astro on 2026-09-04 and safe to edit by hand.
+//
+// Pakistan takes no direct UK sailing, so every derived fact on this page
+// resolves through the hubPorts entry in destinations.ts (Colombo in Sri Lanka).
+// Ports, load ports, carriers and transit come from the schedule at BUILD time
+// and prices from the rate table, so both follow their own refresh.
+//
+// UK-SIDE SCOPE: sourcing, tax-free supply, UK customs and documentation, and
+// getting the car onto the ship. Destination duty, taxes and registration are
+// the importer's responsibility and belong on /import-uk-cars/.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import { approximateRatesFor } from '../../data/shipping-rates';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
+
+const countryName = 'Pakistan';
+const popularBrands = [];
+const fromPrice = fromPriceFor(countryName);
+const approx = approximateRatesFor(countryName);
+const facts = scheduleFactsFor(countryName);
+const destinationPorts = facts.ports.length ? facts.ports : ['Colombo'];
+
+const quickFacts = [
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.join(', ') || 'On enquiry',
+    sub: 'Via Colombo',
+  },
+  {
+    label: 'Shipping From',
+    value: fromPrice ?? 'Call for price',
+    sub: fromPrice ? 'Approximate, per vehicle' : 'Quoted per booking',
+  },
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
+  { href: '#about', label: 'Shipping to Pakistan' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Pakistan?`,
+    a: `${approx?.roro ? `RoRo shipping starts from around ${approx.roro} per vehicle${approx?.c20 ? `, and a 20ft container from about ${approx.c20}` : ''}` : approx?.c20 ? `A 20ft container starts from around ${approx.c20} per vehicle` : 'Rates for this route are quoted per booking rather than from a rate card'}. ${approx ? 'Those are indicative rates from our published rate table and move with the market, so call us for the latest. ' : ''}A full export quote covers the UK-side work as well: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Pakistan take?`,
+    a: `${facts.transit ? `Current carrier schedules show ${facts.transit} to Colombo${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}` : 'Transit depends on the routing and is confirmed at booking'}. Allow extra for the onward leg to Pakistan and for collection and UK export clearance either side. The live sailing schedule on this page shows the actual dates.`,
+  },
+  {
+    q: `Which UK ports do sailings for Pakistan depart from?`,
+    a: `${facts.loadPorts.length ? listOf(facts.loadPorts) : 'The departure port follows the sailing we book'}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Which port does my car arrive at in Pakistan?`,
+    a: `Karachi, which handles effectively all vehicle imports. Our schedule shows no direct UK call, so the deep-sea leg runs to a transhipment hub — commonly Colombo — and the vehicle moves onto the feeder from there. The rates on this page are the published Karachi figures; the sailing dates shown are for the leg to Colombo.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Pakistan?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Pakistan${fromPrice ? ` | From ${fromPrice}` : ''}`}
+  description={`Ship a car from the UK to Pakistan via Colombo. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} sea leg. ` : ''}Costs, routing and live sailing dates.`.slice(0, 158)}
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country="Sri Lanka"
+    id="sailings"
+    standalone={false}
+    heading="Sailings to Sri Lanka"
+    intro="Vehicles for Pakistan travel on these sailings as far as Sri Lanka, then onward. Dates are carrier estimates and must be reconfirmed before booking."
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Pakistan</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Karachi takes effectively all of Pakistan's vehicle imports, and reaching it from the UK means a transhipment rather than a direct call — Colombo is the usual hub on our schedule. Pakistan drives on the left, so UK right-hand-drive stock needs no conversion, and our published rate here is a container figure.</p>
+    <p class="text-gray-600 leading-relaxed">
+      We handle the whole UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where
+      it applies, collection from any UK address, UK customs clearance and export documentation, and
+      loading onto the ship.{facts.loadPorts.length ? ` Sailings leave from ${listOf(facts.loadPorts)}.` : ''} The onward leg beyond Colombo and
+      clearance into Pakistan are arranged by your agent.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

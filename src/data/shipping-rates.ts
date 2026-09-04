@@ -112,7 +112,7 @@ export const roroPrices: RoroRate[] = [
   { country: 'Spain', port: 'Tarragona', price: '£795' },
   { country: 'Spain', port: 'Valencia', price: '£752' },
   { country: 'Suriname', port: 'Paramaribo', price: '£2,148' },
-  { country: 'Tanzania', port: 'Der Es Salaam', price: '£1,214' },
+  { country: 'Tanzania', port: 'Dar Es Salaam', price: '£1,214' },
   { country: 'Thailand', port: 'Laem Chabang', price: '£999' },
   { country: 'Trinidad', port: 'Port of Spain', price: '£1,372' },
   { country: 'UAE', port: 'Abu Dhabi', price: '£1,096' },
@@ -307,6 +307,8 @@ const rateTableAliases: Record<string, string[]> = {
   'Trinidad and Tobago': ['Trinidad'],
   USA: ['United States of America (USA)'],
   UAE: ['Dubai'],
+  // Renamed in 2018; the rate card, like the old site, still says Swaziland.
+  Eswatini: ['Swaziland'],
 };
 
 /** Every table name a menu country might be filed under, itself included. */
@@ -352,6 +354,17 @@ export function approximateRatesFor(country: string):
     if (!roro.length && !cont.length) return undefined;
     via = hubs.map(h => `${h.port} (${h.country})`);
     ports = hubs.map(h => h.port);
+
+    // Prefer the hub PORT, not just the hub country. St Helena routes through
+    // Cape Town, and the page says so; taking the country's cheapest instead
+    // priced it off Durban, which is £142 less and not on the route. Match
+    // loosely because the table writes some ports as 'Port of Singapore'.
+    const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const wanted = ports.map(norm);
+    const atHub = <T extends { port: string }>(rows: T[]) =>
+      rows.filter(r => wanted.some(w => norm(r.port).includes(w) || w.includes(norm(r.port))));
+    if (atHub(roro).length) roro = atHub(roro);
+    if (atHub(cont).length) cont = atHub(cont);
   }
 
   if (!roro.length && !cont.length) return undefined;

@@ -1,0 +1,132 @@
+---
+// Car shipping from the UK to Macau. Generated from
+// _country-template.astro on 2026-09-04 and safe to edit by hand.
+//
+// Macau takes no direct UK sailing, so every derived fact on this page
+// resolves through the hubPorts entry in destinations.ts (Hong Kong in Hong Kong).
+// Ports, load ports, carriers and transit come from the schedule at BUILD time
+// and prices from the rate table, so both follow their own refresh.
+//
+// UK-SIDE SCOPE: sourcing, tax-free supply, UK customs and documentation, and
+// getting the car onto the ship. Destination duty, taxes and registration are
+// the importer's responsibility and belong on /import-uk-cars/.
+import CountryPageLayout from '../../layouts/CountryPageLayout.astro';
+import SailingSchedule from '../../components/SailingSchedule.astro';
+import CountryCosts from '../../components/CountryCosts.astro';
+import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
+import CountryServices from '../../components/CountryServices.astro';
+import CountrySourcing from '../../components/CountrySourcing.astro';
+import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import { fromPriceFor } from '../../data/shipping-prices';
+import { approximateRatesFor } from '../../data/shipping-rates';
+import { scheduleFactsFor, fromPortsLabel, listOf } from '../../data/schedule-facts';
+
+const countryName = 'Macau';
+const popularBrands = [];
+const fromPrice = fromPriceFor(countryName);
+const approx = approximateRatesFor(countryName);
+const facts = scheduleFactsFor(countryName);
+const destinationPorts = facts.ports.length ? facts.ports : ['Hong Kong'];
+
+const quickFacts = [
+  facts.transit
+    ? { label: 'Shipping Time', value: facts.transit, sub: fromPortsLabel(facts.loadPorts) }
+    : { label: 'Shipping Time', value: 'On enquiry', sub: 'Routing confirmed at booking' },
+  {
+    label: destinationPorts.length > 1 ? 'Delivery Ports' : 'Delivery Port',
+    value: destinationPorts.join(', ') || 'On enquiry',
+    sub: 'Via Hong Kong',
+  },
+  {
+    label: 'Shipping From',
+    value: fromPrice ?? 'Call for price',
+    sub: fromPrice ? 'Approximate, per vehicle' : 'Quoted per booking',
+  },
+  facts.carriers.length
+    ? {
+        label: facts.carriers.length > 1 ? 'Shipping Lines' : 'Shipping Line',
+        value: facts.carriers[0],
+        sub: facts.carriers.length > 1
+          ? `and ${facts.carriers.length - 1} other line${facts.carriers.length > 2 ? 's' : ''}`
+          : 'RoRo and container',
+      }
+    : { label: 'Shipping Options', value: 'RoRo & container', sub: 'Whichever suits the vehicle' },
+];
+
+const tocLinks = [
+  { href: '#costs', label: 'Costs & pricing' },
+  ...(facts.count ? [{ href: '#sailings', label: 'Sailing schedule' }] : []),
+  { href: '#about', label: 'Shipping to Macau' },
+  { href: '#why-ship', label: 'Our Other Services' },
+  { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
+  { href: '#faq', label: 'FAQs' },
+];
+
+const faqs = [
+  {
+    q: `How much does it cost to ship a car from the UK to Macau?`,
+    a: `${approx?.roro ? `RoRo shipping starts from around ${approx.roro} per vehicle${approx?.c20 ? `, and a 20ft container from about ${approx.c20}` : ''}` : approx?.c20 ? `A 20ft container starts from around ${approx.c20} per vehicle` : 'Rates for this route are quoted per booking rather than from a rate card'}. ${approx ? 'Those are indicative rates from our published rate table and move with the market, so call us for the latest. ' : ''}A full export quote covers the UK-side work as well: customs clearance, port handling, DVLA paperwork and export documentation.`,
+  },
+  {
+    q: `How long does shipping from the UK to Macau take?`,
+    a: `${facts.transit ? `Current carrier schedules show ${facts.transit} to Hong Kong${facts.loadPorts.length ? `, sailing from ${listOf(facts.loadPorts)}` : ''}` : 'Transit depends on the routing and is confirmed at booking'}. Allow extra for the onward leg to Macau and for collection and UK export clearance either side. The live sailing schedule on this page shows the actual dates.`,
+  },
+  {
+    q: `Which UK ports do sailings for Macau depart from?`,
+    a: `${facts.loadPorts.length ? listOf(facts.loadPorts) : 'The departure port follows the sailing we book'}${facts.carriers.length ? `, with ${listOf(facts.carriers)}` : ''}. We collect vehicles from any UK address and deliver them to the departure port.`,
+  },
+  {
+    q: `Which port does my car arrive at for Macau?`,
+    a: `Hong Kong. No deep-sea vessel on our schedule calls at Macau, so vehicles are landed in Hong Kong and moved across the delta on the short local leg. The rates and dates on this page are for the sea leg to Hong Kong, and clearance into Macau is handled by your agent.`,
+  },
+  {
+    q: `Can I pack personal items in the car?`,
+    a: `Not with RoRo — carriers require the vehicle to be empty. If you want to ship personal effects or multiple vehicles together, choose private container shipping instead.`,
+  },
+  {
+    q: `Who handles import duty and registration when the car arrives in Macau?`,
+    a: `That side is the importer's responsibility and the rules vary by country. Our price covers everything up to and including the sailing from the UK; destination import fees are not included. We can introduce you to a customs agent at the arrival port.`,
+  },
+];
+---
+
+<CountryPageLayout
+  title={`Car Shipping UK to Macau${fromPrice ? ` | From ${fromPrice}` : ''}`}
+  description={`Ship a car from the UK to Macau via Hong Kong. ${fromPrice ? `From ${fromPrice}. ` : ''}${facts.transit ? `${facts.transit} sea leg. ` : ''}Costs, routing and live sailing dates.`.slice(0, 158)}
+  countryName={countryName}
+  quickFacts={quickFacts}
+  tocLinks={tocLinks}
+  popularBrands={popularBrands}
+  destinationPorts={destinationPorts}
+  fromPrice={fromPrice}
+  faqs={faqs}
+>
+  <CountryCosts countryName={countryName} destinationPorts={destinationPorts} />
+
+  <SailingSchedule
+    country="Hong Kong"
+    id="sailings"
+    standalone={false}
+    heading="Sailings to Hong Kong"
+    intro="Vehicles for Macau travel on these sailings as far as Hong Kong, then onward. Dates are carrier estimates and must be reconfirmed before booking."
+  />
+
+  <div id="about">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Macau</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">Reached through Hong Kong rather than by any direct call: the deep-sea leg ends there and the crossing to Macau is a short local movement. Both drive on the left, so UK right-hand-drive stock needs no conversion, and the Hong Kong route is one of the better-served lanes on our schedule.</p>
+    <p class="text-gray-600 leading-relaxed">
+      We handle the whole UK side for you: sourcing the vehicle, tax-free and VAT-qualifying supply where
+      it applies, collection from any UK address, UK customs clearance and export documentation, and
+      loading onto the ship.{facts.loadPorts.length ? ` Sailings leave from ${listOf(facts.loadPorts)}.` : ''} The onward leg beyond Hong Kong and
+      clearance into Macau are arranged by your agent.
+    </p>
+  </div>
+
+  <CountryBookingTerms />
+
+  <CountryServices />
+
+  <CountrySourcing countryName={countryName} />
+
+  <CountryTaxFree countryName={countryName} />
+</CountryPageLayout>

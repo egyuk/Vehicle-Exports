@@ -165,7 +165,7 @@ const excluded = [
       <p class="text-sm text-gray-500 bg-gray-50 rounded-xl p-4 mb-6">
         <strong class="text-gray-900">Approximate — call for the latest rates.</strong> These are indicative
         shipping rates from our published rate table{approx?.via?.length
-          ? `. ${countryName} is landlocked, so they cover the sea leg to the nearest suitable port — ${approx.via.join(' or ')} — with the onward journey arranged separately`
+          ? `. ${countryName} has no published rate of its own, so these cover the sea leg to the port it is reached through — ${approx.via.join(' or ')} — with the onward journey arranged separately`
           : approx?.ports?.length ? ` for ${approx.ports.slice(0, 4).join(', ')}` : ''}.
         They move with the market and with the vehicle, and a full export quote covers the UK-side work listed
         below as well, so treat them as a guide rather than a final price.{' '}
