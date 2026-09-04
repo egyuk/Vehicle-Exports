@@ -1,17 +1,19 @@
 ---
 import { services } from '../data/services';
 import { shippingServices } from '../data/shippingServices';
-import { continentCountries } from '../data/destinations';
+import { continentCountries, continentPages } from '../data/destinations';
 
 // The Shipping mega menu mirrors the Shipping Services list on /car-shipping;
 // car shipping itself gets the photo banner above the cards instead of a card.
 const shippingCards = shippingServices.map(s => ({ name: s.name, href: `/shipping/${s.slug}`, desc: s.shortDesc }));
 
-// Countries grouped under unlinked continent headings, from the shared
-// destinations data (continents with no countries yet are skipped).
+// Countries grouped by continent, from the shared destinations data
+// (continents with no countries yet are skipped). A heading links to its
+// region guide where one exists - see continentPages - and is plain text where
+// none does.
 const countryGroups = Object.entries(continentCountries)
   .filter(([, countries]) => countries.length > 0)
-  .map(([title, countries]) => ({ title, links: countries }));
+  .map(([title, countries]) => ({ title, links: countries, href: continentPages[title] }));
 
 // The desktop panel lays the groups out in fixed columns, largest group first
 // into the shortest column, so the tallest group sets the panel height. CSS
@@ -179,7 +181,11 @@ const navLinks = [
                           <div>
                             {col.map(gr => (
                               <div class="mb-4">
-                                <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1.5 pb-1.5 border-b border-gray-100 whitespace-nowrap">{gr.title}</h4>
+                                <h4 class="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1.5 pb-1.5 border-b border-gray-100 whitespace-nowrap">
+                                {gr.href
+                                  ? <a href={gr.href} class="hover:text-[var(--color-primary)] transition-colors">{gr.title}</a>
+                                  : gr.title}
+                              </h4>
                                 <ul>
                                   {gr.links.map(item => (
                                     <li>
@@ -292,7 +298,11 @@ const navLinks = [
                 <div class="space-y-5">
                   {link.mega.groups.map(gr => (
                     <div>
-                      <span class="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2 pb-1.5 border-b border-gray-100">{gr.title}</span>
+                      <span class="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2 pb-1.5 border-b border-gray-100">
+                        {gr.href
+                          ? <a href={gr.href} class="hover:text-[var(--color-primary)] transition-colors">{gr.title}</a>
+                          : gr.title}
+                      </span>
                       <div class="grid grid-cols-2 gap-x-5 gap-y-1.5">
                         {gr.links.map(item => (
                           <a href={item.href} class="block text-[14px] font-bold leading-snug text-[var(--color-dark)] py-0.5">{item.name}</a>

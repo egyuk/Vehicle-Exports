@@ -313,6 +313,19 @@ const continentNames: Record<string, string[]> = {
   ],
 };
 
+// The region guide behind each menu heading, where one exists. North America,
+// Oceania and South & Central America have no guide written yet, so their
+// headings stay plain text - a heading that looks clickable and is not, or
+// links nowhere, is worse than one that plainly is not a link.
+export const continentPages: Record<string, string> = {
+  'West Africa': '/car-shipping/africa',
+  'East & Southern Africa': '/car-shipping/africa',
+  Asia: '/car-shipping/car-export-to-asia',
+  Caribbean: '/car-shipping/caribbean',
+  Europe: '/car-shipping/europe',
+  'Middle East': '/car-shipping/middle-east',
+};
+
 const hrefFor = (name: string) =>
   countryPages[name] ?? `/uk-car-sailing-schedule?country=${encodeURIComponent(scheduleNames[name] ?? name)}`;
 
