@@ -2,7 +2,7 @@
 title: "Export to Africa"
 slug: "africa"
 description: "Quality UK vehicles exported to African nations. Reliable shipping, competitive pricing, and full customs support."
-heroImage: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80"
+heroImage: "/assets/images/stock/photo-1547471080-7cc2caa01a7e.jpg"
 region: "Africa"
 shippingTime: "3-6 weeks"
 popularBrands: ["Toyota", "Nissan", "Land Rover", "Mercedes-Benz", "Ford"]

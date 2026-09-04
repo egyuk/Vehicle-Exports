@@ -2,7 +2,7 @@
 title: "Export to Caribbean"
 slug: "caribbean"
 description: "Premium UK vehicles shipped to Caribbean islands. Fast Atlantic routes, full documentation, and customs guidance."
-heroImage: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&q=80"
+heroImage: "/assets/images/stock/photo-1548574505-5e239809ee19.jpg"
 region: "Caribbean"
 shippingTime: "4-6 weeks"
 popularBrands: ["Toyota", "Nissan", "Honda", "BMW", "Mercedes-Benz"]

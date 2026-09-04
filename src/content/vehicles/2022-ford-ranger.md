@@ -11,9 +11,7 @@ bodyType: "Pickup Truck"
 color: "Blue"
 description: "Ford Ranger Wildtrak with hardtop canopy, tow bar, and off-road package. Work-ready and export-ready."
 images:
-  - "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"
-  - "https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=800&q=80"
-  - "https://images.unsplash.com/photo-1596768142846-ff26a6e28754?w=800&q=80"
+  - "/assets/images/stock/photo-1533473359331-0135ef1b58bf.jpg"
 featured: true
 ---
 

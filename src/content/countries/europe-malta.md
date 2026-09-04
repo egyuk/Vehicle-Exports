@@ -2,7 +2,7 @@
 title: "Vehicle Shipping to Malta"
 slug: "malta"
 description: "Premium UK vehicles shipped to Malta. Fast Mediterranean shipping, full customs support, and competitive pricing."
-heroImage: "https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800&q=80"
+heroImage: "/assets/images/stock/photo-1514890547357-a9ee288728e0.jpg"
 region: "Europe — Malta"
 parentSlug: "europe"
 scheduleCountry: "Malta"

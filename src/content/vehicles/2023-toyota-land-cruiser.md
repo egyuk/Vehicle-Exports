@@ -12,9 +12,9 @@ color: "White"
 description: "Excellent condition Toyota Land Cruiser VX with full service history. Perfect for export to Africa or Middle East. Low mileage, well-maintained, and ready for shipping."
 seoDescription: "Toyota Land Cruiser VX in excellent condition with full service history. Low mileage, well maintained, ready to ship to Africa or the Middle East."
 images:
-  - "https://images.unsplash.com/photo-1594502184342-2e12f877aa73?w=800&q=80"
-  - "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&q=80"
-  - "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80"
+  - "/assets/images/stock/photo-1594502184342-2e12f877aa73.jpg"
+  - "/assets/images/stock/photo-1621007947382-bb3c3994e3fb.jpg"
+  - "/assets/images/stock/photo-1516026672322-bc52d61a55d5.jpg"
 featured: true
 ---
 

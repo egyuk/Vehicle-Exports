@@ -11,9 +11,9 @@ bodyType: "Sedan"
 color: "Silver"
 description: "Low mileage Mercedes C300 AMG Line with premium plus package. Exceptional condition with full dealer service history."
 images:
-  - "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80"
-  - "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&q=80"
-  - "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80"
+  - "/assets/images/stock/photo-1618843479313-40f8afb4b4d8.jpg"
+  - "/assets/images/stock/photo-1617531653332-bd46c24f2068.jpg"
+  - "/assets/images/stock/photo-1605559424843-9e4c228bf1c2.jpg"
 featured: true
 ---
 

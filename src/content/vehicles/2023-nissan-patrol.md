@@ -11,9 +11,9 @@ bodyType: "SUV"
 color: "White"
 description: "Nearly new Nissan Patrol V8 Platinum with full luxury spec. Only 5,800 miles. Perfect for Middle East export."
 images:
-  - "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&q=80"
-  - "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800&q=80"
-  - "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80"
+  - "/assets/images/stock/photo-1609521263047-f8f205293f24.jpg"
+  - "/assets/images/stock/photo-1511919884226-fd3cad34687c.jpg"
+  - "/assets/images/stock/photo-1503376780353-7e6692767b70.jpg"
 featured: true
 ---
 

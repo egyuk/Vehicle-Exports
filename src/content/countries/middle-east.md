@@ -2,7 +2,7 @@
 title: "Export to Middle East"
 slug: "middle-east"
 description: "Luxury and performance vehicles exported from the UK to the Middle East. Premium selection, competitive pricing."
-heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
+heroImage: "/assets/images/stock/photo-1512453979798-5ea266f8880c.jpg"
 region: "Middle East"
 shippingTime: "2-4 weeks"
 popularBrands: ["Land Rover", "Mercedes-Benz", "BMW", "Toyota", "Audi"]

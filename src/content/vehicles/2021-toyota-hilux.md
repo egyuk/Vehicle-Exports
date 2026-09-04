@@ -13,8 +13,8 @@ condition: Used
 engineSize: ''
 description: Rugged Toyota Hilux Invincible X with roller shutter, tow bar, and full Toyota service history. The world's most reliable pickup.
 images:
-  - https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&q=80
-  - https://images.unsplash.com/photo-1612544448445-b8232cff3b6c?w=800&q=80
+  - /assets/images/stock/photo-1559416523-140ddc3d238c.jpg
+  - /assets/images/stock/photo-1612544448445-b8232cff3b6c.jpg
 featured: false
 slug: 2021-toyota-hilux
 ---

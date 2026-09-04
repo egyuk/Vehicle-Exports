@@ -2,7 +2,7 @@
 title: "Export to Europe"
 slug: "europe"
 description: "Premium UK vehicles exported to European destinations. Fast shipping, EU compliance support, and competitive pricing."
-heroImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80"
+heroImage: "/assets/images/stock/photo-1467269204594-9661b134dd2b.jpg"
 region: "Europe"
 shippingTime: "1-2 weeks"
 popularBrands: ["BMW", "Mercedes-Benz", "Audi", "Land Rover", "Porsche"]
