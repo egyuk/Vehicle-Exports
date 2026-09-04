@@ -29,6 +29,36 @@ Re-run the audit any time against a fresh `npx astro build` — the checks are
 broken links, missing/duplicate SEO fields, `h1` counts, image alt/sizing,
 placeholder links and asset weight.
 
+### carexporters.co.uk — an open question, not a checklist item
+
+Recorded 2026-09-04, deliberately **not** added to the checklist above, because
+the equivalent item for the other domain was removed on request and this is
+George's call rather than a technical one.
+
+carexporters.co.uk is ours — NMT addresses its weekly schedule alerts to
+sales@carexporters.co.uk. It had been filed under competitors in
+`research/competitor-links.txt`, which is now corrected. That file holds its
+full 75-page URL inventory, and two things follow from it.
+
+**A redirect map already exists in all but name.** Of the 47 country URLs on
+the old site, 36 have a page on the new one:
+
+- 30 map exactly: `/shipping/car-shipping-to-<country>.html` ->
+  `/car-shipping/<country>`
+- 6 need an alias: `antigua-and-barbuda` -> `antigua`, `hong-kong` ->
+  `hong-kong-shipping`, `saint-kitts-and-nevis` -> `st-kitts`, `saint-lucia` ->
+  `st-lucia`, `saint-vincent-and-the-grenadines` -> `st-vincent`, `malta` ->
+  `europe/malta`
+
+**11 destinations the old site covers have no page here at all:** Bermuda,
+Brunei, Fiji, Macau, Malawi, Maldives, Pakistan, Saint Helena, Seychelles,
+Swaziland and Zambia. That is a content gap as much as a redirect one — those
+pages presumably rank for something today, and a 301 to a generic page is worth
+much less than a 301 to the country.
+
+Left live and unredirected at launch, the old site competes with the new one for
+the same terms: same business, same destinations, same services.
+
 ---
 
 ## 1. Country pages — BUILT 2026-09-03

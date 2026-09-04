@@ -87,7 +87,24 @@ Commercial And Parts                           /commercial-and-parts/
 Electric Vehicles                              /electric-vehicles/
 Recent Exports                                 /recent-exports/
 
-===== UK Car Exporters (carexporters.co.uk) — all links =====
+===== OUR OWN SITE: carexporters.co.uk — all links =====
+
+NOT a competitor. George confirmed 2026-09-04 that carexporters.co.uk is ours
+(NMT addresses its schedule alerts to sales@carexporters.co.uk). It was filed
+under competitors by mistake when this research was gathered.
+
+That makes this the most useful section in the file: it is the URL inventory of
+the live site vehicleexports.co.uk replaces, 75 pages of it, covering the same
+destinations and services. Two things follow.
+
+  1. It is the source for a redirect map at launch. Every URL below that has a
+     counterpart on the new site should 301 to it, or the equity built up on
+     these pages is thrown away. The country pages map almost one to one:
+     /shipping/car-shipping-to-<country>.html -> /car-shipping/<country>.
+  2. Left live and unredirected, it competes with the new site for the same
+     terms. Same business, same destinations, same services.
+
+Neither is decided - see SITE-BACKLOG.md, launch checklist.
 
 LINK TEXT                                                URL
 -------------------------------------------------------  ------------------------------
