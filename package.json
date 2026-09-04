@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "schedules:update": "node scripts/schedules/update.mjs"
+    "schedules:update": "node scripts/schedules/update.mjs",
+    "prices:check": "node scripts/prices/check-usa.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
