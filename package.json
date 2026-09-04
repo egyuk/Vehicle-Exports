@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "schedules:update": "node scripts/schedules/update.mjs",
-    "prices:check": "node scripts/prices/check-usa.mjs"
+    "prices:check": "node scripts/prices/check-usa.mjs",
+    "prices:update": "node scripts/prices/check-usa.mjs --apply --fresh"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
