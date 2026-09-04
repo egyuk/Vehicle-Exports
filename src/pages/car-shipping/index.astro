@@ -23,7 +23,7 @@ const containerSizes = [
 
 const shippingServiceLinks = shippingServices.map(s => ({ name: s.name, href: `/shipping/${s.slug}` }));
 
-import { continentCountries, moreDestinations } from '../../data/destinations';
+import { continentCountries } from '../../data/destinations';
 
 // Regional overview guides (written content), grouped by their `region` for the
 // Export Destinations section. A region can have more than one guide (Asia has a
@@ -40,11 +40,6 @@ for (const guide of topLevelGuides) {
 // Country groups for Countries We Ship To, in the data order from destinations.ts.
 const continents = Object.entries(continentCountries).map(([name, countries]) => ({ name, countries }));
 
-// Destinations kept out of the mega menu because it renders on every page of
-// the site (see moreDestinations in destinations.ts). This is their one
-// internal link, so the section is real content rather than a footnote: each
-// says which port it is reached through, since none takes a direct UK sailing.
-const more = Object.entries(moreDestinations).map(([name, countries]) => ({ name, countries }));
 ---
 
 <Layout
@@ -165,31 +160,6 @@ const more = Object.entries(moreDestinations).map(([name, countries]) => ({ name
         {continents.filter(c => c.countries.length > 0).map(c => (
           <div>
             <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 pb-2 border-b border-gray-100">{c.name}</h3>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {c.countries.map(country => (
-                <a href={country.href} class="flex items-start gap-2.5 bg-gray-50 hover:bg-orange-50/70 border border-gray-100 rounded-lg p-3 transition-colors">
-                  <svg class="w-4 h-4 text-[var(--color-primary)] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  <span class="text-sm text-gray-700 leading-snug">
-                    <span class="font-semibold text-gray-900">{country.name}</span>
-                    {country.ports.length > 0 && <span> – {country.ports.join(', ')}</span>}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <h3 class="text-xl lg:text-2xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mt-12 mb-3">More Destinations</h3>
-      <p class="text-gray-500 leading-relaxed max-w-3xl mb-8">
-        Places we ship to that no vessel calls at direct from the UK. Each one travels to a larger port
-        nearby and goes on from there, so the page for it shows that routing, the sailings to the hub and
-        what the sea leg costs.
-      </p>
-      <div class="space-y-8">
-        {more.map(c => (
-          <div>
-            <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3 pb-2 border-b border-gray-100">{c.name}</h4>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {c.countries.map(country => (
                 <a href={country.href} class="flex items-start gap-2.5 bg-gray-50 hover:bg-orange-50/70 border border-gray-100 rounded-lg p-3 transition-colors">

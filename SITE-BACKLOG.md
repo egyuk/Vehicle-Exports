@@ -75,14 +75,29 @@ indicative rate — comes from the hub at build time rather than being written i
 | St Helena | Cape Town | 2-6 wks | £1,130 |
 | Zambia | Dar es Salaam / Durban | 2-11 wks | £7,119 |
 
-**Kept out of the Countries mega menu on purpose.** The menu renders on every
-page of the site and its country list is already the largest single block of
-internal links here; eleven more entries would have added roughly 5,000 internal
-links across the site for eleven long-tail destinations. They are in
-`moreDestinations` instead, which renders once on `/car-shipping` under "More
-Destinations". The menu stayed at 85 countries and no page outside
-`/car-shipping` gained a link. Promote one into `continentNames` if it starts
-earning real enquiries.
+**In the Countries mega menu, on request.** They were first held out of it and
+listed once on `/car-shipping` instead, because the menu renders on every page
+and lists each country twice — desktop panel and mobile menu — so eleven more
+entries cost about **5,300 internal links across 242 pages**. George asked for
+them in the menu anyway (2026-09-04), so `moreDestinations` and its section on
+the hub page are gone rather than left to render the same names twice. The menu
+is 97 countries; the homepage went from 426 anchors to 448.
+
+The panel absorbed them without needing layout work: it packs groups into five
+columns shortest-first, so the two that grew most (East & Southern Africa 11 ->
+16, Asia 12 -> 16) redistributed and the tallest column is unchanged.
+
+**Next step George flagged: hide the inactive ones.** Measured against the built
+output, "inactive" does not describe any of the eleven — every one has both a
+sailing schedule (through its hub) and a price. The pages that would actually
+fail that test are older:
+
+- **No upcoming sailings at all** (price, but no schedule section): Cayman
+  Islands, Sweden, Turkey. Their only rows in the schedule are in the past.
+- **No price** (schedule, but "Call for price"): Mauritania, Réunion, South
+  Korea, Taiwan, Aruba, Curaçao, Sint Maarten, Guernsey, Jersey, Jordan, French
+  Polynesia, New Caledonia, Brazil, Ecuador, Peru — 15 of them.
+- **Neither: none.** No country page in the menu is empty of both.
 
 Two bugs surfaced while building these, both fixed in the same change:
 

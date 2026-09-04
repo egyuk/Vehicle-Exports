@@ -120,11 +120,11 @@ const countryPages: Record<string, string> = {
   // Added 2026-09-04 from the old carexporters.co.uk inventory: destinations
   // it covers that this site did not. All eleven are reached through a hub
   // port rather than a direct UK sailing, so each has a hubPorts entry below.
-  // Deliberately NOT in continentNames: that feeds the Countries mega menu,
-  // which is on all 231 pages, and eleven more entries there would add ~5,000
-  // internal links across the site for eleven long-tail destinations. They are
-  // listed once on /car-shipping instead — see moreDestinations at the foot of
-  // this file.
+  // They went into continentNames on request, so they are in the Countries
+  // mega menu with everything else. That menu renders on every page and lists
+  // each country twice (desktop panel and mobile menu), so the eleven cost
+  // about 5,300 internal links across the site — worth knowing if the list is
+  // ever pruned back to the destinations that actually sell.
   Bermuda: '/car-shipping/bermuda',
   Brunei: '/car-shipping/brunei',
   Eswatini: '/car-shipping/eswatini',
@@ -289,22 +289,24 @@ const continentNames: Record<string, string[]> = {
     'Ghana', 'Guinea', 'Mauritania', 'Morocco', 'Nigeria', 'Senegal', 'Sierra Leone', 'Togo',
   ],
   'East & Southern Africa': [
-    'Botswana', 'Kenya', 'Madagascar', 'Mauritius', 'Mozambique', 'Namibia', 'Réunion',
-    'South Africa', 'Tanzania', 'Uganda', 'Zimbabwe',
+    'Botswana', 'Eswatini', 'Kenya', 'Madagascar', 'Malawi', 'Mauritius', 'Mozambique',
+    'Namibia', 'Réunion', 'Seychelles', 'South Africa', 'St Helena', 'Tanzania', 'Uganda',
+    'Zambia', 'Zimbabwe',
   ],
   Asia: [
-    'Bangladesh', 'China', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Malaysia', 'Singapore',
-    'South Korea', 'Sri Lanka', 'Taiwan', 'Thailand',
+    'Bangladesh', 'Brunei', 'China', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Macau',
+    'Malaysia', 'Maldives', 'Pakistan', 'Singapore', 'South Korea', 'Sri Lanka', 'Taiwan',
+    'Thailand',
   ],
   Caribbean: [
-    'Antigua', 'Aruba', 'Bahamas', 'Barbados', 'Cayman Islands', 'Curaçao', 'Dominica',
+    'Antigua', 'Aruba', 'Bahamas', 'Barbados', 'Bermuda', 'Cayman Islands', 'Curaçao', 'Dominica',
     'Dominican Republic', 'Grenada', 'Guadeloupe', 'Jamaica', 'Martinique', 'Puerto Rico',
     'Sint Maarten', 'St Kitts', 'St Lucia', 'St Vincent', 'Trinidad and Tobago',
   ],
   Europe: ['Cyprus', 'Greece', 'Guernsey', 'Ireland', 'Italy', 'Jersey', 'Malta', 'Spain', 'Sweden'],
   'Middle East': ['Jordan', 'Oman', 'Saudi Arabia', 'Turkey'],
   'North America': ['Canada', 'Mexico', 'USA'],
-  Oceania: ['Australia', 'French Polynesia', 'New Caledonia', 'New Zealand'],
+  Oceania: ['Australia', 'Fiji', 'French Polynesia', 'New Caledonia', 'New Zealand'],
   'South & Central America': [
     'Argentina', 'Brazil', 'Chile', 'Colombia', 'Ecuador', 'French Guiana', 'Guyana', 'Panama',
     'Peru', 'Suriname', 'Uruguay',
@@ -321,22 +323,3 @@ export const continentCountries: Record<string, CountryLink[]> = Object.fromEntr
   ]),
 );
 
-// Destinations that have a page but are kept out of the mega menu, because the
-// menu renders on every page of the site and its country list is already the
-// largest single block of internal links here. These eleven are long-tail: no
-// direct UK sailing, most with no published rate of their own. One link each
-// from /car-shipping, plus the sitemap, is the right weight for them - promote
-// one into continentNames above if it starts earning real enquiries.
-const moreDestinationNames: Record<string, string[]> = {
-  'East & Southern Africa': ['Eswatini', 'Malawi', 'Seychelles', 'St Helena', 'Zambia'],
-  Asia: ['Brunei', 'Macau', 'Maldives', 'Pakistan'],
-  Caribbean: ['Bermuda'],
-  Oceania: ['Fiji'],
-};
-
-export const moreDestinations: Record<string, CountryLink[]> = Object.fromEntries(
-  Object.entries(moreDestinationNames).map(([continent, names]) => [
-    continent,
-    names.map(name => ({ name, href: hrefFor(name), ports: countryPorts[name] ?? [] })),
-  ]),
-);
