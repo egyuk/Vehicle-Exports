@@ -117,9 +117,9 @@ const countryPages: Record<string, string> = {
   USA: '/car-shipping/usa-america',
   Zimbabwe: '/car-shipping/zimbabwe',
 
-  // Added 2026-09-04 from the old carexporters.co.uk inventory: destinations
-  // it covers that this site did not. All eleven are reached through a hub
-  // port rather than a direct UK sailing, so each has a hubPorts entry below.
+  // Added 2026-09-04: eleven destinations this site did not previously cover.
+  // All eleven are reached through a hub port rather than a direct UK sailing,
+  // so each has a hubPorts entry below.
   // They went into continentNames on request, so they are in the Countries
   // mega menu with everything else. That menu renders on every page and lists
   // each country twice (desktop panel and mobile menu), so the eleven cost
@@ -175,7 +175,7 @@ const via = (name: string) => 'via ' + hubPorts[name].map(h => h.split(', ')[1])
 
 // Hong Kong and Singapore are city states, so the port is the country and is
 // left out. The landlocked countries show the hub port they are reached via
-// (Zimbabwe's entry keeps the old site's delivery points).
+// (Zimbabwe's entry keeps its inherited delivery points).
 const countryPorts: Record<string, string[]> = {
   Bermuda: ['Hamilton'],
   Brunei: ['Muara'],

@@ -29,33 +29,11 @@ Re-run the audit any time against a fresh `npx astro build` — the checks are
 broken links, missing/duplicate SEO fields, `h1` counts, image alt/sizing,
 placeholder links and asset weight.
 
-### carexporters.co.uk — SETTLED 2026-09-04, no redirects
+### Eleven extra destinations — BUILT 2026-09-04
 
-**George: no redirects are needed.** Asked and answered, so nothing here is
-outstanding and this section is kept for the record rather than as a task. The
-consequence is worth writing down once: the old site stays live and
-unredirected, so it and the new one compete for the same terms, and whatever
-those 75 pages rank for today stays with them. That is a commercial call and it
-has been made.
-
-carexporters.co.uk is ours — NMT addresses its weekly schedule alerts to
-sales@carexporters.co.uk. It had been filed under competitors in
-`research/competitor-links.txt`, which is now corrected. That file holds its
-full 75-page URL inventory, and two things follow from it.
-
-**What the comparison found.** It is what produced the eleven pages below, so
-it is worth keeping even though no redirect is being built. Of the 47 country
-URLs on the old site, 36 already had a page here — 30 matching
-`/shipping/car-shipping-to-<country>.html` -> `/car-shipping/<country>` exactly,
-and 6 differing only in spelling (`antigua-and-barbuda` -> `antigua`,
-`hong-kong` -> `hong-kong-shipping`, the three saints -> `st-*`, `malta` ->
-`europe/malta`). The other eleven had nothing.
-
-**The 11 destinations the old site covered and this one did not — BUILT
-2026-09-04.** Bermuda, Brunei, Eswatini, Fiji, Macau, Malawi, Maldives,
-Pakistan, Seychelles, St Helena and Zambia now have pages. Every destination the
-old site covers is covered here — which was worth doing on its own, and is now
-the only reason it was: no redirect is being built.
+**Bermuda, Brunei, Eswatini, Fiji, Macau, Malawi, Maldives, Pakistan,
+Seychelles, St Helena and Zambia now have pages.** They filled the last gaps
+in the destination list; every destination the business ships to has one now.
 
 None of the eleven takes a direct UK sailing, so each resolves through a
 `hubPorts` entry and every derived fact — transit band, UK load ports, carriers,
@@ -116,12 +94,7 @@ border now read **£4,119 / £5,814**, a 1.41 ratio that sits between Eswatini
 (1.50) and Botswana (1.60) instead of the 1.24 that made the 20ft look wrong.
 
 **Eswatini is at `/car-shipping/eswatini`,** the current name. The rate card
-still files it under Swaziland, which a `rateTableAliases` entry handles. The
-old site's `car-shipping-to-swaziland.html` is not redirected anywhere, in line
-with the decision above.
-
-Left live and unredirected at launch, the old site competes with the new one for
-the same terms: same business, same destinations, same services.
+still files it under Swaziland, which a `rateTableAliases` entry handles.
 
 ---
 
@@ -594,8 +567,7 @@ once confirmed — there is a TODO on it in `LegalPage.astro`.
 ## 6. /car-shipping/car-export-to-asia was a competitor's copy — FIXED 2026-09-04
 
 The body of `src/content/countries/car-export-to-asia.md` had been pasted from
-MHH International — one of the three competitors in
-`research/competitor-links.txt` — and never rewritten. It carried two live
+MHH International, a competitor, and never rewritten. It carried two live
 dofollow links to mhhinternational.com, was about Zimbabwe rather than Asia, and
 claimed "over 17 years of car export experience and over 7,000 cars exported",
 which is MHH's figure.
@@ -673,6 +645,81 @@ no other vehicle markdown contains one. Audit after: 0 pages with multiple h1s.
 **Not** issues, so nobody re-reports them: the 18 pages with no `h1`/description
 are redirect stubs plus the Decap CMS `/admin` page, and the `£TBC` prices on
 `/container-sales` are intentional placeholders.
+
+---
+
+## 10. Homepage link count — MEASURED 2026-09-05, no action taken
+
+George asked whether the homepage has too many links. Measured against the
+built `dist/index.html`: **460 `<a href>` in total, 187 unique destinations.**
+
+| Region | Links | Unique |
+| --- | --- | --- |
+| Header (mega menu) | 138 | 128 |
+| Body | 289 | 170 |
+| Footer | 33 | 29 |
+| **Total** | **460** | **187** |
+
+**460 is not the problem.** Google retired the ~100-link guideline over a
+decade ago and there is no threshold here to be near. 187 unique destinations
+on a commercial homepage is unremarkable, and the 104 country links in the
+mega menu are defensible on their own terms - they are 103 distinct pages and
+they are the site's actual breadth.
+
+**What is worth fixing is the repetition.** 94 body links point at just 15
+vehicles - 6.3 links each. Two causes compound:
+
+- The same 15 cars are rendered as full cards in two separate sections, plus
+  a third bare link elsewhere on the page.
+- Each card wraps image, title and button in three separate anchors to the
+  same URL.
+
+Google collapses duplicates to one, so roughly 79 of those 94 links do nothing
+except add page weight (the homepage is 320 KB) and dilute how much of the page
+reads as unique content.
+
+The cheap win is collapsing each vehicle card to a single anchor. Whether the
+same 15 cars need to appear in three sections is a design question, not an SEO
+one, and is George's call. Nothing has been changed - this is parked for a
+later session.
+
+---
+
+## 11. "Our Other Services" cards without pages — 2026-09-05, parked
+
+George asked for the card headings in the "Our Other Services" section to link
+to their pages. `src/components/CountryServices.astro` now takes an optional
+`href` per card and links the heading where one is set, on all 104 country
+pages. Only two of the six had somewhere to point:
+
+| Card | Links to |
+| --- | --- |
+| Car Sourcing / Buying on your behalf | `/services/car-sourcing` |
+| Tax-Free & VAT-Free Vehicle Supply | `/services/tax-free-car-exports` |
+| Pre-Purchase Inspections | **no page exists** |
+| Government Pre-Shipping Inspection | **no page exists** |
+| Secure Compound Storage | **no page exists** |
+| Paintwork Reconditioning | **no page exists** |
+
+`/process` and `/faq` were both checked for a section worth deep-linking to
+instead — neither has a heading or anchor covering inspections, storage or
+paintwork. The four unlinked cards render exactly as before, so nothing is
+broken; they are simply the only description of those four services anywhere on
+the site. Compound storage and paintwork reconditioning were only added to this
+component on 2026-09-04 and have never had pages of their own.
+
+Two loose ends to settle when this is picked up:
+
+- **The first card names two services that both have pages.** "Car Sourcing /
+  Buying on your behalf" covers `car-sourcing` and `buy-on-your-behalf`; it is
+  linked to the first. Splitting it into two cards would let both be reached.
+- **Three service pages have no card here at all** — `vehicle-collection-
+  delivery`, `customs-clearance` and `new-used-car-exports`. Nothing in this
+  section links to them, on any country page.
+
+Writing the four missing pages is the obvious fix, but whether those four are
+worth a page each — rather than, say, one "extras" page covering storage and
+paintwork — is a commercial call, not a technical one.
 
 ---
 

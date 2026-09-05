@@ -73,8 +73,14 @@ const excluded = [
 <div id={id}>
   <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Cost of Shipping a Car from the UK to {countryName}{ports}</h2>
   <p class="text-gray-600 leading-relaxed mb-4">
+    {/* Optional per-country sentences at either end of this paragraph, so a page
+        can lead with its own line or add to the end without a second paragraph.
+        Kenya uses both to carry what was a separate "Shipping to <country>"
+        section. Empty for every other country, which renders unchanged. */}
+    <slot name="intro-lead" />{' '}
     The total cost of shipping depends on the vehicle make, model and most importantly size. We work directly
-    with all shipping lines in the UK to arrange regular and reliable vehicle exports from the UK to {countryName}{ports}.
+    with all shipping lines in the UK to arrange regular and reliable vehicle exports from the UK to {countryName}{ports}.{' '}
+    <slot name="intro" />
   </p>
 
   {hasCards && (

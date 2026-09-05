@@ -6,6 +6,7 @@ import CountryBookingTerms from '../../components/CountryBookingTerms.astro';
 import CountryServices from '../../components/CountryServices.astro';
 import CountrySourcing from '../../components/CountrySourcing.astro';
 import CountryTaxFree from '../../components/CountryTaxFree.astro';
+import KenyaDutyCalculator from '../../components/KenyaDutyCalculator.astro';
 import { fromPriceFor } from '../../data/shipping-prices';
 import { approximateRatesFor } from '../../data/shipping-rates';
 
@@ -22,7 +23,7 @@ const tocLinks = [
   { href: '#costs', label: 'Costs & pricing' },
   { href: '#sailings', label: 'Sailing schedule' },
   { href: '#why-ship', label: 'Our Other Services' },
-  { href: '#shipping', label: 'Shipping to Kenya' },
+  { href: '#calculator', label: 'Import duty calculator' },
   { href: '#import-duty', label: 'Vehicle age & import eligibility' },
   { href: '#kra-taxes', label: 'KRA import taxes explained' },
   { href: '#vat-qualifying', label: 'Tax-Free Vehicle Supply & VAT Reclaims' },
@@ -82,9 +83,16 @@ const faqs = [
   finalCtaText="If you'd like to talk through any part of shipping your car to Kenya, our team is happy to help."
 >
   <CountryCosts countryName={countryName} destinationPorts={destinationPorts}>
+    <Fragment slot="intro-lead">
+      Mombasa is Kenya's principal port for vehicle imports, and we handle every detail with our shipping
+      partners: just choose your vehicle and leave the rest to us.
+    </Fragment>
+    <Fragment slot="intro">
+      Vehicles travel by either RoRo or container — see pricing for both below.
+    </Fragment>
     <p class="text-gray-600 leading-relaxed mt-6">
       We provide a clear, itemised export quote before you commit to anything — and our{' '}
-      <a href="/import-uk-cars/kenya" class="text-[var(--color-primary)] font-semibold hover:underline">Kenya Import Duty Calculator</a>{' '}
+      <a href="#calculator" class="text-[var(--color-primary)] font-semibold hover:underline">Kenya Import Duty Calculator</a>{' '}
       lets you estimate KRA taxes for a specific vehicle before you buy.
     </p>
   </CountryCosts>
@@ -111,15 +119,7 @@ const faqs = [
     intro="Kenya is one of our most established export destinations. UK Vehicle Exporters specialises in sourcing and exporting vehicles from the UK, with trusted shipping partners and support at every stage — from vehicle selection through to KRA clearance and registration in Kenya."
   />
 
-  <div id="shipping">
-    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Shipping to Kenya</h2>
-    <p class="text-gray-600 leading-relaxed">
-      We work with trusted shipping partners to arrange regular, reliable vehicle deliveries from the UK to the
-      Port of Mombasa, by either RoRo or Container — see pricing for both options
-      above. <strong class="text-gray-900">Delivery port:</strong> Mombasa, Kenya's principal port for vehicle imports. We
-      handle every detail with our shipping partners — just choose your vehicle and leave the rest to us.
-    </p>
-  </div>
+  <KenyaDutyCalculator />
 
   <div id="import-duty">
     <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-4">Vehicle Age & Import Eligibility</h2>
@@ -149,10 +149,6 @@ const faqs = [
         <span class="text-gray-600"><strong class="text-gray-900">Derive the customs value</strong> — the taxable base that Import Duty, Excise Duty, VAT, IDF and RDL are all calculated from</span>
       </li>
     </ol>
-    <p class="text-gray-600 leading-relaxed mb-6">
-      Try our <a href="/import-uk-cars/kenya" class="text-[var(--color-primary)] font-semibold hover:underline">Kenya Import Duty Calculator</a>{' '}
-      to estimate the customs value and taxes for a specific make and model before you commit to buying.
-    </p>
   </div>
 
   <div id="kra-taxes">

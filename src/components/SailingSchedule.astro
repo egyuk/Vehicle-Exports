@@ -103,10 +103,10 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
           <table class="w-full text-sm min-w-[560px]">
             <thead>
               <tr class="bg-gray-50 text-left border-b border-gray-200">
-                <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Date</span><span class="hidden sm:inline">Departure Date</span></th>
+                <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Departure</th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">UK Port</th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Destination</span><span class="hidden sm:inline">Destination / Port</span></th>
-                <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Arrival Date</th>
+                <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Arrival</th>
                 <th class="px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide"><span class="sm:hidden">Vessel</span><span class="hidden sm:inline">Vessel / Ship</span></th>
               </tr>
             </thead>
@@ -145,15 +145,15 @@ const sectionBg = background === 'gray' ? 'bg-gray-50' : 'bg-white';
           </table>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4 mt-5">
-          <a href="/uk-car-sailing-schedule" class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-primary)] hover:underline">
+        <div class="flex flex-wrap items-center sm:justify-between gap-4 mt-5">
+          <a href="/uk-car-sailing-schedule" class="inline-flex items-center gap-2 text-base font-semibold text-[var(--color-primary)] hover:underline">
             Full sailing schedule
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
           {upcoming.length > rows.length && (
-            <span class="text-sm text-gray-400">Showing {rows.length} of {upcoming.length} sailings</span>
+            <span class="text-base text-gray-400">Showing {rows.length} of {upcoming.length} sailings</span>
           )}
-          <a href="/contact" class="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[var(--color-primary)] transition-colors">
+          <a href="/contact" class="inline-flex items-center gap-2 text-base font-semibold text-gray-600 hover:text-[var(--color-primary)] transition-colors">
             Export a car on above sailings
           </a>
         </div>

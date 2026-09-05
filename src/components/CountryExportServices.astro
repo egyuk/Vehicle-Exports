@@ -1,0 +1,73 @@
+---
+// "Export & Shipping Services to <Country>" — the six service cards from
+// /services, repeated at the foot of every country page so a reader who has
+// just worked out the cost and the sailing dates has the next step in front of
+// them rather than having to go back to the menu.
+//
+// The heading names shipping but no card does: shipping is priced in the
+// CountryCosts section further up every page that renders this one (checked
+// 2026-09-05 - all 97 pages using CountryPageLayout also use CountryCosts), so
+// the intro points there rather than repeating it as a card.
+//
+// Cards read src/data/services.ts, the same source as /services and the header
+// dropdown, so a service added there appears here with no further work.
+//
+// Deliberately the same card markup as src/pages/services/index.astro. The one
+// difference is the heading level: there each card is an h2 under the page
+// title, here they sit under this section's own h2, so they are h3.
+import { services } from '../data/services';
+
+interface Props {
+  countryName: string;
+}
+
+const { countryName } = Astro.props;
+
+// Card headings name the destination: "UK Car Sourcing & Supply to Kenya".
+// Two of the six do not parse with a bare "to" - a car is not bought on your
+// behalf "to Kenya", and customs clearance is UK-side work, so "to Kenya"
+// would be wrong as well as awkward. Those take "for Export to" instead.
+//
+// `name` overrides the services.ts name for this heading only. Customs
+// clearance drops "Vehicle" here (George, 2026-09-05) because the country and
+// the connector already make a long line; /services and the header dropdown
+// still read the full name from services.ts.
+const OVERRIDES: Record<string, { name?: string; connector?: string }> = {
+  'buy-on-your-behalf': { connector: 'for Export to' },
+  'customs-clearance': { name: 'UK Customs Clearance', connector: 'for Export to' },
+};
+const titleFor = (slug: string, name: string) => {
+  const o = OVERRIDES[slug] ?? {};
+  return `${o.name ?? name} ${o.connector ?? 'to'} ${countryName}`;
+};
+---
+
+<section class="py-16 lg:py-20 bg-white border-t border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 font-[family-name:var(--font-heading)] mb-2">
+      Export & Shipping Services to {countryName}
+    </h2>
+    <p class="text-gray-600 mb-8 max-w-2xl">
+      The shipping itself — RoRo or container to {countryName} — is priced above. These are the services
+      around it: sourcing, tax-free supply, collection and customs, and everything else we handle in the UK
+      before your vehicle sails.
+    </p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map(service => (
+        <a href={`/services/${service.slug}`} class="group rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src={service.image} alt={service.name} width="480" height="300" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-[var(--color-primary)] text-lg font-[family-name:var(--font-heading)] leading-snug">{titleFor(service.slug, service.name)}</h3>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">{service.shortDesc}</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-900 group-hover:text-[var(--color-primary)] transition-colors mt-4">
+              Learn more
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

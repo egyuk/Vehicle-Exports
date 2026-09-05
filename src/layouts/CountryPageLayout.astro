@@ -5,6 +5,7 @@
 // (the id-tagged <h2> sections referenced by tocLinks) goes in the
 // default slot; see src/pages/car-shipping/australia.astro for a full example.
 import Layout from './Layout.astro';
+import CountryExportServices from '../components/CountryExportServices.astro';
 
 interface QuickFact {
   label: string;
@@ -279,6 +280,8 @@ const faqSchema = faqs.length
       </div>
     </section>
   )}
+
+  <CountryExportServices countryName={countryName} />
 
   <!-- Final CTA -->
   <section class="py-12 bg-[var(--color-dark)]">

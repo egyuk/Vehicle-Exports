@@ -17,6 +17,8 @@
 interface InspectionCard {
   title: string;
   text: string;
+  /** Links the card heading. Only set where a page for that service exists. */
+  href?: string;
 }
 
 interface Props {
@@ -36,10 +38,12 @@ const fourth: InspectionCard = inspection ?? {
 const cards: InspectionCard[] = [
   {
     title: 'Car Sourcing / Buying on your behalf',
+    href: '/services/car-sourcing',
     text: "We source any new or used vehicle from our network of UK dealers, auctions and private sellers — or buy a specific car you've found on your behalf, protecting you from the pitfalls of paying an unknown seller from overseas.",
   },
   {
     title: 'Tax-Free & VAT-Free Vehicle Supply',
+    href: '/services/tax-free-car-exports',
     text: 'We specialise in VAT-qualifying and brand-new tax-free vehicles, so eligible export buyers can have the 20% UK VAT deducted or reclaimed — often the single biggest saving on an exported car.',
   },
   {
@@ -63,7 +67,11 @@ const cards: InspectionCard[] = [
   <div class="grid sm:grid-cols-2 gap-6">
     {cards.map(card => (
       <div>
-        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">{card.title}</h4>
+        <h4 class="font-semibold text-gray-900 font-[family-name:var(--font-heading)] mb-2">
+          {card.href
+            ? <a href={card.href} class="hover:text-[var(--color-primary)] transition-colors">{card.title}</a>
+            : card.title}
+        </h4>
         <p class="text-gray-600 leading-relaxed text-sm">{card.text}</p>
       </div>
     ))}

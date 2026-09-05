@@ -307,7 +307,7 @@ const rateTableAliases: Record<string, string[]> = {
   'Trinidad and Tobago': ['Trinidad'],
   USA: ['United States of America (USA)'],
   UAE: ['Dubai'],
-  // Renamed in 2018; the rate card, like the old site, still says Swaziland.
+  // Renamed in 2018; the rate card still says Swaziland.
   Eswatini: ['Swaziland'],
 };
 
